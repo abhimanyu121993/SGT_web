@@ -2,8 +2,8 @@
 
 return array (
   'dashboard' => 'डैशबोर्ड',
-  'permission' => 'pppppp',
-  'role' => 'rrrr',
+  'permission' => 'अनुमति',
+  'role' => 'rrrra',
   'role has permission' => 'dsadas',
   'role_permission' => 'fnjke',
 );

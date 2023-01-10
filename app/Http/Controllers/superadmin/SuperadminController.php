@@ -10,8 +10,6 @@ class SuperadminController extends Controller
 {
     public function dashboard()
     {
-        App::setLocale('hi');
-        echo base_path('view.lang.en.sidebar.php');
-        // return view('superadmin.dashboard');
+        return view('superadmin.dashboard');
     }
 }

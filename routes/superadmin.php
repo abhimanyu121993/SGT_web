@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\superadmin\PermissionController;
+use App\Http\Controllers\superadmin\RoleController;
 use App\Http\Controllers\superadmin\RolePermissionController;
 use App\Http\Controllers\superadmin\SuperadminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [SuperadminController::class, 'dashboard'])->name('dashboard');
-Route::get('permission', [RolePermissionController::class,'permission'])->name('permission');
+Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function(){
+    Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
+    Route::get('role-has-permission', [RolePermissionController::class, 'role_has_permission'])->name('role-has-permission');
+});
