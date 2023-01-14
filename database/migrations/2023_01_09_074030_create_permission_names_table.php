@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('permission_names', function (Blueprint $table) {
             $table->id();
+            $table->string('guard_name');
             $table->string('permission_name');
             $table->timestamps();
         });

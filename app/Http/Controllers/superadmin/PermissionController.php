@@ -16,7 +16,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = PermissionName::all();
+        $permissions = PermissionName::where('guard_name','superadmin')->get();
         return view('role_permission.permission',compact('permissions'));
     }
 

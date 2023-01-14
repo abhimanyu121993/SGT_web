@@ -24,4 +24,5 @@ swal({
     text:"{{Session::get('info')}}",
   });
 @endif
+
 </script>

@@ -28,6 +28,8 @@
     </div>
 </div>
 
+<div class="card">
+    
 <div class="card-content">
     <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Permissions</h4>
     <table class="table table-nowrap container" id="example">
@@ -65,5 +67,6 @@
     </table>
 </div>
 
+</div>
 
 @endsection

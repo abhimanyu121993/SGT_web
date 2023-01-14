@@ -8987,7 +8987,10 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 .brand-sidebar .logo-wrapper a.brand-logo img
 {
-    height: 18px;
+    height: 45px;
+    padding-left: 20px;
+    margin-top: -10px;
+    width: 180px !important;
 }
 
 .brand-sidebar .logo-wrapper a.navbar-toggler

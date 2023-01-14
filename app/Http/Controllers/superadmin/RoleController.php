@@ -17,7 +17,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $Roles = Role::where('created_by',Auth::guard('superadmin')->user()->id ?? '')->get();
+        $Roles = Role::where('created_by',Auth::guard('superadmin')->user()->id ?? '')->where('guard_name','superadmin')->get();
         return view('role_permission.role', compact('Roles'));
     }
 
@@ -71,7 +71,7 @@ class RoleController extends Controller
     {
         $id = Crypt::decrypt($id);
         $RoleEdit=Role::find($id);
-        $Roles = Role::where('created_by',Auth::guard('superadmin')->user()->id)->get();
+        $Roles = Role::where('created_by',Auth::guard('superadmin')->user()->id)->where('guard_name','superadmin')->get();
         return view('role_permission.role', compact('Roles','RoleEdit'));
     }
 

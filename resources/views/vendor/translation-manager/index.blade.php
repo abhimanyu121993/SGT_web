@@ -604,7 +604,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                   
                     <?php foreach ($translations as $key => $translation): ?>
                     <tr id="<?php echo htmlentities($key, ENT_QUOTES, 'UTF-8', false); ?>">
                         <td><?php echo htmlentities($key, ENT_QUOTES, 'UTF-8', false); ?></td>
