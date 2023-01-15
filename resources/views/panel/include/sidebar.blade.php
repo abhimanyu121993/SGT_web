@@ -9,6 +9,9 @@
     else if(Auth::guard('customer')->check()){
         $guard='customer';
     }
+    else{
+        $guard='superadmin';
+    }
 @endphp
 
 <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
