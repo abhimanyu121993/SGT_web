@@ -10,5 +10,6 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
  Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function(){
     Route::resource('role', RoleController::class)->name('role','');
     Route::resource('permission', PermissionController::class)->name('permission','');
-    Route::get('role-has-permission', [RolePermissionController::class, 'role_has_permission'])->name('role-has-permission');
+    Route::get('role-has-permission', [RolePermissionController::class, 'role_permission'])->name('role-has-permission');
+    Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions');
 });

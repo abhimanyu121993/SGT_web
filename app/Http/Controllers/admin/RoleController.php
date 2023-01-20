@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -17,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name','admin')->get();
+        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->get();
         return view('role_permission.role', compact('Roles'));
     }
 
@@ -42,9 +44,14 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
+       if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
+       'guard_name' => 'customer',])->exists()){
+            Session::flash('error', 'This Role is already exists');
+            return redirect()->back();
+       }
         Role::create([
             'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
-            'guard_name' => 'admin',
+            'guard_name' => 'customer',
             'created_by'=>Auth::guard('admin')->user()->id
         ]);
         return redirect()->back()->with('success','Role has been created successfully.');
@@ -87,8 +94,13 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
+        if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
+        'guard_name' => 'customer',])->exists()){
+             Session::flash('error', 'This Role is already exists');
+             return redirect()->back();
+        }
         Role::find($id)->update([
-            'name' => $request->role
+            'name' => Auth::guard('admin')->user()->id.'_'.$request->role
         ]);
         return redirect()->back()->with('success','Role has been Updated successfully.');    }
 

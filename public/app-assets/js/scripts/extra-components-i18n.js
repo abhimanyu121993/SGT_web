@@ -4,8 +4,8 @@
     --------------------------------------------------------------------------------------
     Item Name: Frest HTML Admin Template
     Version: 1.0
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
+    Author: SGT
+    Author URL: http://www.themeforest.net/user/SGT
 ==========================================================================================*/
 
 $(document).ready(function () {

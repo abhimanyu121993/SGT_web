@@ -36,9 +36,12 @@
                   </li>
                   <li class="{{(strpos(Route::currentRouteName(),'role-permission.permission')!==false)?'active':''}} bold"><a href="{{route($guard.'.role-permission.permission.index')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'role-permission.permission')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register">{{__('sidebar.permission')}}</span></a>
                   </li>
+                  <li class="{{(strpos(Route::currentRouteName(),'role-permission.role-has-permission')!==false)?'active':''}} bold"><a href="{{route($guard.'.role-permission.role-has-permission')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'role-permission.role-has-permission')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register">{{__('sidebar.role-has-permission')}}</span></a>
+                  </li>
                 </ul>
             </div>
         </li>
+        
     </ul>
     <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
 </aside>

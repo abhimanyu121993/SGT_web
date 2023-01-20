@@ -22,6 +22,7 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
         if(Auth::guard('superadmin')->attempt(['email' => $req->username, 'password' => $req->password],$req->remember)){
+            Session::put('guard', 'superadmin');
             return redirect()->route('superadmin.dashboard');
         }
         else
@@ -43,6 +44,7 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
         if(Auth::guard('admin')->attempt(['email' => $req->username, 'password' => $req->password],$req->remember)){
+            Session::put('guard', 'admin');
             return redirect()->route('admin.dashboard');
         }
         else
@@ -64,7 +66,7 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
         if(Auth::guard('customer')->attempt(['email' => $req->username, 'password' => $req->password],$req->remember)){
-            // return 123;
+            Session::put('guard', 'customer');
             return redirect()->route('customer.dashboard');
         }
         else

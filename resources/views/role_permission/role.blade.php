@@ -19,7 +19,6 @@
     <div class="section">
         <div class="card">
             <div class="card-content">
-                {{$guard}}
                 <div class="live-preview">
                     <form
                         action="{{ isset($RoleEdit) ? route($guard.'.role-permission.role.update', $RoleEdit->id) : route($guard.'.role-permission.role.store') }}"
@@ -32,7 +31,7 @@
                             <div class="col-xxl-3 col-md-6">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="role" name="role"
-                                        value="{{ isset($RoleEdit) ? $RoleEdit->name : '' }}" placeholder="Role Name">
+                                        value="{{ isset($RoleEdit) ? $RoleEdit->role_name : '' }}" placeholder="Role Name">
                                     <button class="btn btn-primary" id="btn-btn"
                                         type="submit">{{ isset($RoleEdit) ? 'Update' : 'Submit' }}</button>
                                 </div>
@@ -62,7 +61,7 @@
                 @foreach ($Roles as $data)
                             <tr>
                                 <th scope="row">{{ $loop->index + 1 }}</th>
-                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->role_name }}</td>
                                 <td>{{ $data->created_at }}</td>
                                 <td>
                                     <div class="dropdown">

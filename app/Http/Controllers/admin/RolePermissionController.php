@@ -11,18 +11,18 @@ use Spatie\Permission\Models\Role;
 class RolePermissionController extends Controller
 {
     // open view for create permission made by super admin
-    public function rolePermission()
+    public function role_permission()
     {
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name','admin')->get();
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$customer)->get();
         return view('role_permission.role_permission',compact('roles'));
     }
 
-    public function fetchPermission(Request $request)
+    public function fetch_permission(Request $request)
     {
         $selectrole=Role::find($request->role);
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name','admin')->get();
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$customer)->get();
         $permissionnames=PermissionName::where('guard_name','admin')->get();
-        return view('role_permission.role_permission',compact('roles','permissionnames','selectrole'));
+        return view('role_permission.role_has_permission',compact('roles','permissionnames','selectrole'));
     }
 
     public function assignPermission(Request $request)

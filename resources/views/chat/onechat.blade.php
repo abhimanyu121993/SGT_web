@@ -88,7 +88,7 @@
             </li>
             <li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
                 <div class="user-content speech-bubble-right">
-                    <p class="medium-small">https://pixinvent.ticksy.com/</p>
+                    <p class="medium-small">https://SGT.ticksy.com/</p>
                 </div>
             </li>
         </ul>
