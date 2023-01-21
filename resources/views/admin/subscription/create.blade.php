@@ -39,20 +39,17 @@
                                 <label class="active" for="price">{{__('subscription.price')}}</label>
 
                             </div>
-                            <div class="input-group col s4">
-                                <select id="days" name="days">
-                                    @if (isset($EditSubscription))
-                                    <option value="{{ $EditSubscription->days }}" selected hidden>
-                                        {{ $EditSubscription->days }}</option>
-                                    @else
-                                    <option value="" disabled selected>{{__('subscription.validity')}}</option>
-                                    @endif
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
+                            <div class="input-group col s4" id="days">
+                                <input type="number" class="form-control" id="days" name="days"
+                                    value="{{ isset($EditSubscription) ? $EditSubscription->days : '' }}"
+                                    placeholder="Validity">
+                                <!-- <label class="active" for="days">{{__('subscription.validity')}}</label> -->
                             </div>
                             <div class="input-group col s4">
                                 <select id="status" name="status">
+                                    @if(!isset($EditSubscription))
+                                <option value="" disabled selected>{{__('subscription.status')}}</option>
+                                   @endif
                                     @foreach($status as $s)
                                     <option value="{{$s->id}}" @isset($EditSubscription)@selected($EditSubscription->status_id==$s->id) @endisset>{{$s->name??''}}</option>
                                      @endforeach
@@ -66,6 +63,7 @@
                                     <option value="0">{{__('subscription.no')}}</option>
                                 </select>
                             </div>
+                            
                             <div class="input-group col s4" id="free_trails_days">
                                 <input type="number" class="form-control" id="free_trial_days" name="free_trial_days"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->free_trial_days : '' }}"
@@ -74,7 +72,7 @@
                             </div>
                             <div class="input-group col s4">
                                 <select class="form-select" id="thumbnail" name="thumbnail">
-                                    <option selected disabled>Select Type</option>
+                                    <option selected disabled>{{__('subscription.thumbnail')}}</option>
                                     <option value="icon">{{__('subscription.icon')}}</option>
                                     <option value="img">{{__('subscription.img')}}</option>
                                 </select>
@@ -157,7 +155,8 @@
 @endsection
 @section('script-area')
 <script>
-$(document).ready(function() 
+$(document).ready(function() {
+
      @if(isset($EditSubscription) && $EditSubscription->free_trial_days!=0)
      $('#free_trails_days').show();
      @else

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\DataTables\CurrencyDataTable;
+use App\DataTables\RoleDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -17,10 +20,9 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RoleDataTable $dataTable)
     {
-        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->get();
-        return view('role_permission.role', compact('Roles'));
+        return $dataTable->render('role_permission.role');
     }
 
     /**
@@ -122,5 +124,10 @@ class RoleController extends Controller
         {
             return redirect()->back()->with('error','Data not deleted.');
         }    
+    }
+    public function fetch_role()
+    {
+        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->paginate(1);
+        return response()->json($Roles);
     }
 }

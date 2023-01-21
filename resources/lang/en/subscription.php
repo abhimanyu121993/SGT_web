@@ -11,7 +11,11 @@ return array (
   'color' => 'Color',
   'bg_color' => 'Background Color',
   'validity' => 'Validity',
-  'currency' => 'Currency',
-  'free_trails' => 'Free Trial',
+  'currency' => 'Choose a currency',
+  'free_trails' => 'Choose free trial',
   'free_trial_days' => 'Free Trial Days',
+  'status' => 'Choose a status',
+  'thumbnail' => 'Choose thumbnail type',
+
+
 );

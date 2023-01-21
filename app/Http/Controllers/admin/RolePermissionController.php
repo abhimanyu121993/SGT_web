@@ -35,4 +35,5 @@ class RolePermissionController extends Controller
         $role->syncPermissions($request->rolepermissions);
         return redirect()->route('superadmin.role-permission.role-has-permission')->with('success','Permission Assigned Successfully');
     }
+
 }
