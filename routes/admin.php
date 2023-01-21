@@ -15,6 +15,7 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
     Route::resource('permission', PermissionController::class)->name('permission','');
     Route::get('role-has-permission', [RolePermissionController::class, 'role_permission'])->name('role-has-permission');
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions');
+    Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role');
     Route::get('customer-has-permission', [RoleController::class, 'fetch_role'])->name('customer-has-permission');
 });
