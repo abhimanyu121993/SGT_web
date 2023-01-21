@@ -9,6 +9,12 @@
     <script src="{{asset('app-assets/js/custom/custom-script.js')}}"></script>
   <script src="{{asset('app-assets/vendors/sweetalert/sweetalert.min.js')}}"></script>
   <script src="{{asset('app-assets/js/scripts/extra-components-sweetalert.js')}}"></script>
+  <script>
+$('.check').on('change', function() {
+    this.value = this.checked ? 1 : 0;
+    // alert(this.value);
+}).change();
+</script>
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->

@@ -71,9 +71,19 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
         <a class="collapsible-header waves-effect waves-cyan {{(strpos(Route::currentRouteName(),'subscription')!==false)?'active':''}} " href="JavaScript:void(0)"><i class="material-icons">lock_open</i><span class="menu-title" data-i18n="Authentication">{{__('sidebar.subscription')}} </span></a>
         <div class="collapsible-body" style="{{(strpos(Route::currentRouteName(),'subscription')!==false)?'display:block':''}}">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-              <li class="{{(strpos(Route::currentRouteName(),'subscription.subscription-add')!==false)?'active':''}}  bold"><a href="{{ route(Session::get('guard').'.subscription.index') }}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'subscription.index')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Login">{{__('sidebar.subscription-add')}}</span></a>
+              <li class="{{(strpos(Route::currentRouteName(),'subscription.create')!==false)?'active':''}}  bold"><a href="{{ route(Session::get('guard').'.subscription.index') }}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'subscription.index')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Login">{{__('sidebar.create')}}</span></a>
               </li>
-              <li class="{{(strpos(Route::currentRouteName(),'subscription.manage-subscription')!==false)?'active':''}} bold"><a href="{{route(Session::get('guard').'.subscription.create')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'subscription.create')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register">{{__('sidebar.manage-subscription')}}</span></a>
+              <li class="{{(strpos(Route::currentRouteName(),'subscription.manage')!==false)?'active':''}} bold"><a href="{{route(Session::get('guard').'.subscription.create')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'subscription.create')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register">{{__('sidebar.manage')}}</span></a>
+            </ul>
+        </div>
+    </li>
+    <li class=" {{(strpos(Route::currentRouteName(),'user')!==false)?'active open':''}} bold ">
+        <a class="collapsible-header waves-effect waves-cyan {{(strpos(Route::currentRouteName(),'user')!==false)?'active':''}} " href="JavaScript:void(0)"><i class="material-icons">lock_user</i><span class="menu-title" data-i18n="Authentication">{{__('sidebar.user')}} </span></a>
+        <div class="collapsible-body" style="{{(strpos(Route::currentRouteName(),'user')!==false)?'display:block':''}}">
+            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+              <li class="{{(strpos(Route::currentRouteName(),'user.create')!==false)?'active':''}}  bold"><a href="{{ route(Session::get('guard').'.user.index') }}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'user.index')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Login">{{__('sidebar.create')}}</span></a>
+              </li>
+              <li class="{{(strpos(Route::currentRouteName(),'user.manage')!==false)?'active':''}} bold"><a href="{{route(Session::get('guard').'.user.create')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'user.create')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register">{{__('sidebar.manage')}}</span></a>
             </ul>
         </div>
     </li>
