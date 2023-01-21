@@ -23,7 +23,9 @@ class RoleController extends Controller
      */
     public function index(RoleDataTable $dataTable)
     {
-        return $dataTable->render('role_permission.role');
+        // return $dataTable->render('role_permission.role');
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->paginate(10);
+        return view('role_permission.role', compact('roles'));
     }
 
     /**
@@ -81,8 +83,8 @@ class RoleController extends Controller
     {
         $id = Crypt::decrypt($id);
         $RoleEdit=Role::find($id);
-        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name','admin')->get();
-        return view('role_permission.role', compact('Roles','RoleEdit'));
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->paginate(10);
+        return view('role_permission.role', compact('roles','RoleEdit'));
     }
 
     /**
@@ -98,7 +100,7 @@ class RoleController extends Controller
             'role' => 'required',
         ]);
         if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
-        'guard_name' => 'customer',])->exists()){
+        'guard_name' => 'admin',])->exists()){
              Session::flash('error', 'This Role is already exists');
              return redirect()->back();
         }

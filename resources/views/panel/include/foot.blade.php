@@ -59,3 +59,5 @@
   {{-- Data Table Js cdn --}}
   <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script src="{{asset('vendor/datatables/buttons.server-side.js')}}"></script>
+
+<script src="{{asset('app-assets/js/scripts/form-elements.js')}}"></script>

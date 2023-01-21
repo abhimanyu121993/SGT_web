@@ -13,19 +13,19 @@ class RolePermissionController extends Controller
     // open view for create permission made by super admin
     public function role_permission()
     {
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$customer)->get();
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$admin)->get();
         return view('role_permission.role_permission',compact('roles'));
     }
 
     public function fetch_permission(Request $request)
     {
         $selectrole=Role::find($request->role);
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$customer)->get();
-        $permissionnames=PermissionName::where('guard_name','admin')->get();
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$admin)->get();
+        $permissionnames=PermissionName::where('guard_name',PermissionName::$admin)->get();
         return view('role_permission.role_has_permission',compact('roles','permissionnames','selectrole'));
     }
 
-    public function assignPermission(Request $request)
+    public function assign_permission(Request $request)
     {
         $request->validate([
             'roleid'=>'required',
@@ -33,7 +33,7 @@ class RolePermissionController extends Controller
         ]);
         $role=Role::find($request->roleid);
         $role->syncPermissions($request->rolepermissions);
-        return redirect()->route('superadmin.role-permission.role-has-permission')->with('success','Permission Assigned Successfully');
+        return redirect()->back()->with('success','Permission Assigned Successfully');
     }
 
 }

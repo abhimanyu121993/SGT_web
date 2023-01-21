@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-content">
 
-                <form action="{{ route(Session::get('guard') . '.role-permission.fetch-permissions') }}" method="post">
+                <form action="{{ route(Session::get('guard') . '.role-permission.assign-permission') }}" method="post">
                     @csrf
                     <input type="hidden" name='roleid' value="{{ $selectrole->id }}">
                     <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
@@ -26,13 +26,17 @@
                                 @foreach ($permissionnames as $pname)
                                     <tr>
                                         <th>
-                                            {{ $pname->name }}
+                                            {{ $pname->permission_name }}
                                         </th>
+                                        
                                         @foreach ($pname->permissions as $permission)
+                                        
                                             <td>
-                                                <input type="checkbox" class="form-check"
-                                                    value="{{ $permission->name }}" name='rolepermissions[]'
-                                                    {{ $selectrole->hasPermissionTo($permission->name) ? 'checked' : '' }}>
+                                                <label>
+                                                    <input type="checkbox" value="{{ $permission->name }}" name='rolepermissions[]'
+                                                    {{ $selectrole->hasPermissionTo($permission->name,Session::get('guard')) ? 'checked' : '' }}/>
+                                                    <span></span>
+                                                  </label>
                                             </td>
                                         @endforeach
                                     </tr>
@@ -41,7 +45,7 @@
 
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" type="submit"> Update Permission</button>
+                    <button class="btn btn-primary mt-2" type="submit"> Update Permission</button>
                 </form>
 
             </div>
