@@ -15,4 +15,9 @@ class Subscription extends Model
     {
         return $this->belongsTo(Status::class, 'status_id', 'id');
     }
+
+    public function currencyInfo()
+    {
+        return $this->belongsTo(Currency::class, 'currency', 'id');
+    }
 }

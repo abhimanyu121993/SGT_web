@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use App\Models\ProjectError;
 use App\Models\Status;
 use App\Models\Subscription;
@@ -25,8 +26,8 @@ class SubscriptionController extends Controller
     {
         $error=ProjectError::all();
         $status=Status::all();
-
-        return view('admin.subscription.create',compact('error','status'));
+        $currency=Currency::all();
+        return view('admin.subscription.create',compact('error','status','currency'));
     }
   
     /**
@@ -51,6 +52,8 @@ class SubscriptionController extends Controller
     {
         $request->validate([
             'title'=>'required',
+            
+
         ]);
         try
         {
@@ -109,10 +112,12 @@ class SubscriptionController extends Controller
     {
         $id=Crypt::decrypt($id);
         $status=Status::all();
+        $currency=Currency::all();
+
         $EditSubscription=Subscription::find($id);
         if($EditSubscription)
         {
-            return view('admin.subscription.create',compact('EditSubscription','status'));
+            return view('admin.subscription.create',compact('EditSubscription','status','currency'));
         }
         else
         {

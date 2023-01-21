@@ -41,7 +41,7 @@ $guard='customer';
                 <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
                     <td>{{ $data->title??'' }}</td>
-                    <td>{{ $data->currency??''}}</td>
+                    <td>{{ $data->currencyInfo->code??''}}</td>
                     <td>{{ $data->price??'' }}</td>
                     <td>{{ $data->free_trial_days??'' }}</td>
                     <td>

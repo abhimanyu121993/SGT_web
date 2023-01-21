@@ -16,6 +16,7 @@
                     @if (isset($EditSubscription))
                     @method('patch')
                     @endif
+                  
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
@@ -27,9 +28,12 @@
                             </div>
                             <div class="input-group col s4">
                                 <select id="currency" name="currency">
-                                    <option value="" disabled selected>{{__('subscription.currency')}} </option>
-                                    <option value="Usd">Usd</option>
-                                    <option value="Inr">Inr</option>
+                                @if(!isset($EditSubscription))
+                                <option value="" disabled selected>{{__('subscription.currency')}}</option>
+                                   @endif
+                                    @foreach($currency as $c)
+                                    <option value="{{$c->id}}" @isset($EditSubscription)@selected($EditSubscription->currency==$c->id) @endisset>{{$c->code??''}} ({{$c->symbol??''}})</option>
+                                     @endforeach
                                 </select>
                             </div>
                             <div class="input-group col s4">
@@ -162,7 +166,7 @@ $(document).ready(function() {
      @else
      $('#free_trails_days').hide();
      @endif   
-    $(document).change('free_trails',function() {
+    $('#free_trails').change(function() {
         $(this).find("option:selected").each(function() {
             var optionValue = $(this).attr("value");
             if (optionValue == 1) {

@@ -16,10 +16,11 @@ class StatusSeeder extends Seeder
     public function run()
     {
         DB::table('statuses')->insert([
-            'name' => 'first',
-            'icon' => 'abc',
-            'color' => 222,
-            'bg_color'=>125,
+            'name' => 'active',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'genral',
         ]);
         }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('icon');
             $table->string('color');
             $table->string('bg_color');
+            $table->string('Type');
             $table->softDeletes();
             $table->timestamps();
         });
