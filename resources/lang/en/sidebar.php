@@ -13,4 +13,5 @@ return array (
 
   'translation' => 'Translation',
   'translation-list' => 'Translation List',
+  'customer-has-permission'=>'Customers Has Permission'
 );

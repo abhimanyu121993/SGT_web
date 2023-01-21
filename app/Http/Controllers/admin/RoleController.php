@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -47,7 +48,7 @@ class RoleController extends Controller
             'role' => 'required',
         ]);
        if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
-       'guard_name' => 'customer',])->exists()){
+       'guard_name' => 'admin',])->exists()){
             Session::flash('error', 'This Role is already exists');
             return redirect()->back();
        }
@@ -129,5 +130,10 @@ class RoleController extends Controller
     {
         $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->paginate(1);
         return response()->json($Roles);
+    }
+    public function assign_permission()
+    {
+        $admin = Auth::guard('admin')->user();
+        $admin->givePermissionTo(Permission::where('guard_name', 'admin')->get());
     }
 }
