@@ -1,5 +1,5 @@
  <!-- BEGIN VENDOR JS-->
-  {{-- <script src="{{asset('app-assets/js/vendors.min.js')}}"></script> --}}
+  <script src="{{asset('app-assets/js/vendors.min.js')}}"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
   <!-- END PAGE VENDOR JS-->
