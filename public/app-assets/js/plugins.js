@@ -503,7 +503,7 @@ $(function () {
          }
       }
    }
-   $(".toggle-fullscreen").click(function () {
+   $(document).on('click',".toggle-fullscreen",function () {
       toggleFullScreen();
    });
 

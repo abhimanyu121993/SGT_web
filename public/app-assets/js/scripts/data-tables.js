@@ -66,8 +66,13 @@ $(function () {
   // Horizontal And Vertical Scroll Table
 
   $('#scroll-vert-hor').DataTable({
+
     "scrollY": 200,
-    "scrollX": true
+    "scrollX": true,
+    "dom": 'Bfrtip',
+    "buttons": [
+       'print', 'copy', 'csv', 'excel', 'pdf'
+    ]
   })
 
   // Multi Select Table
