@@ -39,7 +39,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery()->where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer);
+        return $model->newQuery()->where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin);
     }
 
     /**

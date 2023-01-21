@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('type',['owner','employee'])->default('owner');
+            $table->bigInteger('created_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

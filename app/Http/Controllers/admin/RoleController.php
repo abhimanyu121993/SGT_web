@@ -54,7 +54,7 @@ class RoleController extends Controller
        }
         Role::create([
             'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
-            'guard_name' => 'customer',
+            'guard_name' => 'admin',
             'created_by'=>Auth::guard('admin')->user()->id
         ]);
         return redirect()->back()->with('success','Role has been created successfully.');
