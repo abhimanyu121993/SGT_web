@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'general/states-in-country',
+        'general/cities-in-state'
     ];
 }

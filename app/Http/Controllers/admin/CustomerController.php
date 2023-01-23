@@ -17,8 +17,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // dd(Helper::getStateByCountry(101));
         $customers = Customer::get();
+        $timezones=
         return view('admin.customer.manage_customer',compact('customers'));
     }
 

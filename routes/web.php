@@ -44,4 +44,5 @@ Route::group([
     'as' => 'general.'],
     function () {
         Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-country');
+        Route::post('cities-in-state', [GeneralController::class, 'cities_in_state'])->name('cities-in-state');
 });
