@@ -50,7 +50,7 @@ $guard='customer';
                     <td>
                         <div class="switch">
                             <label>
-                                <input type="checkbox" value="{{$data->id}}" class="is_limit" id="is_limit"
+                                <input type="checkbox" value="{{$data->id}}" class="is_limit" id="is_limit" data-url="{{route('admin.subscription.limit',$data->id) }}"
                                     {{ $data->limit==0?'':'checked' }}>
                                 <span class="lever"></span>
                             </label>
@@ -59,7 +59,7 @@ $guard='customer';
                     <td>
                         <div class="switch">
                             <label>
-                                <input type="checkbox" value="{{$data->id}}" class="is_life" id="is_lifetime"
+                                <input type="checkbox" value="{{$data->id}}" class="is_life_time" id="is_life_time" data-url="{{route('admin.subscription.life-time',$data->id) }}"
                                     {{ $data->life_time==0?'':'checked' }}>
                                 <span class="lever"></span>
                             </label>
@@ -81,13 +81,13 @@ $guard='customer';
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a id="pop" class="dropdown-item"
-                                        href="{{route($guard.'.subscription.edit',$bid)}}">Edit</a></li>
+                                        href="{{route($guard.'.subscription.subscription.edit',$bid)}}">Edit</a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
                                         onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
                                 </li>
 
                                 <form id="delete-form-{{ $bid }}"
-                                    action="{{ route($guard.'.subscription.destroy', $bid) }}" method="post"
+                                    action="{{ route($guard.'.subscription.subscription.destroy', $bid) }}" method="post"
                                     style="display: none;">
                                     @method('DELETE')
                                     @csrf
@@ -119,5 +119,41 @@ $(document).ready(function() {
 });
 </script>
 <!-- Image and Icon slection -->
+<!-- Ajax for Checking IsLimit -->
+<script>
+    $('.is_limit').on('click', function() {
+        var id = $(this).val();
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            beforeSend: function() {
+                $('.is_limit').attr('disabled', 'true');
+            },
+            success: function() {
 
+                $('.is_limit').removeAttr('disabled')
+
+            }
+        });
+    });
+</script>
+
+<!-- Ajax for Checking IsLife_Time -->
+<script>
+    $('.is_life_time').on('click', function() {
+        var id = $(this).val();
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            beforeSend: function() {
+                $('.is_life_time').attr('disabled', 'true');
+            },
+            success: function() {
+
+                $('.is_life_time').removeAttr('disabled')
+
+            }
+        });
+    });
+</script>
 @endsection

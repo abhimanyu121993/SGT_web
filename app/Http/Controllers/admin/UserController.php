@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -24,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.create');
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->get();
+        return view('user.create',compact('roles'));
     }
   
     /**
@@ -47,22 +49,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password' => 'confirmed|min:6',
-            'cpassword' => 'same:password|min:6'
+            // 'name'=>'required',
+            // 'email'=>'required',
+            // 'password' => 'confirmed|min:6',
+            // 'cpassword' => 'same:password|min:6'
         ]);
         try
         {
             $res= Admin::create(['created_by'=>Auth::guard('admin')->user()->id,
-            'name'=>$request->name,
+            'name'=>$request->fname.' '.$request->lname,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
             'type'=>'sub-admin',            
         ]);
-
+       $role_name = Role::find($request->role_id);
             if($res)
             {
+                $res->assignRole($role_name);
                 session()->flash('success','User Added Sucessfully');
             }
             else
@@ -78,7 +81,6 @@ class UserController extends Controller
         }
             return redirect()->back();
     }
-
     /**
      * Display the specified resource.
      *
@@ -99,10 +101,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $id=Crypt::decrypt($id);
-        $EditUser=Admin::find($id);
-        if($EditUser)
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->get();
+        $user=Admin::find($id);
+        if($user)
         {
-            return view('user.create');
+            return view('user.create',compact('roles','user'));
         }
         else
         {
@@ -121,25 +124,28 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password' => 'confirmed|min:6',
-            'cpassword' => 'same:password|min:6'
+            // 'name'=>'required',
+            // 'email'=>'required',
+            // 'password' => 'confirmed|min:6',
+            // 'cpassword' => 'same:password|min:6'
         ]);
         try
         {
              $res= Admin::find($id)->update([
-            'name'=>$request->name,
+            'name'=>$request->fname.' '.$request->lname,
             'email'=>$request->email,
-            'password'=>Hash::make($request->Password),           
         ]);
-            if($res)
-            {
-                session()->flash('success','user Updated Sucessfully');
+        $role = Role::find($request->role_id);
+
+        if($res)
+        {
+            $admin = Admin::find($id);
+            $admin->syncRoles($role->name);
+                session()->flash('success','User updated sucessfully');
             }
             else
             {
-                session()->flash('error','User not Updated ');
+                session()->flash('error','User not updated ');
             }
         }
         catch(Exception $ex)
@@ -178,5 +184,26 @@ class UserController extends Controller
                 Session::flash('error','Server Error ');
             }
             return redirect()->back();
+    }
+
+    public function is_active($id)
+    {
+        $ass_active=Admin::find($id);
+
+        if($ass_active->isactive==1)
+        {
+            $ass_active->isactive=0;
+        }else
+        {
+            $ass_active->isactive=true;
+        }
+        if($ass_active->update()){
+           return 1;
+        }
+        else
+        {
+           return 0;
+
+        }
     }
 }

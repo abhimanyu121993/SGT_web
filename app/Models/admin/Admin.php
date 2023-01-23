@@ -37,4 +37,15 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+// get first name and last name seperatally
+public function getFirstnameAttribute()
+{
+   return explode(' ',$this->name)[0]??'';
 }
+public function getLastNameAttribute()
+{
+    return explode(' ',$this->name)[1]??'';
+}
+}
+

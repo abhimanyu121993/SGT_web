@@ -204,4 +204,44 @@ class SubscriptionController extends Controller
             }
             return redirect()->back();
     }
+    public function is_limit($id)
+    {
+        $limit=Subscription::find($id);
+
+        if($limit->limit==1)
+        {
+            $limit->limit=0;
+        }else
+        {
+            $limit->limit=true;
+        }
+        if($limit->update()){
+           return 1;
+        }
+        else
+        {
+           return 0;
+
+        }
+    }
+    public function is_life_time($id)
+    {
+        $life_time=Subscription::find($id);
+
+        if($life_time->life_time==1)
+        {
+            $life_time->life_time=0;
+        }else
+        {
+            $life_time->life_time=true;
+        }
+        if($life_time->update()){
+           return 1;
+        }
+        else
+        {
+           return 0;
+
+        }
+    }
 }

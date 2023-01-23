@@ -10,10 +10,10 @@
         <div class="card-content">
             <div class="live-preview">
                 <form
-                    action="{{ isset($EditUser) ? route(Session::get('guard').'.user.update', $EditUser->id) : route(Session::get('guard').'.user.store') }}"
+                    action="{{ isset($user) ? route(Session::get('guard').'.user.user.update', $user->id) : route(Session::get('guard').'.user.user.store') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
-                    @if (isset($EditUser))
+                    @if (isset($user))
                     @method('patch')
                     @endif
                   
@@ -21,44 +21,51 @@
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="fname" name="fname"
-                                    value="{{ isset($EditUser) ? $EditUser->name : '' }}"
+                                    value="{{ isset($user) ? $user->first_name : '' }}"
                                     placeholder="First Name">
                                 <label class="active" for="name">{{__('user.fname')}}</label>
 
                             </div>
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="lname" name="lname"
-                                    value="{{ isset($EditUser) ? $EditUser->lname : '' }}"
+                                    value="{{ isset($user) ? $user->last_name : '' }}"
                                     placeholder="Last Name">
                                 <label class="active" for="lname">{{__('user.lname')}}</label>
-
                             </div>
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ isset($EditUser) ? $EditUser->email : '' }}"
+                                    value="{{ isset($user) ? $user->email : '' }}"
                                     placeholder="Email">
                                 <label class="active" for="email">{{__('user.email')}}</label>
 
-                            </div>                           
+                            </div>
+                            @if(!isset($user))             
                             <div class="input-group col s4">
                                 <input type="password" class="form-control" id="password" name="password"
-                                    value="{{ isset($EditUser) ? $EditUser->password : '' }}"
+                                    value="{{ isset($user) ? $user->password : '' }}"
                                     placeholder="password">
                                 <label class="active" for="password">{{__('user.password')}}</label>
                             </div>
                             <div class="input-group col s4">
-                                <input type="password" class="form-control" id="cpassword" name="cpassword"
-                                    value="{{ isset($EditUser) ? $EditUser->password : '' }}"
-                                    placeholder="cpassword">
+                                <input type="text" class="form-control" id="cpassword" name="cpassword"
+                                    value="{{ isset($user) ? $user->password : '' }}"
+                                    placeholder="Confirm Password">
                                 <label class="active" for="cpassword">{{__('user.cpassword')}}</label>
                             </div>
-                           
+                            @endif
+                            <div class="input-field col s4">
+                                        <select class="select2-theme browser-default" id="select2-theme" name="role_id">
+                                          @foreach ($roles as $role)
+                                              <option value="{{$role->id}}"@isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{$role->role_name}}</option>
+                                          @endforeach
+                                        </select>
+                                      </div>
                                 </div>
 
                             </div>
                             <div class="row col s12 mt-2">
                                 <div class="input-group col s4">
-                                    <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($EditUser) ? 'Update' : 'Submit' }}</button>
+                                    <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($user) ? 'Update' : 'Submit' }}</button>
                                 </div>
                             </div>
                         </div>
