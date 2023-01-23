@@ -10,7 +10,7 @@
         <div class="card-content">
             <div class="live-preview">
                 <form
-                    action="{{ isset($EditSubscription) ? route(Session::get('guard').'.subscription.update', $EditSubscription->id) : route(Session::get('guard').'.subscription.store') }}"
+                    action="{{ isset($EditSubscription) ? route(Session::get('guard').'.subscription.subscription.update', $EditSubscription->id) : route(Session::get('guard').'.subscription.subscription.store') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     @if (isset($EditSubscription))

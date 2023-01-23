@@ -7,8 +7,9 @@ return array (
   'permission' => 'Permission',
   'role-has-permission' => 'Role has Permission',
   'subscription' => 'Subscription',
-  'subscription-add' => 'Create',
-  'manage-subscription' => 'Manage',
+  'create' => 'Create',
+  'manage' => 'Manage',
+  'user'=>'User',
 
 
   'translation' => 'Translation',
