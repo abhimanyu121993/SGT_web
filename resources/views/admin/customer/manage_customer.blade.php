@@ -10,8 +10,8 @@
 <div class="card">
 
     <div class="card-content">
-        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Customer</h4>
-       
+        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Property</h4>
+
     </div>
 
 </div>

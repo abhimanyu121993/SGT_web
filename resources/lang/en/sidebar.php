@@ -18,4 +18,6 @@ return array (
   'customer' => 'Customer',
   'register_customer' => 'Register Customer',
   'manage_customer' => 'Manage Customer',
+
+  'property' => 'Property',
 );

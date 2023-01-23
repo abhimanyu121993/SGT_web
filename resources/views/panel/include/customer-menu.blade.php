@@ -34,14 +34,38 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
                             data-i18n="Register">{{ __('sidebar.role-has-permission') }}</span></a>
                 </li>
             {{-- @endif --}}
-            @if (Auth::guard('admin')->user()->hasPermissionTo('customer-has-permission', 'admin'))
+            {{-- @if (Auth::guard('customer')->user()->hasPermissionTo('customer-has-permission', 'customer')) --}}
                 <li
-                    class="{{ strpos(Route::currentRouteName(), 'role-permission.customer-has-permission') !== false ? 'active' : '' }} bold">
-                    <a href="{{ route(Session::get('guard') . '.role-permission.customer-has-permission') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(), 'role-permission.customer-has-permission') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Register">{{ __('sidebar.customer-has-permission') }}</span></a>
+                    class="{{ strpos(Route::currentRouteName(), 'role-permission.role-has-permission') !== false ? 'active' : '' }} bold">
+                    <a href="{{ route(Session::get('guard') . '.role-permission.role-has-permission') }}"><i
+                            class="material-icons">{{ strpos(Route::currentRouteName(), 'role-permission.role-has-permission') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
+                            data-i18n="Register">{{ __('sidebar.role-has-permission') }}</span></a>
                 </li>
-            @endif
+            {{-- @endif --}}
+        </ul>
+    </div>
+</li>
+
+{{-- Property Menu --}}
+<li class=" {{ strpos(Route::currentRouteName(), 'property') !== false ? 'active open' : '' }} bold ">
+    <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} "
+        href="JavaScript:void(0)"><i class="material-icons">home</i><span class="menu-title"
+            data-i18n="Authentication">{{ __('sidebar.property') }} </span></a>
+    <div class="collapsible-body"
+        style="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'display:block' : '' }}">
+        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+            <li
+                class="{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'active' : '' }}  bold">
+                <a href="{{ route(Session::get('guard') . '.property.create') }}"><i
+                        class="material-icons">{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
+                        data-i18n="Login">{{ __('sidebar.create') }}</span></a>
+            </li>
+            <li
+                class="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} bold">
+                <a href="{{ route(Session::get('guard') . '.property.index') }}"><i
+                        class="material-icons">{{ strpos(Route::currentRouteName(), 'property.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
+                        data-i18n="Register">{{ __('sidebar.manage') }}</span></a>
+            </li>
         </ul>
     </div>
 </li>

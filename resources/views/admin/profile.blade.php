@@ -26,8 +26,9 @@
                     </li>
                 </ul>
                 <div class="divider mb-3"></div>
-                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}"
-                    id="infotabForm">
+                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post" >
+                    @method('PATCH')
+                    @csrf
                     <div class="row">
                         <div class="col s12" id="account">
                             <!-- users edit media object start -->
@@ -100,19 +101,19 @@
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="M">
+                                                    <input class="validate" type="radio" name="gender" value="M" {{ $user->admin_profile->gender=='M' ? 'checked' : '' }}>
                                                     <span>Male</span>
                                                 </label>
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="F">
+                                                    <input class="validate" type="radio" name="gender" value="F" {{ $user->admin_profile->gender=='F' ? 'checked' : '' }} >
                                                     <span>Female</span>
                                                 </label>
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="O">
+                                                    <input class="validate" type="radio" name="gender" value="O" {{ $user->admin_profile->gender=='O' ? 'checked' : '' }}>
                                                     <span>Other</span>
                                                 </label>
                                             </div>
@@ -122,7 +123,7 @@
                                             <select class="select2 browser-default" name="country" id="country">
                                                 <option value="" selected disabled>--Select Country--</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}" {{ $user->admin_profile->country== $country->id ? 'selected' : '' }} >{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <label>Country</label>
@@ -148,8 +149,7 @@
                                                 Info</h6>
                                         </div>
                                         <div class="col s12 input-field">
-                                            <input id="datepicker" name="datepicker" type="text"
-                                                class="birthdate-picker datepicker" placeholder="Pick a birthday"
+                                            <input id="datepicker" name="dob" type="text" class="birthdate-picker datepicker" value="{{ $user->admin_profile->dob ?? '' }}" placeholder="Pick a birthday"
                                                 data-error=".errorTxt4">
                                             <label for="datepicker">Birth date</label>
                                             <small class="errorTxt4"></small>
@@ -159,14 +159,15 @@
                                             <select class="select2 browser-default" name="timezone" id="timezone">
                                                 <option value="" selected disabled>--Select Timezone--</option>
                                                 @foreach ($timezones as $timezone)
-                                                    <option value="{{ $timezone->id }}" >{{ ($timezone->timezone ?? '') }}</option>
+                                                    <option value="{{ $timezone->id }}">{{ $timezone->timezone ?? '' }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label>Timezone</label>
                                         </div>
 
                                         <div class="col s12 input-field">
-                                            <input id="address" name="address" type="text" class="validate"
+                                            <input id="address" name="address" type="text" value="{{ $user->admin_profile->address ?? '' }}" class="validate"
                                                 data-error=".errorTxt5">
                                             <label for="address">Address</label>
                                             <small class="errorTxt5"></small>
@@ -176,11 +177,9 @@
 
                             </div>
                         </div>
-                        <div class="col s-12" >
+                        <div class="col s-12">
                             <div class="col s12 display-flex justify-content-end mt-5">
-                                <button type="submit" class="btn indigo">
-                                    Save changes</button>
-                                <button type="button" class="btn btn-light">Cancel</button>
+                                <input type="submit" class="btn indigo" value="Save changes" />
                             </div>
                         </div>
                     </div>

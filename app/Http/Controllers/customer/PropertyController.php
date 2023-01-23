@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\customer;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\admin\Admin;
-use App\Models\admin\AdminProfile;
 use App\Models\Country;
-use App\Models\TimeZone;
+use App\Models\customer\Property;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 
-class ProfileController extends Controller
+class PropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +19,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $properties = Property::get();
+        return view('customer.property.manage_property', compact('properties'));
     }
 
     /**
@@ -32,7 +30,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::get();
+        return view('customer.property.register_property', compact('countries'));
     }
 
     /**
@@ -43,7 +42,27 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        try{
+            Property::create([
+                'name' => $request->name,
+                'country' => $request->country ?? '',
+                'state' => $request->state ?? '',
+                'city' => $request->city ?? '',
+                'postcode' => $request->postcode ?? '',
+                'address' => $request->address ?? '',
+                'lattitude' => $request->lattitude ?? '',
+                'longitude' => $request->longitude ?? '',
+            ]);
+
+            Session::flash('success', 'Property created successfully');
+            return redirect()->back();
+        }
+        catch(Exception $ex){
+            Helper::handleError($ex);
+        }
     }
 
     /**
@@ -65,10 +84,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user = Admin::find($id);
-        $countries = Country::get();
-        $timezones = TimeZone::get();
-        return view('admin.profile',compact('user', 'countries', 'timezones'));
+        //
     }
 
     /**
@@ -80,30 +96,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        try{
-
-                AdminProfile::updateOrCreate(['admin_id' => $id ],[
-                    'first_name' => $request->first_name,
-                    'last_name' => $request->last_name ?? '',
-                    'mobileno' => $request->mobileno ?? '',
-                    'dob' => $request->dob ?? '',
-                    'gender' => $request->gender,
-                    'country' => $request->country ?? '',
-                    'state' => $request->state ?? '',
-                    'city' => $request->city ?? '',
-                    'timezone' => $request->timezone ?? '',
-                    'address' => $request->address ?? '',
-                ]);
-
-            Session::flash('success', 'User updated successfully');
-            return redirect()->back();
-
-        }
-        catch(Exception $ex){
-           Helper::handleError($ex);
-           return redirect()->back();
-        }
+        //
     }
 
     /**
