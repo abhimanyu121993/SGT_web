@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $fillable = [
         'name',
@@ -37,15 +37,19 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-// get first name and last name seperatally
-public function getFirstnameAttribute()
-{
-   return explode(' ',$this->name)[0]??'';
-}
-public function getLastNameAttribute()
-{
-    return explode(' ',$this->name)[1]??'';
-}
-}
 
+    // get first name and last name seperatally
+    public function getFirstnameAttribute()
+    {
+        return explode(' ', $this->name)[0] ?? '';
+    }
+    public function getLastNameAttribute()
+    {
+        return explode(' ', $this->name)[1] ?? '';
+    }
+
+    public function admin_profile()
+    {
+        return $this->hasOne(AdminProfile::class, 'admin_id');
+    }
+}
