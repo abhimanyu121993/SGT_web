@@ -21,10 +21,14 @@
                         @csrf
                         <div class="row gy-4">
                             <div class="col-xxl-3 col md-6">
+                                Choose Membership Plan
                                 <div class="input-group">
-                                    <label>Choose Subscription Plan</label>
-                                    <input type="radio" class="form-control" id="membership_plan" name="membership_plan"
-                                        value="" >Gold Plan
+                                    <label>
+                                        <input type="checkbox" class="form-control" id="membership_plan" name="membership_plan"
+                                        value="" >
+                                        <span>Gold Plan</span>
+                                    </label>
+
                                 </div>
                             </div>
                         </div>
