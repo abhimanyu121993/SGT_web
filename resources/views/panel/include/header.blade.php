@@ -50,7 +50,7 @@
                     <li><a class="grey-text text-darken-1" href="app-chat.html"><i class="material-icons">chat_bubble_outline</i> Chat</a></li>
                     <li><a class="grey-text text-darken-1" href="page-faq.html"><i class="material-icons">help_outline</i> Help</a></li>
                     <li class="divider"></li>
-                    <li><a class="grey-text text-darken-1" id="change_password_modal" href="#" data-url="{{route('auth.update-password', Auth::guard('admin')->user()->id) }}"><i class="material-icons ">lock_outline</i> Change Password</a></li>
+                    <li><a class="grey-text text-darken-1" id="change_password_modal" href="#" data-url="{{route('auth.update-password', Auth::guard(Session::get('guard'))->user()->id) }}"><i class="material-icons ">lock_outline</i> Change Password</a></li>
                     <li><a class="grey-text text-darken-1" href="user-lock-screen.html"><i class="material-icons">lock_outline</i> Lock</a></li>
                     <li><a class="grey-text text-darken-1" href="{{route('auth.logout')}}"><i class="material-icons">keyboard_tab</i> Logout</a></li>
                 </ul>

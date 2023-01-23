@@ -13,9 +13,9 @@
             @endif
             <div class="live-preview">
                 <form
-                    action="{{route('auth.update-password', Auth::guard('admin')->user()->id) }}"
+                    action="{{route('auth.update-password', Auth::guard(Session::get('guard'))->user()->id) }}"
                     method="POST" enctype="multipart/form-data">
-                    @csrf                    
+                    @csrf
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                         <div class="input-group col s4">
@@ -36,7 +36,7 @@
                                     placeholder="Confirm Password">
                                 <label class="active" for="cpassword">{{__('user.cpassword')}}</label>
                             </div>
-                           
+
                             </div>
                             <div class="row col s12 mt-2">
                                 <div class="input-group col s4">
