@@ -3,12 +3,17 @@
 namespace App\Helpers;
 
 use App\Models\City;
+<<<<<<< Updated upstream
 use App\Models\Currency;
+=======
+use App\Models\ProjectError;
+>>>>>>> Stashed changes
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class Helper
 {
@@ -39,10 +44,20 @@ class Helper
         return $logged_in_user_id;
     }
 
-    public static function getTimeZone(){
+    public static function getTimeZone()
+    {
         return $timezones = TimeZone::where('is_active', true)->get();
     }
-    public static function getCurrencies(){
+
+    public static function getCurrencies()
+    {
         return $currencies = Currency::get();
+    }
+
+    public static function handleError($msg)
+    {
+        $url=URL::current();
+        ProjectError::create(['url'=>$url,'message'=>$msg->getMessage()]);
+        Session::flash('error','Server Error ');
     }
 }

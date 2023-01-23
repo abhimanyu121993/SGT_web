@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\admin\AdminProfile;
 use App\Models\Country;
+use App\Models\TimeZone;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
 {
@@ -63,8 +66,8 @@ class ProfileController extends Controller
     {
         $user = Admin::find($id);
         $countries = Country::get();
-        $countries = Country::get();
-        return view('admin.profile',compact('user', 'countries'));
+        $timezones = TimeZone::get();
+        return view('admin.profile',compact('user', 'countries', 'timezones'));
     }
 
     /**
@@ -76,13 +79,26 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Helper::getUserId()){
-            AdminProfile::find($id)
+        dd($request->all());
+        try{
+            $result = AdminProfile::find($id)
             ->update([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'mobileno' => $request->last_name,
+                'mobileno' => $request->mobileno,
+                'dob' => $request->dob,
+                'gender' => $request->gender,
+                'country' => $request->country,
+                'state' => $request->state,
+                'city' => $request->city,
+                'timezone' => $request->timezone,
+                'address' => $request->address,
             ]);
+
+
+        }
+        catch(Exception $ex){
+           Helper::handleError($ex);
         }
     }
 

@@ -158,9 +158,9 @@
                                         <div class="col s12 input-field">
                                             <select class="select2 browser-default" name="timezone" id="timezone">
                                                 <option value="" selected disabled>--Select Timezone--</option>
-                                                <option>USA</option>
-                                                <option>India</option>
-                                                <option>Canada</option>
+                                                @foreach ($timezones as $timezone)
+                                                    <option value="{{ $timezone->id }}" >{{ ($timezone->timezone ?? '') }}</option>
+                                                @endforeach
                                             </select>
                                             <label>Timezone</label>
                                         </div>
