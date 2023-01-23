@@ -41,7 +41,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 //General route for country/state/city
 Route::group([
     'prefix' => 'general',
-    'as' => 'general.',
+    'as' => 'general.'],
     function () {
-        Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-contry');
-}]);
+        Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-country');
+});

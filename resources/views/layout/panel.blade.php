@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Abhimanyu">
+    <meta name="base-url" content="{{url('/')}}">
     <title>SGT : : @yield('title')</title>
     @include('panel.include.head')
     @yield('link-area')
