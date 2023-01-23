@@ -94,7 +94,10 @@
                                 </div>
                                 <div class="input-group col s6">
                                    <select class="select2-theme browser-default" name="state">
-                                        <option>--Select Currency--</option>
+                                        <option value="">--Select Currency--</option>
+                                        @foreach (Helper::getCurrencies() as $currency)
+                                            <option value="{{$currency->id}}">{{$currency->code.' ('.$currency->symbol.')'}}</option>
+                                        @endforeach
                                    </select>
                                 </div>
                            

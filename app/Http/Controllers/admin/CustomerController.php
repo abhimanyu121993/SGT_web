@@ -31,7 +31,7 @@ class CustomerController extends Controller
     public function create()
     {
         $countries = Country::get();
-        return view('admin.customer.register_customer',compact('countries','timezones'));
+        return view('admin.customer.register_customer',compact('countries'));
     }
 
     /**

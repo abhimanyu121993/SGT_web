@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\City;
+use App\Models\Currency;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
@@ -40,5 +41,8 @@ class Helper
 
     public static function getTimeZone(){
         return $timezones = TimeZone::where('is_active', true)->get();
+    }
+    public static function getCurrencies(){
+        return $currencies = Currency::get();
     }
 }
