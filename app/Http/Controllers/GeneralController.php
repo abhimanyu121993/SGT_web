@@ -13,5 +13,11 @@ class GeneralController extends Controller
             'country_id'=>'required|numeric'
         ]);
         $states=Helper::getStateByCountry($request->country_id);
+        $html = '';
+        $html .= "<option value=''>--Select States</option>";
+        foreach($states as $state){
+            $html .= "<option value='" . $state->id . "'>" . $state->name . "</option>";
+        }
+        return $html;
     }
 }
