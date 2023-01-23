@@ -19,8 +19,9 @@
   <script src="{{asset('app-assets/js/scripts/data-tables.js')}}"></script>
 
   <script src="{{asset('app-assets/js/scripts/advance-ui-modals.js')}}"></script>
+ <script src="{{asset('app-assets/js/style.js')}}"></script>
   <script>
-       $(document).on('click',".toggle-fullscreen",function () {  
+       $(document).on('click',".toggle-fullscreen",function () {
       toggleFullScreen();
    });
    function toggleFullScreen() {

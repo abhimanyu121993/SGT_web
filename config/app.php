@@ -216,6 +216,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Helper' => App\Helpers\Helper::class,
     ])->toArray(),
 
 ];

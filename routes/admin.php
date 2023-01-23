@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
@@ -9,7 +10,7 @@ use App\Http\Controllers\admin\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
-// Group Route for role and permission 
+// Group Route for role and permission
  Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function(){
     Route::resource('role', RoleController::class)->name('role','');
     Route::resource('permission', PermissionController::class)->name('permission','');
@@ -23,3 +24,11 @@ Route::resource('subscription', SubscriptionController::class)->name('subscripti
 //Route for Profile
  Route::resource('profile',ProfileController::class)->name('profile','');
 Route::get('permission-assing', [RoleController::class, 'assign_permission']);
+
+//Route for Customer
+Route::resource('customer',CustomerController::class)->name('customer','');
+
+//Route for Profile
+ Route::resource('profile',ProfileController::class)->name('profile','');
+
+ Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
