@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\customer\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -16,8 +17,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        dd(Helper::getStateByCountry(101));
-        return view('admin.customer.manage_customer');
+        // dd(Helper::getStateByCountry(101));
+        $customers = Customer::get();
+        return view('admin.customer.manage_customer',compact('customers'));
     }
 
     /**

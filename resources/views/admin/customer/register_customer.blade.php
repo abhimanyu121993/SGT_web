@@ -20,9 +20,9 @@
                         @endif
                         @csrf
                         <div class="row gy-4">
-                            <div class="col-xxl-3 col md-6">
+                            <div class="col md6">
                                 Choose Membership Plan
-                                <div class="input-group">
+                                <div class="input-group col s12">
                                     <label>
                                         <input type="checkbox" class="form-control" id="membership_plan" name="membership_plan"
                                         value="" >
@@ -33,81 +33,72 @@
                             </div>
                         </div>
                         <div class="row gy-4">
-                            <div class="col-xxl-3 col md-6">
-                                <div class="input-group">
+                            
+                                <div class="input-group col s6">
                                     <input type="text" class="form-control" id="first_name" name="first_name"
                                         value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}" placeholder="First Name">
                                 </div>
-                            </div>
-                            <div class="col-xxl-3 col md-6">
-                                <div class="input-group">
+                           
+                                <div class="input-group col s6">
                                     <input type="text" class="form-control" id="last_name" name="last_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}" placeholder="Last Name">
                                 </div>
-                            </div>
+                         
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
-                            <div class="col-xxl-3 col md-6">
-                                <div class="input-group">
+                          
+                                <div class="input-group col s6">
                                     <input type="email" class="form-control" id="email" name="email"
                                         value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
                                 </div>
-                            </div>
-                            <div class="col-xxl-3 col md-6">
-                                <div class="input-group">
+                         
+                                <div class="input-group col s6">
                                     <input type="number" class="form-control" id="mobileno" name="mobileno"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : '' }}" placeholder="Mobile Number">
                                 </div>
-                            </div>
+                         
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
-                            <div class="col-xxl-3 col md-4">
-                                <div class="input-group">
-                                   <select class="form--control" id="country" name="country">
+                            <div class="input-group col s4">
+                                   <select class="select2-theme browser-default"  id="country" name="country">
                                         <option>--Select Country--</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach
                                    </select>
                                 </div>
-                            </div>
-                            <div class="col-xxl-3 col md-4">
-                                <div class="input-group">
-                                   <select class="form--control" id="state" name="state">
+                                <div class="input-group col s4">
+                                   <select class="select2-theme browser-default" id="state" name="state">
                                         <option>--Select State--</option>
                                    </select>
                                 </div>
-                            </div>
-                            <div class="col-xxl-3 col md-4">
-                                <div class="input-group">
-                                   <select class="form--control" id="city" name="city">
+                                <div class="input-group col s4">
+                                   <select class="select2-theme browser-default"  id="city" name="city">
                                         <option>--Select City--</option>
                                    </select>
                                 </div>
-                            </div>
+                           
                             <!--end col-->
                         </div>
-                        <div class="row gy-4">
-                            <div class="col-xxl-3 col md-4">
-                                <div class="input-group">
-                                   <select class="form--control" name="country">
+                        <div class="row gy-4 mt-2">
+                           
+                                <div class="input-group col s6">
+                                   <select class="select2-theme browser-default" name="country">
                                         <option>--Select Timezone--</option>
                                    </select>
                                 </div>
-                            </div>
-                            <div class="col-xxl-3 col md-4">
-                                <div class="input-group">
-                                   <select class="form--control" name="state">
+                                <div class="input-group col s6">
+                                   <select class="select2-theme browser-default" name="state">
                                         <option>--Select Currency--</option>
                                    </select>
                                 </div>
-                            </div>
+                           
                             <!--end col-->
                         </div>
-                        <div class="row gy-4">
-                            <div class="col-xxl-3 col md-12">
+                        <div class="row gy-4 mt-2">
+                            <div class="input-group col s12">
                                 <textarea class="form-control" name="address" placeholder="Address" ></textarea>
                             </div>
                             <!--end col-->

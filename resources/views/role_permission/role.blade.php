@@ -20,7 +20,7 @@
                         @endif
                         @csrf
                         <div class="row gy-4">
-                            <div class="col-xxl-3 col-md-6">
+                            <div class="col s12">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="role" name="role"
                                         value="{{ isset($RoleEdit) ? $RoleEdit->role_name : '' }}" placeholder="Role Name">

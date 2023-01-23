@@ -37,3 +37,11 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::post('customer-login', [AuthController::class, 'customer_login'])->name('customer-login');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+//General route for country/state/city
+Route::group([
+    'prefix' => 'general',
+    'as' => 'general.',
+    function () {
+        Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-contry');
+}]);

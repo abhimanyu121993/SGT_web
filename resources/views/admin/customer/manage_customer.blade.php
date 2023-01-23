@@ -11,13 +11,25 @@
 
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Customer</h4>
-        {{$dataTable->table()}}
-
-        {{$dataTable->scripts()}}
+       
     </div>
 
 </div>
 
+<div class="card">
+    <div class="card-content">
+        <table id="scroll-dynamic" class="display">
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 @endsection
 @section('script-area')
 
