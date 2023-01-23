@@ -86,7 +86,10 @@
                            
                                 <div class="input-group col s6">
                                    <select class="select2-theme browser-default" name="country">
-                                        <option>--Select Timezone--</option>
+                                        <option value="">--Select Timezone--</option>
+                                        @foreach (Helper::getTimeZone() as $timezone)
+                                            <option value="{{$timezone->id}}">{{$timezone->timezone.' / '.$timezone->utc}}</option>
+                                        @endforeach
                                    </select>
                                 </div>
                                 <div class="input-group col s6">

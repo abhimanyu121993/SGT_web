@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\customer\Customer;
+use App\Models\TimeZone;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,7 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::get();
-        $timezones=
+       
         return view('admin.customer.manage_customer',compact('customers'));
     }
 
@@ -30,7 +31,7 @@ class CustomerController extends Controller
     public function create()
     {
         $countries = Country::get();
-        return view('admin.customer.register_customer',compact('countries'));
+        return view('admin.customer.register_customer',compact('countries','timezones'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\City;
 use App\Models\State;
+use App\Models\TimeZone;
 use Exception;
 
 class Helper
@@ -27,5 +28,9 @@ class Helper
         catch(Exception $ex){
             return response()->json(['message' => $ex->getMessage()],501); 
         }
+    }
+
+    public static function getTimeZone(){
+        return $timezones = TimeZone::where('is_active', true)->get();
     }
 }
