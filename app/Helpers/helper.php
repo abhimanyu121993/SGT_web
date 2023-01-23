@@ -6,6 +6,8 @@ use App\Models\City;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class Helper
 {
@@ -16,7 +18,7 @@ class Helper
             return $states;
         }
         catch(Exception $ex){
-            return response()->json(['message' => $ex->getMessage()],501); 
+            return response()->json(['message' => $ex->getMessage()],501);
         }
     }
     public static function getCitiesByState($id)
@@ -26,8 +28,14 @@ class Helper
             return $cities;
         }
         catch(Exception $ex){
-            return response()->json(['message' => $ex->getMessage()],501); 
+            return response()->json(['message' => $ex->getMessage()],501);
         }
+    }
+
+    public static function getUserId()
+    {
+        $logged_in_user_id = Auth::guard(Session::get('guard'))->user()->id;
+        return $logged_in_user_id;
     }
 
     public static function getTimeZone(){

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\admin\Admin;
+use App\Models\admin\AdminProfile;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -14,7 +18,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('admin.profile');
+        //
     }
 
     /**
@@ -57,7 +61,10 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Admin::find($id);
+        $countries = Country::get();
+        $countries = Country::get();
+        return view('admin.profile',compact('user', 'countries'));
     }
 
     /**
@@ -69,7 +76,14 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Helper::getUserId()){
+            AdminProfile::find($id)
+            ->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'mobileno' => $request->last_name,
+            ]);
+        }
     }
 
     /**
