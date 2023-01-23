@@ -53,6 +53,8 @@
       }
    }
   </script>
+
+
   <!-- END THEME  JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <!-- END PAGE LEVEL JS-->
@@ -62,3 +64,11 @@
 <script src="{{asset('vendor/datatables/buttons.server-side.js')}}"></script>
 
 <script src="{{asset('app-assets/js/scripts/form-elements.js')}}"></script>
+<script>
+   $(document).ready(function() {
+$('#change_password_modal').click(function(){
+   var url = $(this).data("url");
+   $('#modal1').modal('open');
+});
+});
+  </script>

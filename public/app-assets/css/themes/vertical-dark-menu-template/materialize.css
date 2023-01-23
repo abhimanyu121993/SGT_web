@@ -7371,7 +7371,7 @@ body.keyboard-focused .dropdown-content li:focus
 .modal .modal-footer
 {
     width: 100%;
-    height: 56px;
+    height: 45px;
     padding: 4px 6px;
 
     text-align: right;
@@ -7409,7 +7409,7 @@ body.keyboard-focused .dropdown-content li:focus
 
 .modal.modal-fixed-footer
 {
-    height: 70%;
+    height: 45%;
     padding: 0;
 }
 

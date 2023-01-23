@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\admin\Admin;
+use App\Models\customer\Customer;
+use App\Models\ProjectError;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class AuthController extends Controller
 {
@@ -96,4 +103,60 @@ class AuthController extends Controller
         return redirect()->route($route);
 
     }
+
+// change password
+public function update_Password(Request $request)
+{
+    $request->validate([
+        'old_password'=>'required',
+        'new_password'=>'required',
+        'cnew_password'=>'required|same:new_password'
+    ]);
+    try
+    {
+       if(Auth::guard('admin')->check()){
+        $admin=Admin::find(Helper::getUserId());
+        if(Hash::check($request->old_password,$admin->password)){
+           $res=$admin->update(['password' => Hash::make($request->new_password)]);
+           if($res){
+            return redirect()->route('auth.logout');
+            Session::flash('success','Password Upadated Successfully');
+           }
+           else{
+            Session::flash('error','Password Not Update right now');
+           }
+        }
+        else{
+            Session::flash('error','Old password not matched');
+        }
+       }
+      else if(Auth::guard('customer')->check()){
+        $customer=Customer::find(Helper::getUserId());
+        if(Hash::check($request->old_password,$customer->password)){
+          $res= $customer->update(['password' => Hash::make($request->new_password)]);
+            if($res){
+            return redirect()->route('auth.logout');
+            Session::flash('success','Password Upadated Successfully');
+           }
+           else{
+            Session::flash('error','Password Not Update right now');
+           }
+        }
+        else{
+            Session::flash('error','Old password not matched');
+        }
+       }
+       else{
+        Session::flash('error','Something went wrong! Please Try agin');
+
+       }
+    }
+    catch(Exception $ex)
+    {
+        $url=URL::current();
+        ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
+        Session::flash('error','Server Error ');
+    }
+        return redirect()->back();
+}
 }

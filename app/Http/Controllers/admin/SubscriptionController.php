@@ -71,7 +71,20 @@ class SubscriptionController extends Controller
                 $request->image->move(public_path('upload/subcription/img/'),$img);
                 $img = 'upload/subcription/img/'.$img;
             }
-            $res= Subscription::create(['created_by'=>Auth::guard('admin')->user()->id,'title'=>$request->title,'currency'=>$request->currency,'days'=>$request->days,'price'=>$request->price,'free_trial_days'=>$request->free_trial_days??0,'limit'=>$request->limit??0,'status_id'=>$request->status,'icon'=>$icon,'img'=>$img,'color'=>$request->color,'bg_color'=>$request->bg_color,'life_time'=>$request->lifetime??0]);
+            $res= Subscription::create(['created_by'=>Auth::guard('admin')->user()->id,
+            'title'=>$request->title,
+            'currency'=>$request->currency,
+            'days'=>$request->days,
+            'price'=>$request->price,
+            'free_trial_days'=>$request->free_trial_days??0,
+            'limit'=>$request->limit??0,
+            'status_id'=>$request->status,
+            'icon'=>$icon,
+            'img'=>$img,
+            'color'=>$request->color,
+            'bg_color'=>$request->bg_color,
+            'life_time'=>$request->lifetime??0,
+        ]);
 
             if($res)
             {
@@ -156,8 +169,18 @@ class SubscriptionController extends Controller
                 File::delete(public_path($oldimage));
                 Subscription::find($id)->update(['img'=>'upload/subcription/img/'.$image]);
             }
-            $res= Subscription::find($id)->update(['title'=>$request->title,'currency'=>$request->currency,'days'=>$request->days,'price'=>$request->price,'free_trial_days'=>$request->free_trial_days??0,'limit'=>$request->limit??0,'status_id'=>$request->status,'color'=>$request->color,'bg_color'=>$request->bg_color,'life_time'=>$request->lifetime??0]);
-
+            $res= Subscription::find($id)->update([
+                'title'=>$request->title,
+                'currency'=>$request->currency,
+                'days'=>$request->days,
+                'price'=>$request->price,
+                'free_trial_days'=>$request->free_trial_days??0,
+                'limit'=>$request->limit??0,
+                'status_id'=>$request->status,
+                'color'=>$request->color,
+                'bg_color'=>$request->bg_color,
+                'life_time'=>$request->lifetime??0
+            ]);
             if($res)
             {
                 session()->flash('success','Subscription Updated Sucessfully');

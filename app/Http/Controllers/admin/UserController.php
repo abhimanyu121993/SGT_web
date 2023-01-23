@@ -66,11 +66,11 @@ class UserController extends Controller
             if($res)
             {
                 $res->assignRole($role_name);
-                session()->flash('success','User Added Sucessfully');
+                session()->flash('success','User added sucessfully');
             }
             else
             {
-                session()->flash('error','User not Added ');
+                session()->flash('error','User not added ');
             }
         }
         catch(Exception $ex)
@@ -126,8 +126,6 @@ class UserController extends Controller
         $request->validate([
             // 'name'=>'required',
             // 'email'=>'required',
-            // 'password' => 'confirmed|min:6',
-            // 'cpassword' => 'same:password|min:6'
         ]);
         try
         {
@@ -170,7 +168,7 @@ class UserController extends Controller
                 $res=Admin::find($id)->delete();
                 if($res)
                 {
-                    session()->flash('success','User deleted Sucessfully');
+                    session()->flash('success','User deleted sucessfully');
                 }
                 else
                 {

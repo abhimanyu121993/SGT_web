@@ -5,6 +5,7 @@
 @section('breadcrumb-currentpage', 'User')
 @section('content-area')
 
+
 <div class="section">
     <div class="card">
         <div class="card-content">
@@ -16,7 +17,6 @@
                     @if (isset($user))
                     @method('patch')
                     @endif
-                  
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
@@ -61,8 +61,6 @@
                                         </select>
                                       </div>
                                 </div>
-
-                            </div>
                             <div class="row col s12 mt-2">
                                 <div class="input-group col s4">
                                     <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($user) ? 'Update' : 'Submit' }}</button>

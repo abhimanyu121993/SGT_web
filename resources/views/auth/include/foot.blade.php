@@ -12,9 +12,9 @@
   <script>
 $('.check').on('change', function() {
     this.value = this.checked ? 1 : 0;
-    // alert(this.value);
 }).change();
 </script>
+<!-- jquery change password modal -->
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->

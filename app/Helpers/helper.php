@@ -8,8 +8,8 @@ use App\Models\ProjectError;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
 class Helper

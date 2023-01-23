@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\RolePermissionController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\SubscriptionController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
@@ -45,3 +46,4 @@ Route::resource('customer',CustomerController::class)->name('customer','');
  Route::resource('profile',ProfileController::class)->name('profile','');
 
  Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
+

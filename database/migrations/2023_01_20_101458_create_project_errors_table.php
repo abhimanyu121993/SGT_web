@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('project_errors', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->string('message');
+            $table->longText('message');
             $table->softDeletes();
             $table->timestamps();
         });
