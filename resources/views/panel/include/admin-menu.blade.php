@@ -77,4 +77,15 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
             </ul>
         </div>
     </li>
+    <li class=" {{(strpos(Route::currentRouteName(),'customer')!==false)?'active open':''}} bold ">
+        <a class="collapsible-header waves-effect waves-cyan {{(strpos(Route::currentRouteName(),'customer')!==false)?'active':''}} " href="JavaScript:void(0)"><i class="material-icons">people</i><span class="menu-title" data-i18n="Authentication">{{__('sidebar.customer')}} </span></a>
+        <div class="collapsible-body" style="{{(strpos(Route::currentRouteName(),'customer')!==false)?'display:block':''}}">
+            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+              <li class="{{(strpos(Route::currentRouteName(),'customer.create')!==false)?'active':''}}  bold"><a href="{{ route(Session::get('guard').'.customer.create') }}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'customer')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Register Customer">{{__('sidebar.register_customer')}}</span></a>
+              </li>
+              <li class="{{(strpos(Route::currentRouteName(),'customer.index')!==false)?'active':''}} bold"><a href="{{route(Session::get('guard').'.customer.index')}}" ><i class="material-icons">{{(strpos(Route::currentRouteName(),'customer')!==false)?'radio_button_checked':'radio_button_unchecked'}}</i><span data-i18n="Manage">{{__('sidebar.manage_customer')}}</span></a>
+              </li>
+            </ul>
+        </div>
+    </li>
 </ul>
