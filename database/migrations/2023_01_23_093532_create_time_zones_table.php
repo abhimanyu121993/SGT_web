@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('time_zones', function (Blueprint $table) {
             $table->id();
+            $table->string('country_name');
+            $table->string('country_code');
+            $table->string('timezone');
+            $table->string('utc');
+            $table->string('timezone_description');
+            $table->boolean('is_active')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
