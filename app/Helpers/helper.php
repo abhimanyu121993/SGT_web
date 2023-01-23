@@ -3,11 +3,8 @@
 namespace App\Helpers;
 
 use App\Models\City;
-<<<<<<< Updated upstream
 use App\Models\Currency;
-=======
 use App\Models\ProjectError;
->>>>>>> Stashed changes
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
