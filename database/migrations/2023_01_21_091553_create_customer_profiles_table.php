@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('customer_profiles', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id');
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email');
             $table->string('mobileno')->nullable();
             $table->integer('membership_plan')->nullable();
+            $table->unsignedBigInteger('city_id');
             $table->text('address')->nullable();
+            $table->unsignedBigInteger('status');
+            $table->unsignedBigInteger('time_zone_id');
+            $table->unsignedBigInteger('currency_id');
             $table->softDeletes();
             $table->timestamps();
         });
