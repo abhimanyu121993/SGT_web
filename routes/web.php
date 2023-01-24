@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return Auth::guard('superadmin')->check();
     return redirect()->route('auth.admin');
-});
+})->name('home');
 
 Route::controller(ChatController::class)->prefix('chat')->as('chat.')->group(function () {
     Route::get('list', 'list')->name('list');
