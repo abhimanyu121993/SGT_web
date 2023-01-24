@@ -15,7 +15,7 @@
                     action="{{route('auth.update-password', Auth::guard(Session::get('guard'))->user()->id) }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="row gy-4">
+                    {{-- <div class="row gy-4"> --}}
                         <div class="col-xxl-3 col-md-6">
                         <div class="input-group col s4">
                                 <input type="password" class="form-control" id="old_password" name="old_password"
@@ -45,11 +45,11 @@
                         </div>
 
                         <!--end col-->
-                    </div>
+                    {{-- </div> --}}
                 </form>
             </div>
         </div>
     </div>
 </div>
-   
+
   </div>
