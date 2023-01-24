@@ -35,6 +35,7 @@
 
                                 </div>
                                 @endforeach
+                                @error('membership_plan')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                                 
                             </div>
                         </div>
@@ -44,12 +45,14 @@
                                 <input type="text" class="form-control" id="first_name" name="first_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}"
                                     placeholder="First Name">
+                                    @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="last_name" name="last_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}"
                                     placeholder="Last Name">
+                                    @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->
@@ -59,6 +62,7 @@
                             <div class="input-group col s6">
                                 <input type="email" class="form-control" id="email" name="email"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
+                                    @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <div class="input-group col s6">
@@ -73,21 +77,24 @@
                         <div class="row gy-4">
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="country" name="country">
-                                    <option>--Select Country--</option>
+                                    <option value="">--Select Country--</option>
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="state" name="state">
                                     <option>--Select State--</option>
                                 </select>
+                                @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="city" name="city">
-                                    <option>--Select City--</option>
+                                    <option value="">--Select City--</option>
                                 </select>
+                                @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->
@@ -102,6 +109,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s6">
                                 <select class="select2-theme browser-default" name="currency_id">
@@ -111,6 +119,7 @@
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
+                                @error('currency_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->

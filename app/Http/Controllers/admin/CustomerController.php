@@ -55,7 +55,10 @@ class CustomerController extends Controller
             'membership_plan'=>'required|numeric',
             'first_name'=>'required|string',
             'email'=>'required|email',
-            'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/'
+            'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/',
+            'city'=>'required|exists:cities,id',
+            'timezone_id'=>'required|exists:time_zones,id',
+            'currency_id'=>'required|exists:currencies,id'
         ]);
 
         try {
