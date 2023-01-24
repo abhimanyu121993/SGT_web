@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\City;
 use App\Models\Currency;
+use App\Models\customer\Customer;
 use App\Models\ProjectError;
 use App\Models\State;
 use App\Models\TimeZone;
@@ -11,6 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Spatie\Permission\Models\Permission;
 
 class Helper
 {
@@ -56,5 +58,17 @@ class Helper
         $url=URL::current();
         ProjectError::create(['url'=>$url,'message'=>$msg->getMessage()]);
         Session::flash('error','Server Error ');
+    }
+
+    public static function getOwnerId(){
+        if(Auth::guard(Permission::$customer)->check()){
+            if(Auth::guard(Permission::$customer)->user()->type==Customer::$owner){
+                return Helper::getUserId();
+            }
+            else if(Auth::guard(Permission::$customer)->user()->type==Customer::$employee)
+            {
+                return Auth::guard(Permission::$customer)->user()->created_by;
+            }
+        }
     }
 }

@@ -44,7 +44,29 @@
                     <td>{{ $property->address ?? '' }}</td>
                     <td>{{ $property->lattitude ?? '' }}</td>
                     <td>{{ $property->longitude ?? '' }}</td>
-                    <td></td>
+                    <td>
+                        <div class="dropdown">
+                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="ri-more-2-fill"></i>
+                            </a>
+                            @php $bid=Crypt::encrypt($property->id); @endphp
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a id="pop" class="dropdown-item"
+                                        href="{{route(Session::get('guard').'.property.edit',$bid)}}">Edit</a></li>
+                                <li><a id="pop" class="dropdown-item" href="#"
+                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
+                                </li>
+
+                                <form id="delete-form-{{ $bid }}"
+                                    action="{{ route(Session::get('guard').'.property.destroy', $bid) }}" method="post"
+                                    style="display: none;">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                            </ul>
+                        </div>
+                    </td>
                 @endforeach
             </tbody>
         </table>

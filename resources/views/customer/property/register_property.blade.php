@@ -32,18 +32,26 @@
                                    <select class="select2 browser-default"  id="country" name="country">
                                         <option>--Select Country--</option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}" @isset($propertyEdit)@selected($propertyEdit->country==$country->id) @endisset>{{ $country->name }}</option>
                                         @endforeach
                                    </select>
                                 </div>
                                 <div class="input-group col s4">
                                    <select class="select2 browser-default" id="state" name="state">
-                                        <option>--Select State--</option>
+                                        @if(isset($propertyEdit))
+                                <option value="{{ isset($propertyEdit) ? $propertyEdit->state : '' }}"  selected>{{$propertyEdit->state_details->name}}</option>
+                               @else
+                                <option>--Select State--</option>                                   
+                                @endif
                                    </select>
                                 </div>
                                 <div class="input-group col s4">
                                    <select class="select2 browser-default"  id="city" name="city">
-                                        <option>--Select City--</option>
+                                        @if(isset($propertyEdit))
+                                <option value="{{ isset($propertyEdit) ? $propertyEdit->city : '' }}"  selected>{{$propertyEdit->city_details->name??''}}</option>
+                                @else
+                                <option>--Select City--</option>
+                                @endif
                                    </select>
                                 </div>
 
@@ -70,7 +78,7 @@
                         </div>
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
-                                <textarea class="form-control" name="address" placeholder="Address" ></textarea>
+                                <textarea class="form-control" name="address" placeholder="Address" >{{ isset($propertyEdit) ? $propertyEdit->address : '' }}</textarea>
                             </div>
                             <!--end col-->
                         </div>
