@@ -11,7 +11,7 @@
         <div class="card-content">
             <div class="live-preview">
                 <form
-                    action="{{ isset($user) ? route(Session::get('guard').'.user.user.update', $user->id) : route(Session::get('guard').'.user.user.store') }}"
+                    action="{{ isset($user) ? route(Session::get('guard').'.user.update', $user->id) : route(Session::get('guard').'.user.store') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     @if (isset($user))
