@@ -69,6 +69,8 @@ class CustomerController extends Controller
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make('12345678'),
+                'type'=>Customer::$owner,
+                'created_by'=> Helper::getUserId(),
             ]);
             if ($customer) {
                 CustomerProfile::create([
@@ -85,8 +87,6 @@ class CustomerController extends Controller
                     'company_name'=>$request->company_name,
                     'federal_ein'=> $request->federal_ein,
                     'bsis_number'=> $request->bsis_number,
-                    'type'=>'owner',
-                    'created_by'=> Helper::getUserId(),
 
                 ]);
 

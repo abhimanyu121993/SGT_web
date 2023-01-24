@@ -13,10 +13,13 @@ class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public static $owner='owner',$employee='employee';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'type',
+        'created_by'
     ];
 
     /**
