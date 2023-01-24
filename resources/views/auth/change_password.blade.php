@@ -1,5 +1,4 @@
- <!-- Modal Trigger -->
- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
@@ -52,7 +51,5 @@
         </div>
     </div>
 </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
+   
   </div>
