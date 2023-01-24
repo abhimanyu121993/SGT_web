@@ -160,4 +160,25 @@ public function update_Password(Request $request)
     }
         return redirect()->back();
 }
+//Lock screen 
+public function lock()
+{
+        $user =(object)[];
+    if (Auth::guard('superadmin')->check()) {
+        $user = Auth::guard('superadmin')->user();
+
+    }
+    else if (Auth::guard('admin')->check()) {
+        $user = Auth::guard('admin')->user();
+
+    }
+    else if (Auth::guard('customer')->check()) {
+        $user = Auth::guard('customer')->user();
+    }
+    Auth::guard('superadmin')->logout();
+    Auth::guard('admin')->logout();
+    Auth::guard('customer')->logout();
+    Session::put('user',$user);
+        abort(201);
+}
 }

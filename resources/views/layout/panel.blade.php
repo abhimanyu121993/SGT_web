@@ -194,6 +194,7 @@
     </script>
     @include('panel.include.sweetalert')
     @yield('script-area')
+    @include('panel.include.toaster')
 </body>
 
 </html>
