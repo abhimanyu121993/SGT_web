@@ -46,17 +46,14 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
     <div class="collapsible-body"
         style="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'display:block' : '' }}">
         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-            <li
-                class="{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'active' : '' }}  bold">
+            <li class="{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'active' : '' }}  bold">
                 <a href="{{ route(Session::get('guard') . '.property.create') }}"><i
                         class="material-icons">{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
                         data-i18n="Login">{{ __('sidebar.create') }}</span></a>
             </li>
-            <li
-                class="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} bold">
-                <a href="{{ route(Session::get('guard') . '.property.index') }}"><i
-                        class="material-icons">{{ strpos(Route::currentRouteName(), 'property.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                        data-i18n="Register">{{ __('sidebar.manage') }}</span></a>
+            <li class="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} bold">
+                <a href="{{ route(Session::get('guard') . '.property.index') }}"><i class="material-icons">{{ strpos(Route::currentRouteName(), 'property.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i>
+                    <span data-i18n="Register">{{ __('sidebar.manage') }}</span></a>
             </li>
         </ul>
     </div>
