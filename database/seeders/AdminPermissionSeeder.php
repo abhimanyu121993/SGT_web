@@ -16,7 +16,7 @@ class AdminPermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = ['role','permission','customer-has-permission','subscription','user'];
+        $permissions = ['role','permission','customer-has-permission','subscription','user','customer'];
         foreach ($permissions as $permission) {
             $perm = PermissionName::create(['permission_name' => $permission, 'guard_name' => PermissionName::$admin]);
             if (isset($perm)) {
