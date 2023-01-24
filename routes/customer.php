@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\PermissionController;
+use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
 use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;

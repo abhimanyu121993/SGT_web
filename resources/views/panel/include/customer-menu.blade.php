@@ -26,14 +26,6 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
                         class="material-icons">{{ strpos(Route::currentRouteName(), 'role-permission.permission') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
                         data-i18n="Register">{{ __('sidebar.permission') }}</span></a>
             </li>
-            {{-- @if (Auth::guard('admin')->user()->hasPermissionTo('permission-read', 'admin') ) --}}
-                <li
-                    class="{{ strpos(Route::currentRouteName(), 'role-permission.role-has-permission') !== false ? 'active' : '' }} bold">
-                    <a href="{{ route(Session::get('guard') . '.role-permission.role-has-permission') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(), 'role-permission.role-has-permission') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Register">{{ __('sidebar.role-has-permission') }}</span></a>
-                </li>
-            {{-- @endif --}}
             {{-- @if (Auth::guard('customer')->user()->hasPermissionTo('customer-has-permission', 'customer')) --}}
                 <li
                     class="{{ strpos(Route::currentRouteName(), 'role-permission.role-has-permission') !== false ? 'active' : '' }} bold">

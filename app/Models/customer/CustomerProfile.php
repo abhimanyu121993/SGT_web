@@ -13,6 +13,11 @@ class CustomerProfile extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
+    public function getFullNameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
+    
     public function customer_profile()
     {
         return $this->belongsTo(Customer::class, 'customer_id','id');
