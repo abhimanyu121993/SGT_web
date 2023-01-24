@@ -8,8 +8,8 @@ use App\Models\Country;
 use App\Models\customer\Property;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
-
 class PropertyController extends Controller
 {
     /**
@@ -46,7 +46,9 @@ class PropertyController extends Controller
             'name' => 'required'
         ]);
         try{
-            Property::create([
+           $res= Property::create([
+                'created_by'=>Helper::getUserId(),
+                'owner_id'=>Helper::getOwnerId(),
                 'name' => $request->name,
                 'country' => $request->country ?? '',
                 'state' => $request->state ?? '',
@@ -56,13 +58,21 @@ class PropertyController extends Controller
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
             ]);
+if($res){
+    Session::flash('success', 'Property created successfully');
 
-            Session::flash('success', 'Property created successfully');
+}
+else{
+    Session::flash('error', 'Property not created');
+
+}
             return redirect()->back();
         }
         catch(Exception $ex){
             Helper::handleError($ex);
         }
+        return redirect()->back();
+
     }
 
     /**
@@ -84,8 +94,19 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+
+        $id=Crypt::decrypt($id);
+        $countries = Country::get();
+        $propertyEdit=Property::find($id);
+        if($propertyEdit)
+        {
+            return view('customer.property.register_property',compact('propertyEdit','countries'));
+        }
+        else
+        {
+            session::flash('error','Something Went Wrong OR Data is Deleted');
+            return redirect()->back();
+        }    }
 
     /**
      * Update the specified resource in storage.
@@ -96,8 +117,36 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            // 'name'=>'required',
+            // 'email'=>'required',
+        ]);
+        try
+        {
+             $res= Property::find($id)->update([ 
+             'name' => $request->name,
+             'country' => $request->country ?? '',
+             'state' => $request->state ?? '',
+             'city' => $request->city ?? '',
+             'postcode' => $request->postcode ?? '',
+             'address' => $request->address ?? '',
+             'lattitude' => $request->lattitude ?? '',
+             'longitude' => $request->longitude ?? '',
+             
+        ]);
+        if($res)
+        {
+                session()->flash('success','Property updated sucessfully');
+            }
+            else
+            {
+                session()->flash('error','Property not updated ');
+            }
+        }
+        catch(Exception $ex){
+            Helper::handleError($ex);
+        }
+        return redirect()->back();    }
 
     /**
      * Remove the specified resource from storage.
@@ -107,6 +156,20 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $id=Crypt::decrypt($id);
+        try{
+                $res=Property::find($id)->delete();
+                if($res)
+                {
+                    session()->flash('success','Property deleted sucessfully');
+                }
+                else
+                {
+                    session()->flash('error','Property not deleted ');
+                }
+            }
+            catch(Exception $ex){
+                Helper::handleError($ex);
+            }
+            return redirect()->back();    }
 }

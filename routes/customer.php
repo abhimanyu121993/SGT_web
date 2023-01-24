@@ -6,6 +6,7 @@ use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
 use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;
+use App\Http\Controllers\customer\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
@@ -14,6 +15,8 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], functi
     Route::resource('permission', PermissionController::class);
     Route::get('role-has-permission', [RolePermissionController::class, 'role_has_permission'])->name('role-has-permission');
 });
+//Route for User
+Route::resource('user', UserController::class)->name('user','');
 
 //Route for Profile
 Route::resource('profile',ProfileController::class)->name('profile','');

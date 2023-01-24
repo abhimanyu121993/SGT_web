@@ -26,7 +26,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::where('created_by',Helper::getUserId())->get();
+        $customers = Customer::where('created_by',Helper::getUserId())->where('type',Customer::$owner)->get();
         return view('admin.customer.manage_customer',compact('customers'));
     }
 

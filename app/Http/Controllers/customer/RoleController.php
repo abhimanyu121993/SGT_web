@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -19,8 +20,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $Roles = Role::where('created_by',Auth::guard('customer')->user()->id ?? '')->where('guard_name','customer')->get();
-        return view('role_permission.role', compact('Roles'));
+        $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Permission::$customer)->get();
+        return view('role_permission.role', compact('roles'));
     }
 
     /**
