@@ -85,17 +85,18 @@ class AuthController extends Controller
     // Logout All Guards
     public function logout()
     {
+        $route = 'home';
         if (Auth::guard('superadmin')->check()) {
             $route = 'auth.superadmin';
-           
+
         }
         else if (Auth::guard('admin')->check()) {
             $route = 'auth.admin';
-           
+
         }
         else if (Auth::guard('customer')->check()) {
             $route = 'auth.customer';
-            
+
         }
         Auth::guard('superadmin')->logout();
         Auth::guard('admin')->logout();

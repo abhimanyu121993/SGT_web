@@ -27,7 +27,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::get();
-        
+
         return view('admin.customer.manage_customer',compact('customers'));
     }
 
@@ -78,10 +78,12 @@ class CustomerController extends Controller
                     'address'=>$request->address,
                     'time_zone_id'=>$request->timezone_id,
                     'currency_id'=>$request->currency_id,
-                    'status'=>Status::where('name','active')->where('type','general')->first()->id
+                    'status'=>Status::where('name','active')->where('type','general')->first()->id,
+                    'type'=>'owner',
+                    'created_by'=> Helper::getUserId(),
 
                 ]);
-                
+
               $customerProfile=  CustomerSubscribePack::create([
                     'customer_id'=>$customer->id,
                     'subscribe_id'=>$request->membership_plan,
