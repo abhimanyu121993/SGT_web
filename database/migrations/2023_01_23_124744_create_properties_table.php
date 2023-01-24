@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('lattitude')->nullable()->comment('lattitude value of property');
             $table->string('longitude')->nullable()->comment('longitude value of property');
             $table->string('created_by')->nullable()->comment('User id from the customer table');
+            $table->string('owner_id')->nullable()->comment('Owner id of property');
             $table->softDeletes();
             $table->timestamps();
         });

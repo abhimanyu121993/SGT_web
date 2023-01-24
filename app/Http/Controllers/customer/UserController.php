@@ -1,34 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\customer;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\admin\Admin;
-use App\Models\ProjectError;
-use App\Models\User;
+use App\Models\customer\Customer;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return 'hi';
-        $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$admin)->get();
-        return view('user.create',compact('roles'));
+        $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$customer)->get();
+        return view('customer.user.register_user',compact('roles'));
     }
   
     /**
@@ -38,9 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return 'hi';
-        $admin = Admin::where('created_by',Helper::getUserId())->where('type',Admin::$sub_admin)->get();
-        return view('user.manage',compact('admin'));
+        $admin = Customer::where('created_by',Helper::getUserId())->where('type',Customer::$employee)->get();
+        return view('customer.user.manage_user',compact('admin'));
     }
 
     /**
@@ -59,11 +53,11 @@ class UserController extends Controller
         ]);
         try
         {
-            $res= Admin::create(['created_by'=>Helper::getUserId(),
+            $res= Customer::create(['created_by'=>Helper::getUserId(),
             'name'=>$request->fname.' '.$request->lname,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
-            'type'=>'sub-admin',            
+            'type'=>Customer::$employee,            
         ]);
        $role_name = Role::find($request->role_id);
             if($res)
@@ -102,7 +96,7 @@ class UserController extends Controller
     {
         $id=Crypt::decrypt($id);
         $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->get();
-        $user=Admin::find($id);
+        $user=Customer::find($id);
         if($user)
         {
             return view('user.create',compact('roles','user'));
@@ -129,7 +123,7 @@ class UserController extends Controller
         ]);
         try
         {
-             $res= Admin::find($id)->update([
+             $res= Customer::find($id)->update([
             'name'=>$request->fname.' '.$request->lname,
             'email'=>$request->email,
         ]);
@@ -137,7 +131,7 @@ class UserController extends Controller
 
         if($res)
         {
-            $admin = Admin::find($id);
+            $admin = Customer::find($id);
             $admin->syncRoles($role->name);
                 session()->flash('success','User updated sucessfully');
             }
@@ -162,7 +156,7 @@ class UserController extends Controller
     {
         $id=Crypt::decrypt($id);
         try{
-                $res=Admin::find($id)->delete();
+                $res=Customer::find($id)->delete();
                 if($res)
                 {
                     session()->flash('success','User deleted sucessfully');
@@ -180,7 +174,7 @@ class UserController extends Controller
 
     public function is_active($id)
     {
-        $ass_active=Admin::find($id);
+        $ass_active=Customer::find($id);
 
         if($ass_active->isactive==1)
         {
