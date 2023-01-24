@@ -68,7 +68,7 @@ class Helper
             }
             else if(Auth::guard(Role::$customer)->user()->type==Customer::$employee)
             {
-                return Auth::guard(Permission::$customer)->user()->created_by;
+                return Auth::guard(Role::$customer)->user()->created_by;
             }
         }
     }
