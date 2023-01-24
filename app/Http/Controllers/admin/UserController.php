@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\ProjectError;
@@ -36,8 +37,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = Admin::all();
-        return view('user.manage',compact('user'));
+        $admin = Admin::where('created_by',Helper::getUserId())->where('type',Admin::$sub_admin)->get();
+        return view('user.manage',compact('admin'));
     }
 
     /**
@@ -56,7 +57,7 @@ class UserController extends Controller
         ]);
         try
         {
-            $res= Admin::create(['created_by'=>Auth::guard('admin')->user()->id,
+            $res= Admin::create(['created_by'=>Helper::getUserId(),
             'name'=>$request->fname.' '.$request->lname,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
@@ -73,13 +74,10 @@ class UserController extends Controller
                 session()->flash('error','User not added ');
             }
         }
-        catch(Exception $ex)
-        {
-            $url=URL::current();
-            ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-            Session::flash('error','Server Error ');
+        catch(Exception $ex){
+            Helper::handleError($ex);
         }
-            return redirect()->back();
+        return redirect()->back();
     }
     /**
      * Display the specified resource.
@@ -146,13 +144,10 @@ class UserController extends Controller
                 session()->flash('error','User not updated ');
             }
         }
-        catch(Exception $ex)
-        {
-            $url=URL::current();
-            ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-            Session::flash('error','Server Error ');
+        catch(Exception $ex){
+            Helper::handleError($ex);
         }
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -175,11 +170,8 @@ class UserController extends Controller
                     session()->flash('error','Subscription not deleted ');
                 }
             }
-            catch(Exception $ex)
-            {
-                $url=URL::current();
-                ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-                Session::flash('error','Server Error ');
+            catch(Exception $ex){
+                Helper::handleError($ex);
             }
             return redirect()->back();
     }

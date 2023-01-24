@@ -4,8 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\DataTables\CurrencyDataTable;
 use App\DataTables\RoleDataTable;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -49,17 +51,28 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
+        try
+        {
        if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
        'guard_name' => 'admin',])->exists()){
             Session::flash('error', 'This Role is already exists');
             return redirect()->back();
        }
-        Role::create([
+       $res= Role::create([
             'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
             'guard_name' => 'admin',
             'created_by'=>Auth::guard('admin')->user()->id
         ]);
+        if($res){
         return redirect()->back()->with('success','Role has been created successfully.');
+
+        }
+        return redirect()->back()->with('error','Role not created!.');
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
     }
 
     /**
@@ -99,6 +112,7 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
+        try{
         if(Role::where([ 'name' => Auth::guard('admin')->user()->id.'_'.$request->role,
         'guard_name' => 'admin',])->exists()){
              Session::flash('error', 'This Role is already exists');
@@ -107,8 +121,13 @@ class RoleController extends Controller
         Role::find($id)->update([
             'name' => Auth::guard('admin')->user()->id.'_'.$request->role
         ]);
-        return redirect()->back()->with('success','Role has been Updated successfully.');    }
-
+        return redirect()->back()->with('success','Role has been Updated successfully.'); 
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -118,6 +137,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
+        try{
         $data=Role::find($id);
         if($data->delete())
         {
@@ -126,7 +146,12 @@ class RoleController extends Controller
         else
         {
             return redirect()->back()->with('error','Data not deleted.');
-        }    
+        }  
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
     }
     public function fetch_role()
     {

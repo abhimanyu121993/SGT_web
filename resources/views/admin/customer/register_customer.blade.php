@@ -21,17 +21,18 @@
                         @csrf
                         <div class="row gy-4">
                             <div class="col md12">
-                                Choose Membership Plan
+                            {{__('customer.choose_membership_plan')}}
+
                             </div>
                             <div class="col md12">
 
                                 @foreach ($plans as $plan)
-                                    <div class="input-group col s3">
-                                        <label>
-                                            <input type="radio" class="form-control" id="membership_plan"
-                                                name="membership_plan" value="{{ $plan->id }}">
-                                            <span>{{ $plan->title }}</span>
-                                        </label>
+                                <div class="input-group col s3">
+                                    <span>
+                                        <input type="radio" class="form-control" id="membership_plan"
+                                            name="membership_plan" value="{{$plan->id}}">
+                                        <span>{{$plan->title}}</span>
+                                    </span>
 
                                     </div>
                                 @endforeach
@@ -58,19 +59,19 @@
                                 <input type="text" class="form-control" id="first_name" name="first_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}"
                                     placeholder="First Name">
-                                @error('first_name')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                    @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                   <span class="active" for="first_name">{{__('customer.fname')}}</span>
+
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="last_name" name="last_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}"
                                     placeholder="Last Name">
-                                @error('last_name')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                    @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                    <span class="active" for="last_name">{{__('customer.lname')}}</span>
+                            
+                                </div>
 
                             <!--end col-->
                         </div>
@@ -79,42 +80,19 @@
                             <div class="input-group col s6">
                                 <input type="email" class="form-control" id="email" name="email"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
-                                @error('email')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                    @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                   <span class="active" for="email">{{__('customer.email')}}</span>
+
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="number" class="form-control" id="mobileno" name="mobileno"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : '' }}"
                                     placeholder="Mobile Number">
-                                @error('mobileno')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <!--end col-->
-                        </div>
-
-                        <div class="row gy-4">
-
-                            <div class="input-group col s6">
-                                <input type="text" class="form-control" id="federal_ein" name="federal_ein"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->federal_ein : '' }}"
-                                    placeholder="Federal EIN">
-                                @error('federal_ein')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="input-group col s6">
-                                <input type="number" class="form-control" id="bsis_number" name="bsis_number"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->bsis_number : '' }}"
-                                    placeholder="BSIS Number">
-                                @error('bsis_number')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                    @error('mobileno')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                    <span class="active" for="mobileno">{{__('customer.mobile')}}</span>
+                           
+                                </div>
 
                             <!--end col-->
                         </div>
@@ -126,25 +104,24 @@
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('country')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                <span class="active" for="country">{{__('customer.country')}}</span>
+
+                                @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="state" name="state">
                                     <option>--Select State--</option>
                                 </select>
-                                @error('state')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                <span class="active" for="state">{{__('customer.state')}}</span>
+                                @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="city" name="city">
                                     <option value="">--Select City--</option>
                                 </select>
-                                @error('city')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                <span class="active" for="city">{{__('customer.city')}}</span>
+
+                                @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->
@@ -160,9 +137,9 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('timezone_id')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                <span class="active" for="timezone">{{__('customer.timezone')}}</span>
+
+                                @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s6">
                                 <select class="select2-theme browser-default" name="currency_id">
@@ -172,9 +149,8 @@
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
-                                @error('currency_id')
-                                    <span class="pink-text text-accent-3">{{ $message }}</span>
-                                @enderror
+                                <span class="active" for="currency">{{__('customer.currency')}}</span>
+                                @error('currency_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->
@@ -182,6 +158,7 @@
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
                                 <textarea class="form-control" name="address" placeholder="Address"></textarea>
+                                <span class="active" for="address">{{__('customer.address')}}</span>
                             </div>
                             <!--end col-->
                         </div>

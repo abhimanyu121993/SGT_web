@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\PermissionName;
+use Exception;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
@@ -41,6 +43,7 @@ class PermissionController extends Controller
         $request->validate([
             'permission' => 'required',
         ]);
+        try{
         $perm = PermissionName::create(['name'=>$request->permission]);
         if(isset($perm))
         {
@@ -54,6 +57,11 @@ class PermissionController extends Controller
         else {
             return redirect()->back()->with('error','Something went wrong !');
         }
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
     }
 
     /**

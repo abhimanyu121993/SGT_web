@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
 use App\Models\ProjectError;
@@ -37,7 +38,7 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $subscription = Subscription::all();
+        $subscription = Subscription::where('created_by',Helper::getUserId())->get();
         return view('admin.subscription.manage',compact('subscription'));
     
     }
@@ -52,7 +53,8 @@ class SubscriptionController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            
+            'currency'=>'required',
+            'price'=>'required',          
 
         ]);
         try
@@ -84,6 +86,7 @@ class SubscriptionController extends Controller
             'color'=>$request->color,
             'bg_color'=>$request->bg_color,
             'life_time'=>$request->lifetime??0,
+            'desc'=>$request->desc,
         ]);
 
             if($res)
@@ -95,13 +98,10 @@ class SubscriptionController extends Controller
                 session()->flash('error','Subscription not added ');
             }
         }
-        catch(Exception $ex)
-        {
-            $url=URL::current();
-            ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-            Session::flash('error','Server Error ');
+        catch(Exception $ex){
+            Helper::handleError($ex);
         }
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -149,7 +149,9 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'title'
+            'title'=>'required',
+            'currency'=>'required',
+            'price'=>'required',  
         ]);
         try
         {
@@ -179,7 +181,9 @@ class SubscriptionController extends Controller
                 'status_id'=>$request->status,
                 'color'=>$request->color,
                 'bg_color'=>$request->bg_color,
-                'life_time'=>$request->lifetime??0
+                'life_time'=>$request->lifetime??0,
+                'desc'=>$request->desc,
+
             ]);
             if($res)
             {
@@ -190,13 +194,10 @@ class SubscriptionController extends Controller
                 session()->flash('error','Subscription not Update ');
             }
         }
-        catch(Exception $ex)
-        {
-            $url=URL::current();
-            ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-            Session::flash('error','Server Error ');
+        catch(Exception $ex){
+            Helper::handleError($ex);
         }
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -219,11 +220,8 @@ class SubscriptionController extends Controller
                     session()->flash('error','Subscription not deleted ');
                 }
             }
-            catch(Exception $ex)
-            {
-                $url=URL::current();
-                ProjectError::create(['url'=>$url,'message'=>$ex->getMessage()]);
-                Session::flash('error','Server Error ');
+            catch(Exception $ex){
+                Helper::handleError($ex);
             }
             return redirect()->back();
     }

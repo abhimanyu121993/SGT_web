@@ -2,6 +2,8 @@
 
 namespace App\Models\customer;
 
+use App\Models\City;
+use App\Models\CustomerSubscribePack;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +23,7 @@ class Customer extends Authenticatable
         'type',
         'created_by'
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,4 +43,14 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function customer_profile()
+    {
+        return $this->hasOne(CustomerProfile::class, 'customer_id');
+    }
+    public function customer_subscribe()
+    {
+        return $this->hasOne(CustomerSubscribePack::class, 'customer_id');
+    }
+   
 }

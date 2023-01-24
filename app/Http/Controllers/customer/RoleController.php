@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -42,12 +44,23 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
-        Role::create([
+        try{ 
+       $res= Role::create([
             'name' => Auth::guard('customer')->user()->id.'_'.$request->role,
             'guard_name' => 'customer',
             'created_by'=>Auth::guard('customer')->user()->id
         ]);
-        return redirect()->back()->with('success','Role has been created successfully.');
+        if($res){
+           session()->flash('success','Role has been created successfully.');
+        }
+        else{
+           session()->flash('success','Role not created.');
+        }
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
     }
 
     /**
@@ -87,10 +100,22 @@ class RoleController extends Controller
         $request->validate([
             'role' => 'required',
         ]);
-        Role::find($id)->update([
+        try{
+       $res= Role::find($id)->update([
             'name' => $request->role
         ]);
-        return redirect()->back()->with('success','Role has been Updated successfully.');    }
+        if($res){
+            session()->flash('success','Role has been updated successfully.'); 
+        }
+        else{
+            session()->flash('success','Role not updated.'); 
+        }
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -101,14 +126,20 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
+        try{
         $data=Role::find($id);
         if($data->delete())
         {
-            return redirect()->back()->with('success','Data Deleted successfully.');
+           session()->flash('success','Data Deleted successfully.');
         }
         else
         {
-            return redirect()->back()->with('error','Data not deleted.');
-        }    
+           session()->flash('error','Data not deleted.');
+        }  
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+    }
+    return redirect()->back();  
     }
 }

@@ -13,10 +13,14 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public static $admin='admin',$sub_admin='sub-admin';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'created_by',
+        'type',
+        'isactive',
     ];
 
     /**

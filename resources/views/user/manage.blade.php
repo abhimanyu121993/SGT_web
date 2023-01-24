@@ -1,8 +1,8 @@
 @extends('layout.panel')
-@section('title', 'Manage Subcription')
-@section('breadcrumb-title', 'Manage Subscription')
-@section('breadcrumb-backpage', 'Manage Subscription')
-@section('breadcrumb-currentpage', 'Manage Subscription')
+@section('title', 'Manage User')
+@section('breadcrumb-title', 'Manage User')
+@section('breadcrumb-backpage', 'User')
+@section('breadcrumb-currentpage', 'Manage User')
 @section('content-area')
 @php
 if(Auth::guard('superadmin')->check()){
@@ -22,15 +22,15 @@ $guard='customer';
         <table class="table table-nowrap container" id="example">
             <thead>
                 <tr>
-                    <th scope="col">Sr.No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">IsActive</th>
+                    <th scope="col">{{__('user.sr_no')}}</th>
+                    <th scope="col">{{__('user.name')}}</th>
+                    <th scope="col">{{__('user.email')}}</th>
+                    <th scope="col">{{__('user.is_active')}}</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $data)
+                @foreach ($admin as $data)
                 <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
                     <td>{{ $data->name??'' }}</td>

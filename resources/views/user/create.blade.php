@@ -17,6 +17,15 @@
                     @if (isset($user))
                     @method('patch')
                     @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
@@ -59,6 +68,8 @@
                                               <option value="{{$role->id}}"@isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{$role->role_name}}</option>
                                           @endforeach
                                         </select>
+                                <span class="active" for="cpassword">{{__('user.role')}}</span>
+
                                       </div>
                                 </div>
                             <div class="row col s12 mt-2">
