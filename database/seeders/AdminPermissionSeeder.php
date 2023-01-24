@@ -16,15 +16,16 @@ class AdminPermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permission = 'role';
-        $perm = PermissionName::create(['permission_name'=>$permission,'guard_name'=>PermissionName::$admin]);
-        if(isset($perm))
-        {
-            $permission = Permission::create(['name' => $permission, 'guard_name'=>$perm->guard_name,'permission_name_id' => $perm->id]);
-            Permission::create( ['name' => $permission.'_create','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
-            Permission::create( ['name' => $permission.'_read', 'guard_name'=>$perm->guard_name,'permission_name_id' => $perm->id]);
-            Permission::create( ['name' => $permission.'_edit','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
-            Permission::create( ['name' => $permission.'_delete','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
+        $permissions = ['role','permission','customer-has-permission','subscription','user'];
+        foreach ($permissions as $permission) {
+            $perm = PermissionName::create(['permission_name' => $permission, 'guard_name' => PermissionName::$admin]);
+            if (isset($perm)) {
+                $permission = Permission::create(['name' => $permission, 'guard_name' => $perm->guard_name, 'permission_name_id' => $perm->id]);
+                Permission::create(['name' => $permission->name . '_create', 'guard_name' => $perm->guard_name, 'permission_name_id' => $perm->id]);
+                Permission::create(['name' => $permission->name . '_read', 'guard_name' => $perm->guard_name, 'permission_name_id' => $perm->id]);
+                Permission::create(['name' => $permission->name . '_edit', 'guard_name' => $perm->guard_name, 'permission_name_id' => $perm->id]);
+                Permission::create(['name' => $permission->name . '_delete', 'guard_name' => $perm->guard_name, 'permission_name_id' => $perm->id]);
+            }
         }
     }
 }

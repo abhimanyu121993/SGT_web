@@ -20,7 +20,7 @@ class StatusSeeder extends Seeder
             'icon' => '',
             'color' => 'Red',
             'bg_color'=>'white',
-            'type'=>'genral',
+            'type'=>'general',
         ]);
         }
 }
