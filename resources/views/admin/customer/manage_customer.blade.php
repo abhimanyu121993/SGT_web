@@ -26,10 +26,13 @@
                     <th>{{__('customer.mobile')}}</th>
                     <th>{{__('customer.membership_plan')}}</th>
                     <th>{{__('customer.address')}}</th>
-                    <th>{{__('customer.city')}}</th>
+                    {{-- <th>{{__('customer.city')}}</th>
                     <th>{{__('customer.currency')}}</th>
-                    <th>{{__('customer.country')}}</th>
-                    <th>Action</th>
+                    <th>{{__('customer.country')}}</th> --}}
+                    <th>{{__('customer.company_name')}}</th>
+                    <th>{{__('customer.federal_ein')}}</th>
+                    <th>{{__('customer.bsis_number')}}</th>
+                    {{-- <th>Action</th> --}}
 
                 </tr>
             </thead>
@@ -37,16 +40,22 @@
                 @foreach($customers as $data)
                 <tr>
                     <th>{{$loop->index+1}}</th>
-                    <th>{{$data->name??''}}</th>
-                    <th>{{$data->email??''}}</th>
-                    <th>{{$data->customer_profile->mobileno??''}}</th>
-                    <th>{{$data->customer_profile->membership_plan??''}}</th>
-                    <th>{{$data->customer_profile->address??''}}</th>
-                    <th>{{$data->customer_profile->city->name??''}}</th>
-                    <th>{{$data->customer_profile->currency->code??''}}</th>
-                    <th>{{$data->customer_profile->currency->country??''}}</th>
-                    <th></th>
-                </tr>   
+                    <td>{{$data->name??''}}</td>
+                    <td>{{$data->email??''}}</td>
+                    <td>{{$data->customer_profile->mobileno??''}}</td>
+                    <td>
+                        <div class="chip gradient-45deg-purple-deep-orange gradient-shadow white-text">
+                            {{$data->customer_subscribe->subscription->title ??''}} Plan
+                        </div>
+                    </td>
+                    <td>{{$data->customer_profile->address??''}}</td>
+                    {{-- <td>{{$data->customer_profile->city->name??''}}</td>
+                    <td>{{$data->customer_profile->currency->code??''}}</td> --}}
+                    <td>{{$data->customer_profile->company_name??''}}</td>
+                    <td>{{$data->customer_profile->federal_ein??''}}</td>
+                    <td>{{$data->customer_profile->bsis_number??''}}</td>
+                    {{-- <th></th> --}}
+                </tr>
                 @endforeach
 </tbody>
         </table>
@@ -54,5 +63,5 @@
 </div>
 @endsection
 @section('script-area')
-
+<script src="{{ asset('app-assets/js/scripts/ui-chips.js')}}"></script>
 @endsection

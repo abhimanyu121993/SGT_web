@@ -23,7 +23,7 @@ class Customer extends Authenticatable
         'type',
         'created_by'
     ];
-    
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,5 +52,5 @@ class Customer extends Authenticatable
     {
         return $this->hasOne(CustomerSubscribePack::class, 'customer_id');
     }
-   
+
 }
