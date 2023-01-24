@@ -103,7 +103,7 @@
                         </div>
                         <div class="row gy-4">
                             <div class="input-group col s4">
-                                <select class="select2-theme browser-default" id="country" name="country">
+                                <select class="select2 browser-default" id="country" name="country">
                                     <option value="">--Select Country--</option>
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -112,13 +112,13 @@
                                 @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
-                                <select class="select2-theme browser-default" id="state" name="state">
+                                <select class="select2 browser-default" id="state" name="state">
                                     <option>--Select State--</option>
                                 </select>
                                 @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
-                                <select class="select2-theme browser-default" id="city" name="city">
+                                <select class="select2 browser-default" id="city" name="city">
                                     <option value="">--Select City--</option>
                                 </select>
                                 @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
@@ -129,7 +129,7 @@
                         <div class="row gy-4 mt-2">
 
                             <div class="input-group col s6">
-                                <select class="select2-theme browser-default" name="timezone_id">
+                                <select class="select2 browser-default" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
                                     @foreach (Helper::getTimeZone() as $timezone)
                                         <option value="{{ $timezone->id }}">{{ $timezone->timezone . ' / ' . $timezone->utc }}
@@ -139,7 +139,7 @@
                                 @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s6">
-                                <select class="select2-theme browser-default" name="currency_id">
+                                <select class="select2 browser-default" name="currency_id">
                                     <option value="">--Select Currency--</option>
                                     @foreach (Helper::getCurrencies() as $currency)
                                         <option value="{{ $currency->id }}">
