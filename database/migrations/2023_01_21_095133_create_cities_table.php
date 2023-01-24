@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('state_id');
+            $table->string('cost');
+            $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

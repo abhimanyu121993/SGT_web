@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('country_id');
+            $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

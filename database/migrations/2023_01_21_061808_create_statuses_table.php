@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('icon');
-            $table->string('color');
-            $table->string('bg_color');
-            $table->string('Type');
+            $table->string('name')->comment('name of the status');
+            $table->string('icon')->comment('icon of the status');
+            $table->string('color')->default('#0000')->comment('text colour of status');
+            $table->string('bg_color')->default('#ffff')->comment('background colour of status');
+            $table->string('Type')->default('general')->comment('type of the status');
             $table->softDeletes();
             $table->timestamps();
         });

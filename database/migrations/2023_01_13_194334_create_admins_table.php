@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('type',['admin','sub-admin'])->default('admin');
-            $table->bigInteger('created_by')->nullable();
+            $table->enum('type',['admin','sub-admin'])->default('admin')->comment('type of admin');
+            $table->bigInteger('created_by')->nullable()->comment('id from the admin/customer table depend upon field type');
+            $table->boolean('isactive')->default(1)->comment('status of the admin:active/inactive');
             $table->rememberToken();
             $table->timestamps();
         });

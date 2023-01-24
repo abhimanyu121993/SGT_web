@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('admin_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('admin_id');
+            $table->string('admin_id')->comment('id from the admin table');
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->enum('gender', ['M', 'F', 'O'])->default('M');
@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->text('address')->nullable();
             $table->string('pic')->nullable();
-            $table->string('country')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
-            $table->string('timezone')->nullable();
+            $table->string('country')->nullable()->comment('id from country table');
+            $table->string('state')->nullable()->comment('id from state table');
+            $table->string('city')->nullable()->comment('id from city table');
+            $table->string('timezone')->nullable()->comment('id from timezone table');
             $table->softDeletes();
             $table->timestamps();
         });

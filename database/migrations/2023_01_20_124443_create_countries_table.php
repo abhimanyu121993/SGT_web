@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->string('zone_id');
-            $table->boolean('status')->default(false);
+            $table->string('zone_id')->comment('if from the zone table');
+            $table->boolean('status')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

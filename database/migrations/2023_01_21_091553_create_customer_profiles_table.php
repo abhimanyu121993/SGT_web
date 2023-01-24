@@ -15,17 +15,18 @@ return new class extends Migration
     {
         Schema::create('customer_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->comment('id from customer table');
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email');
             $table->string('mobileno')->nullable();
-            $table->integer('membership_plan')->nullable();
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('city_id')->comment('id from city table');
             $table->text('address')->nullable();
-            $table->unsignedBigInteger('status');
-            $table->unsignedBigInteger('time_zone_id');
-            $table->unsignedBigInteger('currency_id');
+            $table->unsignedBigInteger('status')->default(true)->comment('status of customer: active/inactive');
+            $table->unsignedBigInteger('time_zone_id')->comment('id from the timezone table');
+            $table->unsignedBigInteger('currency_id')->comment('id from the currency table');
+            $table->enum('type',['owner','sub-owner'])->default('owner');
+            $table->unsignedbiginteger('created_by')->comment('id from admin/customer table depend upon field type');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('customer_subscribe_packs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('subscribe_id');
-            $table->timestamp('taken');
-            $table->timestamp('start')->nullable();
-            $table->timestamp('expiry')->nullable();
-            $table->double('amount',10, 2);
-            $table->unsignedBigInteger('currency_id');
-            $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('customer_id')->comment('User id from customer table');
+            $table->unsignedBigInteger('subscribe_id')->comment('id from subscription table');
+            $table->timestamp('taken')->comment('subscription taken date');
+            $table->timestamp('start')->nullable()->comment('subscription start date');
+            $table->timestamp('expiry')->nullable()->comment('subscription expiry date');
+            $table->double('amount',10, 2)->comment('subscription amount');
+            $table->unsignedBigInteger('currency_id')->comment('id from the currency table');
+            $table->boolean('is_active')->default(true)->comment('status of customer subscription');
             $table->timestamps();
         });
     }

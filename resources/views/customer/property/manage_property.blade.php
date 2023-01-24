@@ -1,8 +1,8 @@
 @extends('layout.panel')
-@section('title', 'Customer')
-@section('breadcrumb-title', 'Customer')
-@section('breadcrumb-backpage', 'Customer')
-@section('breadcrumb-currentpage', 'Manage Customer')
+@section('title', 'Property')
+@section('breadcrumb-title', 'Property')
+@section('breadcrumb-backpage', 'Property')
+@section('breadcrumb-currentpage', 'Manage Property')
 @section('link-area')
 
 @endsection

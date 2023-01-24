@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('type',['owner','employee'])->default('owner');
-            $table->bigInteger('created_by')->nullable();
+            $table->enum('type',['owner','employee'])->default('owner')->comment('type of customer');
+            $table->bigInteger('created_by')->nullable()->comment('id from the customer/admin table depend upon field type');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedbiginteger('created_by');
-            $table->string('title');
-            $table->string('currency');
-            $table->decimal('price',10,2)->default(0.00);
-            $table->string('days')->default('0');
-            $table->integer('free_trial_days')->default('0');
-            $table->unsignedbiginteger('status_id');
-            $table->boolean('limit')->default(false);
-            $table->boolean('life_time')->default(false);
-            $table->string('icon')->nullable();
-            $table->string('img')->nullable();
-            $table->string('color')->nullable();
-            $table->string('bg_color')->nullable();
-            $table->longText('desc')->nullable();
+            $table->string('title')->comment('title of the subscription');
+            $table->string('currency')->comment('id from the currency table');
+            $table->decimal('price',10,2)->default(0.0)->comment('subscription price');
+            $table->string('days')->default('0')->comment('Validity of subscription in days');
+            $table->integer('free_trial_days')->default('0')->comment('Number of days for free trial');
+            $table->unsignedbiginteger('status_id')->comment('status of subscription');
+            $table->boolean('limit')->default(false)->comment('validation of limitation if exist');
+            $table->boolean('life_time')->default(false)->comment('Is this subscription for lifetime ?');
+            $table->string('icon')->nullable()->comment('icon of the subscription');
+            $table->string('img')->nullable()->comment('image of the subscription');
+            $table->string('color')->nullable()->comment('text colour of the subscription');
+            $table->string('bg_color')->nullable()->comment('background colour of the subscription');
+            $table->longText('desc')->nullable()->comment('description of the subscription');
+            $table->unsignedbiginteger('created_by')->comment('id from admin table');
             $table->softDeletes();
             $table->timestamps();
         });
