@@ -21,3 +21,5 @@
 <!-- END: Custom CSS-->
 
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/sweetalert/sweetalert.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/lock.css')}}">

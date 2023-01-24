@@ -22,7 +22,6 @@ Route::get('/', function () {
     return Auth::guard('superadmin')->check();
     return redirect()->route('auth.admin');
 })->name('home');
-
 Route::controller(ChatController::class)->prefix('chat')->as('chat.')->group(function () {
     Route::get('list', 'list')->name('list');
     Route::post('single-chat', 'single_chat')->name('single-chat');
@@ -38,7 +37,8 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     //  Route for change Password
     Route::post('update-password',[AuthController::class,'update_password'])->name('update-password');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
+    //Lock Screen 
+    Route::get('lock',[AuthController::class,'lock'])->name('lock');
 });
 
 //General route for country/state/city
