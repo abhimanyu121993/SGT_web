@@ -34,10 +34,23 @@
                                         <span>{{$plan->title}}</span>
                                     </span>
 
-                                </div>
+                                    </div>
                                 @endforeach
-                                @error('membership_plan')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                                
+                                @error('membership_plan')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
+
+                            </div>
+                        </div>
+                        <div class="row gy-4">
+
+                            <div class="input-group col s12">
+                                <input type="text" class="form-control" id="company_name" name="company_name"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->company_name : '' }}"
+                                    placeholder="Company Name">
+                                @error('company_name')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="row gy-4">
@@ -119,7 +132,8 @@
                                 <select class="select2-theme browser-default" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
                                     @foreach (Helper::getTimeZone() as $timezone)
-                                        <option value="{{ $timezone->id }}">{{ $timezone->timezone . ' / ' . $timezone->utc }}
+                                        <option value="{{ $timezone->id }}">
+                                            {{ $timezone->timezone . ' / ' . $timezone->utc }}
                                         </option>
                                     @endforeach
                                 </select>

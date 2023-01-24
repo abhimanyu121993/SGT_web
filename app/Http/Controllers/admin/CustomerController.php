@@ -57,7 +57,10 @@ class CustomerController extends Controller
             'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/',
             'city'=>'required|exists:cities,id',
             'timezone_id'=>'required|exists:time_zones,id',
-            'currency_id'=>'required|exists:currencies,id'
+            'currency_id'=>'required|exists:currencies,id',
+            'company_name'=>'required',
+            'federal_ein'=>'required',
+            'bsis_number'=>'required|numeric',
         ]);
 
         try {
@@ -78,6 +81,9 @@ class CustomerController extends Controller
                     'time_zone_id'=>$request->timezone_id,
                     'currency_id'=>$request->currency_id,
                     'status'=>Status::where('name','active')->where('type','general')->first()->id,
+                    'company_name'=>$request->company_name,
+                    'federal_ein'=> $request->federal_ein,
+                    'bsis_number'=> $request->bsis_number,
                     'type'=>'owner',
                     'created_by'=> Helper::getUserId(),
 
