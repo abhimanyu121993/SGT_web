@@ -16,7 +16,15 @@
                     @if (isset($EditSubscription))
                     @method('patch')
                     @endif
-                  
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">

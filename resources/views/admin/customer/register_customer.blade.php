@@ -21,17 +21,18 @@
                         @csrf
                         <div class="row gy-4">
                             <div class="col md12">
-                                Choose Membership Plan
+                            {{__('customer.choose_membership_plan')}}
+
                             </div>
                             <div class="col md12">
 
                                 @foreach ($plans as $plan)
                                 <div class="input-group col s3">
-                                    <label>
+                                    <span>
                                         <input type="radio" class="form-control" id="membership_plan"
                                             name="membership_plan" value="{{$plan->id}}">
                                         <span>{{$plan->title}}</span>
-                                    </label>
+                                    </span>
 
                                 </div>
                                 @endforeach
@@ -46,6 +47,8 @@
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}"
                                     placeholder="First Name">
                                     @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                   <span class="active" for="first_name">{{__('customer.fname')}}</span>
+
                             </div>
 
                             <div class="input-group col s6">
@@ -53,7 +56,9 @@
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}"
                                     placeholder="Last Name">
                                     @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                            </div>
+                                    <span class="active" for="last_name">{{__('customer.lname')}}</span>
+                            
+                                </div>
 
                             <!--end col-->
                         </div>
@@ -63,6 +68,8 @@
                                 <input type="email" class="form-control" id="email" name="email"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
                                     @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                   <span class="active" for="email">{{__('customer.email')}}</span>
+
                             </div>
 
                             <div class="input-group col s6">
@@ -70,7 +77,9 @@
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : '' }}"
                                     placeholder="Mobile Number">
                                     @error('mobileno')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                            </div>
+                                    <span class="active" for="mobileno">{{__('customer.mobile')}}</span>
+                           
+                                </div>
 
                             <!--end col-->
                         </div>
@@ -82,18 +91,23 @@
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
+                                <span class="active" for="country">{{__('customer.country')}}</span>
+
                                 @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="state" name="state">
                                     <option>--Select State--</option>
                                 </select>
+                                <span class="active" for="state">{{__('customer.state')}}</span>
                                 @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="city" name="city">
                                     <option value="">--Select City--</option>
                                 </select>
+                                <span class="active" for="city">{{__('customer.city')}}</span>
+
                                 @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
@@ -109,6 +123,8 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <span class="active" for="timezone">{{__('customer.timezone')}}</span>
+
                                 @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s6">
@@ -119,6 +135,7 @@
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
+                                <span class="active" for="currency">{{__('customer.currency')}}</span>
                                 @error('currency_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
@@ -127,6 +144,7 @@
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
                                 <textarea class="form-control" name="address" placeholder="Address"></textarea>
+                                <span class="active" for="address">{{__('customer.address')}}</span>
                             </div>
                             <!--end col-->
                         </div>
