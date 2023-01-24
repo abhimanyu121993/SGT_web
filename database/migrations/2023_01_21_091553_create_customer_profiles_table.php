@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('mobileno')->nullable();
             $table->unsignedBigInteger('city_id')->comment('id from city table');
             $table->text('address')->nullable();
+            $table->string('company_name')->nullable()->comment('company name of the owner');
+            $table->string('federal_ein')->nullable()->comment('federal_ein of the company');
+            $table->string('bsis_number')->nullable()->comment('bsis number of the company');
             $table->unsignedBigInteger('status')->default(true)->comment('status of customer: active/inactive');
             $table->unsignedBigInteger('time_zone_id')->comment('id from the timezone table');
             $table->unsignedBigInteger('currency_id')->comment('id from the currency table');
-            $table->enum('type',['owner','sub-owner'])->default('owner');
-            $table->unsignedbiginteger('created_by')->comment('id from admin/customer table depend upon field type');
             $table->softDeletes();
             $table->timestamps();
         });

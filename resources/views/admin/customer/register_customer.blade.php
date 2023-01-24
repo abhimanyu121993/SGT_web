@@ -26,17 +26,30 @@
                             <div class="col md12">
 
                                 @foreach ($plans as $plan)
-                                <div class="input-group col s3">
-                                    <label>
-                                        <input type="radio" class="form-control" id="membership_plan"
-                                            name="membership_plan" value="{{$plan->id}}">
-                                        <span>{{$plan->title}}</span>
-                                    </label>
+                                    <div class="input-group col s3">
+                                        <label>
+                                            <input type="radio" class="form-control" id="membership_plan"
+                                                name="membership_plan" value="{{ $plan->id }}">
+                                            <span>{{ $plan->title }}</span>
+                                        </label>
 
-                                </div>
+                                    </div>
                                 @endforeach
-                                @error('membership_plan')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                                
+                                @error('membership_plan')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
+
+                            </div>
+                        </div>
+                        <div class="row gy-4">
+
+                            <div class="input-group col s12">
+                                <input type="text" class="form-control" id="company_name" name="company_name"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->company_name : '' }}"
+                                    placeholder="Company Name">
+                                @error('company_name')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="row gy-4">
@@ -45,14 +58,18 @@
                                 <input type="text" class="form-control" id="first_name" name="first_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}"
                                     placeholder="First Name">
-                                    @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('first_name')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="last_name" name="last_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}"
                                     placeholder="Last Name">
-                                    @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('last_name')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!--end col-->
@@ -62,14 +79,41 @@
                             <div class="input-group col s6">
                                 <input type="email" class="form-control" id="email" name="email"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
-                                    @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('email')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="number" class="form-control" id="mobileno" name="mobileno"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : '' }}"
                                     placeholder="Mobile Number">
-                                    @error('mobileno')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('mobileno')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!--end col-->
+                        </div>
+
+                        <div class="row gy-4">
+
+                            <div class="input-group col s6">
+                                <input type="text" class="form-control" id="federal_ein" name="federal_ein"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->federal_ein : '' }}"
+                                    placeholder="Federal EIN">
+                                @error('federal_ein')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="input-group col s6">
+                                <input type="number" class="form-control" id="bsis_number" name="bsis_number"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->bsis_number : '' }}"
+                                    placeholder="BSIS Number">
+                                @error('bsis_number')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!--end col-->
@@ -82,19 +126,25 @@
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('country')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="state" name="state">
                                     <option>--Select State--</option>
                                 </select>
-                                @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('state')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2-theme browser-default" id="city" name="city">
                                     <option value="">--Select City--</option>
                                 </select>
-                                @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('city')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!--end col-->
@@ -105,11 +155,14 @@
                                 <select class="select2-theme browser-default" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
                                     @foreach (Helper::getTimeZone() as $timezone)
-                                        <option value="{{ $timezone->id }}">{{ $timezone->timezone . ' / ' . $timezone->utc }}
+                                        <option value="{{ $timezone->id }}">
+                                            {{ $timezone->timezone . ' / ' . $timezone->utc }}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('timezone_id')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group col s6">
                                 <select class="select2-theme browser-default" name="currency_id">
@@ -119,7 +172,9 @@
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
-                                @error('currency_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
+                                @error('currency_id')
+                                    <span class="pink-text text-accent-3">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!--end col-->
