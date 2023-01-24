@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class Helper
 {
@@ -61,11 +62,11 @@ class Helper
     }
 
     public static function getOwnerId(){
-        if(Auth::guard(Permission::$customer)->check()){
-            if(Auth::guard(Permission::$customer)->user()->type==Customer::$owner){
+        if(Auth::guard(Role::$customer)->check()){
+            if(Auth::guard(Role::$customer)->user()->type==Customer::$owner){
                 return Helper::getUserId();
             }
-            else if(Auth::guard(Permission::$customer)->user()->type==Customer::$employee)
+            else if(Auth::guard(Role::$customer)->user()->type==Customer::$employee)
             {
                 return Auth::guard(Permission::$customer)->user()->created_by;
             }
