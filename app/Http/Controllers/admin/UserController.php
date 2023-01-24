@@ -26,7 +26,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'hi';
         $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$admin)->get();
         return view('user.create',compact('roles'));
     }
@@ -38,7 +37,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        return 'hi';
         $admin = Admin::where('created_by',Helper::getUserId())->where('type',Admin::$sub_admin)->get();
         return view('user.manage',compact('admin'));
     }

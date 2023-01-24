@@ -53,13 +53,13 @@ $guard='customer';
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a id="pop" class="dropdown-item"
-                                        href="{{route($guard.'.user.user.edit',$bid)}}">Edit</a></li>
+                                        href="{{route($guard.'.user.edit',$bid)}}">Edit</a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
                                         onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
                                 </li>
 
                                 <form id="delete-form-{{ $bid }}"
-                                    action="{{ route($guard.'.user.user.destroy', $bid) }}" method="post"
+                                    action="{{ route($guard.'.user.destroy', $bid) }}" method="post"
                                     style="display: none;">
                                     @method('DELETE')
                                     @csrf
