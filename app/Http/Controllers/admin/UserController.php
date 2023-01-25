@@ -60,14 +60,14 @@ class UserController extends Controller
             'last_name'=>'nullable',
             'email'=>'required',
             'password' => 'required|min:6',
-            'cpassword' => 'same:password|min:6'
+            'cpassword' => 'reuired|same:password|min:6'
         ]);
         try
         {
             $admin= Admin::create(['created_by'=>Helper::getUserId(),
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->Password),
+            'password'=>Hash::make($request->password),
             'type'=>'sub-admin',            
         ]);
         if ($admin) {
