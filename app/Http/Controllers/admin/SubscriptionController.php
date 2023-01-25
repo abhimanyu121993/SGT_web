@@ -18,6 +18,13 @@ use Exception;
 
 class SubscriptionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:subscription_read,admin')->only('index');
+        $this->middleware('permission:subscription_create,admin')->only('store');
+        $this->middleware('permission:subscription_delete,admin')->only('destroy');
+        $this->middleware('permission:subscription_edit,admin')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *

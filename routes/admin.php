@@ -35,7 +35,7 @@ Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-u
 });
 
 //Route for Profile
- Route::resource('profile',ProfileController::class)->name('profile','')->middleware('permission:profile,admin');
+Route::resource('profile', ProfileController::class)->name('profile', '');
 // Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 
 //Route for Customer

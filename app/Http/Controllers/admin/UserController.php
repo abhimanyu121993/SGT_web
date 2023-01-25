@@ -19,6 +19,13 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:user_read,admin')->only('index');
+        $this->middleware('permission:user_create,admin')->only('store');
+        $this->middleware('permission:user_delete,admin')->only('destroy');
+        $this->middleware('permission:user_edit,admin')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *
