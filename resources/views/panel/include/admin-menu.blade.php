@@ -98,33 +98,7 @@
         </div>
     </li>
     @endif
-    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user', Session::get('guard')))
-    <li
-        class=" {{ strpos(Route::currentRouteName(), Session::get('guard') .'.user') !== false ? 'active open' : '' }} bold ">
-        <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), Session::get('guard') .'.user') !== false ? 'active' : '' }} "
-            href="JavaScript:void(0)"><i class="material-icons">people</i><span class="menu-title"
-                data-i18n="Authentication">{{ __('sidebar.customer') }} </span></a>
-        <div class="collapsible-body"
-            style="{{ strpos(Route::currentRouteName(), 'user') !== false ? 'display:block' : '' }}">
-            <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-                 @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_create', Session::get('guard')))
-                <li class="{{ strpos(Route::currentRouteName(),  Session::get('guard') .'.user.index') !== false ? 'active' : '' }}  bold"><a
-                        href="{{ route(Session::get('guard') .'.user.index') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(), Session::get('guard') .'.user.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="create user">{{ __('sidebar.create') }}</span></a>
-                </li>
-                @endif
-                @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_read', Session::get('guard')))
-                <li class="{{ strpos(Route::currentRouteName(), Session::get('guard') .'.user.create') !== false ? 'active' : '' }} bold"><a
-                        href="{{ route(Session::get('guard') .'.user.create') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(),Session::get('guard').'.user.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Manage User">{{ __('sidebar.manage') }}</span></a>
-                </li>
-                @endif
-            </ul>
-        </div>
-    </li>
-    @endif
+
 
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('customer', Session::get('guard')))
     <li
