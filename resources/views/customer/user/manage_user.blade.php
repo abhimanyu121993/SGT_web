@@ -18,7 +18,7 @@ $guard='customer';
 @endphp
 <div class="card">
     <div class="card-content">
-        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Subscription</h4>
+        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage User</h4>
         <table class="table table-nowrap container" id="example">
             <thead>
                 <tr>
@@ -38,7 +38,7 @@ $guard='customer';
                     <td>
                     <div class="switch">
                             <label>
-                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.user.active-user',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
+                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('customer.user.active-user',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
                                 <span class="lever"></span>
                             </label>
                         </div>

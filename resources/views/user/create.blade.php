@@ -29,14 +29,14 @@
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
-                                <input type="text" class="form-control" id="fname" name="fname"
+                                <input type="text" class="form-control" id="fname" name="first_name"
                                     value="{{ isset($user) ? $user->first_name : '' }}"
                                     placeholder="First Name">
                                 <label class="active" for="name">{{__('user.fname')}}</label>
 
                             </div>
                             <div class="input-group col s4">
-                                <input type="text" class="form-control" id="lname" name="lname"
+                                <input type="text" class="form-control" id="lname" name="last_name"
                                     value="{{ isset($user) ? $user->last_name : '' }}"
                                     placeholder="Last Name">
                                 <label class="active" for="lname">{{__('user.lname')}}</label>

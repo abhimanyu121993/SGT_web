@@ -18,7 +18,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = PermissionName::where('guard_name','superadmin')->get();
+        $permissions = PermissionName::where('guard_name','customer')->get();
         return view('role_permission.permission',compact('permissions'));
     }
 
@@ -44,14 +44,14 @@ class PermissionController extends Controller
             'permission' => 'required',
         ]);
         try{
-        $perm = PermissionName::create(['name'=>$request->permission]);
+        $perm = PermissionName::create(['permission_name'=>$request->permission,'guard_name'=>PermissionName::$customer]);
         if(isset($perm))
         {
-            $permission = Permission::create(['name' => $request->permission, 'perm_id' => $perm->id]);
-            Permission::create( ['name' => $request->permission.'_create', 'perm_id' => $perm->id]);
-            Permission::create( ['name' => $request->permission.'_read', 'perm_id' => $perm->id]);
-            Permission::create( ['name' => $request->permission.'_edit', 'perm_id' => $perm->id]);
-            Permission::create( ['name' => $request->permission.'_delete', 'perm_id' => $perm->id]);
+            $permission = Permission::create(['name' => $request->permission, 'guard_name'=>$perm->guard_name,'permission_name_id' => $perm->id]);
+            Permission::create( ['name' => $request->permission.'_create','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
+            Permission::create( ['name' => $request->permission.'_read','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
+            Permission::create( ['name' => $request->permission.'_edit','guard_name'=>$perm->guard_name, 'permission_name_id' => $perm->id]);
+            Permission::create( ['name' => $request->permission.'_delete', 'guard_name'=>$perm->guard_name,'permission_name_id' => $perm->id]);
             return isset($permission) ? redirect()->back()->with('success','Permission has been created successfully.') : redirect()->back()->with('error','Permission is not created');
         }
         else {

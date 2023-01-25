@@ -26,3 +26,8 @@ Route::resource('profile',ProfileController::class)->name('profile','');
 
 //Route for Property
 Route::resource('property',PropertyController::class);
+
+//Route for Activate User
+Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
+    Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
+    });

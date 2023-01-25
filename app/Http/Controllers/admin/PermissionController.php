@@ -44,7 +44,7 @@ class PermissionController extends Controller
             'permission' => 'required',
         ]);
         try{ 
-        $perm = PermissionName::create(['permission_name'=>$request->permission,'guard_name'=>PermissionName::$customer]);
+        $perm = PermissionName::create(['permission_name'=>$request->permission,'guard_name'=>PermissionName::$admin]);
         if(isset($perm))
         {
             $permission = Permission::create(['name' => $request->permission, 'guard_name'=>$perm->guard_name,'permission_name_id' => $perm->id]);

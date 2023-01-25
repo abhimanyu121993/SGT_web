@@ -54,15 +54,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'nullable',
             'email'=>'required',
-            'password' => 'confirmed|min:6',
+            'password' => 'required|min:6',
             'cpassword' => 'same:password|min:6'
         ]);
         try
         {
             $res= Admin::create(['created_by'=>Helper::getUserId(),
-            'name'=>$request->fname.' '.$request->lname,
+            'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
             'type'=>'sub-admin',            
@@ -128,13 +129,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'first_name'=>'nullable',
             'email'=>'required',
         ]);
         try
         {
              $res= Admin::find($id)->update([
-            'name'=>$request->fname.' '.$request->lname,
+            'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
         ]);
         $role = Role::find($request->role_id);

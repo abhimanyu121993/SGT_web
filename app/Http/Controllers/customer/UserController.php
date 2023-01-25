@@ -51,15 +51,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'nullable',
             'email'=>'required',
-            'password' => 'confirmed|min:6',
+            'password' => 'required|min:6',
             'cpassword' => 'same:password|min:6'
         ]);
         try
         {
             $res= Customer::create(['created_by'=>Helper::getUserId(),
-            'name'=>$request->fname.' '.$request->lname,
+            'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
             'type'=>Customer::$employee,            
@@ -102,11 +103,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $id=Crypt::decrypt($id);
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->get();
-        $user=Customer::find($id);
-        if($user)
+        $roles=Role::where('created_by',Auth::guard('customer')->user()->id ?? '')->where('guard_name',Role::$customer)->get();
+        $customer=Customer::find($id);
+        if($customer)
         {
-            return view('user.create',compact('roles','user'));
+            return view('customer.user.register_user',compact('roles','customer'));
         }
         else
         {
@@ -127,13 +128,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'nullable',
             'email'=>'required',
         ]);
         try
         {
              $res= Customer::find($id)->update([
-            'name'=>$request->fname.' '.$request->lname,
+            'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
         ]);
         $role = Role::find($request->role_id);
@@ -186,16 +188,16 @@ class UserController extends Controller
    //For change the status of Isactive.
     public function is_active($id)
     {
-        $ass_active=Customer::find($id);
+        $is_active=Customer::find($id);
 
-        if($ass_active->isactive==1)
+        if($is_active->isactive==1)
         {
-            $ass_active->isactive=0;
+            $is_active->isactive=0;
         }else
         {
-            $ass_active->isactive=true;
+            $is_active->isactive=true;
         }
-        if($ass_active->update()){
+        if($is_active->update()){
            return 1;
         }
         else

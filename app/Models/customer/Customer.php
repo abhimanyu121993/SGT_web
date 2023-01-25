@@ -53,4 +53,14 @@ class Customer extends Authenticatable
         return $this->hasOne(CustomerSubscribePack::class, 'customer_id');
     }
 
+     // get first name and last name seperatally
+     public function getFirstnameAttribute()
+     {
+         return explode(' ', $this->name)[0] ?? '';
+     }
+     public function getLastNameAttribute()
+     {
+         return explode(' ', $this->name)[1] ?? '';
+     }
+
 }
