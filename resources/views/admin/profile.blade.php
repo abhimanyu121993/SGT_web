@@ -5,7 +5,7 @@
 @section('breadcrumb-currentpage', 'profile')
 @section('link-area')
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-users.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-users.css')}}">
 @endsection
 @section('content-area')
 
@@ -101,19 +101,19 @@
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="M" {{ $user->admin_profile->gender=='M' ? 'checked' : '' }}>
+                                                    <input class="validate" type="radio" name="gender" value="M" @isset($user->admin_profile)@checked($user->admin_profile->gender=='M')@endisset>
                                                     <span>Male</span>
                                                 </label>
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="F" {{ $user->admin_profile->gender=='F' ? 'checked' : '' }} >
+                                                    <input class="validate" type="radio" name="gender" value="F" @isset($user->admin_profile)@checked($user->admin_profile->gender=='F')@endisset >
                                                     <span>Female</span>
                                                 </label>
                                             </div>
                                             <div class="col">
                                                 <label>
-                                                    <input class="validate" type="radio" name="gender" value="O" {{ $user->admin_profile->gender=='O' ? 'checked' : '' }}>
+                                                    <input class="validate" type="radio" name="gender" value="O" @isset($user->admin_profile)@checked($user->admin_profile->gender=='O')@endisset>
                                                     <span>Other</span>
                                                 </label>
                                             </div>
@@ -123,20 +123,33 @@
                                             <select class="select2 browser-default" name="country" id="country">
                                                 <option value="" selected disabled>--Select Country--</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}" {{ $user->admin_profile->country== $country->id ? 'selected' : '' }} >{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}" @isset($user->admin_profile)@selected($user->admin_profile->country== $country->id) @endisset>{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <label>Country</label>
                                         </div>
                                         <div class="col s12 input-field">
                                             <select class="select2 browser-default" name="state" id="state">
+                                                @isset($user->admin_profile)
+                                                @foreach (Helper::getStateByCountry($user->admin_profile->country) as $st)
+                                                    <option value="{{$st->id}}" @selected($st->id==$user->admin_profile->state)>{{$st->name}}</option>
+                                                @endforeach
+                                                @else
                                                 <option value="" selected disabled>--Select State--</option>
+                                                @endisset
+
                                             </select>
                                             <label>State</label>
                                         </div>
                                         <div class="col s12 input-field">
                                             <select class="select2 browser-default" id="city" name="city">
+                                                @isset($user->admin_profile)
+                                                @foreach (Helper::getCitiesByState($user->admin_profile->state) as $city)
+                                                    <option value="{{$city->id}}" @selected($city->id==$user->admin_profile->city)>{{$city->name}}</option>
+                                                @endforeach
+                                                @else
                                                 <option value="" selected disabled>--Select City--</option>
+                                                @endisset
                                             </select>
                                             <label>City</label>
                                         </div>
@@ -157,11 +170,14 @@
 
                                         <div class="col s12 input-field">
                                             <select class="select2 browser-default" name="timezone" id="timezone">
-                                                <option value="" selected disabled>--Select Timezone--</option>
+                                              @isset($user->admin_profile)
                                                 @foreach ($timezones as $timezone)
-                                                    <option value="{{ $timezone->id }}">{{ $timezone->timezone ?? '' }}
+                                                    <option value="{{ $timezone->id }}" @selected($timezone->id==$user->admin_profile->timezone)>{{ $timezone->timezone ?? '' }}
                                                     </option>
                                                 @endforeach
+                                                @else
+                                                <option value="" selected disabled>--Select Timezone--</option>
+                                                @endisset
                                             </select>
                                             <label>Timezone</label>
                                         </div>

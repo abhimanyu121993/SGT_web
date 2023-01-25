@@ -16,15 +16,6 @@
                     @if (isset($EditSubscription))
                     @method('patch')
                     @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
@@ -107,15 +98,15 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                            <div class="input-group col s4">
-                                <input type="text" class="form-control" id="color" name="color"
+                            <div class="input-group col s2 mt-2">
+                                <input type="color" class="form-control" id="color" name="color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->color : '' }}"
                                     placeholder="Color">
                                 <label class="active" for="color">{{__('subscription.color')}}</label>
 
                             </div>
-                            <div class="input-group col s4">
-                                <input type="text" class="form-control" id="bg-color" name="bg_color"
+                            <div class="input-group col s2 mt-2">
+                                <input type="color" class="form-control" id="bg-color" name="bg_color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->bg_color : '' }}"
                                     placeholder="Background Color">
                                 <label class="active" for="bg_color">{{__('subscription.bg_color')}}</label>

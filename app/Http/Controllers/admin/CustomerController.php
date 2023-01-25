@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        
+        $this->middleware('permission:customer_create,admin')->only('store');
+        $this->middleware('permission:customer_delete,admin')->only('destroy');
+        $this->middleware('permission:customer_edit,admin')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -2,6 +2,9 @@
 
 namespace App\Models\admin;
 
+use App\Models\City;
+use App\Models\Country;
+use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,5 +22,17 @@ class AdminProfile extends Model
     public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+    public function county_detail()
+    {
+        return $this->belongsTo(Country::class, 'country','id');
+    }
+    public function state_detail()
+    {
+        return $this->belongsTo(State::class, 'state');
+    }
+    public function city_detail()
+    {
+        return $this->belongsTo(City::class, 'city');
     }
 }
