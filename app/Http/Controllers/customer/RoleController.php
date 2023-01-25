@@ -21,7 +21,7 @@ class RoleController extends Controller
     //for view the (Role) page.
     public function index()
     {
-        $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Permission::$customer)->get();
+        $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Role::$customer)->get();
         return view('role_permission.role', compact('roles'));
     }
 
