@@ -17,6 +17,7 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show (manage property) page.
     public function index()
     {
         $properties = Property::get();
@@ -28,6 +29,7 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show (Register property) page.
     public function create()
     {
         $countries = Country::get();
@@ -40,6 +42,8 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //For store data in property table.
+
     public function store(Request $request)
     {
         $request->validate([
@@ -92,6 +96,8 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For show the editing page.
+
     public function edit($id)
     {
 
@@ -115,6 +121,8 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For update the the edited data.
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -154,6 +162,8 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For deleting the data from property table.
+
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Currency;
 use App\Models\customer\Customer;
 use App\Models\ProjectError;
@@ -17,6 +18,10 @@ use Spatie\Permission\Models\Role;
 
 class Helper
 {
+    public static function getCountries()
+    {
+        return $countries = Country::get();
+    } 
     public static function getStateByCountry($id)
     {
         try {

@@ -16,6 +16,7 @@ class RolePermissionController extends Controller
         $roles=Role::where('created_by',Auth::guard('superadmin')->user()->id)->get();
         return view('role_permission.role_permission',compact('roles'));
     }
+    //For fetching the permission.
 
     public function fetchPermission(Request $request)
     {
@@ -24,6 +25,7 @@ class RolePermissionController extends Controller
         $permissionnames=PermissionName::all();
         return view('role_permission.role_permission',compact('roles','permissionnames','selectrole'));
     }
+    //For assigning the permission.
 
     public function assignPermission(Request $request)
     {

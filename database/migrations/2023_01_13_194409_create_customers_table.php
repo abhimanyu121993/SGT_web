@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('type',['owner','employee'])->default('owner')->comment('type of customer');
             $table->bigInteger('created_by')->nullable()->comment('id from the customer/admin table depend upon field type');
+            $table->boolean('isactive')->default(1)->comment('status of the customer:active/inactive');
             $table->rememberToken();
             $table->timestamps();
         });

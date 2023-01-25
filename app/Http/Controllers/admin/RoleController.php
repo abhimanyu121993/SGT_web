@@ -23,6 +23,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For view the (Role) page.
     public function index(RoleDataTable $dataTable)
     {
         // return $dataTable->render('role_permission.role');
@@ -46,6 +47,8 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+   //For store data in role table.
+
     public function store(Request $request)
     {
         $request->validate([
@@ -92,6 +95,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For show the editing page.
+
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
@@ -107,6 +112,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For update the the edited data.
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -134,6 +141,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For deleting the data from role table.
+
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
@@ -153,11 +162,13 @@ class RoleController extends Controller
     }
     return redirect()->back();
     }
+    // Fetch role from role table.
     public function fetch_role()
     {
         $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->paginate(1);
         return response()->json($Roles);
     }
+    //For assigning the permission.
     public function assign_permission()
     {
         $admin = Auth::guard('admin')->user();

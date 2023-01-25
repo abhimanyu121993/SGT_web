@@ -24,6 +24,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For view the (Register Customer) page.
     public function index()
     {
         $customers = Customer::where('created_by',Helper::getUserId())->where('type',Customer::$owner)->get();
@@ -35,9 +36,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show the (Manage Customer) page.
     public function create()
     {
-        $countries = Country::get();
+        $countries = Helper::getCountries();
         $plans = Subscription::where('status_id',Status::where('name','active')->where('type','general')->first()->id)->get();
         return view('admin.customer.register_customer',compact('countries','plans'));
     }
@@ -48,6 +50,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //For store data in customer , CustomerProfile, CustomerSubscribePack tables.
     public function store(Request $request)
     {
         $request->validate([

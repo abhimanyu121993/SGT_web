@@ -82,7 +82,7 @@ class AuthController extends Controller
             return redirect()->back();
         }
     }
-    // Logout All Guards
+    // For Logout All Guards
     public function logout()
     {
         $route = 'home';
@@ -105,7 +105,7 @@ class AuthController extends Controller
 
     }
 
-// change password
+// For change the password.
 public function update_Password(Request $request)
 {
     $request->validate([

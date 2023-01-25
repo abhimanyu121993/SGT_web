@@ -18,6 +18,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //for view the (Role) page.
     public function index()
     {
         $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Permission::$customer)->get();
@@ -40,6 +41,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+   //For store data in role table.
     public function store(Request $request)
     {
         $request->validate([
@@ -81,6 +83,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For show the editing page.
+
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
@@ -96,6 +100,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For update the the edited data.
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -124,6 +130,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For deleting the data from role table.
+
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);

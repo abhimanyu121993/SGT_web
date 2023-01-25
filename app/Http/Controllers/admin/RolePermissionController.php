@@ -25,6 +25,7 @@ class RolePermissionController extends Controller
         return view('role_permission.role_has_permission',compact('roles','permissionnames','selectrole'));
     }
 
+    // For assigning the permission.
     public function assign_permission(Request $request)
     {
         $request->validate([

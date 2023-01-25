@@ -20,6 +20,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     //For view the (Create User) page.
+
     public function index()
     {
         $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$customer)->get();
@@ -31,6 +33,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show the (Manage User) page.
+
     public function create()
     {
         $admin = Customer::where('created_by',Helper::getUserId())->where('type',Customer::$employee)->get();
@@ -43,13 +47,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //For store data in customer table.
     public function store(Request $request)
     {
         $request->validate([
-            // 'name'=>'required',
-            // 'email'=>'required',
-            // 'password' => 'confirmed|min:6',
-            // 'cpassword' => 'same:password|min:6'
+            'name'=>'required',
+            'email'=>'required',
+            'password' => 'confirmed|min:6',
+            'cpassword' => 'same:password|min:6'
         ]);
         try
         {
@@ -92,6 +97,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For show the editing page.
+
     public function edit($id)
     {
         $id=Crypt::decrypt($id);
@@ -115,11 +122,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For update the the edited data.
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            // 'name'=>'required',
-            // 'email'=>'required',
+            'name'=>'required',
+            'email'=>'required',
         ]);
         try
         {
@@ -152,6 +161,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For deleting the data from customer table.
+
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
@@ -172,6 +183,7 @@ class UserController extends Controller
             return redirect()->back();
     }
 
+   //For change the status of Isactive.
     public function is_active($id)
     {
         $ass_active=Customer::find($id);

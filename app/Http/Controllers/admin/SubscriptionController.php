@@ -23,12 +23,12 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For view the (Create Subscription) page.
     public function index()
     {
-        $error=ProjectError::all();
-        $status=Status::all();
-        $currency=Currency::all();
-        return view('admin.subscription.create',compact('error','status','currency'));
+        $status=Status::all();     //fetching the all status.
+        $currency=Helper::getCurrencies(); //fetching the all currency from helper.
+        return view('admin.subscription.create',compact('status','currency'));
     }
   
     /**
@@ -36,9 +36,10 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show the (Manage Subscription ) page.
     public function create()
     {
-        $subscription = Subscription::where('created_by',Helper::getUserId())->get();
+        $subscription = Subscription::where('created_by',Helper::getUserId())->get(); //fetching the all subscription from the helper
         return view('admin.subscription.manage',compact('subscription'));
     
     }
@@ -49,6 +50,7 @@ class SubscriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //For store data in Subscription table.
     public function store(Request $request)
     {
         $request->validate([
@@ -121,11 +123,12 @@ class SubscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For show the editing page.
     public function edit($id)
     {
-        $id=Crypt::decrypt($id);
+        $id=Crypt::decrypt($id);           //Decrypting the Encrypted id.
         $status=Status::all();
-        $currency=Currency::all();
+        $currency=Helper::getCurrencies(); //Fetching currency from helper.
 
         $EditSubscription=Subscription::find($id);
         if($EditSubscription)
@@ -146,6 +149,7 @@ class SubscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For update the the edited data.
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -206,6 +210,7 @@ class SubscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For deleting the data from subscription table.
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
@@ -225,6 +230,9 @@ class SubscriptionController extends Controller
             }
             return redirect()->back();
     }
+
+    //For change the status of limit.
+
     public function is_limit($id)
     {
         $limit=Subscription::find($id);
@@ -245,6 +253,9 @@ class SubscriptionController extends Controller
 
         }
     }
+
+     //For change the status of lifetime.
+
     public function is_life_time($id)
     {
         $life_time=Subscription::find($id);

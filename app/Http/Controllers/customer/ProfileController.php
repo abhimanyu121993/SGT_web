@@ -62,6 +62,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For show the editing page.
+
     public function edit($id)
     {
         $user = Customer::find($id);
@@ -77,6 +79,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For update the the edited data.
+
     public function update(Request $request, $id)
     {
         $request->all();
