@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 // Group Route for role and permission
  Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function(){
-    Route::resource('role', RoleController::class)->name('role','');
-    Route::resource('permission', PermissionController::class)->name('permission','');
+    Route::resource('role', RoleController::class)->name('role','')->middleware(['permission:role,admin']);
+    Route::resource('permission', PermissionController::class)->name('permission','')->middleware(['permission:permission,admin']);
     Route::get('role-has-permission', [RolePermissionController::class, 'role_permission'])->name('role-has-permission');
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions');
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
@@ -28,7 +28,7 @@ Route::get('/islimit/{id}',[SubscriptionController::class,'is_limit'])->name('li
 Route::get('/islife-time/{id}',[SubscriptionController::class,'is_life_time'])->name('life-time');
 });
 
-Route::resource('user', UserController::class)->name('user','');
+Route::resource('user', UserController::class)->name('user','')->middleware(['permission:user,admin']);
 Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
 //Route for Activate User
 Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
