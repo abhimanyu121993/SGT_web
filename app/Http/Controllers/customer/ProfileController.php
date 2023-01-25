@@ -85,36 +85,29 @@ class ProfileController extends Controller
     {
         $request->all();
         try{
-            $customer = Customer::find($id);
-            $customer->update([
-                'name' => $request->first_name . ' ' . $request->last_name
-            ]);
-            if ($customer) {
-                CustomerProfile::updateOrCreate([
-                    'customer_id' => $customer->id,
-                ],[
+               $res= CustomerProfile::updateOrCreate(['customer_id' => $id ],[
                     'first_name'=>$request->first_name,
                     'last_name'=>$request->last_name ?? '',
                     'mobileno'=>$request->mobileno ?? '',
-                    'gender'=>$request->gender ?? '',
+                    'email'=>$request->email ?? '',
+                    'gender'=>$request->gender ?? 'm',
                     'dob'=>$request->dob ?? '',
-                    'city_id'=>$request->city ?? '',
+                    'city_id'=>$request->city ?? 0,
                     'address'=>$request->address ?? '',
-                    'time_zone_id'=>$request->timezone_id ?? '',
-                    'currency_id'=>$request->currency_id ?? '',
-                    'company_name'=>$request->company_name ?? '',
+                    'time_zone_id'=>$request->timezone_id ?? 0,
+                    'currency_id'=>$request->currency_id ?? 0,
+                    'company_name'=>$request->company_name ?? 0,
                     'federal_ein'=> $request->federal_ein ?? '',
                     'bsis_number'=> $request->bsis_number ?? '',
-
                 ]);
-
+             if($res){
                 Session::flash('success', 'User updated successfully');
-                return redirect()->back();
-            }
+             }
             else{
                 Session::flash('warning', 'Something went wrong !');
-                return redirect()->back();
             }
+            return redirect()->back();
+
         }
         catch(Exception $ex){
             Helper::handleError($ex);

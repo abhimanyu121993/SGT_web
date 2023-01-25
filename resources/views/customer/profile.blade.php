@@ -48,6 +48,7 @@
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
                             <div class="row">
+                                @if(Auth::guard('customer')->user()->type==\App\Models\customer\Customer::$owner)
                                 <div class="row gy-4">
                                     <div class="col s12 input-field">
                                         <input id="company_name" name="company_name" type="text" class="validate"
@@ -57,6 +58,7 @@
                                         <small class="errorTxt1"></small>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col s12 m6">
                                     <div class="row">
                                         <div class="col s12 input-field">
@@ -69,10 +71,10 @@
 
                                         <div class="col s12 input-field">
                                             <input id="email" name="email" type="email" class="validate"
-                                                value="{{ $user->email ?? '' }}" data-error=".errorTxt3"
-                                                disabled>
+                                                value="{{ $user->email ?? '' }}" data-error=".errorTxt2"
+                                            >
                                             <label for="email">E-mail</label>
-                                            <small class="errorTxt3"></small>
+                                            <small class="errorTxt2"></small>
                                         </div>
                                     </div>
                                 </div>
@@ -85,12 +87,13 @@
                                             <small class="errorTxt2"></small>
                                         </div>
                                         <div class="col s12 input-field">
-                                            <input id="mobileno" name="mobileno" type="number"
+                                            <input id="mobileno" name="mobileno" type="text"
                                                 value="{{ $user->customer_profile->mobileno ?? '' }}" class="validate">
                                             <label for="mobileno">Mobile No</label>
                                         </div>
                                     </div>
                                 </div>
+                                @if(Auth::guard('customer')->user()->type==\App\Models\customer\Customer::$owner)
                                 <div class="row gy-4">
                                     <div class="col s6 input-field">
                                         <input id="federal_ein" name="federal_ein" type="text" class="validate"
@@ -107,9 +110,10 @@
                                         <label for="bsis_number">BSIS Number</label>
                                         <small class="errorTxt1"></small>
                                     </div>
-
                                     <!--end col-->
                                 </div>
+                                @endif
+
                             </div>
                             <!-- users edit account form ends -->
                         </div>

@@ -47,7 +47,10 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'city' => 'required',
+            'state' => 'required',
+            'country' =>'required',
+            'name' => 'required',
         ]);
         try{
            $res= Property::create([
@@ -126,8 +129,10 @@ else{
     public function update(Request $request, $id)
     {
         $request->validate([
-            // 'name'=>'required',
-            // 'email'=>'required',
+            'city' => 'required',
+            'state' => 'required',
+            'country' =>'required',
+            'name' => 'required',
         ]);
         try
         {

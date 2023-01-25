@@ -5,6 +5,8 @@ namespace App\Http\Controllers\customer;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Customer;
+use App\Models\customer\CustomerProfile;
+use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,16 +61,25 @@ class UserController extends Controller
         ]);
         try
         {
-            $res= Customer::create(['created_by'=>Helper::getUserId(),
+            $customer= Customer::create(['created_by'=>Helper::getUserId(),
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->Password),
+            'password'=>Hash::make($request->password),
             'type'=>Customer::$employee,            
         ]);
-       $role_name = Role::find($request->role_id);
-            if($res)
+        if ($customer) {
+            CustomerProfile::create([
+                'customer_id'=>$customer->id,
+                'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'status'=>Status::where('name','active')->where('type','general')->first()->id,
+            ]);
+        }
+            $role_name = Role::find($request->role_id);
+            if($customer)
             {
-                $res->assignRole($role_name);
+                $customer->assignRole($role_name);
                 session()->flash('success','User added sucessfully');
             }
             else

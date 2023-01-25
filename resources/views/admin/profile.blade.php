@@ -61,7 +61,7 @@
                                         <div class="col s12 input-field">
                                             <input id="email" name="email" type="email" class="validate"
                                                 value="{{ $user->admin_profile->email ?? '' }}" data-error=".errorTxt3"
-                                                disabled>
+                                                >
                                             <label for="email">E-mail</label>
                                             <small class="errorTxt3"></small>
                                         </div>

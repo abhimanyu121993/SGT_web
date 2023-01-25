@@ -35,6 +35,7 @@
             </thead>
             <tbody>
                 @foreach ($properties as $property)
+                <tr>
                     <th>{{ $loop->index+1 }}</th>
                     <td>{{ $property->name ?? '' }}</td>
                     <td>{{ $property->postcode ?? '' }}</td>
@@ -62,6 +63,7 @@
                             @csrf
                         </form>
                     </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

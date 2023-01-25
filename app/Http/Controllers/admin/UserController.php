@@ -5,7 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
+use App\Models\admin\AdminProfile;
 use App\Models\ProjectError;
+use App\Models\Status;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -69,16 +71,25 @@ class UserController extends Controller
         ]);
         try
         {
-            $res= Admin::create(['created_by'=>Helper::getUserId(),
+            $admin= Admin::create(['created_by'=>Helper::getUserId(),
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
             'password'=>Hash::make($request->Password),
             'type'=>'sub-admin',            
         ]);
+        if ($admin) {
+            AdminProfile::create([
+                'admin_id'=>$admin->id,
+                'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'status'=>Status::where('name','active')->where('type','general')->first()->id,
+            ]);
+        }
        $role_name = Role::find($request->role_id);
-            if($res)
+            if($admin)
             {
-                $res->assignRole($role_name);
+                $admin->assignRole($role_name);
                 session()->flash('success','User added sucessfully');
             }
             else
