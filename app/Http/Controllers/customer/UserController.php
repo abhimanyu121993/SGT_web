@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use PHPUnit\TextUI\Help;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:user_read,customer')->only('index');
+        $this->middleware('permission:user_create,customer')->only('store');
+        $this->middleware('permission:user_delete,customer')->only('destroy');
+        $this->middleware('permission:user_edit,customer')->only('edit','update');
+    }
    /**
      * Display a listing of the resource.
      *
@@ -26,7 +34,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Helper::getOwner() ?? '')->where('guard_name',Role::$customer)->get();
         return view('customer.user.register_user',compact('roles'));
     }
   
@@ -55,9 +63,10 @@ class UserController extends Controller
         $request->validate([
             'first_name'=>'required',
             'last_name'=>'nullable',
-            'email'=>'required',
+            'email'=>'required|email|unique:customers,email',
             'password' => 'required|min:6',
-            'cpassword' => 'same:password|min:6'
+            'cpassword' => 'same:password|min:6',
+            'role_id'=>'required|exists:roles,id'
         ]);
         try
         {
@@ -65,7 +74,8 @@ class UserController extends Controller
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'type'=>Customer::$employee,            
+            'type'=>Customer::$employee,
+            'owner_id'=>Helper::getOwner()         
         ]);
         if ($customer) {
             CustomerProfile::create([
@@ -114,7 +124,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $id=Crypt::decrypt($id);
-        $roles=Role::where('created_by',Auth::guard('customer')->user()->id ?? '')->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Helper::getOwner())->where('guard_name',Role::$customer)->get();
         $customer=Customer::find($id);
         if($customer)
         {

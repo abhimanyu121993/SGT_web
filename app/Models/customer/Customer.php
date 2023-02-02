@@ -21,7 +21,8 @@ class Customer extends Authenticatable
         'email',
         'password',
         'type',
-        'created_by'
+        'created_by',
+        'owner_id', 
     ];
 
 
@@ -62,5 +63,12 @@ class Customer extends Authenticatable
      {
          return explode(' ', $this->name)[1] ?? '';
      }
-
+     public function getOwnerAttribute(){
+        if(strtolower($this->type)==strtolower(Customer::$owner)){
+            return $this->id;
+        }
+        else if(strtolower($this->type)==strtolower(Customer::$owner)){
+            return $this->owner_id;
+        }
+     }
 }

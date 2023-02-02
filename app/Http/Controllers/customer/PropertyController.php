@@ -13,14 +13,23 @@ use Illuminate\Support\Facades\Session;
 class PropertyController extends Controller
 {
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     //For show (manage property) page.
+
+    public function __construct()
+    {
+        $this->middleware('permission:property_read,customer')->only('index');
+        $this->middleware('permission:property_create,customer')->only('store');
+        $this->middleware('permission:property_delete,customer')->only('destroy');
+        $this->middleware('permission:property_edit,customer')->only('edit','update');
+    }
     public function index()
     {
-        $properties = Property::get();
+        $properties = Property::where('owner_id',Helper::getOwner())->get();
         return view('customer.property.manage_property', compact('properties'));
     }
 
@@ -47,15 +56,18 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'city' => 'required',
-            'state' => 'required',
-            'country' =>'required',
+            'city' => 'required|exists:cities,id',
+            'state' => 'required|exists:states,id',
+            'country' =>'required|exists:countries,id',
             'name' => 'required',
+            'postcode'=>'required|size:6',
+            'lattitude'=>'required',
+            'longitude'=>'required'
         ]);
         try{
            $res= Property::create([
                 'created_by'=>Helper::getUserId(),
-                'owner_id'=>Helper::getOwnerId(),
+                'owner_id'=>Helper::getOwner(),
                 'name' => $request->name,
                 'country' => $request->country ?? '',
                 'state' => $request->state ?? '',

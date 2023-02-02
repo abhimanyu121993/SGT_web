@@ -66,15 +66,26 @@ class Helper
         Session::flash('error','Server Error ');
     }
 
-    public static function getOwnerId(){
+    public static function getOwner(){
         if(Auth::guard(Role::$customer)->check()){
             if(Auth::guard(Role::$customer)->user()->type==Customer::$owner){
                 return Helper::getUserId();
             }
             else if(Auth::guard(Role::$customer)->user()->type==Customer::$employee)
             {
-                return Auth::guard(Role::$customer)->user()->created_by;
+                return Auth::guard(Role::$customer)->user()->owner_id;
             }
+        }
+    }
+
+    public static function getGuard()
+    {
+        if(Auth::guard(Role::$admin)->check())
+        {
+            return 'admin';
+        }
+        else if(Auth::guard(Role::$customer)->check()){
+            return 'customer';
         }
     }
 }

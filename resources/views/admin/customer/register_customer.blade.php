@@ -29,7 +29,7 @@
                                 <div class="input-group col s3">
                                     <label>
                                         <input type="radio" class="form-control" id="membership_plan"
-                                            name="membership_plan" value="{{$plan->id}}">
+                                            name="membership_plan" value="{{$plan->id}}" @checked($plan->id==old('membership_plan'))>
                                         <span>{{$plan->title}}</span>
                                     </label>
 
@@ -43,7 +43,7 @@
 
                             <div class="input-group col s12">
                                 <input type="text" class="form-control" id="company_name" name="company_name"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->company_name : '' }}"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->company_name : old('company_name') }}"
                                     placeholder="Company Name">
                                     @error('company_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
@@ -52,14 +52,14 @@
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="first_name" name="first_name"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : '' }}"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : old('first_name') }}"
                                     placeholder="First Name">
                                     @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="last_name" name="last_name"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : '' }}"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : old('last_name') }}"
                                     placeholder="Last Name">
                                     @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
@@ -70,13 +70,13 @@
 
                             <div class="input-group col s6">
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->email : '' }}" placeholder="Email">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->email : old('email') }}" placeholder="Email">
                                     @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="number" class="form-control" id="mobileno" name="mobileno"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : '' }}"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : old('mobileno') }}"
                                     placeholder="Mobile Number">
                                     @error('mobileno')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
@@ -88,13 +88,13 @@
 
                             <div class="input-group col s6">
                                 <input type="text" class="form-control" id="federal_ein" name="federal_ein"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->federal_ein : '' }}" placeholder="Federal EIN">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->federal_ein : old('federal_ein') }}" placeholder="Federal EIN">
                                     @error('federal_ein')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <div class="input-group col s6">
                                 <input type="number" class="form-control" id="bsis_number" name="bsis_number"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->bsis_number : '' }}"
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->bsis_number : old('bsis_number') }}"
                                     placeholder="BSIS Number">
                                     @error('bsis_number')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
@@ -106,20 +106,32 @@
                                 <select class="select2 browser-default" id="country" name="country">
                                     <option value="">--Select Country--</option>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" @isset($customerEdit) @selected($customerEdit->country_id==$country->id) @else @selected(old('country')==$country->id) @endisset>{{ $country->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2 browser-default" id="state" name="state">
+                                    @if(old('state'))
+                                    @foreach (Helper::getStateByCountry(old('country')) as $st)
+                                        <option value="{{$st->id}}" @selected(old('state')==$st->id)>{{$st->name}}</option>
+                                    @endforeach
+                                    @else
                                     <option>--Select State--</option>
+                                    @endif
                                 </select>
                                 @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-group col s4">
                                 <select class="select2 browser-default" id="city" name="city">
-                                    <option value="">--Select City--</option>
+                                    @if(old('state'))
+                                    @foreach (Helper::getCitiesByState(old('state')) as $ct)
+                                        <option value="{{$ct->id}}" @selected(old('city')==$ct->id)>{{$ct->name}}</option>
+                                    @endforeach
+                                    @else
+                                    <option>--Select City--</option>
+                                    @endif
                                 </select>
                                 @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
@@ -132,7 +144,7 @@
                                 <select class="select2 browser-default" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
                                     @foreach (Helper::getTimeZone() as $timezone)
-                                        <option value="{{ $timezone->id }}">{{ $timezone->timezone . ' / ' . $timezone->utc }}
+                                        <option value="{{ $timezone->id }}" @selected($timezone->id==old('timezone_id'))>{{ $timezone->timezone . ' / ' . $timezone->utc }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -142,7 +154,7 @@
                                 <select class="select2 browser-default" name="currency_id">
                                     <option value="">--Select Currency--</option>
                                     @foreach (Helper::getCurrencies() as $currency)
-                                        <option value="{{ $currency->id }}">
+                                        <option value="{{ $currency->id }}" @selected($currency->id==old('currency_id'))>
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
@@ -153,7 +165,7 @@
                         </div>
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
-                                <textarea class="form-control" name="address" placeholder="Address"></textarea>
+                                <textarea class="form-control" name="address" placeholder="Address">{{old('address')}}</textarea>
                             </div>
                             <!--end col-->
                         </div>

@@ -22,7 +22,7 @@
 
                             <div class="input-group col s12">
                                 <input type="text" class="form-control" id="name" name="name"
-                                    value="{{ isset($propertyEdit) ? $propertyEdit->name : '' }}" placeholder="Property Name">
+                                    value="{{ isset($propertyEdit) ? $propertyEdit->name : old('name') }}" placeholder="Property Name">
                             </div>
 
                             <!--end col-->
@@ -32,26 +32,25 @@
                                    <select class="select2 browser-default"  id="country" name="country">
                                         <option selected disabled>--Select Country--</option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}" @isset($propertyEdit)@selected($propertyEdit->country==$country->id) @endisset>{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}" @isset($propertyEdit) @selected($propertyEdit->country==$country->id) @else @selected(old('country')==$country->id) @endisset>{{ $country->name }}</option>
                                         @endforeach
                                    </select>
                                 </div>
                                 <div class="input-group col s4">
                                    <select class="select2 browser-default" id="state" name="state">
-                                        @if(isset($propertyEdit))
-                                <option value="{{ isset($propertyEdit) ? $propertyEdit->state : '' }}"  selected>{{$propertyEdit->state_details->name}}</option>
-                               @else
-                                <option selected disabled>--Select State--</option>                                   
-                                @endif
+                               
+                                <option value="">--Select State--</option>                                   
+                                @foreach (Helper::getStateByCountry($propertyEdit->country??old('country')) as $st)
+                                   <option value="{{$st->id}}" @isset($propertyEdit) @selected($propertyEdit->state==$st->id) @else @selected(old('state')==$st->id) @endisset>{{$st->name}}</option>
+                               @endforeach
                                    </select>
                                 </div>
                                 <div class="input-group col s4">
                                    <select class="select2 browser-default"  id="city" name="city">
-                                        @if(isset($propertyEdit))
-                                <option value="{{ isset($propertyEdit) ? $propertyEdit->city : '' }}"  selected>{{$propertyEdit->city_details->name??''}}</option>
-                                @else
-                                <option selected disabled>--Select City--</option>
-                                @endif
+                                    <option value="">--Select City--</option>  
+                                    @foreach (Helper::getCitiesByState($propertyEdit->state??old('state')) as $ct)
+                                        <option value="{{$ct->id}}" @isset($propertyEdit) @selected($propertyEdit->city==$ct->id) @else @selected(old('city')==$ct->id) @endisset>{{$ct->name}}</option>
+                                    @endforeach
                                    </select>
                                 </div>
 
@@ -94,10 +93,15 @@
         </div>
     </div>
 
-
+<div class="section">
+    <div id="address-map-container" style="width:100%;height:400px; ">
+        <div style="width: 100%; height: 100%" id="address-map"></div>
+    </div>
 </div>
+
 
 @endsection
 @section('script-area')
-
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+<script src="{{asset('js/mapInput.js')}}"></script>
 @endsection

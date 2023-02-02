@@ -30,4 +30,5 @@ class CustomerProfile extends Model
     {
         return $this->belongsTo(Currency::class, 'currency_id');
     }
+   
 }

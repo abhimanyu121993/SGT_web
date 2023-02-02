@@ -162,8 +162,7 @@
 
     <!-- BEGIN: Footer-->
 
-    <footer
-        class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+    <footer class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
         @include('panel.include.footer')
     </footer>
     @include('auth.change_password')

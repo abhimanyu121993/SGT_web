@@ -93,6 +93,8 @@ class ProfileController extends Controller
                     'gender'=>$request->gender ?? 'm',
                     'dob'=>$request->dob ?? '',
                     'city_id'=>$request->city ?? 0,
+                    'state_id'=>$request->state ?? 0,
+                    'country_id'=>$request->country ?? 0,
                     'address'=>$request->address ?? '',
                     'time_zone_id'=>$request->timezone_id ?? 0,
                     'currency_id'=>$request->currency_id ?? 0,

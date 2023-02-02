@@ -155,14 +155,21 @@
                                             <select class="select2 browser-default" name="country" id="country">
                                                 <option value="" selected disabled>--Select Country--</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}" {{ isset($user->customer_profile->country) ? ($user->customer_profile->country== $country->id ? 'selected' : '') : '' }} >{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}" @selected($user->customer_profile->city) >{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <label>Country</label>
                                         </div>
                                         <div class="col s12 input-field">
                                             <select class="select2 browser-default" name="state" id="state">
+
+                                                @isset($user->customer_profile)
+                                                @foreach (Helper::getStateByCountry($user->customer_profile->country) as $st)
+                                                    <option value="{{$st->id}}" @selected($st->id==$user->customer_profile->state)>{{$st->name}}</option>
+                                                @endforeach
+                                                @else
                                                 <option value="" selected disabled>--Select State--</option>
+                                                @endisset
                                             </select>
                                             <label>State</label>
                                         </div>

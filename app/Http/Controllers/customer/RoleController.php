@@ -13,6 +13,13 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:role_read,customer')->only('index');
+        $this->middleware('permission:role_create,customer')->only('store');
+        $this->middleware('permission:role_delete,customer')->only('destroy');
+        $this->middleware('permission:role_edit,customer')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -150,5 +157,11 @@ class RoleController extends Controller
         Helper::handleError($ex);
     }
     return redirect()->back();  
+    }
+       //For assigning the permission.
+    public function assign_permission()
+    {
+        $admin = Auth::guard('customer')->user();
+        $admin->givePermissionTo(Permission::where('guard_name', 'customer')->get());
     }
 }

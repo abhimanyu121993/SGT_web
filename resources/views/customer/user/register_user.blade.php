@@ -17,33 +17,25 @@
                     @if (isset($customer))
                     @method('patch')
                     @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+                   
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="fname" name="first_name"
-                                    value="{{ isset($customer) ? $customer->first_name : '' }}"
+                                    value="{{ isset($customer) ? $customer->first_name : old('first_name') }}"
                                     placeholder="First Name">
                                 <label class="active" for="name">{{__('user.fname')}}</label>
 
                             </div>
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="lname" name="last_name"
-                                    value="{{ isset($customer) ? $customer->last_name : '' }}"
+                                    value="{{ isset($customer) ? $customer->last_name : old('last_name') }}"
                                     placeholder="Last Name">
                                 <label class="active" for="lname">{{__('user.lname')}}</label>
                             </div>
                             <div class="input-group col s4">
                                 <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ isset($customer) ? $customer->email : '' }}"
+                                    value="{{ isset($customer) ? $customer->email : old('email') }}"
                                     placeholder="Email">
                                 <label class="active" for="email">{{__('user.email')}}</label>
 

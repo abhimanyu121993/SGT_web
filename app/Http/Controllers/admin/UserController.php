@@ -58,9 +58,9 @@ class UserController extends Controller
         $request->validate([
             'first_name'=>'required',
             'last_name'=>'nullable',
-            'email'=>'required',
+            'email'=>'required|unique:admins,email',
             'password' => 'required|min:6',
-            'cpassword' => 'reuired|same:password|min:6'
+            'cpassword' => 'required|same:password|min:6'
         ]);
         try
         {
@@ -68,7 +68,8 @@ class UserController extends Controller
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'type'=>'sub-admin',            
+            'type'=>Admin::$sub_admin,
+            'is_active'=>true            
         ]);
         if ($admin) {
             AdminProfile::create([
@@ -76,7 +77,6 @@ class UserController extends Controller
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
-                'status'=>Status::where('name','active')->where('type','general')->first()->id,
             ]);
         }
        $role_name = Role::find($request->role_id);

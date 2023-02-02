@@ -4,18 +4,7 @@
 @section('breadcrumb-backpage', 'User')
 @section('breadcrumb-currentpage', 'Manage User')
 @section('content-area')
-@php
-if(Auth::guard('superadmin')->check()){
-$guard='superadmin';
-}
-else if(Auth::guard('admin')->check())
-{
-$guard='admin';
-}
-else if(Auth::guard('customer')->check()){
-$guard='customer';
-}
-@endphp
+
 <div class="card">
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage User</h4>
@@ -53,13 +42,13 @@ $guard='customer';
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a id="pop" class="dropdown-item"
-                                        href="{{route($guard.'.user.edit',$bid)}}">Edit</a></li>
+                                        href="{{route(Helper::getGuard().'.user.edit',$bid)}}">Edit</a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
                                         onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
                                 </li>
 
                                 <form id="delete-form-{{ $bid }}"
-                                    action="{{ route($guard.'.user.destroy', $bid) }}" method="post"
+                                    action="{{ route(Helper::getGuard().'.user.destroy', $bid) }}" method="post"
                                     style="display: none;">
                                     @method('DELETE')
                                     @csrf

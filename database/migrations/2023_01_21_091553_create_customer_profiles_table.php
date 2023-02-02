@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->string('mobileno')->nullable();
             $table->unsignedBigInteger('city_id')->nullable()->comment('id from city table');
+            $table->unsignedBigInteger('state_id')->nullable()->comment('id from state table');
+            $table->unsignedBigInteger('country_id')->nullable()->comment('id from county table');
             $table->text('address')->nullable();
             $table->string('pic')->nullable();
             $table->string('company_name')->nullable()->comment('company name of the owner');
