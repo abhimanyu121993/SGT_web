@@ -5,11 +5,12 @@ $(document).on('change',"#country",function() {
         $.ajax({
             url: newurl+'/general/'+'states-in-country',
             method: 'post',
+            type:'post',
             data:{
                 'country_id':optionValue
             },
             beforeSend:function(){
-                $('#state').html('<option selected hidden>Fetching.......</option>');
+                $('#state').html('<option selected hidden>Fetching..State....</option>');
             },
             success: function(p) {
               
@@ -27,6 +28,7 @@ $(document).on('change',"#state",function() {
         $.ajax({
             url: newurl+'/general/'+'cities-in-state',
             method: 'post',
+            type:'post',
             data:{
                 'state_id':optionValue
             },

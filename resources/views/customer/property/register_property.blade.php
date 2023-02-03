@@ -60,24 +60,24 @@
 
                             <div class="input-group col s4">
                                 <input type="number" class="form-control" id="postcode" name="postcode"
-                                    value="{{ isset($propertyEdit) ? $propertyEdit->postcode : '' }}" placeholder="Postcode">
+                                    value="{{ isset($propertyEdit) ? $propertyEdit->postcode : old('postcode') }}" placeholder="Postcode">
                             </div>
 
                             <div class="input-group col s4">
-                                <input type="text" class="form-control" id="lattitude" name="lattitude"
-                                value="{{ isset($propertyEdit) ? $propertyEdit->lattitude : '' }}" placeholder="Lattitude">
+                                <input type="number" class="form-control"  id="lattitude" name="lattitude"
+                                value="{{ isset($propertyEdit) ? $propertyEdit->lattitude : (old('lattitude')??0) }}" placeholder="Lattitude" readonly>
                             </div>
 
                             <div class="input-group col s4">
-                                <input type="text" class="form-control" id="longitude" name="longitude"
-                                value="{{ isset($propertyEdit) ? $propertyEdit->longitude : '' }}" placeholder="Longitude">
+                                <input type="number" class="form-control"  id="longitude" name="longitude"
+                                value="{{ isset($propertyEdit) ? $propertyEdit->longitude : (old('longitude')??0) }}" placeholder="Longitude" readonly>
                             </div>
 
                         <!--end col-->
                         </div>
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
-                                <textarea class="form-control" name="address" placeholder="Address" >{{ isset($propertyEdit) ? $propertyEdit->address : '' }}</textarea>
+                                <textarea class="form-control" id='address'name="address" placeholder="Address" >{{ isset($propertyEdit) ? $propertyEdit->address : old('address') }}</textarea>
                             </div>
                             <!--end col-->
                         </div>
@@ -102,6 +102,6 @@
 
 @endsection
 @section('script-area')
+<script src="{{asset('app-assets/js/mapInput.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
-<script src="{{asset('js/mapInput.js')}}"></script>
 @endsection

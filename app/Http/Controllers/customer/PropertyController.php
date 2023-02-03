@@ -9,6 +9,7 @@ use App\Models\customer\Property;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 class PropertyController extends Controller
 {
@@ -45,6 +46,7 @@ class PropertyController extends Controller
         return view('customer.property.register_property', compact('countries'));
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *

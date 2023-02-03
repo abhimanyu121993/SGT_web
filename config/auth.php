@@ -52,6 +52,14 @@ return [
             'driver' => 'session',
             'provider' => 'customers',
         ],
+        'security_guard'=>[
+            'driver'=>'session',
+            'provider'=>'security_guards'
+        ],
+        'security_guard_app'=>[
+            'driver'=>'sanctum',
+            'provider'=>'security_guards'
+        ],
     ],
 
     /*
@@ -87,6 +95,10 @@ return [
         'customers' => [
             'driver' => 'eloquent',
             'model' => App\Models\customer\Customer::class,
+        ],
+        'security_guards'=>[
+            'driver' => 'eloquent',
+            'model' => App\Models\customer\SecurityGuard::class,
         ],
 
 

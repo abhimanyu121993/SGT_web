@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class
 
     ],
 
@@ -217,6 +218,7 @@ return [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Helper' => App\Helpers\Helper::class,
+        'Location' => 'Stevebauman\Location\Facades\Location',
     ])->toArray(),
 
 ];

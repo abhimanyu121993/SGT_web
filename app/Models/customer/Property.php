@@ -3,6 +3,7 @@
 namespace App\Models\customer;
 
 use App\Models\City;
+use App\Models\Country;
 use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,5 +21,9 @@ class Property extends Model
     public function state_details()
     {
         return $this->belongsTo(State::class, 'state');
+    }
+    public function country_details()
+    {
+        return $this->belongsTo(Country::class, 'country');
     }
 }

@@ -39,9 +39,9 @@
                     <th>{{ $loop->index+1 }}</th>
                     <td>{{ $property->name ?? '' }}</td>
                     <td>{{ $property->postcode ?? '' }}</td>
-                    <td>{{ $property->country ?? '' }}</td>
-                    <td>{{ $property->state ?? '' }}</td>
-                    <td>{{ $property->city ?? '' }}</td>
+                    <td>{{ $property->country_details->name ?? '' }}</td>
+                    <td>{{ $property->state_details->name ?? '' }}</td>
+                    <td>{{ $property->city_details->name ?? '' }}</td>
                     <td>{{ $property->address ?? '' }}</td>
                     <td>{{ $property->lattitude ?? '' }}</td>
                     <td>{{ $property->longitude ?? '' }}</td>
