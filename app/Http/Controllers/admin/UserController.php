@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\admin\AdminProfile;
 use App\Models\ProjectError;
+use App\Models\SecurityGuard;
 use App\Models\Status;
 use App\Models\User;
 use Exception;
@@ -200,22 +201,7 @@ class UserController extends Controller
 
     public function is_active($id)
     {
-        $ass_active=Admin::find($id);
-
-        if($ass_active->isactive==1)
-        {
-            $ass_active->isactive=0;
-        }else
-        {
-            $ass_active->isactive=true;
-        }
-        if($ass_active->update()){
-           return 1;
-        }
-        else
-        {
-           return 0;
-
-        }
+        return 1;
+        $res=SecurityGuard::find($id)->update('status',$id);
     }
 }

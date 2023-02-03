@@ -18,6 +18,8 @@ return array (
   'customer' => 'Customer',
   'register_customer' => 'Register Customer',
   'manage_customer' => 'Manage Customer',
-
   'property' => 'Property',
+  'security_guard' => 'Guard',
+  'register_guard' => 'Register Guard',
+  'manage_guard' => 'Manage Guard',
 );

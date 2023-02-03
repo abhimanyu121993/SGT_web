@@ -40,7 +40,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     //Lock Screen 
     Route::get('lock',[AuthController::class,'lock'])->name('lock');
 });
-
 //General route for country/state/city
 Route::group([
     'prefix' => 'general',

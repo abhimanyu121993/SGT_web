@@ -44,6 +44,7 @@
             </div>
         </li>
     @endif
+    @if(Auth::guard('admin'))
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('subscription', Session::get('guard')))
         <li class=" {{ strpos(Route::currentRouteName(), 'subscription') !== false ? 'active open' : '' }} bold ">
             <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'subscription') !== false ? 'active' : '' }} "
@@ -72,7 +73,7 @@
             </div>
         </li>
     @endif
-
+@endif
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user', Session::get('guard')))
     <li class=" {{ strpos(Route::currentRouteName(),  Session::get('guard').'.user') !== false ? 'active open' : '' }} bold ">
         <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), Session::get('guard') .'.user') !== false ? 'active' : '' }} "

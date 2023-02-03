@@ -6,6 +6,7 @@ use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
 use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;
+use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +29,13 @@ Route::resource('profile',ProfileController::class)->name('profile','');
 
 //Route for Property
 Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
-
+//Route for Security Guard
+Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','');
 //Route for Activate User
 Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
     });
+
+    Route::group(['prefix' => 'sucurity-guard', 'as' => 'security-guard.'], function(){
+        Route::post('/status',[SecurityGuardController::class,'status'])->name('status');
+        });
