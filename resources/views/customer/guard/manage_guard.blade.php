@@ -9,37 +9,6 @@
 @endsection
 @section('content-area')
 
-<<<<<<< HEAD
-    <div class="card">
-        <div class="card-content">
-            <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Security Guard</h4>
-            <table class="table table-nowrap container" id="example">
-                <thead>
-                    <tr>
-                        <th scope="col">{{ __('security_guard.sr_no') }}</th>
-                        <th scope="col">{{ __('security_guard.name') }}</th>
-                        <th scope="col">{{ __('security_guard.gender') }}</th>
-                        <th scope="col">{{ __('security_guard.phone') }}</th>
-                        <th scope="col">{{ __('security_guard.email') }}</th>
-                        <th scope="col">{{ __('security_guard.country') }}</th>
-                        <th scope="col">{{ __('security_guard.state') }}</th>
-                        <th scope="col">{{ __('security_guard.city') }}</th>
-                        <th scope="col">status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($guards as $data)
-                        <tr>
-                            <th scope="row">{{ $loop->index + 1 }}</th>
-                            <td>{{ $data->name ?? '' }}</td>
-                            <td>{{ $data->gender ?? '' }}</td>
-                            <td>{{ $data->phone ?? '' }}</td>
-                            <td>{{ $data->email ?? '' }}</td>
-                            <td>{{ $data->country->name ?? '' }}</td>
-                            <td>{{ $data->state->name ?? '' }}</td>
-                            <td>{{ $data->city->name ?? '' }}</td>
-=======
 <div class="card">
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('security_guard.manage_guard')}}</h4>
@@ -71,7 +40,6 @@
                     <td>{{$data->country->name??''}}</td>
                     <td>{{$data->state->name??''}}</td>
                     <td>{{$data->city->name??''}}</td>
->>>>>>> abhi123
 
                             <td>
                                 <div class="input-group">
@@ -84,33 +52,6 @@
                                     </select>
                                 </div>
 
-<<<<<<< HEAD
-                            </td>
-                            <td>
-                                <div class="dropdown">
-                                    <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="ri-more-2-fill"></i>
-                                    </a>
-                                    @php $bid=Crypt::encrypt($data->id); @endphp
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a id="pop" class="dropdown-item"
-                                                href="{{ route(Helper::getGuard() . '.secuirty-guard.edit', $bid) }}">Edit</a>
-                                        </li>
-                                        <li><a id="pop" class="dropdown-item" href="#"
-                                                onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                                        </li>
-
-                                        <form id="delete-form-{{ $bid }}"
-                                            action="{{ route(Helper::getGuard() . '.secuirty-guard.destroy', $bid) }}"
-                                            method="post" style="display: none;">
-                                            @method('DELETE')
-                                            @csrf
-                                        </form>
-                                    </ul>
-                                </div>
-                            </td>
-=======
                     </td>
                     <td>
                         <div class="dropdown" >
@@ -138,7 +79,6 @@
                             </ul>
                         </div>
                     </td>
->>>>>>> abhi123
                     @endforeach
                     </tr>
                 </tbody>
