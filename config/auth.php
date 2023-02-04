@@ -98,7 +98,7 @@ return [
         ],
         'security_guards'=>[
             'driver' => 'eloquent',
-            'model' => App\Models\customer\SecurityGuard::class,
+            'model' => App\Models\SecurityGuard::class,
         ],
 
 

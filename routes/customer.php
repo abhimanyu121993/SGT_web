@@ -8,7 +8,9 @@ use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;
 use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\UserController;
+use App\Models\SecurityGuard;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Permission;
 
 Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
 Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middleware'=>['permission:role,customer','permission:permission,customer']], function(){
@@ -39,3 +41,15 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
     Route::group(['prefix' => 'sucurity-guard', 'as' => 'security-guard.'], function(){
         Route::post('/status',[SecurityGuardController::class,'status'])->name('status');
         });
+
+// Give all permmission to customer which are logged In
+Route::get('/all-permissions', function () {
+    $permissions = Permission::where('guard_name', 'customer')->pluck('name');
+    Auth::guard('customer')->user()->syncPermissions($permissions);
+});
+
+Route::get('/guard-permission', function () {
+    $permissions = Permission::where('guard_name', 'security_guard')->pluck('id');
+    $guard = SecurityGuard::find(2);
+    $guard->givePermissionTo($permissions);
+});

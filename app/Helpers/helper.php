@@ -10,6 +10,7 @@ use App\Models\ProjectError;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
@@ -87,5 +88,14 @@ class Helper
         else if(Auth::guard(Role::$customer)->check()){
             return 'customer';
         }
+    }
+
+    public function sendError($message,$errors=[],$code=401)
+    {
+        $response = ['success' => false, 'message' => $message];
+        if(!empty($errors)){
+            $response['data'] = $errors;
+        }
+        throw new HttpResponseException(response()->json($response, $code));
     }
 }

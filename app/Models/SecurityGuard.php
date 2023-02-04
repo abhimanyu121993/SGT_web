@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
-class SecurityGuard extends Model
+class SecurityGuard extends Authenticatable
 {
-    use HasFactory,SoftDeletes;
+    use HasApiTokens,HasFactory,SoftDeletes,Notifiable, HasRoles;
     protected $guarded=[];
 
     public function country()
@@ -22,5 +26,9 @@ class SecurityGuard extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+    public function statusDetail()
+    {
+        return $this->belongsTo(Status::class, 'status');
     }
 }
