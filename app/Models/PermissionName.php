@@ -12,6 +12,7 @@ class PermissionName extends Model
     public static $customer = 'customer';
     public static $admin = 'admin';
     public static $employee = 'employee';
+    public static $security = 'security_guard';
 
     protected $fillable = [
         'permission_name',

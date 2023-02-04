@@ -21,15 +21,15 @@
         <table id="scroll-dynamic" class="display">
             <thead>
                 <tr>
-                    <th>Sr.No</th>
-                    <th>Name</th>
-                    <th>Postcode</th>
-                    <th>Country</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>Address</th>
-                    <th>Lattitude</th>
-                    <th>Longitude</th>
+                    <th>{{__('property.sr_no')}}</th>
+                    <th>{{__('property.name')}}</th>
+                    <th>{{__('property.pincode')}}</th>
+                    <th>{{__('property.country')}}</th>
+                    <th>{{__('property.state')}}</th>
+                    <th>{{__('property.city')}}</th>
+                    <th>{{__('property.address')}}</th>
+                    <th>{{__('property.latitude')}}</th>
+                    <th>{{__('property.longitude')}}</th>
                     <th>Action</th>
                 </tr>
             </thead>

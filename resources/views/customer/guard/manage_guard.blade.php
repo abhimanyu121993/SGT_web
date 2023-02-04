@@ -7,11 +7,12 @@
 
 <div class="card">
     <div class="card-content">
-        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Security Guard</h4>
+        <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('security_guard.manage_guard')}}</h4>
         <table class="table table-nowrap container" id="example">
             <thead>
                 <tr>
                     <th scope="col">{{__('security_guard.sr_no')}}</th>
+                    <th scope="col"></th>
                     <th scope="col">{{__('security_guard.name')}}</th>
                     <th scope="col">{{__('security_guard.gender')}}</th>
                     <th scope="col">{{__('security_guard.phone')}}</th>
@@ -27,6 +28,7 @@
                 @foreach ($guards as $data)
                 <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
+                    <td> <img src="{{ asset($data->images) }}" height="50px"alt="" class="circle" /></td>
                     <td>{{ $data->name??'' }}</td>
                     <td>{{ $data->gender??'' }}</td>
                     <td>{{ $data->phone??'' }}</td>
@@ -46,19 +48,22 @@
 
                     </td>
                     <td>
-                        <div class="dropdown">
+                        <div class="dropdown" >
                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="ri-more-2-fill"></i>
                             </a>
                             @php $bid=Crypt::encrypt($data->id); @endphp
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
                                 <li><a id="pop" class="dropdown-item"
-                                        href="{{route(Helper::getGuard().'.secuirty-guard.edit',$bid)}}">Edit</a></li>
+                                        href="{{route(Helper::getGuard().'.secuirty-guard.edit',$bid)}}">
+                                        <i class="material-icons light-blue-text text-darken-4">edit</i>
+                                    </a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
-                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                                </li>
-
+                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
+                                        <i class="material-icons danger red-text text-accent-4">delete</i>
+                                    </a>
+                                </li0>
                                 <form id="delete-form-{{ $bid }}"
                                     action="{{ route(Helper::getGuard().'.secuirty-guard.destroy', $bid) }}" method="post"
                                     style="display: none;">

@@ -97,6 +97,8 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
 @endif
 
 {{-- Security Guard Menu --}}
+@if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('security guard', Session::get('guard')))
+
 <li class=" {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active open' : '' }} bold ">
     <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'user') !== false ? 'active' : '' }} "
         href="JavaScript:void(0)"><i class="material-icons">person</i><span class="menu-title"
@@ -104,20 +106,20 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
     <div class="collapsible-body"
         style="{{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'display:block' : '' }}">
         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-            @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_create', Session::get('guard')))
+            @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('security guard_create', Session::get('guard')))
             <li class="{{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active' : '' }} bold">
                     <a href="{{ route(Session::get('guard') . '.secuirty-guard.index') }}"><i
                             class="material-icons">{{ strpos(Route::currentRouteName(), 'secuirty-guard.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
                             data-i18n="Register">{{ __('sidebar.register_guard') }}</span></a>
             </li>  
             @endif
-            @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_read', Session::get('guard')))
+            @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('security guard_read', Session::get('guard')))
             <li class="{{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active' : '' }}  bold">
                     <a href="{{ route(Session::get('guard') . '.secuirty-guard.create') }}"><i
                             class="material-icons">{{ strpos(Route::currentRouteName(), 'secuirty-guard.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
                             data-i18n="Login">{{ __('sidebar.manage_guard') }}</span></a>
             </li>
-            
+            @endif
         </ul>
     </div>
 </li>
