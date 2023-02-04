@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +16,48 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->insert([
+        Status::create([
             'name' => 'active',
             'icon' => '',
             'color' => 'Red',
             'bg_color'=>'white',
             'type'=>'general',
         ]);
+        Status::create([
+            'name' => 'inactive',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'general',
+        ]);
+        Status::create([
+            'name' => 'active',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard',
+        ]);
+        Status::create([
+            'name' => 'inactive',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard',
+        ]);
+        Status::create([
+            'name' => 'blocked',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard',
+        ]);
+        Status::create([
+            'name' => 'verified',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard',
+        ]);
+
         }
 }

@@ -7,7 +7,7 @@
 
 @endsection
 @section('content-area')
-<div class="card">
+<!-- <div class="card">
 
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Customer</h4>
@@ -60,8 +60,62 @@
 </tbody>
         </table>
     </div>
-</div>
+</div> -->
+
+@foreach($customers as $data)
+
+<div class="row">
+        <div class="col s4">
+        <div id="profile-card" class="card animate fadeRight">
+            <div class="card-image waves-effect waves-block waves-light">
+            <img src="../../../app-assets/images/avatar/avatar-7.png" class="me-75 bg-light-danger" style="height:fit-content" />
+                </div>
+            <div class="card-content">
+                <img src="{{!empty($data->customer_subscribe->subscription->icon)?asset($data->customer_subscribe->subscription->icon):asset($data->customer_subscribe->subscription->img)}}" alt=""
+                    class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" />
+                <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
+                    <i class="material-icons">visibility</i>
+                </a>
+                <h5 class="card-title activator grey-text text-darken-4">{{$data->name??''}}</h5>
+                <p><i class="material-icons profile-card-i">perm_phone_msg</i> {{$data->customer_profile->mobileno??''}}</p>
+                <p><i class="material-icons profile-card-i">email</i> {{$data->email??''}}</p>
+                <p><i class="material-icons profile-card-i">room</i>{{$data->customer_profile->address??''}}</p>
+                <div class="switch">
+                            <label>
+                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.customer.active-customer',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ $data->name??'' }} <i class="material-icons right">close</i>
+                </span>
+                <p><i class="material-icons">people</i>&nbsp;{{$data->customer_profile->company_name??''}}</p>
+                <p><i class="material-icons">layers</i>Federal EIN {{$data->customer_profile->federal_ein??''}}</p>
+                <p><i class="material-icons">lens</i>BSIS No {{$data->customer_profile->bsis_number??''}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    @endforeach
 @endsection
 @section('script-area')
 <script src="{{ asset('app-assets/js/scripts/ui-chips.js')}}"></script>
+<script>
+    $('.is_active').on('click', function() {
+        var id = $(this).val();
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            beforeSend: function() {
+                $('.is_active').attr('disabled', 'true');
+            },
+            success: function() {
+
+                $('.is_active').removeAttr('disabled')
+
+            }
+        });
+    });
+</script>
 @endsection

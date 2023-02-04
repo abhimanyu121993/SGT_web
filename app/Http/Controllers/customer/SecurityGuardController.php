@@ -23,11 +23,12 @@ class SecurityGuardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:property_read,customer')->only('index');
-        $this->middleware('permission:property_create,customer')->only('store');
-        $this->middleware('permission:property_delete,customer')->only('destroy');
-        $this->middleware('permission:property_edit,customer')->only('edit','update');
+        $this->middleware('permission:security guard_read,customer')->only('index');
+        $this->middleware('permission:security guard_create,customer')->only('store');
+        $this->middleware('permission:security guard_delete,customer')->only('destroy');
+        $this->middleware('permission:security guard_edit,customer')->only('edit','update');
     }
+    
     public function index()
     {
         $countries = Country::get();
@@ -42,7 +43,7 @@ class SecurityGuardController extends Controller
     //For show (Register property) page.
     public function create()
     {
-        $status=Status::all();
+        $status=Status::where('type','guard')->get();
         $guards = SecurityGuard::where('owner_id',Helper::getOwner())->get();
         return view('customer.guard.manage_guard', compact('guards','status'));
     }
@@ -169,7 +170,7 @@ else{
             {
                 $image='guard-'.time().'-'.rand(0,99).'.'.$request->images->extension();
                 $request->images->move(public_path('upload/security_guard/images/'),$image);
-                $oldimage=SecurityGuard::find($id)->pluck('imges')[0];
+                $oldimage=SecurityGuard::find($id)->pluck('images')[0];
                 File::delete(public_path($oldimage));
                 SecurityGuard::find($id)->update(['images'=>'upload/security_guard/images/'.$image]);
             }

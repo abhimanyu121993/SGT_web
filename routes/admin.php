@@ -33,6 +33,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
 //Route for Activate User
 Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user')->middleware(['permission:user_edit,admin']);
 });
+//Route for Activate Customer
+Route::group(['prefix' => 'customer', 'as' => 'customer.'], function(){
+Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('active-customer')->middleware(['permission:customer_edit,admin']);
+});
 
 //Route for Profile
 Route::resource('profile', ProfileController::class)->name('profile', '');
