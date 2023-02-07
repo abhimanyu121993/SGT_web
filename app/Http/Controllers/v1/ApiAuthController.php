@@ -19,13 +19,22 @@ class ApiAuthController extends Controller
         ]);
       
             $sguard = SecurityGuard::where('email', $req->email)->first();
-        $abilities = $sguard->getAllPermissions()->pluck('name');
+        if (Auth::guard('security_guard')->attempt($req->only('email', 'password'))) {
+            $abilities = $sguard->getAllPermissions()->pluck('name');
             return response()->json([
                 'status' => true,
-                'message'=>'Logged In Successfully',
-                'token'=>$sguard->createToken('Api Token',$abilities->toArray())->plainTextToken,
-                'abilities'=>$abilities,
+                'message' => 'Logged In Successfully',
+                'token' => $sguard->createToken('Api Token', $abilities->toArray())->plainTextToken,
+                'abilities' => $abilities,
             ]);
+        }
+        else
+        {
+            return response()->json([
+                'status'=>false,
+                'message'=>'Invalid Creadential',
+            ]);
+        }
        
     }
     public function logged_in(Request $req)
