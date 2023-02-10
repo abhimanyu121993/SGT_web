@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\PermissionController;
 use App\Http\Controllers\customer\ProfileController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\customer\PropertyController;
 use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;
 use App\Http\Controllers\customer\SecurityGuardController;
+use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
 use App\Models\SecurityGuard;
 use Illuminate\Support\Facades\Auth;
@@ -32,9 +34,11 @@ Route::resource('profile',ProfileController::class)->name('profile','');
 
 //Route for Property
 Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
-
+Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
+Route::get('show-checkpoint/{id}',[CheckpointController::class,'showcheckpoint'])->name('show-checkpoint');
+});
 //Route for Security Guard
-Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');;
+Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');
 //Route for Activate User
 Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
@@ -55,3 +59,14 @@ Route::get('/guard-permission', function () {
     $guard = SecurityGuard::find(2);
     $guard->givePermissionTo($permissions);
 });
+//Route for Task Management
+Route::resource('task',TaskController::class)->middleware('permission:task,customer');
+//Route for Activate Task
+Route::group(['prefix' => 'task', 'as' => 'task.'], function(){
+    Route::get('/isactive/{id}',[TaskController::class,'is_active'])->name('active-task');
+    });
+//Route for Checkpoint Management
+Route::resource('checkpoint',CheckpointController::class)->middleware('permission:checkpoint,customer');
+Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
+Route::post('/status',[CheckpointController::class,'status'])->name('status');
+    });

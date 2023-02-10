@@ -31,6 +31,7 @@
                     <th>{{__('property.latitude')}}</th>
                     <th>{{__('property.longitude')}}</th>
                     <th>Action</th>
+                    <th>CkeckPoint</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +64,9 @@
                             @csrf
                         </form>
                     </td>
+                    <td> <a id="pop" class="dropdown-item " href="{{route(Session::get('guard').'.property.show-checkpoint',$property->id)}}"><i class="material-icons light-blue-text text-darken-4">visibility</i>
+                    </a></td>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -71,5 +75,4 @@
 </div>
 @endsection
 @section('script-area')
-
 @endsection
