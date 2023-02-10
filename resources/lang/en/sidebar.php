@@ -35,4 +35,9 @@ return array (
     'checkpoint'=>'Checkpoint',
     'register_checkpoint'=>'Register Checkpoint',
     'manage_checkpoint'=>'Manage Checkpoint',
+
+    //Root Management
+    'route'=>'Route',
+    'manage_route'=>'Manage Route',
+
 );

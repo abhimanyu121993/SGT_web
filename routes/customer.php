@@ -7,6 +7,8 @@ use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
 use App\Http\Controllers\customer\RoleController;
 use App\Http\Controllers\customer\RolePermissionController;
+use App\Http\Controllers\customer\RootController;
+use App\Http\Controllers\customer\RouteController;
 use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
@@ -70,3 +72,10 @@ Route::resource('checkpoint',CheckpointController::class)->middleware('permissio
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
 Route::post('/status',[CheckpointController::class,'status'])->name('status');
     });
+Route::resource('route',RouteController::class)->name('route','');
+
+//Route for Root Management
+Route::group(['prefix' => 'route', 'as' => 'route.'], function(){
+Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
+});
+

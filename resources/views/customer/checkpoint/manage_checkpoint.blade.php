@@ -53,7 +53,8 @@
                                    </select>
                                 <span class="active" for="task_id">{{__('checkpoint.task')}}</span> 
                                 </div>
-                            <div class="file-field input-field col s4" id="image">
+                            
+                                <div class="file-field input-field col s4" id="image">
                                 <div class="btn">
                                     <span>{{__('checkpoint.file')}}</span>
                                     <input type="file" name="images">

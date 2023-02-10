@@ -43,3 +43,27 @@ $(document).on('change',"#state",function() {
         });
     });
 }).change();
+
+$(document).on('change',"#property_id",function() {
+    $(this).find("option:selected").each(function() {
+        var optionValue = $(this).attr("value");
+        var newurl = jQuery('meta[name="base-url"]').attr('content');
+        $.ajax({
+            url: newurl+'/customer/route/'+'checkpoint-in-property',
+            method: 'post',
+            type:'post',
+            data:{
+                '_token':$('meta[name="csrf_token"]').attr('content'),
+                'property_id':optionValue
+            },
+            beforeSend:function(){
+                $('#checkpoint_id').html('<option selected hidden>Fetching..Checkpoint....</option>');
+            },
+            success: function(p) {
+              
+                    $("#checkpoint_id").html(p);
+               
+            }
+        });
+    });
+}).change();

@@ -71,8 +71,10 @@
         </div>
     </div>
     </div>
-@endsection
-@section('script-area')
+
+    @endsection
+
+    @section('script-area')
 <script>
     $('.is_active').on('click', function() {
         var id = $(this).val();

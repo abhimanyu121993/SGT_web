@@ -31,7 +31,6 @@
                     <th>{{__('property.latitude')}}</th>
                     <th>{{__('property.longitude')}}</th>
                     <th>Action</th>
-                    <th>CkeckPoint</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,25 +47,31 @@
                     <td>{{ $property->longitude ?? '' }}</td>
                     <td>
                         @php $bid=Crypt::encrypt($property->id); @endphp
-                        <a id="pop" class="dropdown-item"
-                                    href="{{route(Session::get('guard').'.property.edit',$bid)}}">
-                                    <i class="material-icons light-blue-text text-darken-4">edit</i>
-                                    </a>
-                            <a id="pop" class="dropdown-item" href="#"
+
+                        <a class='dropdown-trigger breadcrumbs-btn right btn' href='#' data-target='property-id{{$property->id}}'>Action</a>
+                        <!-- Dropdown Structure -->
+                        <div class="col s2 m6 l6">
+                        <ul id='property-id{{$property->id}}' class='dropdown-content'>
+                            <li tabindex="0"> <a href="{{route(Session::get('guard').'.property.edit',$bid)}}">Edit</a>
+</li>
+                            <li tabindex="0"> <a href="#"
                                     onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
-                                    <i class="material-icons danger red-text text-accent-4">delete</i>
-                            </a>
+                                    Delete
+                                </a></li>
 
-                        <form id="delete-form-{{ $bid }}"
-                            action="{{ route(Session::get('guard').'.property.destroy', $bid) }}" method="post"
-                            style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                        </form>
-                    </td>
-                    <td> <a id="pop" class="dropdown-item " href="{{route(Session::get('guard').'.property.show-checkpoint',$property->id)}}"><i class="material-icons light-blue-text text-darken-4">visibility</i>
-                    </a></td>
-
+                            <form id="delete-form-{{ $bid }}"
+                                action="{{ route(Session::get('guard').'.property.destroy', $bid) }}" method="post"
+                                style="display: none;">
+                                @method('DELETE')
+                                @csrf
+                            </form>
+                            <li tabindex="0"><a href="{{route(Session::get('guard').'.property.show-checkpoint',$property->id)}}">Checkpoint
+                                </a></li>
+                            <li tabindex="0"><a href="{{route(Session::get('guard').'.route.index')}}">Route
+                                </a></li>
+                        </ul>
+                  </div>
+</td>
                 </tr>
                 @endforeach
             </tbody>
