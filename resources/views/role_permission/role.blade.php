@@ -56,7 +56,7 @@
                         <td>{{$role->role_name}}</td>
                         <td>{{$role->guard_name}}</td>
                         <td><i class="material-icons danger red-text text-accent-4">delete</i>
-                            <a href="{{route(Session::get('guard').'.role-permission.role.edit',$role->encrypted_id)}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a>
+                            <a href="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a>
                         </td>
                     </tr>
                 @endforeach

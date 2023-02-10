@@ -8,14 +8,19 @@ use App\Models\Country;
 use App\Models\customer\Customer;
 use App\Models\customer\CustomerProfile;
 use App\Models\CustomerSubscribePack;
+use App\Models\PermissionName;
 use App\Models\Status;
 use App\Models\Subscription;
 use App\Models\TimeZone;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Permission;
 
 class CustomerController extends Controller
 {
@@ -185,5 +190,32 @@ class CustomerController extends Controller
         return 0;
 
      }
+ }
+
+ public function customer_has_permissions($id)
+ {
+        $id = Crypt::decrypt($id);
+        $customer=Customer::find($id);
+        $permissionnames=PermissionName::where('guard_name','customer')->get();
+        return view('admin.customer.permission', compact('customer', 'permissionnames'));
+ }
+ public function assign_permission_to_customer(Request $req)
+ {
+        try {
+            $customer = Customer::find($req->customerid);
+            if ($customer->syncPermissions($req->customerpermissions)) {
+                Session::flash('success', 'Permission Synchronised');
+            } else {
+                Session::flash('error', 'OPP\'s Permission not Synchronised');
+
+            }
+            Artisan::call('optimize:clear');
+            return redirect()->back();
+        }
+        catch(Exception $ex){
+            Session::flash('error', 'Server Error');
+            Helper::handleError($ex);
+            return redirect()->back();
+        }
  }
 }

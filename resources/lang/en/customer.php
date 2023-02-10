@@ -17,6 +17,6 @@ return array (
   'company_name'=>'Company Name',
   'federal_ein'=>'Federal EIN',
   'bsis_number'=>'BSIS No.',
-
-   'membership_plan'=>'Membership Plan',
+  'membership_plan'=>'Membership Plan',
+  'all_permissions'=>'All Permission'
 );
