@@ -7,7 +7,9 @@
 
 @endsection
 @section('content-area')
-<!-- <div class="card">
+
+{{-- 
+ <div class="card">
 
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Customer</h4>
@@ -26,13 +28,13 @@
                     <th>{{__('customer.mobile')}}</th>
                     <th>{{__('customer.membership_plan')}}</th>
                     <th>{{__('customer.address')}}</th>
-                    {{-- <th>{{__('customer.city')}}</th>
+                    <th>{{__('customer.city')}}</th>
                     <th>{{__('customer.currency')}}</th>
-                    <th>{{__('customer.country')}}</th> --}}
+                    <th>{{__('customer.country')}}</th>
                     <th>{{__('customer.company_name')}}</th>
                     <th>{{__('customer.federal_ein')}}</th>
                     <th>{{__('customer.bsis_number')}}</th>
-                    {{-- <th>Action</th> --}}
+                    <th>Action</th>
 
                 </tr>
             </thead>
@@ -49,18 +51,18 @@
                         </div>
                     </td>
                     <td>{{$data->customer_profile->address??''}}</td>
-                    {{-- <td>{{$data->customer_profile->city->name??''}}</td>
-                    <td>{{$data->customer_profile->currency->code??''}}</td> --}}
+                    <td>{{$data->customer_profile->city->name??''}}</td>
+                    <td>{{$data->customer_profile->currency->code??''}}</td>
                     <td>{{$data->customer_profile->company_name??''}}</td>
                     <td>{{$data->customer_profile->federal_ein??''}}</td>
                     <td>{{$data->customer_profile->bsis_number??''}}</td>
-                    {{-- <th></th> --}}
+                    <th></th>
                 </tr>
                 @endforeach
 </tbody>
         </table>
     </div>
-</div> -->
+</div>  --}}
 
 @foreach($customers as $data)
 
@@ -80,13 +82,17 @@
                 <p><i class="material-icons profile-card-i">perm_phone_msg</i> {{$data->customer_profile->mobileno??''}}</p>
                 <p><i class="material-icons profile-card-i">email</i> {{$data->email??''}}</p>
                 <p><i class="material-icons profile-card-i">room</i>{{$data->customer_profile->address??''}}</p>
-                <div class="switch">
+                Active
+                        <div class="switch">
                             <label>
                                 <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.customer.active-customer',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
                                 <span class="lever"></span>
                             </label>
                         </div>
+                        
+            <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
             </div>
+            
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ $data->name??'' }} <i class="material-icons right">close</i>
                 </span>

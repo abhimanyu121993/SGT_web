@@ -36,6 +36,8 @@ Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-u
 //Route for Activate Customer
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function(){
 Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('active-customer')->middleware(['permission:customer_edit,admin']);
+    Route::get('/permissions/{id}',[CustomerController::class,'customer_has_permissions'])->name('customer-has-permission');
+    Route::post('assign-permission', [CustomerController::class,'assign_permission_to_customer'])->name('assign-permission');
 });
 
 //Route for Profile
