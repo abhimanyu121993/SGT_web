@@ -5,7 +5,9 @@ namespace App\Helpers;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\customer\Checkpoint;
 use App\Models\customer\Customer;
+use App\Models\customer\Property;
 use App\Models\ProjectError;
 use App\Models\State;
 use App\Models\TimeZone;
@@ -97,5 +99,16 @@ class Helper
             $response['data'] = $errors;
         }
         throw new HttpResponseException(response()->json($response, $code));
+    }
+
+    public static function getCheckpointByProperty($id)
+    {
+        try {
+           $property=Property::find($id);
+           return $checkpoints=$property->checkpoints;
+        }
+        catch(Exception $ex){
+            return response()->json(['message' => $ex->getMessage()],501);
+        }
     }
 }

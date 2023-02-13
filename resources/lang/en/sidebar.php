@@ -10,6 +10,7 @@ return array (
   'create' => 'Create',
   'manage' => 'Manage',
   'user'=>'User',
+  'staff'=>'Staff',
 
 
   'translation' => 'Translation',
@@ -19,7 +20,24 @@ return array (
   'register_customer' => 'Register Customer',
   'manage_customer' => 'Manage Customer',
   'property' => 'Property',
+
+  //Guard Management
   'security_guard' => 'Guard',
   'register_guard' => 'Register Guard',
   'manage_guard' => 'Manage Guard',
+
+  //Task Management 
+  'task'=>'Task Management',
+  'register_task'=>'Register Task',
+  'manage_task'=>'Manage Task',
+
+    //Checkpoint Management 
+    'checkpoint'=>'Checkpoint',
+    'register_checkpoint'=>'Register Checkpoint',
+    'manage_checkpoint'=>'Manage Checkpoint',
+
+    //Root Management
+    'route'=>'Route',
+    'manage_route'=>'Manage Route',
+
 );

@@ -16,7 +16,7 @@ class CustomerPermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = ['role','permission','user','property','security guard'];
+        $permissions = ['role','permission','user','property','security guard','task'];
         foreach ($permissions as $permission) {
             $perm = PermissionName::firstOrCreate(['permission_name' => $permission, 'guard_name' => PermissionName::$customer],['permission_name' => $permission, 'guard_name' => PermissionName::$customer]);
             if (isset($perm)) {

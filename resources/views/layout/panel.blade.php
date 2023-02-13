@@ -10,6 +10,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Abhimanyu">
     <meta name="base-url" content="{{url('/')}}">
+    <meta name="csrf_token" content="{{csrf_token()}}">
     <title>SGT : : @yield('title')</title>
     @include('panel.include.head')
     @yield('link-area')
