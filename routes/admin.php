@@ -44,7 +44,7 @@ Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('acti
 Route::resource('profile', ProfileController::class)->name('profile', '');
 // Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 
-//Route for Customer
+//Route for Customer Crud
 Route::resource('customer',CustomerController::class)->name('customer','')->middleware(['permission:customer,admin']);
  Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
 

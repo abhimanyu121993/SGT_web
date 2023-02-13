@@ -41,10 +41,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::get('lock',[AuthController::class,'lock'])->name('lock');
 });
 //General route for country/state/city
-Route::group([
-    'prefix' => 'general',
-    'as' => 'general.'],
-    function () {
+Route::group(['prefix' => 'general','as' => 'general.'],function () {
         Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-country');
         Route::post('cities-in-state', [GeneralController::class, 'cities_in_state'])->name('cities-in-state');
 });

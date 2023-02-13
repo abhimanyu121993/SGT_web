@@ -12,12 +12,15 @@ use App\Models\PermissionName;
 use App\Models\Status;
 use App\Models\Subscription;
 use App\Models\TimeZone;
+use App\Notifications\CustomerRegisterNoti;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Permission;
@@ -113,6 +116,7 @@ class CustomerController extends Controller
 
                 ]);
                 if($customerProfile){
+                    Notification::send(Auth::guard(Session::get('guard'))->user(), new CustomerRegisterNoti($customerProfile));
                     Session::flash('success', 'Customer Created and Package allot successfully');
                 }
             } else {
