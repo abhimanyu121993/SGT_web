@@ -118,7 +118,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
 <script>
        $(document).ready(function() {
-      $('input#address').characterCounter();
+     var a= $('input#address').characterCounter();
+     console.log(a);
     });
 </script>
 @endsection

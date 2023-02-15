@@ -1,8 +1,8 @@
 @extends('layout.panel')
-@section('title', 'User')
-@section('breadcrumb-title', 'User')
-@section('breadcrumb-backpage', 'User')
-@section('breadcrumb-currentpage', 'User')
+@section('title', 'Staff')
+@section('breadcrumb-title', 'Staff')
+@section('breadcrumb-backpage', 'Staff')
+@section('breadcrumb-currentpage', 'Staff')
 @section('content-area')
 
 

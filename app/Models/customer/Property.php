@@ -26,4 +26,8 @@ class Property extends Model
     {
         return $this->belongsTo(Country::class, 'country');
     }
+    public function checkpoints()
+    {
+        return $this->hasMany(Checkpoint::class,'property_id');
+    }
 }

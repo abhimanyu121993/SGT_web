@@ -7,8 +7,55 @@
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard.css">
 @endsection
+@section('breadcrumb-menu')
+ <!-- Content Area Starts -->
+ <div class="col s2 m6 l6"><a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" data-url="{{route('customer.secuirty-guard.index') }}"><span class="hide-on-small-onl">Add User</span></a>  
+            </div>
+
+@endsection
 @section('content-area')
 
+
+<div id="card-with-analytics" class="section">
+                            <div class="row">
+                                <div class="col s12 m6 l3 card-width">
+                                    <div class="card border-radius-6">
+                                        <div class="card-content center-align">
+                                            <h5><b>Total Guards</b></h5>
+                                            <p>Total Views</p>
+                                            <h6 class="m-0"><b>21.5k</b></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 l3 card-width">
+                                    <div class="card border-radius-6">
+                                        <div class="card-content center-align">
+                                            <h5><b>Active Guards</b></h5>
+                                            <p>Total Views</p>
+                                            <h6 class="m-0"><b>21.5k</b></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 l3 card-width">
+                                    <div class="card border-radius-6">
+                                        <div class="card-content center-align">
+                                            <h5><b>Total Guards</b></h5>
+                                            <p>Total Views</p>
+                                            <h6 class="m-0"><b>21.5k</b></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 l3 card-width">
+                                    <div class="card border-radius-6">
+                                        <div class="card-content center-align">
+                                            <h5><b>Guards on Leave</b></h5>
+                                            <p>Total Views</p>
+                                            <h6 class="m-0"><b>21.5k</b></h6>
+                                        </div>
+                                    </div>
+                                </div>
+        </div>
+    </div>
 <div class="card">
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('security_guard.manage_guard')}}</h4>
@@ -61,8 +108,7 @@
                             </a>
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                                <li><a id="pop" class="dropdown-item"
-                                        href="{{route(Helper::getGuard().'.secuirty-guard.edit',$bid)}}">
+                                <li><a id="pop" class="dropdown-item addGuard" data-url="{{route(Helper::getGuard().'.secuirty-guard.edit',$bid)}}"
                                         <i class="material-icons light-blue-text text-darken-4">edit</i>
                                     </a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
@@ -79,51 +125,19 @@
                             </ul>
                         </div>
                     </td>
-                    @endforeach
                     </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="row">
-        @foreach ($guards as $data)
-        <div class="col s4">
-        <div id="profile-card" class="card animate fadeRight">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="../../../app-assets/images/gallery/3.png" alt="user bg" />
-            </div>
-            <div class="card-content">
-                <img src="{{asset($data->images??'app-assets/images/sgt/male.webp')}}" alt="profile" onerror="this.onerror=null; this.src='{{asset('app-assets/images/sgt/male.webp')}}'"
-                    class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" />
-                <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
-                    <i class="material-icons">edit</i>
-                </a>
-                <h5 class="card-title activator grey-text text-darken-4">{{ ucfirst($data->name?? '') }}</h5>
-                <p><i class="material-icons profile-card-i">location_city
-                </i>Proprty <span class="badge" style="background-color: {{$data->statusDetail->bg_color}}">{{ucfirst($data->statusDetail->name)}}</span></p>
-                <p><i class="material-icons profile-card-i">perm_phone_msg</i>+(91) {{$data->phone}}</p>
-                <p><i class="material-icons profile-card-i">email</i>{{$data->email}}</p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Roger Waters <i class="material-icons right">close</i>
-                </span>
-                <p>Here is some more information about this card.</p>
-                <p><i class="material-icons">perm_identity</i> Project Manager</p>
-                <p><i class="material-icons">perm_phone_msg</i> +1 (612) 222 8989</p>
-                <p><i class="material-icons">email</i> yourmail@domain.com</p>
-                <p><i class="material-icons">cake</i> 18th June 1990</p>
-                <p><i class="material-icons">cake</i> 18th June 1990</p>
-                <p><i class="material-icons">cake</i> 18th June 1990</p>
-                <p><i class="material-icons">cake</i> 18th June 1990</p>
-                <p></p>
-                <p><i class="material-icons">airplanemode_active</i> BAR - AUS</p>
-                <p></p>
-            </div>
-        </div>
     </div>
-    @endforeach
-    </div>
-@endsection
+    <div id="modal1" class="modal modal-fixed-footer">
+   
+  </div>
+
+    @endsection
 @section('script-area')
     <script>
         $(document).ready(function() {
@@ -147,5 +161,21 @@
                 });
             }).change();
         });
+    </script>
+
+    <script>
+    $(document).ready(function(){
+    $(document).on('click','.addGuard',function(){
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            success: function(data) {
+                console.log(data);
+                $('#modal1').html(data);
+                $('#modal1').modal('open');
+            }
+        });
+    });
+  });
     </script>
 @endsection
