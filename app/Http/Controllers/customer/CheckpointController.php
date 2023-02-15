@@ -22,19 +22,11 @@ class CheckpointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('permission:Checkpoint_read,customer')->only('index');
-        $this->middleware('permission:Checkpoint_create,customer')->only('store');
-        $this->middleware('permission:Checkpoint_delete,customer')->only('destroy');
-        $this->middleware('permission:Checkpoint_edit,customer')->only('edit','update');
-    }
+   
 
     public function index()
     {
-        $status=Status::where('type','general')->get();
-        $checkpoints = Checkpoint::where('property_id',$id)->get();
-        return view('customer.checkpoint.register_checkpoint');
+        // code here
     }
 
     /**
@@ -46,7 +38,7 @@ class CheckpointController extends Controller
     {
         $status=Status::where('type','general')->get();
         $checkpoints = Checkpoint::where('owner_id',Helper::getOwner())->get();
-        return view('customer.checkpoint.manage_checkpoint', compact('checkpoints','status'));
+        return view('customer.property.qr_map', compact('checkpoints','status'));
     }
 
     /**
@@ -117,8 +109,12 @@ else{
      */
     public function show($id)
     {
-        //
-    }
+        $status=Status::where('type','general')->get();
+        $tasks=Task::where('owner_id',Helper::getOwner())->get();
+        $checkpoints = Checkpoint::where('property_id',$id)->get();
+        $property_id=$id;
+        return view('customer.property.qr_map', compact('checkpoints','status','property_id','tasks'));
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -134,16 +130,7 @@ else{
         $checkpoint=Checkpoint::find($id);
         $status=Status::where('type','general')->get();
         $tasks=Task::where('owner_id',Helper::getOwner())->get();
-        $checkpoints = Checkpoint::where('owner_id',Helper::getOwner())->get();
-        if($checkpoint)
-        {
-            return view('customer.checkpoint.manage_checkpoint', compact('checkpoints','status','checkpoint','tasks'));
-        }
-        else
-        {   
-            Session::flash('error','Something Went Wrong OR Data is Deleted');
-            return redirect()->back();
-        }   
+        return view('customer.checkpoint.manage_checkpoint', compact('checkpoint','status','tasks'));       
      }
 
     /**
@@ -257,8 +244,7 @@ else{
         {
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
-            $checkpoints = Checkpoint::where('property_id',$id)->get();
             $property_id=$id;
-            return view('customer.checkpoint.manage_checkpoint', compact('checkpoints','status','property_id','tasks'));
+            return view('customer.checkpoint.manage_checkpoint', compact('status','property_id','tasks'));
         }
 }

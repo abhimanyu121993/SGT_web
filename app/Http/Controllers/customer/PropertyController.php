@@ -104,7 +104,7 @@ else{
      */
     public function show($id)
     {
-        //
+        return view('customer.property.view_property');
     }
 
     /**

@@ -15,5 +15,10 @@ return array (
   'country' => 'Country',
   'state' => 'State',
   'city' => 'city',
-  'manage_guard'=>'Manage Security Guard'
+  'manage_guard'=>'Manage Security Guard',
+  'property'=>'Property',
+  'date'=>'Date',
+  'route'=>'Route',
+  'time'=>'Time',
+
 );

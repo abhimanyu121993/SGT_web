@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('property_id')->comment('Id of Property table');
-            $table->unsignedBigInteger('checkpoint_id')->comment('Id of Checkpoint table');
-            $table->integer('complition_time')->comment('Time in minutes');
+            $table->string('name')->comment('route name');
+            $table->string('file')->comment('route image ');
+            $table->string('color')->comment('route color ');
+            $table->longText('desc')->comment('route description ');
+            $table->integer('complition_time')->comment('timing in minute ');
             $table->boolean('is_active')->default(1)->comment('Root active in default');
             $table->softDeletes();
             $table->timestamps();

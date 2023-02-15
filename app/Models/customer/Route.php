@@ -18,6 +18,6 @@ class Route extends Model
     }
     public function checkpoint()
     {
-        return $this->belongsTo(Checkpoint::class, 'checkpoint');
+        return $this->belongsTo(Checkpoint::class, 'checkpoint_id');
     }
 }

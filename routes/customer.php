@@ -74,8 +74,12 @@ Route::post('/status',[CheckpointController::class,'status'])->name('status');
     });
 Route::resource('route',RouteController::class)->name('route','');
 
-//Route for Root Management
+//Route for Route Management
 Route::group(['prefix' => 'route', 'as' => 'route.'], function(){
 Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
+Route::get('show-route/{id}',[RouteController::class,'show_route'])->name('show-route');
+Route::get('/isactive/{id}',[RouteController::class,'is_active'])->name('active-route');
+
+
 });
 
