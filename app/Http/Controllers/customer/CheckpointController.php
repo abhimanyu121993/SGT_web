@@ -6,15 +6,17 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Checkpoint;
 use App\Models\customer\CheckpointHasTask;
+use App\Models\customer\Property;
 use App\Models\customer\Task;
+use App\Models\PermissionName;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-use PHPUnit\TextUI\Help;
-
+use Illuminate\Support\Str;
 class CheckpointController extends Controller
 {
     /**
@@ -63,8 +65,9 @@ class CheckpointController extends Controller
                 $images = 'upload/checkpoint/'.$images;
             }
            $checkpoint= Checkpoint::create([
-                 'owner_id'=>Helper::getOwner(),
+                'owner_id'=>Helper::getOwner(),
                 'property_id'=>$request->property_id,
+                'checkpoint_id'=>Str::random(30),
                 'name'=>$request->name,
                 'desc'=>$request->description,
                 'file'=>$images,
@@ -72,7 +75,8 @@ class CheckpointController extends Controller
                 'lattitude'=>$request->lattitude,
                 'color'=>$request->color,
                 'status_id'=>1,
-                'task_id'=>json_encode($request->task_id),
+                'created_by'=>Auth::guard(Helper::getGuard())->user()->id,
+                'task_id'=>json_encode($request->task_id)
             ]);
             if (is_array($request->task_id) and $request->task_id[0]!=null) {
               foreach ($request->task_id as $i) {
@@ -113,7 +117,8 @@ else{
         $tasks=Task::where('owner_id',Helper::getOwner())->get();
         $checkpoints = Checkpoint::where('property_id',$id)->get();
         $property_id=$id;
-        return view('customer.property.qr_map', compact('checkpoints','status','property_id','tasks'));
+        $property=Property::find($id);
+        return view('customer.property.qr_map', compact('checkpoints','status','property_id','tasks','property'));
         }
 
     /**
@@ -244,7 +249,7 @@ else{
         {
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
-            $property_id=$id;
-            return view('customer.checkpoint.manage_checkpoint', compact('status','property_id','tasks'));
+            $property=Property::find($id);
+            return view('customer.checkpoint.manage_checkpoint', compact('status','property','tasks'));
         }
 }
