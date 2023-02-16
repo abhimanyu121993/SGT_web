@@ -8,6 +8,7 @@ use App\Models\Currency;
 use App\Models\customer\Checkpoint;
 use App\Models\customer\Customer;
 use App\Models\customer\Property;
+use App\Models\PermissionName;
 use App\Models\ProjectError;
 use App\Models\State;
 use App\Models\TimeZone;
@@ -74,9 +75,9 @@ class Helper
             if(Auth::guard(Role::$customer)->user()->type==Customer::$owner){
                 return Helper::getUserId();
             }
-            else if(Auth::guard(Role::$customer)->user()->type==Customer::$employee)
+            else if(Auth::guard(PermissionName::$customer)->user()->type==Customer::$employee)
             {
-                return Auth::guard(Role::$customer)->user()->owner_id;
+                return Auth::guard(PermissionName::$customer)->user()->owner_id;
             }
         }
     }

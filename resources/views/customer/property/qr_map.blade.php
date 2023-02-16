@@ -84,13 +84,19 @@
                 </div>
     </div>
    </div>
-   <div id="modal1" class="modal modal-fixed-footer">
+   <div id="modal1"  class="modal modal-fixed-footer">
     
    </div>
 
 @endsection
 @section('script-area')
-<script src="{{asset('app-assets/js/mapInput.js')}}"></script>
+<script>
+       function initialize(){
+        initmap({{$property->lattitude}},{{$property->longitude}},"{{$property->name}}");
+    }
+ 
+</script>
+<script src="{{asset('app-assets/js/checkpointMap.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
 <script>
        $(document).ready(function() {
@@ -99,12 +105,7 @@
     });
 </script>
 <script>
-    $(document).ready(function(){
     
-    $('.modal').modal();
-    $('#modal1').modal('open');
-    $('#modal1').modal('close')
-  });
 </script>
 <script>
     $(document).ready(function(){
@@ -113,12 +114,21 @@
             url: $(this).data('url'),
             method: 'get',
             success: function(data) {
-                console.log(data);
+
                 $('#modal1').html(data);
+                $('#modal1').modal();
                 $('#modal1').modal('open');
+
             }
         });
     });
+
+ 
+
   });
+
+
+
+  
     </script>
 @endsection

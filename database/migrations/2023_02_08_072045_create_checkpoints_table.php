@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('checkpoints', function (Blueprint $table) {
             $table->id();
-            $table->unsignedbiginteger('owner_id')->comment('owner id');
+            $table->unsignedbiginteger('owner_id')->comment('id from customer table which is actual owner');
             $table->unsignedbiginteger('property_id')->comment('id from property table');
+            $table->text('checkpoint_id')->unique();
             $table->string('name');
             $table->string('desc')->nullable();
             $table->string('file')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->string('task_id');
             $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('created_by')->comment('id from customer table which created this');
             $table->softDeletes();
             $table->timestamps();
         });
