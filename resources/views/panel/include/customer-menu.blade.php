@@ -50,17 +50,17 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
     <div class="collapsible-body"
         style="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'display:block' : '' }}">
         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+          @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('property_read', Session::get('guard')))
+            <li class="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} bold">
+                <a href="{{ route(Session::get('guard') . '.property.index') }}"><i class="material-icons">{{ strpos(Route::currentRouteName(), 'property.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i>
+                    <span data-i18n="Register">{{ __('sidebar.all_property') }}</span></a>
+            </li>
+            @endif
             @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('property_create', Session::get('guard')))
             <li class="{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'active' : '' }}  bold">
                 <a href="{{ route(Session::get('guard') . '.property.create') }}"><i
                         class="material-icons">{{ strpos(Route::currentRouteName(), 'property.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                        data-i18n="Login">{{ __('sidebar.create') }}</span></a>
-            </li>
-            @endif
-            @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('property_read', Session::get('guard')))
-            <li class="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} bold">
-                <a href="{{ route(Session::get('guard') . '.property.index') }}"><i class="material-icons">{{ strpos(Route::currentRouteName(), 'property.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i>
-                    <span data-i18n="Register">{{ __('sidebar.manage') }}</span></a>
+                        data-i18n="Login">{{ __('sidebar.add_property') }}</span></a>
             </li>
             @endif
         </ul>
@@ -98,35 +98,11 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
 
 {{-- Security Guard Menu --}}
 
-    @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('task', Session::get('guard')))
-<li class=" {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active open' : '' }} bold ">
-    <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }} "
-        href="JavaScript:void(0)"><i class="material-icons">today</i><span class="menu-title"
-            data-i18n="Authentication">{{ __('sidebar.task') }} </span></a>
-    <div class="collapsible-body"
-        style="{{ strpos(Route::currentRouteName(), 'task') !== false ? 'display:block' : '' }}">
-        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-        @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('task_create', Session::get('guard')))
-
-            <li class="{{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }} bold">
-                    <a href="{{ route(Session::get('guard') . '.task.index') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(), 'task.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Register">{{ __('sidebar.register_task') }}</span></a>
-            </li>  
-            @endif
-            @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('task_read', Session::get('guard')))
-
-            <li class="{{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }}  bold">
-                    <a href="{{ route(Session::get('guard') . '.task.create') }}"><i
-                            class="material-icons">{{ strpos(Route::currentRouteName(), 'task.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Login">{{ __('sidebar.manage_task') }}</span></a>
-            </li>
-            @endif
-
-        </ul>
-    </div>
-</li>
+    @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('task_read', Session::get('guard')))
+    <li class=" {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active open' : '' }} bold ">
+    <a  class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.task.create') }}"><i class="material-icons">today</i><span class="menu-title" data-i18n="File Manager">{{ __('sidebar.task') }}</span></a>
 @endif
+
 <li class=" {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active open' : '' }} bold ">
     <a  class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.secuirty-guard.create') }}"><i class="material-icons">people</i><span class="menu-title" data-i18n="File Manager">{{__('security_guard.security_guard')}}</span></a>
 

@@ -57,7 +57,7 @@
                             <div class="input-field col s4">
                                         <select class="select2-theme browser-default" id="select2-theme" name="role_id">
                                           @foreach ($roles as $role)
-                                              <option value="{{$role->id}}"@isset($customer)@selected($customer->roles->first()->name==$role->name) @endisset>{{$role->role_name}}</option>
+                                              <option value="{{$role->id}}"@isset($customer)@selected($customer->roles->first()->name==$role->name) @endisset>{{Helper::role_name($role->name)}}</option>
                                           @endforeach
                                         </select>
                                 <span class="active" for="cpassword">{{__('user.role')}}</span>

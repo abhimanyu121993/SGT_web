@@ -8,7 +8,6 @@
             @if (isset($guard))
             @method('patch')
             @endif
-
             <div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
                     <div class="file-field input-field col s12" id="image">
@@ -51,10 +50,7 @@
                         </select>
                         <span class="active" for="gender">{{__('security_guard.gender')}}</span>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}" placeholder="Confirm Password">
-                        <label class="active" for="street">{{__('security_guard.street')}}</label>
-                    </div>
+                   
                     <div class="input-group col s4">
                         <select class="select2 browser-default" id="country" name="country">
                             <option selected disabled>--Select Country--</option>
@@ -62,7 +58,7 @@
                             <option value="{{ $country->id }}" @isset($guard) @selected($guard->country_id==$country->id) @else @selected(old('country_id')==$country->id) @endisset>{{ $country->name }}</option>
                             @endforeach
                         </select>
-                        <span class="active" for="cpassword">{{__('security_guard.country')}}</span>
+                        <span class="active" for="country">{{__('security_guard.country')}}</span>
 
                     </div>
                     <div class="input-group col s4">
@@ -72,8 +68,7 @@
                             <option value="{{$st->id}}" @isset($guard) @selected($guard->state_id==$st->id) @else @selected(old('state_id')==$st->id) @endisset>{{$st->name}}</option>
                             @endforeach
                         </select>
-                        <span class="active" for="cpassword">{{__('security_guard.state')}}</span>
-
+                        <span class="active" for="state">{{__('security_guard.state')}}</span>
                     </div>
                     <div class="input-group col s4">
                         <select class="select2 browser-default" id="city" name="city">
@@ -82,11 +77,15 @@
                             <option value="{{$ct->id}}" @isset($guard) @selected($guard->city_id==$ct->id) @else @selected(old('city_id')==$ct->id) @endisset>{{$ct->name}}</option>
                             @endforeach
                         </select>
-                        <span class="active" for="cpassword">{{__('security_guard.city')}}</span>
+                        <span class="active" for="city">{{__('security_guard.city')}}</span>
 
                     </div>
                     <div class="input-group col s4">
-                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}" placeholder="Confirm Password">
+                        <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}" placeholder="Street">
+                        <label class="active" for="street">{{__('security_guard.street')}}</label>
+                    </div>
+                    <div class="input-group col s4">
+                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}" placeholder="Pincode">
                         <label class="active" for="pincode">{{__('security_guard.pincode')}}</label>
                     </div>
                     <!--end col-->

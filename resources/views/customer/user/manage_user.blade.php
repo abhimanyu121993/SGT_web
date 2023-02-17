@@ -42,9 +42,9 @@
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a id="pop" class="dropdown-item"
-                                        href="{{route(Helper::getGuard().'.user.edit',$bid)}}">Edit</a></li>
+                                        href="{{route(Helper::getGuard().'.user.edit',$bid)}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
-                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
+                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                                 </li>
 
                                 <form id="delete-form-{{ $bid }}"

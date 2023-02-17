@@ -4,7 +4,7 @@
 @section('breadcrumb-backpage', 'Manage Checkpoint')
 @section('breadcrumb-currentpage', 'Manage Checkpoint')
 @section('breadcrumb-menu')
-<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.property.show-checkpoint',$property_id)}}"><span class="hide-on-small-onl">Add Checkpoint</span></a> 
+<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.show-checkpoint',$property_id)}}"><span class="hide-on-small-onl">Add Checkpoint</span></a> 
             </div>
             <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.route.show',$property_id)}}"><span class="hide-on-small-onl">Add Route</span></a> 
             </div>
@@ -99,7 +99,6 @@
        function initialize(){
         initmap({{$property->lattitude}},{{$property->longitude}},"{{$property->name}}");
     }
- 
 </script>
 <script src="{{asset('app-assets/js/checkpointMap.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
@@ -127,13 +126,7 @@
             }
         });
     });
-
- 
-
   });
 
-
-
-  
     </script>
 @endsection

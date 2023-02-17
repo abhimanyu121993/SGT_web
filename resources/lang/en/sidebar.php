@@ -11,7 +11,9 @@ return array (
   'manage' => 'Manage',
   'user'=>'User',
   'staff'=>'Staff',
-
+//Property Management
+'all_property'=>'All Property',
+'add_property'=>'Add Property',
 
   'translation' => 'Translation',
   'translation-list' => 'Translation List',

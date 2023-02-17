@@ -267,5 +267,29 @@ else{
             // return response()
         }
     
-       
+        // For change the password.
+public function update_Password(Request $request)
+{
+    $request->validate([
+        'password'=>'required',
+        'cpassword'=>'required|same:cpassword'
+    ]);
+    try
+    {
+      $res=SecurityGuard::find($request->guard_id)->update(['password'=>Hash::make($request->password)]);
+      if($res){
+        session()->flash('success','Password updated sucessfully');
+
+      }
+      else{
+        session()->flash('success','Password not updated');
+
+      }
+    }
+    catch(Exception $ex)
+    {
+        Helper::handleError($ex);
+    }
+        return redirect()->back();
+}
 }
