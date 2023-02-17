@@ -2,6 +2,8 @@
 return [
      'sr_no'=>'Sr.No',
      'name'=>'Name',
+    'add_property'=>'Add Property',
+
     'property_name'=>'Property Name',
     'country'=>'Country',
     'state'=>'State',
@@ -12,7 +14,6 @@ return [
     'address'=>'Address',
     'qr_map'=>'QR Map',
     'view_property'=>'View Property',
-
 
 //View Property
 'guards_on_duty'=>'Guards On Duty',

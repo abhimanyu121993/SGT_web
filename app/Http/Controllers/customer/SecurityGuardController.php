@@ -62,6 +62,9 @@ class SecurityGuardController extends Controller
             'country' =>'required|exists:countries,id',
             'state' => 'required|exists:states,id',
             'city' => 'required|exists:cities,id',
+            'street' => 'required',
+            'pincode' => 'required',
+            
             'cpassword' => 'required|same:password|min:6',
             'password' => 'required|min:6',
             'email'=>'required|email|unique:security_guards,email',
@@ -91,6 +94,8 @@ class SecurityGuardController extends Controller
                 'country_id'=>$request->country,
                 'state_id'=>$request->state,
                 'city_id'=>$request->city,
+                'pincode'=>$request->pincode,
+                'street'=>$request->street,
                 'status'=>1,
             ]);
 if($res){
@@ -117,7 +122,10 @@ else{
      */
     public function show($id)
     {
-        //
+        $id=Crypt::decrypt($id);
+        $countries = Country::get();
+        $guard=SecurityGuard::find($id);
+        return view('customer.guard.profile',compact('guard','countries'));
     }
 
     /**
@@ -159,6 +167,8 @@ else{
             'country' =>'required|exists:countries,id',
             'state' => 'required|exists:states,id',
             'city' => 'required|exists:cities,id',
+            'street' => 'required',
+            'pincode' => 'required',
             'email'=>'required',
             'phone'=>'required|regex:/^[6-9][0-9]{9}$/',
             'gender'=>'required',
@@ -182,6 +192,9 @@ else{
              'country_id'=>$request->country,
              'state_id'=>$request->state,
              'city_id'=>$request->city,
+             'pincode'=>$request->pincode,
+             'street'=>$request->street,
+
         ]);
         if($res)
         {

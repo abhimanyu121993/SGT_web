@@ -4,8 +4,11 @@
 @section('breadcrumb-backpage', 'Manage Checkpoint')
 @section('breadcrumb-currentpage', 'Manage Checkpoint')
 @section('breadcrumb-menu')
-<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger addCheckpoint" data-url="{{route(Helper::getGuard().'.property.show-checkpoint',$property_id)}}"><span class="hide-on-small-onl">Add Checkpoint</span></a>
-              
+<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.property.show-checkpoint',$property_id)}}"><span class="hide-on-small-onl">Add Checkpoint</span></a> 
+            </div>
+            <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.route.show',$property_id)}}"><span class="hide-on-small-onl">Add Route</span></a> 
+            </div>
+            <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.shift.show',$property_id)}}"><span class="hide-on-small-onl">Add Shift</span></a> 
             </div>
 @endsection
 @section('content-area')
@@ -61,7 +64,7 @@
                             </a>
                             @php $bid=Crypt::encrypt($data->id); @endphp
                             <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                                <li><a id="pop" class="dropdown-item addCheckpoint" data-url="{{route(Session::get('guard').'.checkpoint.edit',$bid)}}">
+                                <li><a id="pop" class="dropdown-item modal1" data-url="{{route(Session::get('guard').'.checkpoint.edit',$bid)}}">
                                         <i class="material-icons light-blue-text text-darken-4">edit</i>
                                     </a></li>
                                 <li><a id="pop" class="dropdown-item" href="#"
@@ -111,7 +114,7 @@
 </script>
 <script>
     $(document).ready(function(){
-    $(document).on('click','.addCheckpoint',function(){
+    $(document).on('click','.modal1',function(){
         $.ajax({
             url: $(this).data('url'),
             method: 'get',

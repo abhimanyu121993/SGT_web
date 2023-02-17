@@ -1,0 +1,9 @@
+<?php
+
+return array (
+  'start_time'=>'Start Time',
+  'end_time'=>'End Time',
+  'add_shift'=>'Add Shift',
+  'is_active'=>'Is Active',
+  'update_shift'=>'Update Shift',
+);

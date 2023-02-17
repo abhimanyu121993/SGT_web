@@ -27,7 +27,7 @@ return array (
   'manage_guard' => 'Manage Guard',
 
   //Task Management 
-  'task'=>'Task Management',
+  'task'=>'Task',
   'register_task'=>'Register Task',
   'manage_task'=>'Manage Task',
 

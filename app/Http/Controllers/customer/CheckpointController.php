@@ -113,6 +113,7 @@ else{
      */
     public function show($id)
     {
+        $id=Crypt::decrypt($id);
         $status=Status::where('type','general')->get();
         $tasks=Task::where('owner_id',Helper::getOwner())->get();
         $checkpoints = Checkpoint::where('property_id',$id)->get();
@@ -135,7 +136,7 @@ else{
         $checkpoint=Checkpoint::find($id);
         $status=Status::where('type','general')->get();
         $tasks=Task::where('owner_id',Helper::getOwner())->get();
-        return view('customer.checkpoint.manage_checkpoint', compact('checkpoint','status','tasks'));       
+        return view('customer.checkpoint.checkpoint', compact('checkpoint','status','tasks'));       
      }
 
     /**
@@ -249,7 +250,12 @@ else{
         {
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
+<<<<<<< Updated upstream
             $property=Property::find($id);
             return view('customer.checkpoint.manage_checkpoint', compact('status','property','tasks'));
+=======
+            $property_id=$id;
+            return view('customer.checkpoint.checkpoint', compact('status','property_id','tasks'));
+>>>>>>> Stashed changes
         }
 }

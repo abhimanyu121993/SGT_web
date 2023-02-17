@@ -28,6 +28,9 @@ return new class extends Migration
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
             $table->string('status')->default('active');
+            $table->string('street');
+            $table->string('pincode');
+
             $table->softDeletes();
             $table->timestamps();
         });

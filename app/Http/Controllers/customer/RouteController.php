@@ -92,8 +92,10 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $checkpoints = Checkpoint::where('property_id', $id)->get();
+        $property_id = $id;
+        $routes = Route::where('property_id', $id)->get();
+        return view('customer.route.create_route', compact('checkpoints', 'property_id', 'routes'));    }
 
     /**
      * Show the form for editing the specified resource.
@@ -214,7 +216,6 @@ class RouteController extends Controller
     }
     public function show_route($id)
     {
-
         $checkpoints = Checkpoint::where('property_id', $id)->get();
         $property_id = $id;
         $routes = Route::where('property_id', $id)->get();

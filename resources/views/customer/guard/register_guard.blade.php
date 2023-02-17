@@ -52,6 +52,10 @@
                         <span class="active" for="gender">{{__('security_guard.gender')}}</span>
                     </div>
                     <div class="input-group col s4">
+                        <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}" placeholder="Confirm Password">
+                        <label class="active" for="street">{{__('security_guard.street')}}</label>
+                    </div>
+                    <div class="input-group col s4">
                         <select class="select2 browser-default" id="country" name="country">
                             <option selected disabled>--Select Country--</option>
                             @foreach ($countries as $country)
@@ -81,7 +85,10 @@
                         <span class="active" for="cpassword">{{__('security_guard.city')}}</span>
 
                     </div>
-
+                    <div class="input-group col s4">
+                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}" placeholder="Confirm Password">
+                        <label class="active" for="pincode">{{__('security_guard.pincode')}}</label>
+                    </div>
                     <!--end col-->
                 </div>
                 <div class="row col s12 mt-2">

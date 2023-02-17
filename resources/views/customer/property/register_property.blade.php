@@ -3,8 +3,9 @@
 @section('breadcrumb-title', 'Property')
 @section('breadcrumb-backpage', 'Property')
 @section('breadcrumb-currentpage', 'Register Property')
-@section('link-area')
-
+@section('breadcrumb-menu')
+<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
+            </div>
 @endsection
 @section('content-area')
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\customer\RolePermissionController;
 use App\Http\Controllers\customer\RootController;
 use App\Http\Controllers\customer\RouteController;
 use App\Http\Controllers\customer\SecurityGuardController;
+use App\Http\Controllers\customer\ShiftController;
 use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
 use App\Models\SecurityGuard;
@@ -79,7 +80,9 @@ Route::group(['prefix' => 'route', 'as' => 'route.'], function(){
 Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
 Route::get('show-route/{id}',[RouteController::class,'show_route'])->name('show-route');
 Route::get('/isactive/{id}',[RouteController::class,'is_active'])->name('active-route');
-
-
 });
-
+//Route for Shift
+Route::resource('shift',ShiftController::class)->name('shift','');
+Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
+    Route::get('/isactive/{id}',[ShiftController::class,'is_active'])->name('active-shift');
+});

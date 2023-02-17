@@ -3,8 +3,9 @@
 @section('breadcrumb-title', 'Property')
 @section('breadcrumb-backpage', 'Property')
 @section('breadcrumb-currentpage', 'Manage Property')
-@section('link-area')
-
+@section('breadcrumb-menu')
+<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-triggert" href="{{route(Helper::getGuard().'.property.create')}}"><span class="hide-on-small-onl">{{__('property.add_property')}}</span></a> 
+            </div>
 @endsection
 @section('content-area')
 <div class="card-content">
@@ -22,7 +23,9 @@
                                             I am a very simple card. I am good at containing small bits of information.
                                         </p>
                                     </div>
-                                    <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$property->id) }}">QR Map</a> <a href="#">View Property</a></div>
+                                      @php $pid=Crypt::encrypt($property->id); @endphp
+
+                                    <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">{{__('property.qr_map')}}</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}">{{__('property.view_property')}}</a></div>
                                 </div>
                             </div>
             @endforeach
