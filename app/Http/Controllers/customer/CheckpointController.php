@@ -159,9 +159,9 @@ else{
             {
                 $image='Checkpoint-'.time().'-'.rand(0,99).'.'.$request->images->extension();
                 $request->images->move(public_path('upload/Checkpoint/'),$image);
-                $oldimage=Checkpoint::find($id)->pluck('images')[0];
+                $oldimage=Checkpoint::find($id)->pluck('file')[0];
                 File::delete(public_path($oldimage));
-                Checkpoint::find($id)->update(['images'=>'upload/checkpoint/'.$image]);
+                Checkpoint::find($id)->update(['file'=>'upload/checkpoint/'.$image]);
             }
              $checkpoint= Checkpoint::find($id)->update([ 
                 'name'=>$request->name,
@@ -246,8 +246,9 @@ else{
             }
             // return response()
         }
-        public function showcheckpoint($id)
+        public function addcheckpoint($id)
         {
+            $id=Crypt::decrypt($id);
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
             $property_id=$id;

@@ -14,14 +14,22 @@
             <div class="card-content">
                 <div class="live-preview">
                     <form action="{{ isset($propertyEdit) ? route(Session::get('guard').'.property.update', $propertyEdit->id) : route(Session::get('guard').'.property.store') }}"
-                        method="POST">
+                        method="POST" enctype="multipart/form-data">
                         @if (isset($propertyEdit))
                             @method('patch')
                         @endif
                         @csrf
                         <div class="row gy-4">
-
-                            <div class="input-field col s12">
+                        <div class="file-field input-field col s6" id="image">
+                        <div class="btn">
+                            <span>{{__('checkpoint.file')}}</span>
+                            <input type="file" name="images">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                            <div class="input-field col s6">
                                
                                 <input type="text" class="form-control" id="property_name" name="name"
                                     value="{{ isset($propertyEdit) ? $propertyEdit->name : old('name') }}" >
