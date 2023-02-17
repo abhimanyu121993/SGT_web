@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard.css">
 @endsection
+@section('breadcrumb-menu')
+<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.task.index')}}"><span>Add Task</span></a> </div>
+@endsection
 @section('content-area')
 
 <div class="card">
@@ -45,16 +48,13 @@
                                 <i class="ri-more-2-fill"></i>
                             </a>
                             @php $bid=Crypt::encrypt($data->id); @endphp
-                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                                <li><a id="pop" class="dropdown-item"
-                                        href="{{route(Helper::getGuard().'.task.edit',$bid)}}">
-                                        <i class="material-icons light-blue-text text-darken-4">edit</i>
-                                    </a></li>
-                                <li><a id="pop" class="dropdown-item" href="#"
-                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
-                                        <i class="material-icons danger red-text text-accent-4">delete</i>
-                                    </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a id="pop" class="  waves-effect waves-light  right modal-trigger modal1"
+                                data-url="{{route(Helper::getGuard().'.task.edit',$bid)}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a></li>
+                                <li ><a id="pop" class="dropdown-item" href="#"
+                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                                 </li>
+
                                 <form id="delete-form-{{ $bid }}"
                                     action="{{ route(Helper::getGuard().'.task.destroy', $bid) }}" method="post"
                                     style="display: none;">
@@ -71,7 +71,8 @@
         </div>
     </div>
     </div>
-
+    <div id="modal1"  class="modal modal-fixed-footer">
+   </div>
     @endsection
 
     @section('script-area')
@@ -92,4 +93,21 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function(){
+    $(document).on('click','.modal1',function(){
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            success: function(data) {
+
+                $('#modal1').html(data);
+                $('#modal1').modal();
+                $('#modal1').modal('open');
+
+            }
+        });
+    });
+  });
+    </script>
 @endsection

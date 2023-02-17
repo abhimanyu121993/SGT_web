@@ -71,8 +71,8 @@ class Helper
     }
 
     public static function getOwner(){
-        if(Auth::guard(Role::$customer)->check()){
-            if(Auth::guard(Role::$customer)->user()->type==Customer::$owner){
+        if(Auth::guard(PermissionName::$customer)->check()){
+            if(Auth::guard(PermissionName::$customer)->user()->type==Customer::$owner){
                 return Helper::getUserId();
             }
             else if(Auth::guard(PermissionName::$customer)->user()->type==Customer::$employee)
@@ -84,11 +84,11 @@ class Helper
 
     public static function getGuard()
     {
-        if(Auth::guard(Role::$admin)->check())
+        if(Auth::guard(PermissionName::$admin)->check())
         {
             return 'admin';
         }
-        else if(Auth::guard(Role::$customer)->check()){
+        else if(Auth::guard(PermissionName::$customer)->check()){
             return 'customer';
         }
     }
@@ -111,5 +111,11 @@ class Helper
         catch(Exception $ex){
             return response()->json(['message' => $ex->getMessage()],501);
         }
+    }
+
+    public static function role_name($name)
+    {
+         $role=explode('_',$name);
+         return $role[1];
     }
 }

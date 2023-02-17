@@ -142,9 +142,9 @@ else{
             {
                 $image='task-'.time().'-'.rand(0,99).'.'.$request->images->extension();
                 $request->images->move(public_path('upload/task/'),$image);
-                $oldimage=Task::find($id)->pluck('images')[0];
+                $oldimage=Task::find($id)->pluck('file')[0];
                 File::delete(public_path($oldimage));
-                Task::find($id)->update(['images'=>'upload/task/'.$image]);
+                Task::find($id)->update(['file'=>'upload/task/'.$image]);
             }
              $res= Task::find($id)->update([ 
              'name' => $request->name,

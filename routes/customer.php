@@ -47,7 +47,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
     Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
     });
 
-    Route::group(['prefix' => 'sucurity-guard', 'as' => 'security-guard.'], function(){
+    Route::group(['prefix' => 'security-guard', 'as' => 'security-guard.'], function(){
         Route::post('/status',[SecurityGuardController::class,'status'])->name('status');
         });
 
@@ -86,3 +86,5 @@ Route::resource('shift',ShiftController::class)->name('shift','');
 Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
     Route::get('/isactive/{id}',[ShiftController::class,'is_active'])->name('active-shift');
 });
+
+Route::post('update-password',[SecurityGuardController::class,'update_password'])->name('update-password');

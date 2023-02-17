@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Customer;
 use App\Models\customer\CustomerProfile;
+use App\Models\PermissionName;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $roles=Role::where('created_by',Helper::getOwner() ?? '')->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Helper::getOwner() ?? '')->where('guard_name',PermissionName::$customer)->get();
         return view('customer.user.register_user',compact('roles'));
     }
   

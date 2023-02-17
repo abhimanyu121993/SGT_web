@@ -10,6 +10,7 @@ return array (
   'lattitude' => 'Lattitude',
   'color' => 'Color',
   'task' => 'Task',
+  'create_task' => 'Task Create',
 
 
   //Manage Task
