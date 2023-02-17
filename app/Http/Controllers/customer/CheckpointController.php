@@ -250,12 +250,7 @@ else{
         {
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
-<<<<<<< Updated upstream
             $property=Property::find($id);
             return view('customer.checkpoint.manage_checkpoint', compact('status','property','tasks'));
-=======
-            $property_id=$id;
-            return view('customer.checkpoint.checkpoint', compact('status','property_id','tasks'));
->>>>>>> Stashed changes
         }
 }

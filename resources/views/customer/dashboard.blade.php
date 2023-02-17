@@ -37,7 +37,6 @@
             </div>
         </div>
     </div>
-<<<<<<< Updated upstream
 </div><!-- START RIGHT SIDEBAR NAV -->
 <div class="row">
     <div class="col s6">
@@ -113,9 +112,7 @@ const config = {
 new Chart($('#mychart2'),config);
   </script>
   
-=======
     </div>
     </div>
 </div>
->>>>>>> Stashed changes
 @endsection

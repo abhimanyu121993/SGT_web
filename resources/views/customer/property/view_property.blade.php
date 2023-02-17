@@ -22,8 +22,7 @@
 
                     </div>
                     <div class="card-action">
-                        <a href="#!" class="lime-text text-accent-1">This is a link</a>
-                        <a href="#!" class="lime-text text-accent-1">This is a link</a>
+                        <div id="project-line-1"></div>
                     </div>
                 </div>
             </div>
@@ -1198,4 +1197,7 @@
     <script src="{{asset('app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('app-assets/js/search.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/app-contacts.js')}}"></script>
+
+    <script src="{{asset('app-assets/vendors/sparkline/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/chartjs/chart.min.js')}}"></script>
 @endsection

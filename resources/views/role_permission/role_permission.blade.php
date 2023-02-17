@@ -2,7 +2,7 @@
 @section('title','Permission')
 @section('breadcrumb-title','Permissions')
 @section('breadcrumb-backpage','Role & Permission')
-@section('breadcrumb-currentpage','Permission')
+@section('breadcrumb-currentpage','Role Has Permission')
 @section('content-area')
 
 <div class="section">

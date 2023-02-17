@@ -45,7 +45,7 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
 @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('property', Session::get('guard')))
 <li class=" {{ strpos(Route::currentRouteName(), 'property') !== false ? 'active open' : '' }} bold ">
     <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'property') !== false ? 'active' : '' }} "
-        href="JavaScript:void(0)"><i class="material-icons">home</i><span class="menu-title"
+        href="JavaScript:void(0)"><i class="material-icons">account_balance</i><span class="menu-title"
             data-i18n="Authentication">{{ __('sidebar.property') }} </span></a>
     <div class="collapsible-body"
         style="{{ strpos(Route::currentRouteName(), 'property') !== false ? 'display:block' : '' }}">
