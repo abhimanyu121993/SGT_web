@@ -15,7 +15,8 @@
             <div class="col s12 m6 l4">
                                 <div class="card small">
                                     <div class="card-image">
-                                        <img src="../../../app-assets/images/gallery/23.png" alt="sample" />
+                                        <img src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+
                                     </div>
                                     <div class="card-content">
                                     <span class="card-title">{{ $property->name ?? '' }}</span>

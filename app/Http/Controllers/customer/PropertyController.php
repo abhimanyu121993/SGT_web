@@ -9,6 +9,7 @@ use App\Models\customer\Property;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 class PropertyController extends Controller
@@ -67,6 +68,13 @@ class PropertyController extends Controller
             'longitude'=>'required'
         ]);
         try{
+            $images = '';
+            if($request->hasFile('images'))
+            {
+                $images='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
+                $request->images->move(public_path('upload/property/'),$images);
+                $images = 'upload/property/'.$images;
+            }
            $res= Property::create([
                 'created_by'=>Helper::getUserId(),
                 'owner_id'=>Helper::getOwner(),
@@ -74,6 +82,7 @@ class PropertyController extends Controller
                 'country' => $request->country ?? '',
                 'state' => $request->state ?? '',
                 'city' => $request->city ?? '',
+                'file' => $images ?? '',
                 'postcode' => $request->postcode ?? '',
                 'address' => $request->address ?? '',
                 'lattitude' => $request->lattitude ?? '',
@@ -150,6 +159,14 @@ else{
         ]);
         try
         {
+            if($request->hasFile('images'))
+            {
+                $image='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
+                $request->images->move(public_path('upload/property/'),$image);
+                $oldimage=Property::find($id)->pluck('file')[0];
+                File::delete(public_path($oldimage));
+                Property::find($id)->update(['file'=>'upload/property/'.$image]);
+            }
              $res= Property::find($id)->update([ 
              'name' => $request->name,
              'country' => $request->country ?? '',

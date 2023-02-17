@@ -38,7 +38,7 @@ Route::resource('profile',ProfileController::class)->name('profile','');
 //Route for Property
 Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
 Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
-Route::get('show-checkpoint/{id}',[CheckpointController::class,'showcheckpoint'])->name('show-checkpoint');
+Route::get('add-checkpoint/{id}',[CheckpointController::class,'addcheckpoint'])->name('add-checkpoint');
 });
 //Route for Security Guard
 Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');
