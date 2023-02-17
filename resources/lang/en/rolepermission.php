@@ -3,5 +3,7 @@ return [
     "role"=>'Role',
     'permission'=>'Permission',
     'permission-list'=>'Permission List',
-    'permission-name'=>'Permission Name'
+    'permission-name'=>'Permission Name',
+    'total'=>'Total',
+    'users'=>'Users'
 ];

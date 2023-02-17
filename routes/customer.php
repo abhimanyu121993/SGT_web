@@ -19,7 +19,7 @@ use Spatie\Permission\Models\Permission;
 
 Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
 Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middleware'=>['permission:role,customer','permission:permission,customer']], function(){
-    Route::resource('role', RoleController::class);
+    Route::resource('role', RoleController::class)->name('role','');
     Route::resource('permission', PermissionController::class);
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions');
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
