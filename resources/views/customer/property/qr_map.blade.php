@@ -24,6 +24,7 @@
             <thead>
                 <tr>
                     <th scope="col">{{__('checkpoint.sr_no')}}</th>
+                    <th scope="col"></th>
                     <th scope="col">{{__('checkpoint.name')}}</th>
                     <th scope="col">{{__('checkpoint.file')}}</th>
                     <th scope="col">{{__('checkpoint.color')}}</th>
@@ -36,6 +37,7 @@
                 @foreach ($checkpoints as $data)
                 <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
+                    <th>{{QrCode::size(50)->generate($data->checkpoint_id)}}</th>
                     <td>{{ $data->name??'' }}</td>
                     <td> <img src="{{ asset($data->file) }}" height="50px"alt="" class="square" /></td>
                     <td>{{ $data->color??'' }}</td>

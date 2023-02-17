@@ -7,16 +7,16 @@
 <!-- END: Head-->
 
 <body
-    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 1-column login-bg   blank-page blank-page"
+    class=" blank-page blank-page"
     data-open="click" data-menu="vertical-modern-menu" data-col="1-column">
-    <div class="row">
-        <div class="col s12">
-            <div class="container">
+    {{-- <div class="row"> --}}
+        {{-- <div class="col s12"> --}}
+            <div class="">
               @yield('content-area')
             </div>
             <div class="content-overlay"></div>
-        </div>
-    </div>
+        {{-- </div> --}}
+    {{-- </div> --}}
 
     @include('auth.include.foot')
     

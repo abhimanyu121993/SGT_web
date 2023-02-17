@@ -46,7 +46,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role_permission.role_create');
     }
 
     /**
@@ -110,7 +110,7 @@ class RoleController extends Controller
         $id = Crypt::decrypt($id);
         $RoleEdit=Role::find($id);
         $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->paginate(10);
-        return view('role_permission.role', compact('roles','RoleEdit'));
+        return view('role_permission.role_create', compact('roles','RoleEdit'));
     }
 
     /**

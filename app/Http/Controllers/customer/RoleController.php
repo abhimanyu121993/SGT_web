@@ -39,7 +39,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role_permission.role_create');
     }
 
     /**
@@ -97,7 +97,7 @@ class RoleController extends Controller
         $id = Crypt::decrypt($id);
         $RoleEdit=Role::find($id);
         $Roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name','customer')->get();
-        return view('role_permission.role', compact('Roles','RoleEdit'));
+        return view('role_permission.role_create', compact('Roles','RoleEdit'));
     }
 
     /**
@@ -116,7 +116,7 @@ class RoleController extends Controller
         ]);
         try{
        $res= Role::find($id)->update([
-            'name' => $request->role
+            'name' =>Helper::getOwner().'_'.$request->role
         ]);
         if($res){
             session()->flash('success','Role has been updated successfully.'); 
