@@ -4,6 +4,7 @@ namespace App\Http\Controllers\customer;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\PermissionName;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class RoleController extends Controller
     //for view the (Role) page.
     public function index()
     {
-        $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Role::$customer)->get();
+        $roles = Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',PermissionName::$customer)->get();
         return view('role_permission.role', compact('roles'));
     }
 
