@@ -102,8 +102,9 @@
             </div>
         </div>
     </div>
-    </div>
+   
     @endforeach
+</div>
 @endsection
 @section('script-area')
 <script src="{{ asset('app-assets/js/scripts/ui-chips.js')}}"></script>

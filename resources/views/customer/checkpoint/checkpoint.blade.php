@@ -4,10 +4,9 @@
 @section('breadcrumb-backpage', 'Checkpoint')
 @section('breadcrumb-currentpage', 'Manage Checkpoint')
 @section('link-area')
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-sidebar.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-contacts.css">
 @endsection
 @section('content-area')
+
   <div class="card">
   <div class="card-content">
         <form action="{{ isset($checkpoint) ? route(Session::get('guard').'.checkpoint.update', $checkpoint->id) : route(Session::get('guard').'.checkpoint.store') }}" method="POST" enctype="multipart/form-data">
@@ -20,7 +19,7 @@
             <div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
                     <div class="input-group col s12">
-                        <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($checkpoint) ? $checkpoint->property_id : $property_id }}" hidden>
+                        <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($checkpoint) ? $checkpoint->property_id : $property->id }}" hidden>
                         <input type="text" class="form-control" id="name" name="name" value="{{ isset($checkpoint) ? $checkpoint->name : old('name') }}" placeholder="Name">
                         <label class="active" for="name">{{__('checkpoint.name')}}</label>
                     </div>
@@ -29,22 +28,14 @@
                         <label class="active" for="color">{{__('checkpoint.color')}}</label>
                     </div>
                     <div class="input-group col s12">
-                        <input type="text" class="form-control" id="lattitude" name="lattitude" value="{{ isset($checkpoint) ? $checkpoint->lattitude : old('lattitude') }}" placeholder="Lattitude">
+                        <input type="text" class="form-control" id="lattitude" name="lattitude" value="{{ isset($checkpoint) ? $checkpoint->lattitude : (old('lattitude')??$property->lattitude) }}" placeholder="Lattitude">
                         <label class="active" for="lattitude">{{__('checkpoint.lattitude')}}</label>
                     </div>
                     <div class="input-group col s12">
-                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ isset($checkpoint) ? $checkpoint->longitude : old('longitude') }}" placeholder="Longitude">
+                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ isset($checkpoint) ? $checkpoint->longitude : (old('longitude')??$property->longitude) }}" placeholder="Longitude">
                         <label class="active" for="longitude">{{__('checkpoint.longitude')}}</label>
                     </div>
-                    <div class="col s12">
-                        <select class="select2 browser-default" id="task_id" name="task_id[]" multiple="multiple">
-                            <option value="">--Select Task--</option>
-                            @foreach ($tasks as $task)
-                            <option value="{{ $task->id }}" {{isset($checkpoint)?in_array($task->id,$checkpoint->checkpointhastask->pluck('task_id')->toArray())?'selected':'':''}}> {{ $task->name   }}</option>
-                            @endforeach
-                        </select>
-                        <span class="active" for="task_id">{{__('checkpoint.task')}}</span>
-                    </div>
+                 
 
                     <div class="file-field input-field col s12" id="image">
                         <div class="btn">
@@ -77,10 +68,9 @@
                 <div class="right mr-5">
                 <h6>Assign checkpoints Task</h6>
             @foreach ($tasks as $task)
-                            <!-- <option value="{{ $task->id }}" {{isset($checkpoint)?in_array($task->id,$checkpoint->checkpointhastask->pluck('task_id')->toArray())?'selected':'':''}}> {{ $task->name   }}</option> -->
                             <label>
-                              <input type="checkbox" value="{{ $task->name }}" name='task[]'
-                               {{($task->name) ? 'checked' : '' }}/>
+                              <input type="checkbox" value="{{ $task->id }}" name='task_id[]'
+                              />
                              <span>{{$task->name}}</span>
                               </label><br>
                     @endforeach
@@ -94,6 +84,10 @@
 
             <!--end col-->
         </form>
+
+        <div id="address-map-container mt-3" style="width:100%;height:400px; ">
+            <div style="width: 100%; height: 100%" id="address-map"></div>
+        </div>
 </div>
   </div>
   <div id="modal1"  class="modal modal-fixed-footer">
@@ -116,9 +110,11 @@
         });
     });
   });
+  
     </script>
    
-    <script src="{{asset('app-assets/js/checkpointMap.js')}}"></script>
+<script src="{{asset('app-assets/js/mapInput.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+
 
 @endsection

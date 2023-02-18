@@ -251,7 +251,7 @@ else{
             $id=Crypt::decrypt($id);
             $status=Status::where('type','general')->get();
             $tasks=Task::where('owner_id',Helper::getOwner())->get();
-            $property_id=$id;
-            return view('customer.checkpoint.checkpoint', compact('status','property_id','tasks'));
+            $property=Property::find($id);
+            return view('customer.checkpoint.checkpoint', compact('status','property','tasks'));
         }
 }

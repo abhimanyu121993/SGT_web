@@ -19,10 +19,11 @@
 
                                     </div>
                                     <div class="card-content">
-                                    <span class="card-title">{{ $property->name ?? '' }}</span>
-                                        <p>
-                                            I am a very simple card. I am good at containing small bits of information.
-                                        </p>
+                                    <p class="card-title">
+                                        <strong>{{ $property->name ?? '' }}</strong>
+                                        
+                                    </p>
+                                       
                                     </div>
                                       @php $pid=Crypt::encrypt($property->id); @endphp
 
