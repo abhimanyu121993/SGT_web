@@ -140,7 +140,9 @@
     <!-- BEGIN: Page Main-->
     <div id="main">
         <div class="row">
-            <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+            <div class="content-wrapper-before gradient-45deg-indigo-blue"></div>
+            {{-- <div class="content-wrapper-before theme-bg"></div> --}}
+
             @include('panel.include.breadcrumb')
             <div class="col s12">
                 <div class="container">
@@ -163,7 +165,7 @@
 
     <!-- BEGIN: Footer-->
 
-    <footer class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
+    <footer class="page-footer footer footer-static footer-dark gradient-45deg-indigo-blue gradient-shadow navbar-border navbar-shadow">
         @include('panel.include.footer')
     </footer>
     @include('auth.change_password')

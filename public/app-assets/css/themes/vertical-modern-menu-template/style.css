@@ -9238,9 +9238,10 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
     margin: 0;
 
     color: #fff;
-    background: -webkit-linear-gradient(45deg, #303f9f, #7b1fa2);
-    background:         linear-gradient(45deg, #303f9f, #7b1fa2);
+    /* background: -webkit-linear-gradient(45deg, #303f9f, #7b1fa2);
+    background:         linear-gradient(45deg, #303f9f, #7b1fa2); */
     box-shadow: 3px 3px 20px 0 rgba(123, 31, 162, .5);
+    background-color: #244B8A;;
 }
 
 .sidenav li a.active i
@@ -12036,4 +12037,8 @@ tr.group:hover
     z-index: 99;
     top: 40%;
     right: -2px;
+}
+
+.theme-bg{
+    background-color: #244B8A;
 }

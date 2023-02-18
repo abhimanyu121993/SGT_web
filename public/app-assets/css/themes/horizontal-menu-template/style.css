@@ -9310,7 +9310,8 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
     margin: 0;
 
     color: #333;
-    background: rgba(0, 0, 0, .04);
+    /* background: rgba(0, 0, 0, .04); */
+    background-color: #244B8A;
     box-shadow: none;
 }
 

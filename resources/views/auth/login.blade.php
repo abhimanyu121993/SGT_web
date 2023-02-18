@@ -24,6 +24,8 @@
                     @endif
                 </p>
                     @csrf
+                    <a href="{{route('auth.customer')}}" class="btn ml-4 {{$guard=='customer'?'theme-active':'theme-text'}}" >{{__('auth.customer')}}</a>
+                    <a  href="{{route('auth.admin')}}" class="btn ml-4 {{$guard=='admin'?'theme-active':'theme-text'}}" >{{__('auth.admin')}}</a>
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix pt-2">person_outline</i>

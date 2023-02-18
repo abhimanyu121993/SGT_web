@@ -16,6 +16,9 @@ return array (
   'free_trial_days' => 'Free Trial Days',
   'status' => 'Choose a status',
   'thumbnail' => 'Choose thumbnail type',
-
+  'max_guard'=>'Maximum guards ',
+  'max_property'=>'Maximum Property',
+  'max_shift'=>'Maximum Shift',
+  'max_checkpoint'=>'Maximum Checkpoint'
 
 );

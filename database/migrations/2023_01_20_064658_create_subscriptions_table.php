@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('img')->nullable()->comment('image of the subscription');
             $table->string('color')->nullable()->comment('text colour of the subscription');
             $table->string('bg_color')->nullable()->comment('background colour of the subscription');
+            $table->bigInteger('guard_qty')->default('1')->comment('Max Guard quantity');
+            $table->bigInteger('property_qty')->default('1')->comment('Max Property quantity');
+            $table->bigInteger('shift_qty')->default('1')->comment('Max Shift quantity');
+            $table->bigInteger('checkpoint_qty')->default('1')->comment('Max Check-Point quantity');
             $table->longText('desc')->nullable()->comment('description of the subscription');
             $table->unsignedbiginteger('created_by')->comment('id from admin table');
             $table->softDeletes();

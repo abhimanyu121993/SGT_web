@@ -31,3 +31,18 @@
 {
     margin-left: 0 !important;
 }
+
+.theme-bg
+{
+    background-color: #244B8A;
+    color: #fff;
+}
+.theme-text
+{
+    color:#244B8A;
+    background-color: #fff;
+}
+.theme-active{
+    background-color: #244B8A;
+    color: #fff;
+}

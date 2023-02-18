@@ -73,14 +73,14 @@
                                     placeholder="Free Trial Days">
                                 <label class="active" for="free_trial_days">{{__('subscription.free_trial_days')}}</label>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-group col s3 mt-2">
                                 <select class="form-select" id="thumbnail" name="thumbnail">
                                     <option selected disabled>{{__('subscription.thumbnail')}}</option>
                                     <option value="icon">{{__('subscription.icon')}}</option>
                                     <option value="img">{{__('subscription.img')}}</option>
                                 </select>
                             </div>
-                            <div class="file-field input-field col s4" id="icon">
+                            <div class="file-field input-field col s3" id="icon">
                                 <div class="btn">
                                     <span>Icon</span>
                                     <input type="file" name="icon">
@@ -89,7 +89,7 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                            <div class="file-field input-field col s4" id="images">
+                            <div class="file-field input-field col s3" id="images">
                                 <div class="btn">
                                     <span>File</span>
                                     <input type="file" name="image">
@@ -98,14 +98,42 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                            <div class="input-group col s2 mt-2">
+                            <div class="input-group col s3 mt-2">
+                                <input type="number" class="form-control" id="guard_qty" name="guard_qty"
+                                    value="{{ isset($EditSubscription) ? $EditSubscription->guard_qty : '' }}"
+                                    placeholder="{{__('subscription.max_guard')}}">
+                                <label class="active" for="bg_color">{{__('subscription.max_guard')}}</label>
+
+                            </div>
+                            <div class="input-group col s3 mt-2">
+                                <input type="number" class="form-control" id="property_qty" name="property_qty"
+                                    value="{{ isset($EditSubscription) ? $EditSubscription->property_qty : '' }}"
+                                    placeholder="{{__('subscription.max_property')}}">
+                                <label class="active" for="bg_color">{{__('subscription.max_property')}}</label>
+
+                            </div>
+                            <div class="input-group col s3 mt-2">
+                                <input type="number" class="form-control" id="shift_qty" name="shift_qty"
+                                    value="{{ isset($EditSubscription) ? $EditSubscription->shift_qty : '' }}"
+                                    placeholder="{{__('subscription.max_shift')}}">
+                                <label class="active" for="bg_color">{{__('subscription.max_shift')}}</label>
+
+                            </div>
+                            <div class="input-group col s3 mt-2">
+                                <input type="number" class="form-control" id="checkpoint_qty" name="checkpoint_qty"
+                                    value="{{ isset($EditSubscription) ? $EditSubscription->shift_qty : '' }}"
+                                    placeholder="{{__('subscription.max_checkpoint')}}">
+                                <label class="active" for="checkpoint_qty">{{__('subscription.max_checkpoint')}}</label>
+
+                            </div>
+                            <div class="input-group col s3 mt-2">
                                 <input type="color" class="form-control" id="color" name="color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->color : '' }}"
                                     placeholder="Color">
                                 <label class="active" for="color">{{__('subscription.color')}}</label>
 
                             </div>
-                            <div class="input-group col s2 mt-2">
+                            <div class="input-group col s3 mt-2">
                                 <input type="color" class="form-control" id="bg-color" name="bg_color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->bg_color : '' }}"
                                     placeholder="Background Color">

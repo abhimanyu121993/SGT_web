@@ -63,8 +63,11 @@ class SubscriptionController extends Controller
         $request->validate([
             'title'=>'required',
             'currency'=>'required',
-            'price'=>'required',          
-
+            'price'=>'required',
+            'guard_qty'=>'required|numeric',
+            'property_qty'=>'required|numeric',
+            'shift_qty'=>'required|numeric',
+            'checkpoint_qty'=>'required|numeric'          
         ]);
         try
         {
@@ -96,6 +99,10 @@ class SubscriptionController extends Controller
             'bg_color'=>$request->bg_color,
             'life_time'=>$request->lifetime??0,
             'desc'=>$request->desc,
+            'guard_qty'=>$request->guard_qty,
+            'property_qty'=>$request->property_qty,
+            'shift_qty'=>$request->shift_qty,
+            'checkpoint_qty'=>$request->checkpoint_qty,
         ]);
 
             if($res)
