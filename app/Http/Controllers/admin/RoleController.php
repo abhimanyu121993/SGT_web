@@ -7,6 +7,7 @@ use App\DataTables\RoleDataTable;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use App\Models\PermissionName;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class RoleController extends Controller
     public function index(RoleDataTable $dataTable)
     {
         // return $dataTable->render('role_permission.role');
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->paginate(10);
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin)->paginate(10);
         return view('role_permission.role', compact('roles'));
     }
 
@@ -109,7 +110,7 @@ class RoleController extends Controller
     {
         $id = Crypt::decrypt($id);
         $RoleEdit=Role::find($id);
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin)->paginate(10);
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin)->paginate(10);
         return view('role_permission.role_create', compact('roles','RoleEdit'));
     }
 
@@ -173,7 +174,7 @@ class RoleController extends Controller
     // Fetch role from role table.
     public function fetch_role()
     {
-        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$customer)->paginate(1);
+        $Roles = Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$customer)->paginate(1);
         return response()->json($Roles);
     }
     //For assigning the permission.
