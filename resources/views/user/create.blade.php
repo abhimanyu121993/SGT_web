@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'User')
-@section('breadcrumb-title', 'User')
-@section('breadcrumb-backpage', 'User')
-@section('breadcrumb-currentpage', 'User')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Staff</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Staff</a>
+                    </li>
+                    <li class="breadcrumb-item active">Staff
+                    </li>
+                </ol>
+            </div>         
+        </div>
+    </div>
+</div>
+@endsection
 @section('content-area')
 
 
@@ -65,7 +82,7 @@
                             <div class="input-field col s4">
                                         <select class="select2-theme browser-default" id="select2-theme" name="role_id">
                                           @foreach ($roles as $role)
-                                              <option value="{{$role->id}}"@isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{$role->role_name}}</option>
+                                              <option value="{{$role->id}}"@isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{Helper::role_name($role->name)}}</option>
                                           @endforeach
                                         </select>
                                 <span class="active" for="cpassword">{{__('user.role')}}</span>
