@@ -5988,7 +5988,7 @@ small
     -webkit-transition: box-shadow .25s;
             transition: box-shadow .25s;
 
-    border-radius: 2px;
+     border-radius: 5px;
     background-color: #fff;
 }
 
@@ -6140,6 +6140,8 @@ small
 
 .card .card-image
 {
+    height: 210px;
+    border-radius: 12px 12px 0px 0px;
     position: relative;
 }
 
@@ -6208,7 +6210,7 @@ small
 
 .card .card-action:last-child
 {
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 12px 12px;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating)
