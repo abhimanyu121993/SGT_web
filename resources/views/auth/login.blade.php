@@ -17,11 +17,6 @@
                 </div>
                 <h5 class="ml-4">{{__('auth.welcome_sgt')}}</h5>
                 <p class="ml-4">{{__('auth.please_signing')}} 
-                    @if($guard=='customer')
-                    <span class="chip gradient-45deg-purple-amber " style="color:#ffff">{{__('auth.customer')}}</span>
-                    @else
-                    <span class="chip gradient-45deg-purple-amber " style="color:#ffff">{{__('auth.admin')}}</span>
-                    @endif
                 </p>
                     @csrf
                     <a href="{{route('auth.customer')}}" class="btn ml-4 {{$guard=='customer'?'theme-active':'theme-text'}}" >{{__('auth.customer')}}</a>
@@ -59,14 +54,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6 m6 l6">
-                        @if($guard=='customer')
-                        <p class="margin medium-small"><a href="{{route('auth.admin')}}">Admin Login</a></p>
-                        @else
-                        <p class="margin medium-small"><a href="{{route('auth.customer')}}">Customer Login</a></p>
-                        @endif
-                    </div>
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin right-align medium-small"><a
+                        <p class="margin  medium-small"><a
                                 href="user-forgot-password.html">Forgot password ?</a></p>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\admin\Admin;
+use App\Models\PermissionName;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -17,9 +18,9 @@ class AssignAllPermissionToAdmin extends Seeder
      */
     public function run()
     {
-        $admins = Admin::where('type',Role::$admin)->get();
+        $admins = Admin::where('type',PermissionName::$admin)->get();
         foreach($admins as $admin){
-            $admin->syncPermissions(Permission::where('guard_name', Role::$admin)->pluck('name'));
+            $admin->syncPermissions(Permission::where('guard_name', PermissionName::$admin)->pluck('name'));
         }
     }
 }

@@ -28,6 +28,34 @@
         <div class="row">
             @foreach ($properties as $property)
             <div class="col s12 m6 l4">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ $property->name ?? '' }} <i
+                        class="material-icons right">more_vert</i>
+                        @php $pid=Crypt::encrypt($property->id); @endphp
+                    </span>
+                    <p><a href="#">{{$property->address}}</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
+                    </span>
+                   <p>
+                    <b>City : </b>{{$property->city_detail->name??''}} <br>
+                    <b>State : </b>{{$property->state_detail->name??''}} <br>
+                    <b>City : </b>{{$property->country_detail->name??''}}
+                   </p>
+                  </div>
+          
+                    <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right;">View </a></div>
+          
+          
+                </div>
+                
+            </div>
+            {{-- <div class="col s12 m6 l4">
                                 <div class="card small">
                                     <div class="card-image">
                                         <img src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
@@ -44,7 +72,7 @@
 
                                     <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">{{__('property.qr_map')}}</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}">{{__('property.view_property')}}</a></div>
                                 </div>
-                            </div>
+            </div> --}}
             @endforeach
         </div>
     </div>

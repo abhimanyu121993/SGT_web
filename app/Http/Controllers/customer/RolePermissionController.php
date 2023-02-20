@@ -22,7 +22,7 @@ class RolePermissionController extends Controller
     {
         $selectrole=Role::find($request->role);
         $roles=Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',PermissionName::$customer)->get();
-        $permissionnames=PermissionName::where('guard_name',Role::$customer)->get();
+        $permissionnames=PermissionName::where('guard_name',PermissionName::$customer)->get();
         return view('role_permission.role_has_permission',compact('roles','permissionnames','selectrole'));
     }
     //For assigning the permission.
