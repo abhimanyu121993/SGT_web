@@ -9,8 +9,8 @@
 
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
-                            <div class="input-group col s6">
-                                <input type="text" class="form-control" id="name" name="name" value="{{ isset($task) ? $task->name : old('name') }}" placeholder="Name">
+                            <div class="input-field col s6">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ isset($task) ? $task->name : old('name') }}">
                                 <label class="active" for="name">{{__('task.name')}}</label>
                             </div>
                             <div class="file-field input-field col s6" id="image">
@@ -22,14 +22,14 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                            <div class="input-group col s12">
+                            <div class="input-field col s12">
                                 <textarea type="text" class="form-control" id="desc" name="description" placeholder="Start Writting Here....">{{ isset($task) ? $task->desc : old('desc') }}</textarea>
                                 <label class="active" for="desc">{{__('task.desc')}}</label>
                             </div>
                             <!--end col-->
                         </div>
                         <div class="row col s12 mt-2">
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($task) ? 'Update' : 'Submit' }}</button>
                             </div>
                         </div>
