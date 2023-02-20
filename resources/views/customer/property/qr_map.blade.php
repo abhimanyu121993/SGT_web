@@ -1,21 +1,28 @@
 @extends('layout.panel')
 @section('title', 'Manage Checkpoint')
-@section('breadcrumb-title', 'Manage Checkpoint')
-@section('breadcrumb-backpage', 'Manage Checkpoint')
-@section('breadcrumb-currentpage', 'Manage Checkpoint')
-@section('breadcrumb-menu')
-    <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger"
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m5 l5">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Manage Checkpoint</span></h5>
+            </div>
+            <div class="row m7 mb-2">
+          <div class="col s3"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger"
             href="{{ route(Helper::getGuard() . '.property.add-checkpoint', Crypt::encrypt($property_id)) }}"><span
-                class="hide-on-small-onl">Add Checkpoint</span></a>
-    </div>
-    <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
+                class="hide-on-small-onl">Add Checkpoint</span></a></div>
+          <div class="col s2"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
             data-url="{{ route(Helper::getGuard() . '.route.show', $property_id) }}"><span class="hide-on-small-onl">Add
-                Route</span></a>
-    </div>
-    <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
+                Route</span></a></div>
+          <div class="col s2"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
             data-url="{{ route(Helper::getGuard() . '.shift.show', $property_id) }}"><span class="hide-on-small-onl">Add
-                Shift</span></a>
+                Shift</span></a></div>
+
+            </div>
+        </div>
     </div>
+</div>
 @endsection
 @section('link-area')
 

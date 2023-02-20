@@ -63,6 +63,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //for store customer details
     public function store(Request $request)
     {
         $request->validate([

@@ -33,7 +33,7 @@ class SubscriptionController extends Controller
     //For view the (Create Subscription) page.
     public function index()
     {
-        $status=Status::all();     //fetching the all status.
+        $status=Status::where('Type','guard')->get();     //fetching the status.
         $currency=Helper::getCurrencies(); //fetching the all currency from helper.
         return view('admin.subscription.create',compact('status','currency'));
     }

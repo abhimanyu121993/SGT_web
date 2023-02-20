@@ -28,7 +28,6 @@
             <div class="card border-radius-6">
                 <div class="card-content center-align">
                     <h6><b>{{__('security_guard.total_guard')}}</b></h6>
-                    <p>{{__('security_guard.locations_contracted')}}</p>
                     <h6 class="m-0"><b>21.5k</b></h6>
                 </div>
             </div>
@@ -37,7 +36,6 @@
             <div class="card border-radius-6">
                 <div class="card-content center-align">
                     <h6><b>{{__('security_guard.active_guard')}}</b></h6>
-                    <p>{{__('security_guard.locations_contracted')}}</p>
                     <h6 class="m-0"><b>21.5k</b></h6>
                 </div>
             </div>
@@ -46,7 +44,6 @@
             <div class="card border-radius-6">
                 <div class="card-content center-align">
                     <h6><b>{{__('security_guard.inactive_guard')}}</b></h6>
-                    <p>{{__('security_guard.locations_contracted')}}</p>
                     <h6 class="m-0"><b>21.5k</b></h6>
                 </div>
             </div>
@@ -55,7 +52,6 @@
             <div class="card border-radius-6">
                 <div class="card-content center-align">
                     <h6><b>{{__('security_guard.guard_on_leave')}}</b></h6>
-                    <p>{{__('security_guard.locations_contracted')}}</p>
                     <h6 class="m-0"><b>21.5k</b></h6>
                 </div>
             </div>

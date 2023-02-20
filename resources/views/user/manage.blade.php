@@ -37,12 +37,12 @@ $guard='customer';
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <h4 class="card-title">Manage User
+                <h4 class="card-title">{{__('staff.manage_staff')}}
                 </h4>
                 <div class="row">
                     <div class="col s12">
                         <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
-                            <thead class="blue-text">
+                            <thead class="">
                                 <tr>
                                 <th>{{__('user.sr_no')}}</th>
                                 <th>{{__('user.name')}}</th>

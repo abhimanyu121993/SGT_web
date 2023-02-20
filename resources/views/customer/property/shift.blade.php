@@ -10,18 +10,18 @@
                 <div class="row gy-4">
                     <div class="col-xxl-3 col-md-12">
                         <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($shift) ? $shift->property_id : $property_id }}" hidden>
-                        <div class="input-group col s12">
-                            <input type="time" class="form-control" id="start_time" name="start_time" value="{{ isset($shift) ? $shift->start_time : old('start_time') }}" placeholder="Start Time">
+                        <div class="input-field col s12">
+                            <input type="time" class="form-control" id="start_time" name="start_time" value="{{ isset($shift) ? $shift->start_time : old('start_time') }}">
                             <label class="active" for="start_time">{{__('shift.start_time')}}</label>
                         </div>
                         <div class="col-xxl-3 col-md-12">
-                        <div class="input-group col s12">
-                            <input type="time" class="form-control" id="end_time" name="end_time" value="{{ isset($shift) ? $shift->end_time : old('end_time') }}" placeholder="End Time">
+                        <div class="input-field col s12">
+                            <input type="time" class="form-control" id="end_time" name="end_time" value="{{ isset($shift) ? $shift->end_time : old('end_time') }}">
                             <label class="active" for="end_time">{{__('shift.end_time')}}</label>
                         </div>
                     </div>
                     <div class="row col s12 mt-2">
-                        <div class="input-group col s12">
+                        <div class="input-field col s12">
                             <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($shift) ? 'Update' : 'Submit' }}</button>
                         </div>
                     </div>

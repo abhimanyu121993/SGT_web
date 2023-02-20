@@ -8572,7 +8572,7 @@ textarea.materialize-textarea
 [type='radio']:checked + span:after,
 [type='radio'].with-gap:checked + span:after
 {
-    background-color: #03a9f4;
+    background-color: #244B8A;
 }
 
 [type='radio']:checked + span:after

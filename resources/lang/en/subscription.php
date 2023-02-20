@@ -21,6 +21,8 @@ return array (
   'max_shift'=>'Maximum Shift',
   'max_checkpoint'=>'Maximum Checkpoint',
   'manage_subscription' => 'Manage Subscription',
+  'in_days' => 'In Days',
+  'unlimited'=>'Leave blank for unlimited'
 
 
 );
