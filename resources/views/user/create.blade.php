@@ -28,47 +28,52 @@
                         @endif
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
-                            <div class="input-group col s4">
-                                <input type="text" class="form-control" id="fname" name="first_name"
-                                    value="{{ isset($user) ? $user->first_name : '' }}"
-                                    placeholder="First Name">
+                            <div class="input-field col s4">
                                 <label class="active" for="name">{{__('user.fname')}}</label>
+                                <input type="text" class="form-control" id="fname" name="first_name"
+                                    value="{{ isset($user) ? $user->first_name : '' }}">
+                               
 
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="lname" name="last_name"
-                                    value="{{ isset($user) ? $user->last_name : '' }}"
-                                    placeholder="Last Name">
+                                    value="{{ isset($user) ? $user->last_name : '' }}" >
                                 <label class="active" for="lname">{{__('user.lname')}}</label>
                             </div>
-                            <div class="input-group col s4">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ isset($user) ? $user->email : '' }}"
-                                    placeholder="Email">
+                            <div class="input-field col s4">
                                 <label class="active" for="email">{{__('user.email')}}</label>
+                                <input type="text" class="form-control" id="email" name="email"
+                                    value="{{ isset($user) ? $user->email : '' }}">
+                               
+
+                            </div>
+                            <div class="input-field col s4">
+                                <label class="active" for="mobile">{{__('user.mobile')}}</label>
+                                <input type="text" class="form-control" id="mobile" name="mobile"
+                                    value="{{ isset($user) ? ($user->user_detail->mobileno??'') : '' }}">
+                               
 
                             </div>
                             @if(!isset($user))             
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="password" class="form-control" id="password" name="password"
-                                    value="{{ isset($user) ? $user->password : '' }}"
-                                    placeholder="password">
+                                    value="{{ isset($user) ? $user->password : '' }}">
                                 <label class="active" for="password">{{__('user.password')}}</label>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="cpassword" name="cpassword"
-                                    value="{{ isset($user) ? $user->password : '' }}"
-                                    placeholder="Confirm Password">
+                                    value="{{ isset($user) ? $user->password : '' }}">
                                 <label class="active" for="cpassword">{{__('user.cpassword')}}</label>
                             </div>
                             @endif
                             <div class="input-field col s4">
+                                <span class="active" for="cpassword">{{__('user.role')}}</span>
                                         <select class="select2-theme browser-default" id="select2-theme" name="role_id">
                                           @foreach ($roles as $role)
                                               <option value="{{$role->id}}"@isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{$role->role_name}}</option>
                                           @endforeach
                                         </select>
-                                <span class="active" for="cpassword">{{__('user.role')}}</span>
+                               
 
                                       </div>
                                 </div>

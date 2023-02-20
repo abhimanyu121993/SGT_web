@@ -9,7 +9,7 @@ return array (
   'subscription' => 'Subscription',
   'create' => 'Create',
   'manage' => 'Manage',
-  'user'=>'User',
+  'user'=>'Staff',
   'staff'=>'Staff',
 //Property Management
 'all_property'=>'All Property',
