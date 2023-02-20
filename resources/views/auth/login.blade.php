@@ -17,11 +17,6 @@
                 </div>
                 <h5 class="ml-4">{{__('auth.welcome_sgt')}}</h5>
                 <p class="ml-4">{{__('auth.please_signing')}} 
-                    @if($guard=='customer')
-                    <span class="chip gradient-45deg-purple-amber " style="color:#ffff">{{__('auth.customer')}}</span>
-                    @else
-                    <span class="chip gradient-45deg-purple-amber " style="color:#ffff">{{__('auth.admin')}}</span>
-                    @endif
                 </p>
                     @csrf
                     <a href="{{route('auth.customer')}}" class="btn ml-4 {{$guard=='customer'?'theme-active':'theme-text'}}" >{{__('auth.customer')}}</a>
