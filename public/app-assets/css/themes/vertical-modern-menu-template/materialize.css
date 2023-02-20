@@ -6210,6 +6210,7 @@ small
 
 .card .card-action:last-child
 {
+    background-color: grey;
     border-radius: 0 0 12px 12px;
 }
 
@@ -6509,6 +6510,7 @@ small
     left: 0;
 
     visibility: hidden;
+
     overflow: hidden;
 
     max-width: calc(100% - 4px);
@@ -6533,6 +6535,7 @@ small
     visibility: hidden;
 
     width: 14px;
+
     height: 7px;
 
     -webkit-transform-origin: 50% 0;
