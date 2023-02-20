@@ -1,5 +1,5 @@
 @extends('layout.panel')
-@section('title', 'Subcription')
+@section('title', 'Subscription')
 @section('breadcrumb')
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
     <!-- Search for small screen-->
