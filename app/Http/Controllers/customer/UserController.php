@@ -125,7 +125,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $id=Crypt::decrypt($id);
-        $roles=Role::where('created_by',Helper::getOwner())->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Helper::getOwner())->where('guard_name',PermissionName::$customer)->get();
         $customer=Customer::find($id);
         if($customer)
         {

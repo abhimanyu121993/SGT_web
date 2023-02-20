@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\PermissionName;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery()->where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',Role::$admin);
+        return $model->newQuery()->where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin);
     }
 
     /**
