@@ -19,29 +19,29 @@
                             <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ isset($guard) ? $guard->name : old('name') }}" placeholder="Name">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ isset($guard) ? $guard->name : old('name') }}">
                         <label class="active" for="name">{{__('security_guard.name')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{ isset($guard) ? $guard->phone : old('phone') }}" placeholder="Phone No">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ isset($guard) ? $guard->phone : old('phone') }}">
                         <label class="active" for="phone">{{__('security_guard.phone')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="email" name="email" value="{{ isset($guard) ? $guard->email : old('email') }}" placeholder="Email">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="email" name="email" value="{{ isset($guard) ? $guard->email : old('email') }}">
                         <label class="active" for="email">{{__('security_guard.email')}}</label>
                     </div>
                     @if(!isset($guard))
-                    <div class="input-group col s4">
-                        <input type="password" class="form-control" id="password" name="password" value="{{ isset($guard) ? $guard->password : '' }}" placeholder="password">
+                    <div class="input-field col s4">
+                        <input type="password" class="form-control" id="password" name="password" value="{{ isset($guard) ? $guard->password : '' }}">
                         <label class="active" for="password">{{__('security_guard.password')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="cpassword" name="cpassword" value="{{ isset($guard) ? $guard->password : '' }}" placeholder="Confirm Password">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="cpassword" name="cpassword" value="{{ isset($guard) ? $guard->password : '' }}">
                         <label class="active" for="cpassword">{{__('security_guard.cpassword')}}</label>
                     </div>
                     @endif
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <select class="select2 browser-default" id="gender" name="gender">
                             <option selected disabled>--Select Gender--</option>
                             <option value="male" @isset($guard) @selected($guard->gender=='m') @else @selected(old('gender')=='m') @endisset>Male</option>
@@ -51,7 +51,7 @@
                         <span class="active" for="gender">{{__('security_guard.gender')}}</span>
                     </div>
                    
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <select class="select2 browser-default" id="country" name="country">
                             <option selected disabled>--Select Country--</option>
                             @foreach ($countries as $country)
@@ -61,7 +61,7 @@
                         <span class="active" for="country">{{__('security_guard.country')}}</span>
 
                     </div>
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <select class="select2 browser-default" id="state" name="state">
                             <option value="">--Select State--</option>
                             @foreach (Helper::getStateByCountry($guard->country_id??old('country_id')) as $st)
@@ -70,7 +70,7 @@
                         </select>
                         <span class="active" for="state">{{__('security_guard.state')}}</span>
                     </div>
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <select class="select2 browser-default" id="city" name="city">
                             <option value="">--Select City--</option>
                             @foreach (Helper::getCitiesByState($guard->state_id??old('state_id')) as $ct)
@@ -80,18 +80,18 @@
                         <span class="active" for="city">{{__('security_guard.city')}}</span>
 
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}" placeholder="Street">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}">
                         <label class="active" for="street">{{__('security_guard.street')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}" placeholder="Pincode">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}">
                         <label class="active" for="pincode">{{__('security_guard.pincode')}}</label>
                     </div>
                     <!--end col-->
                 </div>
                 <div class="row col s12 mt-2">
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($guard) ? 'Update' : 'Submit' }}</button>
                     </div>
                 </div>

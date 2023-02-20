@@ -1,6 +1,17 @@
 @extends('layout.panel')
 @section('title', 'Guard')
-@section('breadcrumb-title', 'Guard Profile')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Guard Profile</span></h5>
+            </div>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard.css">

@@ -19,6 +19,8 @@ return array (
   'max_guard'=>'Maximum guards ',
   'max_property'=>'Maximum Property',
   'max_shift'=>'Maximum Shift',
-  'max_checkpoint'=>'Maximum Checkpoint'
+  'max_checkpoint'=>'Maximum Checkpoint',
+  'manage_subscription' => 'Manage Subscription',
+
 
 );

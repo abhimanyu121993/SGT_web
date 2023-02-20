@@ -41,5 +41,8 @@ return array (
     //Root Management
     'route'=>'Route',
     'manage_route'=>'Manage Route',
-
+//Admin panel
+//Staff
+'add_staff'=>'Add Staff',
+'manage_staff'=>'Manage Staff',
 );

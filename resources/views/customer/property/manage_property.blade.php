@@ -1,11 +1,26 @@
 @extends('layout.panel')
 @section('title', 'Property')
-@section('breadcrumb-title', 'Property')
-@section('breadcrumb-backpage', 'Property')
-@section('breadcrumb-currentpage', 'Manage Property')
-@section('breadcrumb-menu')
-<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-triggert" href="{{route(Helper::getGuard().'.property.create')}}"><span class="hide-on-small-onl">{{__('property.add_property')}}</span></a> 
-            </div>
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>All Property</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">All Property</a>
+                    </li>
+                    <li class="breadcrumb-item active">All Property
+                    </li>
+                </ol>
+            </div> 
+            <div class="col s2 m6 l6 mb-2"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-triggert" href="{{route(Helper::getGuard().'.property.create')}}"><span class="hide-on-small-onl">{{__('property.add_property')}}</span></a> 
+            </div>       
+        </div>
+    </div>
+</div>
 @endsection
 @section('content-area')
 <div class="card-content">
