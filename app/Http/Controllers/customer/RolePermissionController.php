@@ -13,7 +13,7 @@ class RolePermissionController extends Controller
     // open view for create permission made by super admin
     public function role_has_permission()
     {
-        $roles=Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',PermissionName::$customer)->get();
         return view('role_permission.role_permission',compact('roles'));
     }
     //For fetching the permission.
@@ -21,7 +21,7 @@ class RolePermissionController extends Controller
     public function fetch_permission(Request $request)
     {
         $selectrole=Role::find($request->role);
-        $roles=Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',Role::$customer)->get();
+        $roles=Role::where('created_by',Auth::guard('customer')->user()->id)->where('guard_name',PermissionName::$customer)->get();
         $permissionnames=PermissionName::where('guard_name',Role::$customer)->get();
         return view('role_permission.role_has_permission',compact('roles','permissionnames','selectrole'));
     }

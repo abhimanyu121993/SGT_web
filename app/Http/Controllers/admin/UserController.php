@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\admin\AdminProfile;
+use App\Models\PermissionName;
 use App\Models\ProjectError;
 use App\Models\SecurityGuard;
 use App\Models\Status;
@@ -30,7 +31,7 @@ class UserController extends Controller
     //For view the (Create User) page.
     public function index()
     {
-        $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',Role::$admin)->get(); //fetching the role according to guard.
+        $roles=Role::where('created_by',Helper::getUserId() ?? '')->where('guard_name',PermissionName::$admin)->get(); //fetching the role according to guard.
         return view('user.create',compact('roles'));
     }
   

@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'Subcription')
-@section('breadcrumb-title', 'Subscription')
-@section('breadcrumb-backpage', 'Subscription')
-@section('breadcrumb-currentpage', 'Subscription')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Subscription</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Subscription</a>
+                    </li>
+                    <li class="breadcrumb-item active">Subscription
+                    </li>
+                </ol>
+            </div>         
+        </div>
+    </div>
+</div>
+@endsection
 @section('content-area')
 
 <div class="section">

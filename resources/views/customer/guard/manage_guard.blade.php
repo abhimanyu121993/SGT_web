@@ -1,18 +1,22 @@
 @extends('layout.panel')
 @section('title', 'Guard')
-@section('breadcrumb-title', 'Guard')
-@section('breadcrumb-backpage', 'Guard')
-@section('breadcrumb-currentpage', 'Guard')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Guard</span></h5>
+            </div>
+            <div class="col s2 m6 l6 mb-2"><a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" data-url="{{route('customer.secuirty-guard.index') }}"><span class="hide-on-small-onl">Add Guard</span></a></div>
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard.css">
 
-
-@endsection
-@section('breadcrumb-menu')
-<!-- Content Area Starts -->
-<div class="col s2 m6 l6"><a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" data-url="{{route('customer.secuirty-guard.index') }}"><span class="hide-on-small-onl">Add User</span></a>
-</div>
 
 @endsection
 @section('content-area')
@@ -63,84 +67,84 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-            <h4 class="card-title">{{__('security_guard.user_activity')}}</h4>
+                <h4 class="card-title">{{__('security_guard.user_activity')}}</h4>
                 <div class="row">
                     <div class="col s12">
-                        <table id="scroll-vert-hor" class="display nowrap">
-                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">{{__('security_guard.username')}}</th>
-                                                <th scope="col">{{__('security_guard.country')}}</th>
-                                                <th scope="col">{{__('security_guard.state')}}</th>
-                                                <th scope="col">{{__('security_guard.city')}}</th>
-                                                <th scope="col">{{__('security_guard.email')}}</th>
-                                                <th scope="col">{{__('security_guard.total_report')}}</th>
-                                                <th scope="col">{{__('security_guard.shift_completed')}}</th>
-                                                <th scope="col">{{__('security_guard.shift_missed')}}</th>
-                                                <th scope="col">{{__('security_guard.ip_address')}}</th>
-                                                <th scope="col">{{__('security_guard.media')}}</th>
-                                                <th scope="col">{{__('security_guard.role')}}</th>
-                                                <th scope="col">{{__('security_guard.property')}}</th>
-                                                <th scope="col">{{__('security_guard.phone')}}</th>
-                                                <th scope="col">{{__('security_guard.joined')}}</th>
-                                                <th scope="col">{{__('security_guard.last_login')}}</th>
-                                                <th scope="col">{{__('security_guard.status')}}</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($guards as $data)
-                                            <tr>
-                                                <td> <img src="{{ asset($data->images) }}" height="50px" alt="" class="circle" /></td>
-                                                <td>{{ $data->name??'' }}</td>
-                                                <td>{{$data->country->name??''}}</td>
-                                                <td>{{$data->state->name??''}}</td>
-                                                <td>{{$data->city->name??''}}</td>
-                                                <td><a href="{{ route(Helper::getGuard().'.secuirty-guard.show', Crypt::encrypt($data->id)) }}">{{ $data->email??''}}</a></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>{{ $data->property->name??''}}</td> 
-                                                <td>{{ $data->phone??''}}</td>
-                                                <td></td>
-                                                <td></td>
+                        <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">{{__('security_guard.username')}}</th>
+                                    <th scope="col">{{__('security_guard.country')}}</th>
+                                    <th scope="col">{{__('security_guard.state')}}</th>
+                                    <th scope="col">{{__('security_guard.city')}}</th>
+                                    <th scope="col">{{__('security_guard.email')}}</th>
+                                    <th scope="col">{{__('security_guard.total_report')}}</th>
+                                    <th scope="col">{{__('security_guard.shift_completed')}}</th>
+                                    <th scope="col">{{__('security_guard.shift_missed')}}</th>
+                                    <th scope="col">{{__('security_guard.ip_address')}}</th>
+                                    <th scope="col">{{__('security_guard.media')}}</th>
+                                    <th scope="col">{{__('security_guard.role')}}</th>
+                                    <th scope="col">{{__('security_guard.property')}}</th>
+                                    <th scope="col">{{__('security_guard.phone')}}</th>
+                                    <th scope="col">{{__('security_guard.joined')}}</th>
+                                    <th scope="col">{{__('security_guard.last_login')}}</th>
+                                    <th scope="col">{{__('security_guard.status')}}</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($guards as $data)
+                                <tr>
+                                    <td> <img src="{{ asset($data->images) }}" height="50px" alt="" class="circle" /></td>
+                                    <td>{{ $data->name??'' }}</td>
+                                    <td>{{$data->country->name??''}}</td>
+                                    <td>{{$data->state->name??''}}</td>
+                                    <td>{{$data->city->name??''}}</td>
+                                    <td><a href="{{ route(Helper::getGuard().'.secuirty-guard.show', Crypt::encrypt($data->id)) }}">{{ $data->email??''}}</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ $data->property->name??''}}</td>
+                                    <td>{{ $data->phone??''}}</td>
+                                    <td></td>
+                                    <td></td>
 
-                                                <td>
-                                                    <div class="input-group">
-                                                        <select class="browser-default status" id="" data="{{ $data->id }}" name="status">
-                                                            @foreach ($status as $st)
-                                                            <option value="{{ $st->id }}" {{ $data->status }} @selected($data->status == $st->id)>{{ $st->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                    <td>
+                                        <div class="input-group">
+                                            <select class="browser-default status" id="" data="{{ $data->id }}" name="status">
+                                                @foreach ($status as $st)
+                                                <option value="{{ $st->id }}" {{ $data->status }} @selected($data->status == $st->id)>{{ $st->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="ri-more-2-fill"></i>
-                                                        </a>
-                                                        @php $bid=Crypt::encrypt($data->id); @endphp
-                                                        <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                                                            <li><a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
-                                                                    <i class="material-icons danger red-text text-accent-4">delete</i>
-                                                                </a>
-                                                                </li>
-                                                                <form id="delete-form-{{ $bid }}" action="{{ route(Helper::getGuard().'.secuirty-guard.destroy', $bid) }}" method="post" style="display: none;">
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                </form>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-more-2-fill"></i>
+                                            </a>
+                                            @php $bid=Crypt::encrypt($data->id); @endphp
+                                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+                                                <li><a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
+                                                        <i class="material-icons danger red-text text-accent-4">delete</i>
+                                                    </a>
+                                                </li>
+                                                <form id="delete-form-{{ $bid }}" action="{{ route(Helper::getGuard().'.secuirty-guard.destroy', $bid) }}" method="post" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                        </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -193,11 +197,11 @@
         });
     });
 </script>
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
- 
-    <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
 
-    <!-- END THEME  JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
+<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
+
+<!-- END THEME  JS-->
+<!-- BEGIN PAGE LEVEL JS-->
 @endsection
