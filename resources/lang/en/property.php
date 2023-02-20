@@ -1,5 +1,6 @@
 <?php
 return [
+    'image'=>'Image',
      'sr_no'=>'Sr.No',
      'name'=>'Name',
     'add_property'=>'Add Property',

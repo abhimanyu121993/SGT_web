@@ -26,9 +26,10 @@ class SecurityGuardController extends Controller
         $this->middleware('permission:security guard_read,customer')->only('index');
         $this->middleware('permission:security guard_create,customer')->only('store');
         $this->middleware('permission:security guard_delete,customer')->only('destroy');
-        $this->middleware('permission:security guard_edit,customer')->only('edit','update');
+        $this->middleware('permission:security guard_edit,customer')->only('edit', 'update');
     }
-    
+    //For show (Register Guard) page.
+
     public function index()
     {
         $countries = Country::get();
@@ -40,12 +41,12 @@ class SecurityGuardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //For show (Register property) page.
+    //For show (Manage Guard) page.
     public function create()
     {
-        $status=Status::where('type','guard')->get();
-        $guards = SecurityGuard::where('owner_id',Helper::getOwner())->get();
-        return view('customer.guard.manage_guard', compact('guards','status'));
+        $status = Status::where('type', 'guard')->get();
+        $guards = SecurityGuard::where('owner_id', Helper::getOwner())->get();
+        return view('customer.guard.manage_guard', compact('guards', 'status'));
     }
 
     /**
@@ -54,61 +55,56 @@ class SecurityGuardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //For store data in property table.
+    //For store data in SecurityGuard table.
 
     public function store(Request $request)
     {
         $request->validate([
-            'country' =>'required|exists:countries,id',
+            'country' => 'required|exists:countries,id',
             'state' => 'required|exists:states,id',
             'city' => 'required|exists:cities,id',
             'street' => 'required',
             'pincode' => 'required',
-            
+
             'cpassword' => 'required|same:password|min:6',
             'password' => 'required|min:6',
-            'email'=>'required|email|unique:security_guards,email',
-            'phone'=>'required|regex:/^[6-9][0-9]{9}$/',
-            'gender'=>'required',
-            'name'=>'required|string',
+            'email' => 'required|email|unique:security_guards,email',
+            'phone' => 'required|regex:/^[6-9][0-9]{9}$/',
+            'gender' => 'required',
+            'name' => 'required|string',
 
         ]);
-        try{
+        try {
             $images = '';
-            if($request->hasFile('images'))
-            {
-                $images='guard-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/security_guard/images/'),$images);
-                $images = 'upload/security_guard/images/'.$images;
+            if ($request->hasFile('images')) {
+                $images = 'guard-' . time() . '-' . rand(0, 99) . '.' . $request->images->extension();
+                $request->images->move(public_path('upload/security_guard/images/'), $images);
+                $images = 'upload/security_guard/images/' . $images;
             }
-           $res= SecurityGuard::create([
-                'created_by'=>Helper::getUserId(),
-                'owner_id'=>Helper::getOwner(),
-                'user_id'=>time().'@'.Helper::getOwner(),
+            $res = SecurityGuard::create([
+                'created_by' => Helper::getUserId(),
+                'owner_id' => Helper::getOwner(),
+                'user_id' => time() . '@' . Helper::getOwner(),
                 'name' => $request->name,
-                'gender'=>$request->gender??'m',
-                'phone'=>$request->phone,
-                'email'=>$request->email,
-                'password'=>Hash::make($request->password),
-                'images'=>$images,
-                'country_id'=>$request->country,
-                'state_id'=>$request->state,
-                'city_id'=>$request->city,
-                'pincode'=>$request->pincode,
-                'street'=>$request->street,
-                'status'=>1,
+                'gender' => $request->gender ?? 'm',
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'images' => $images,
+                'country_id' => $request->country,
+                'state_id' => $request->state,
+                'city_id' => $request->city,
+                'pincode' => $request->pincode,
+                'street' => $request->street,
+                'status' => 1,
             ]);
-if($res){
-    Session::flash('success', 'Guard created successfully');
-
-}
-else{
-    Session::flash('error', 'Guard not created');
-
-}
+            if ($res) {
+                Session::flash('success', 'Guard created successfully');
+            } else {
+                Session::flash('error', 'Guard not created');
+            }
             return redirect()->back();
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             Helper::handleError($ex);
         }
         return redirect()->back();
@@ -120,12 +116,14 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For show (Guard Profile) page.
+
     public function show($id)
     {
-        $id=Crypt::decrypt($id);
+        $id = Crypt::decrypt($id);
         $countries = Country::get();
-        $guard=SecurityGuard::find($id);
-        return view('customer.guard.profile',compact('guard','countries'));
+        $guard = SecurityGuard::find($id);
+        return view('customer.guard.profile', compact('guard', 'countries'));
     }
 
     /**
@@ -139,18 +137,16 @@ else{
     public function edit($id)
     {
 
-        $id=Crypt::decrypt($id);
+        $id = Crypt::decrypt($id);
         $countries = Country::get();
-        $guard=SecurityGuard::find($id);
-        if($guard)
-        {
-            return view('customer.guard.register_guard',compact('guard','countries'));
-        }
-        else
-        {
-            Session::flash('error','Something Went Wrong OR Data is Deleted');
+        $guard = SecurityGuard::find($id);
+        if ($guard) {
+            return view('customer.guard.register_guard', compact('guard', 'countries'));
+        } else {
+            Session::flash('error', 'Something Went Wrong OR Data is Deleted');
             return redirect()->back();
-        }    }
+        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -159,56 +155,51 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     //For update the the edited data.
+    //For update the the edited data.
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'country' =>'required|exists:countries,id',
+            'country' => 'required|exists:countries,id',
             'state' => 'required|exists:states,id',
             'city' => 'required|exists:cities,id',
             'street' => 'required',
             'pincode' => 'required',
-            'email'=>'required',
-            'phone'=>'required|regex:/^[6-9][0-9]{9}$/',
-            'gender'=>'required',
-            'name'=>'required|string',       
-         ]);
-        try
-        {
-            if($request->hasFile('images'))
-            {
-                $image='guard-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/security_guard/images/'),$image);
-                $oldimage=SecurityGuard::find($id)->pluck('images')[0];
-                File::delete(public_path($oldimage));
-                SecurityGuard::find($id)->update(['images'=>'upload/security_guard/images/'.$image]);
-            }
-             $res= SecurityGuard::find($id)->update([ 
-             'name' => $request->name,
-             'gender'=>$request->gender,
-             'phone'=>$request->phone,
-             'email'=>$request->email,
-             'country_id'=>$request->country,
-             'state_id'=>$request->state,
-             'city_id'=>$request->city,
-             'pincode'=>$request->pincode,
-             'street'=>$request->street,
-
+            'email' => 'required',
+            'phone' => 'required|regex:/^[6-9][0-9]{9}$/',
+            'gender' => 'required',
+            'name' => 'required|string',
         ]);
-        if($res)
-        {
-                session()->flash('success','Guard updated sucessfully');
+        try {
+            if ($request->hasFile('images')) {
+                $image = 'guard-' . time() . '-' . rand(0, 99) . '.' . $request->images->extension();
+                $request->images->move(public_path('upload/security_guard/images/'), $image);
+                $oldimage = SecurityGuard::find($id)->pluck('images')[0];
+                File::delete(public_path($oldimage));
+                SecurityGuard::find($id)->update(['images' => 'upload/security_guard/images/' . $image]);
             }
-            else
-            {
-                session()->flash('error','Guard not updated ');
+            $res = SecurityGuard::find($id)->update([
+                'name' => $request->name,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'country_id' => $request->country,
+                'state_id' => $request->state,
+                'city_id' => $request->city,
+                'pincode' => $request->pincode,
+                'street' => $request->street,
+
+            ]);
+            if ($res) {
+                session()->flash('success', 'Guard updated sucessfully');
+            } else {
+                session()->flash('error', 'Guard not updated ');
             }
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             Helper::handleError($ex);
         }
-        return redirect()->back();    }
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -216,80 +207,65 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //For deleting the data from property table.
+    //For deleting the data from SecurityGuard table.
 
     public function destroy($id)
     {
-        $id=Crypt::decrypt($id);
-        try{
-                $res=SecurityGuard::find($id)->delete();
-                if($res)
-                {
-                    session()->flash('success','Guard deleted sucessfully');
-                }
-                else
-                {
-                    session()->flash('error','Guard not deleted ');
-                }
+        $id = Crypt::decrypt($id);
+        try {
+            $res = SecurityGuard::find($id)->delete();
+            if ($res) {
+                session()->flash('success', 'Guard deleted sucessfully');
+            } else {
+                session()->flash('error', 'Guard not deleted ');
             }
-            catch(Exception $ex){
-                Helper::handleError($ex);
-            }
-            return redirect()->back();  
-          }
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+        }
+        return redirect()->back();
+    }
 
 
+    //For change the status of Security Guard
+    public function status(Request $request)
+    {
 
-          public function status(Request $request)
-          {
-        
-            try
-            {
-                 $res= SecurityGuard::find($request->guard_id)->update([ 
-                    'status' => $request->status_id,
-               ]);
-            if($res)
-            {
+        try {
+            $res = SecurityGuard::find($request->guard_id)->update([
+                'status' => $request->status_id,
+            ]);
+            if ($res) {
                 return response()->json([
                     'success' => 'Guard status upadted' // for status 200
                 ]);
-
-                }
-                else
-                {
-                    return response()->json([
-                        'success' => 'Guard status not upadted' // for status 503
-                    ]);                }
+            } else {
+                return response()->json([
+                    'success' => 'Guard status not upadted' // for status 503
+                ]);
             }
-            catch(Exception $ex){
-                Helper::handleError($ex);
-            }
-            // return response()
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
         }
-    
-        // For change the password.
-public function update_Password(Request $request)
-{
-    $request->validate([
-        'password'=>'required',
-        'cpassword'=>'required|same:cpassword'
-    ]);
-    try
-    {
-      $res=SecurityGuard::find($request->guard_id)->update(['password'=>Hash::make($request->password)]);
-      if($res){
-        session()->flash('success','Password updated sucessfully');
-
-      }
-      else{
-        session()->flash('success','Password not updated');
-
-      }
+        // return response()
     }
-    catch(Exception $ex)
+
+    // For change the password.
+    public function update_Password(Request $request)
     {
-        Helper::handleError($ex);
-    }
+        $request->validate([
+            'password' => 'required',
+            'cpassword' => 'required|same:cpassword'
+        ]);
+        try {
+            $res = SecurityGuard::find($request->guard_id)->update(['password' => Hash::make($request->password)]);
+            if ($res) {
+                session()->flash('success', 'Password updated sucessfully');
+            } else {
+                session()->flash('success', 'Password not updated');
+            }
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+        }
         return redirect()->back();
-}
+    }
 }

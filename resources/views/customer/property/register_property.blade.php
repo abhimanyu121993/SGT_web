@@ -37,7 +37,7 @@
                         <div class="row gy-4">
                         <div class="file-field input-field col s6" id="image">
                         <div class="btn">
-                            <span>{{__('checkpoint.file')}}</span>
+                            <span>{{__('property.image')}}</span>
                             <input type="file" name="images">
                         </div>
                         <div class="file-path-wrapper">
@@ -86,14 +86,10 @@
                                     <input type="number" class="form-control" id="postcode" name="postcode"
                                         value="{{ isset($propertyEdit) ? $propertyEdit->postcode : old('postcode') }}" placeholder="Postcode">
                                    <label for="postcode">{{__('property.pincode')}}</label>
-
                                 </div>
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
-
-                           
-
                             <div class="input-field col s6">
                                 <input type="number" class="form-control"  id="lattitude" name="lattitude"
                                 value="{{ isset($propertyEdit) ? $propertyEdit->lattitude : (old('lattitude')??0) }}" placeholder="Lattitude" readonly>
@@ -112,7 +108,6 @@
                         <div class="row gy-4 mt-2">
                             <div class="input-field col s12">
                                 <textarea class="materialize-textarea" id='address'name="address"  data-length="120" >{{ isset($propertyEdit) ? $propertyEdit->address : old('address') }}</textarea>
-                                <label for="address">{{__('property.address')}}</label>
                             </div>
                            
                             <!--end col-->

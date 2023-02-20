@@ -20,6 +20,7 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //For show the (create route) page.
     public function index()
     {
         $property = Property::where('owner_id', Helper::getOwner())->get();
@@ -31,7 +32,7 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //For show (Register property) page.
+    //For show (Manage Route) page.
     public function create()
     {
         $routes = Route::where('owner_id', Helper::getOwner())->get();
@@ -166,7 +167,7 @@ class RouteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //For deleting the data from property table.
+    //For deleting the data from Route table.
 
     public function destroy($id)
     {
@@ -214,6 +215,7 @@ class RouteController extends Controller
         }
         return $html;
     }
+    //for show the route
     public function show_route($id)
     {
         $checkpoints = Checkpoint::where('property_id', $id)->get();

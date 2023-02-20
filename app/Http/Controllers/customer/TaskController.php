@@ -25,7 +25,7 @@ class TaskController extends Controller
         $this->middleware('permission:task_delete,customer')->only('destroy');
         $this->middleware('permission:task_edit,customer')->only('edit','update');
     }
-
+//For show (register task) page.
     public function index()
     {
         return view('customer.task.register_task');
@@ -36,7 +36,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //For show (Register property) page.
+    //For show (Manage task) page.
     public function create()
     {
         $tasks = Task::where('owner_id',Helper::getOwner())->get();
@@ -49,7 +49,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //For store data in property table.
+    //For store data in Task table.
 
     public function store(Request $request)
     {
@@ -170,7 +170,7 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //For deleting the data from property table.
+    //For deleting the data from Taks table.
 
     public function destroy($id)
     {
