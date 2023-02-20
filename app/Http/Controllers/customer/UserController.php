@@ -84,6 +84,7 @@ class UserController extends Controller
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
+                'mobileno'=>$request->mobile,
                 'status'=>Status::where('name','active')->where('type','general')->first()->id,
             ]);
         }
@@ -160,6 +161,11 @@ class UserController extends Controller
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
         ]);
+        if($res){
+            CustomerProfile::where('customer_id',$id)->first()->update([
+                'mobileno'=>$request->mobile
+            ]);
+        }
         $role = Role::find($request->role_id);
 
         if($res)

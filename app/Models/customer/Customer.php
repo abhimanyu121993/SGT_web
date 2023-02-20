@@ -48,6 +48,11 @@ class Customer extends Authenticatable
     {
         return $this->hasOne(CustomerProfile::class, 'customer_id');
     }
+
+    public function user_detail()
+    {
+        return $this->hasOne(CustomerProfile::class, 'customer_id');
+    }
     public function customer_subscribe()
     {
         return $this->hasOne(CustomerSubscribePack::class, 'customer_id');
