@@ -42,7 +42,7 @@ $guard='customer';
                 <div class="row">
                     <div class="col s12">
                         <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
-                            <thead>
+                            <thead class="blue-text">
                                 <tr>
                                 <th>{{__('user.sr_no')}}</th>
                                 <th>{{__('user.name')}}</th>

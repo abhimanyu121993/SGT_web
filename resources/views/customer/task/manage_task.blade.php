@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col s12">
                         <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
-                            <thead>
+                            <thead class="white-text" style="background-color: blue;">
                                 <tr>
                                     <th>{{__('task.sr_no')}}</th>
                                     <th>{{__('task.name')}}</th>
