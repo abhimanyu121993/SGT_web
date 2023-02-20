@@ -37,37 +37,44 @@
                    
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="fname" name="first_name"
                                     value="{{ isset($customer) ? $customer->first_name : old('first_name') }}"
-                                    placeholder="First Name">
+                                   >
                                 <label class="active" for="name">{{__('user.fname')}}</label>
 
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="lname" name="last_name"
                                     value="{{ isset($customer) ? $customer->last_name : old('last_name') }}"
-                                    placeholder="Last Name">
+                                    >
                                 <label class="active" for="lname">{{__('user.lname')}}</label>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="email" name="email"
                                     value="{{ isset($customer) ? $customer->email : old('email') }}"
-                                    placeholder="Email">
+                                    >
                                 <label class="active" for="email">{{__('user.email')}}</label>
 
                             </div>
+                            <div class="input-field col s4">
+                                <input type="text" class="form-control" id="mobile" name="mobile"
+                                    value="{{ isset($customer) ? ($customer->user_detail->mobileno??'') : old('mobile') }}"
+                                    >
+                                <label class="active" for="mobile">{{__('user.mobile')}}</label>
+
+                            </div>
                             @if(!isset($customer))             
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="password" class="form-control" id="password" name="password"
                                     value="{{ isset($customer) ? $customer->password : '' }}"
-                                    placeholder="password">
+                                    >
                                 <label class="active" for="password">{{__('user.password')}}</label>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="cpassword" name="cpassword"
                                     value="{{ isset($customer) ? $customer->password : '' }}"
-                                    placeholder="Confirm Password">
+                                   >
                                 <label class="active" for="cpassword">{{__('user.cpassword')}}</label>
                             </div>
                             @endif
@@ -82,7 +89,7 @@
                                       </div>
                                 </div>
                             <div class="row col s12 mt-2">
-                                <div class="input-group col s4">
+                                <div class="input-field col s4">
                                     <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($customer) ? 'Update' : 'Submit' }}</button>
                                 </div>
                             </div>

@@ -56,5 +56,10 @@ class Admin extends Authenticatable
     {
         return $this->hasOne(AdminProfile::class, 'admin_id');
     }
+
+    public function user_detail()
+    {
+        return $this->hasOne(AdminProfile::class, 'admin_id');
+    }
 }
 

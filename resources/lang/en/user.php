@@ -10,6 +10,7 @@ return array (
   'new_password' => 'New Password',
   'password' => 'Password',
   'cpassword' => 'Confirm Password',
-  'is_active' => 'IsActive',
+  'is_active' => 'Is Active',
   'role' => 'Role',
+  'mobile'=>'Mobile No'
 );
