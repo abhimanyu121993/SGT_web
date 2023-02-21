@@ -27,7 +27,7 @@
                 </h4>
                 <div class="row">
                     <div class="col s12">
-                        <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
+                    <table id="page-length-option" class="display nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>{{__('task.sr_no')}}</th>

@@ -159,7 +159,7 @@
 
 
     <!-- Theme Customizer -->
-    @include('panel.include.customizer')
+    <!-- @include('panel.include.customizer') -->
     <!--/ Theme Customizer -->
 
 

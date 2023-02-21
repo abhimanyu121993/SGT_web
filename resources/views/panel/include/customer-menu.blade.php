@@ -78,14 +78,14 @@
                     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_create', Session::get('guard')))
                         <li class="{{ strpos(Route::currentRouteName(), 'user') !== false ? 'active' : '' }} bold">
                             <a href="{{ route(Session::get('guard') . '.user.index') }}"><i
-                                    class="material-icons">{{ strpos(Route::currentRouteName(), 'user.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.create') }}</span></a>
+                                    class="material-icons">{{ strpos(Route::currentRouteName(), 'user.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.add_staff') }}</span></a>
                         </li>
                     @endif
                   
                     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_read', Session::get('guard')))
                         <li class="{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'active' : '' }}  bold">
                             <a href="{{ route(Session::get('guard') . '.user.create') }}"><i
-                                    class="material-icons">{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.manage') }}</span></a>
+                                    class="material-icons">{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.manage_staff') }}</span></a>
                         </li>
                     @endif
 
