@@ -47,6 +47,7 @@ $(function () {
   // Page Length Option Table
 
   $('#page-length-option').DataTable({
+    "scrollX": true,
     "responsive": true,
     "lengthMenu": [
       [10, 25, 50, -1],

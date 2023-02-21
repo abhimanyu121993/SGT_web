@@ -31,7 +31,7 @@
                         <form action="{{ route(Session::get('guard') . '.customer.assign-permission') }}" method="post">
                             @csrf
                             <input type="hidden" name='customerid' value="{{ $customer->id }}">
-                            <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
+                            <table id="page-length-option" class="display nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Permissions Name</th>

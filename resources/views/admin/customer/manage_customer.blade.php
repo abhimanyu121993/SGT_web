@@ -36,7 +36,7 @@
 
 <div class="card">
     <div class="card-content">
-        <table id="scroll-dynamic" class="display">
+    <table id="page-length-option" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>{{__('customer.sr_no')}}</th>

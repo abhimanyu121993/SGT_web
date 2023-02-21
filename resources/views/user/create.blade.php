@@ -12,7 +12,7 @@
                     </li>
                     <li class="breadcrumb-item"><a href="#">Staff</a>
                     </li>
-                    <li class="breadcrumb-item active">Staff
+                    <li class="breadcrumb-item active">Add Staff
                     </li>
                 </ol>
             </div>         

@@ -12,7 +12,7 @@
                     </li>
                     <li class="breadcrumb-item"><a href="#">Checkpoint</a>
                     </li>
-                    <li class="breadcrumb-item active">Checkpoint
+                    <li class="breadcrumb-item active">Add Checkpoint
                     </li>
                 </ol>
             </div> 
@@ -95,7 +95,7 @@
                     @endforeach
                     </div>
                     <div class="row col s12 mt-3">
-                    <div class="col s3 m6 l8"><a class="  waves-effect waves-light  right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.task.index')}}"><span>Add More Task?</span></a> 
+                    <div class="col s3 m6 l8"><a class="  waves-effect waves-light  right modal-trigger modal1"  data-url="{{route(Helper::getGuard().'.task.index')}}"><span>Add More Task?</span></a> 
             </div>
                 </div>
             </div>
