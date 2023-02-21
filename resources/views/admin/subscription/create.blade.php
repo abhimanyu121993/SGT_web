@@ -12,7 +12,7 @@
                     </li>
                     <li class="breadcrumb-item"><a href="#">Subscription</a>
                     </li>
-                    <li class="breadcrumb-item active">Subscription
+                    <li class="breadcrumb-item active">Create Subscription
                     </li>
                 </ol>
             </div>         
