@@ -85,10 +85,10 @@ License: You must have a valid license purchased only from themeforest(the above
               <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Logout</a></li>
             </ul>
 
-             <div class="header-search-wrapper hide-on-med-and-down"><i class="material-icons">search</i>
+            <!--  <div class="newsearchclass"><i class="material-icons">search</i>
               <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Explore Materialize" data-search="template-list">
               <ul class="search-list collection display-none"></ul>
-            </div>
+            </div> -->
 
           </div>
           <nav class="display-none search-sm">
@@ -202,8 +202,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
         <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i class="material-icons">
-          
-        settings_input_svideo</i><span class="menu-title" data-i18n="Templates">Properties</span></a>
+settings_input_svideo</i> <span class="menu-title" data-i18n="Templates">Properties</span></a>
           <div class="collapsible-body">
             <ul class="collapsible" >
               <li><a href="JavaScript:void(0)"><span>All Properties</span></a>
@@ -214,6 +213,8 @@ License: You must have a valid license purchased only from themeforest(the above
             </ul>
           </div>
         </li>
+
+
 
 
         <li class="bold"><a class="waves-effect waves-cyan " href="app-email.html"><i class="material-icons">mail_outline</i><span class="menu-title" data-i18n="Mail">Guards</span></a>
@@ -291,13 +292,56 @@ License: You must have a valid license purchased only from themeforest(the above
               <br><br>
               </div>
 
-              <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Add Property</span><i class="material-icons right">arrow_drop_down</i></a>
+              <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn ccbutton right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Add Property</span><i class="material-icons right">arrow_drop_down</i></a>
                 
               </div>
 
+
             </div>
+
           </div>
         </div>
+
+
+   <style>
+
+
+/*.search-widget input {
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 0;
+  height: 35px;
+
+}
+
+.search-widget button {
+  background-color: transparent;
+  color: #1293D4;
+  border: 0;
+  height: 35px;
+}*/
+
+            </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="search-widget">
+  <i class="fa fa-search"style="margin-left: 5px;"></i>
+  <input name="name" type="text" placeholder="search">
+  <!-- <button id="mybutton"></button> -->
+</div>
+
+
+
+
+
+
+
+
+
         <div class="col s12">
           <div class="container">
             <!--Basic Card-->
@@ -319,13 +363,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
   <div class="row">
     <div class="col s12 m6 l4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
           <img class="activator" src="../../../app-assets/images/gallery/12.png" alt="office" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Rivi Property <i
-              class="material-icons right">more_vert</i>
+          <span class="card-title activator grey-text text-darken-4">Rivi Property
           </span>
           <p><a href="#">Sample Property 123</a></p>
         </div>
@@ -336,20 +379,39 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
 
           <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
-
-
-      </div>
+            </div>
       
     </div>
 
     <div class="col s12 m6 l4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
           <img class="activator" src="../../../app-assets/images/gallery/19.png" alt="" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Property One<i
-              class="material-icons right">more_vert</i>
+          <span class="card-title activator grey-text text-darken-4">Property One
+          </span>
+          <p><a href="#!">Sample Property 123</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Property Two <i class="material-icons right">close</i>
+          </span>
+        
+        </div>
+         <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
+      </div>
+     
+    </div>
+
+     
+
+      <div class="col s12 m6 l4">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
+          <img class="activator" src="../../../app-assets/images/gallery/19.png" alt="" />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Property One
           </span>
           <p><a href="#!">Sample Property 123</a></p>
         </div>
@@ -364,59 +426,42 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 
 
-    <div class="col s12 m6 l4">
-      <div class="card sticky-action">
-        <div class="card-image waves-effect waves-block waves-light">
+
+
+ <div class="col s12 m6 l4">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
           <img class="activator" src="../../../app-assets/images/gallery/21.png" alt="" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Property Three<i
-              class="material-icons right">more_vert</i>
+          <span class="card-title activator grey-text text-darken-4">Property One
           </span>
           <p><a href="#!">Sample Property 123</a></p>
         </div>
-       <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Property Three <i class="material-icons right">close</i>
+          <span class="card-title grey-text text-darken-4">Property Two <i class="material-icons right">close</i>
           </span>
-         
+        
         </div>
+         <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
       </div>
-    
-    </div>
-
-
-    <div class="col s12 m6 l4">
-      <div class="card sticky-action">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="../../../app-assets/images/gallery/21.png" alt="" />
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Property Three<i
-              class="material-icons right">more_vert</i>
-          </span>
-          <p><a href="#!">Sample Property 123</a></p>
-        </div>
-        <div class="card-action"><a href="#">QR map</a> <a href="#">View</a></div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Property Three <i class="material-icons right">close</i>
-          </span>
-         
-        </div>
-      </div>
-    
+     
     </div>
 
 
 
+
+
+
+
+
     <div class="col s12 m6 l4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
           <img class="activator" src="../../../app-assets/images/gallery/19.png" alt="" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Property Four<i
-              class="material-icons right">more_vert</i>
+          <span class="card-title activator grey-text text-darken-4">Property Four
           </span>
           <p><a href="#!">Sample Property 123</a></p>
         </div>
@@ -434,13 +479,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
     <div class="col s12 m6 l4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+      <div class="card excard">
+        <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
           <img class="activator" src="../../../app-assets/images/gallery/12.png" alt="office" />
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Property five<i
-              class="material-icons right">more_vert</i>
+          <span class="card-title activator grey-text text-darken-4">Property five
           </span>
           <p><a href="#">Sample Property 123</a></p>
         </div>
@@ -452,12 +496,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
           <div class="card-action"><a href="#">QR map</a> <a href="#">View</a></div>
 
-
       </div>
       
     </div>
-
-
 
 
   </div>
