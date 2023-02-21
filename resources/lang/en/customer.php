@@ -4,6 +4,8 @@ return array (
   'choose_membership_plan' => 'Choose Membership Plan',
   'fname' => 'First Name',
   'lname' => 'Last Name',
+  'gender' => 'Gender',
+  'dob' => 'Date of birth',
   'email' => 'Email',
   'mobile' => 'Mobile No',
   'country' => 'Country',
