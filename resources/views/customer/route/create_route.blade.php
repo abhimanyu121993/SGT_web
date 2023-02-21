@@ -56,7 +56,7 @@
  <div class="card">
     <div class="card-content">
         <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('route.manage')}}</h4>
- <table class="table table-nowrap container" id="example">
+        <table id="page-length-option" class="display nowrap" style="width:100%">
      <thead>
          <tr>
              <th scope="col">{{__('route.sr_no')}}</th>

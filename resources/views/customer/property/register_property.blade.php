@@ -12,11 +12,11 @@
                     </li>
                     <li class="breadcrumb-item"><a href="#">Property</a>
                     </li>
-                    <li class="breadcrumb-item active">Property
+                    <li class="breadcrumb-item active">Add Property
                     </li>
                 </ol>
             </div> 
-            <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
+            <div class="col s2 m6 l6"><a class="btn breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
             </div>        
         </div>
     </div>

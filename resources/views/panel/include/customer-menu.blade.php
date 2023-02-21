@@ -80,14 +80,14 @@ data-menu="menu-navigation" data-collapsible="menu-accordion">
             <li class="{{ strpos(Route::currentRouteName(), 'user') !== false ? 'active' : '' }} bold">
                     <a href="{{ route(Session::get('guard') . '.user.index') }}"><i
                             class="material-icons">{{ strpos(Route::currentRouteName(), 'user.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Register">{{ __('sidebar.create') }}</span></a>
+                            data-i18n="Register">{{ __('sidebar.add_staff') }}</span></a>
             </li>  
             @endif
             @if(Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_read', Session::get('guard')))
             <li class="{{ strpos(Route::currentRouteName(), 'user') !== false ? 'active' : '' }}  bold">
                     <a href="{{ route(Session::get('guard') . '.user.create') }}"><i
                             class="material-icons">{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span
-                            data-i18n="Login">{{ __('sidebar.manage') }}</span></a>
+                            data-i18n="Login">{{ __('sidebar.manage_staff') }}</span></a>
             </li>
             @endif
             

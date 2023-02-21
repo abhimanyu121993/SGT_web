@@ -10193,6 +10193,8 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 #breadcrumbs-wrapper .breadcrumbs-btn
 {
     top: 24px;
+    background-color: white;
+    color:black !important;
 }
 
 #breadcrumbs-wrapper h5.breadcrumbs-header

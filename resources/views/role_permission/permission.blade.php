@@ -30,11 +30,12 @@
                     @csrf
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
-                            <label for="permission" class="form-label">{{__('rolepermission.permission-name')}}</label>
-                            <div class="input-group">
+                            <div class="input-field">
                                 <input type="text" class="form-control" id="permission" name="permission"
-                                    placeholder="{{__('rolepermission.permission-name')}}">
-                                <button class="btn btn-primary" id="btn-btn" type="submit">Submit</button>
+                                   >
+                                   <label for="permission" class="form-label">{{__('rolepermission.permission-name')}}</label>
+
+                                <button class="btn btn-primary" id="btn-btn" type="submit">Add</button>
                             </div>
                         </div>
                         <!--end col-->
@@ -51,12 +52,14 @@
                 <h4 class="card-title">{{__('rolepermission.permission-list')}}</h4>
                 <div class="row">
                     <div class="col s12">
-                        <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
+                    <table id="page-length-option" class="display nowrap" style="width:100%">
                             <thead>
                             <tr>
                             <th >Sr.No.</th>
                             <th >Name</th>
                             <th >Created At</th>
+                            <th >Created On</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -65,6 +68,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $data->permission_name }}</td>
                         <td>{{ $data->created_at->format('d-M-Y') }}</td>
+                        <td>{{ $data->created_at->format('H:i:s a') }}</td>
                     </tr>
                 @endforeach
 
