@@ -57,6 +57,7 @@
                                 <div class="media-body">
                                     <h5 class="media-heading mt-0">{{ $user->customer_profile->full_name ?? '' }}</h5>
                                     <div class="user-edit-btns display-flex">
+                                       
                                         <a href="#" class="btn-small indigo">Change</a>
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>

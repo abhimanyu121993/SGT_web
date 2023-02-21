@@ -3,32 +3,36 @@
 @section('breadcrumb')
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
     <!-- Search for small screen-->
-    <div class="container">
-        <div class="row">
+        <div class="container">
+          <div class="row">
             <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>All Property</span></h5>
-                <ol class="breadcrumbs mb-0">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item"><a href="#">All Property</a>
-                    </li>
-                    <li class="breadcrumb-item active">All Property
-                    </li>
-                </ol>
-            </div> 
-            <div class="col s2 m6 l6 mb-2"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-triggert" href="{{route(Helper::getGuard().'.property.create')}}"><span class="hide-on-small-onl">{{__('property.add_property')}}</span></a> 
-            </div>       
+              <h5 class="breadcrumbs-title mt-0 mb-0"><span>GreyLock Security Properties</span></h5>
+            <br><br>
+            </div>
+
+            <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn ccbutton right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Add Property</span><i class="material-icons right">arrow_drop_down</i></a>
+              
+            </div>
+
+
+          </div>
+
         </div>
-    </div>
+   
+
+
+
+
+
 </div>
 @endsection
 @section('content-area')
 <div class="card-content">
-    <div id="work-collections" class="seaction">
+    <div  id="card-reveal" class="seaction">
         <div class="row">
             @foreach ($properties as $property)
             <div class="col s12 m6 l4">
-                <div class="card">
+                <div class="card excard">
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
                   </div>
@@ -74,6 +78,26 @@
                                 </div>
             </div> --}}
             @endforeach
+            <div class="col s12 m6 l4">
+                <div class="card excard">
+                  <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
+                    <img class="activator" src="../../../app-assets/images/gallery/12.png" alt="office" />
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Rivi Property
+                    </span>
+                    <p><a href="#">Sample Property 123</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Rivi Property<i class="material-icons right">close</i>
+                    </span>
+                   
+                  </div>
+          
+                    <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
+                      </div>
+                
+              </div>
         </div>
     </div>
 </div>
