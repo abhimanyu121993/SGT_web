@@ -73,12 +73,11 @@ $guard='customer';
                                 <i class="ri-more-2-fill"></i>
                             </a>
                             @php $bid=Crypt::encrypt($data->id); @endphp
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a id="pop" class="dropdown-item"
-                                        href="{{route($guard.'.user.edit',$bid)}}">Edit</a></li>
-                                <li><a id="pop" class="dropdown-item" href="#"
+                            <a id="pop" class="dropdown-item"
+                                        href="{{route($guard.'.user.edit',$bid)}}">Edit</a>
+                                <a id="pop" class="dropdown-item" href="#"
                                         onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                                </li>
+                              
 
                                 <form id="delete-form-{{ $bid }}"
                                     action="{{ route($guard.'.user.destroy', $bid) }}" method="post"
@@ -86,7 +85,6 @@ $guard='customer';
                                     @method('DELETE')
                                     @csrf
                                 </form>
-                            </ul>
                         </div>
                     </td>
                 </tr>
