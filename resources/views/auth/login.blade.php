@@ -54,14 +54,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6 m6 l6">
-                        @if($guard=='customer')
-                        <p class="margin medium-small"><a href="{{route('auth.admin')}}">Admin Login</a></p>
-                        @else
-                        <p class="margin medium-small"><a href="{{route('auth.customer')}}">Customer Login</a></p>
-                        @endif
-                    </div>
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin right-align medium-small"><a
+                        <p class="margin  medium-small"><a
                                 href="user-forgot-password.html">Forgot password ?</a></p>
                     </div>
                 </div>

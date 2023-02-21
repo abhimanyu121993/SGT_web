@@ -7,21 +7,21 @@
             @endif
             <div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
-                    <div class="input-group col s4">
+                    <div class="input-field col s4">
                         <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($checkpoint) ? $checkpoint->property_id : $property->id }}" hidden>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ isset($checkpoint) ? $checkpoint->name : old('name') }}" placeholder="Name">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ isset($checkpoint) ? $checkpoint->name : old('name') }}">
                         <label class="active" for="name">{{__('checkpoint.name')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="color" class="form-control" id="color" name="color" value="{{ isset($checkpoint) ? $checkpoint->color : old('color') }}" placeholder="Color">
+                    <div class="input-field col s4">
+                        <input type="color" class="form-control" id="color" name="color" value="{{ isset($checkpoint) ? $checkpoint->color : old('color') }}">
                         <label class="active" for="color">{{__('checkpoint.color')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="lattitude" name="lattitude" value="{{ isset($checkpoint) ? $checkpoint->lattitude : (old('lattitude')??$property->lattitude) }}" placeholder="Lattitude">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="lattitude" name="lattitude" value="{{ isset($checkpoint) ? $checkpoint->lattitude : (old('lattitude')??$property->lattitude) }}">
                         <label class="active" for="lattitude">{{__('checkpoint.lattitude')}}</label>
                     </div>
-                    <div class="input-group col s4">
-                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ isset($checkpoint) ? $checkpoint->longitude : (old('longitude')??$property->longitude) }}" placeholder="Longitude">
+                    <div class="input-field col s4">
+                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ isset($checkpoint) ? $checkpoint->longitude : (old('longitude')??$property->longitude) }}">
                         <label class="active" for="longitude">{{__('checkpoint.longitude')}}</label>
                     </div>
                     <div class="col s4">
@@ -43,14 +43,14 @@
                             <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    <div class="input-group col s12">
+                    <div class="input-field col s12">
                         <textarea type="text" class="form-control" id="desc" name="description" placeholder="Start Writting Here....">{{ isset($checkpoint) ? $checkpoint->desc : old('desc') }}</textarea>
                         <label class="active" for="desc">{{__('checkpoint.desc')}}</label>
                     </div>
                     <!--end col-->
                 </div>
                 <div class="row col s12 mt-2">
-                    <div class="input-group col s2">
+                    <div class="input-field col s2">
                         <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($checkpoint) ? 'Update' : 'Submit' }}</button>
                     </div>
                 </div>

@@ -1,8 +1,25 @@
 @extends('layout.panel')
-@section('title', 'Subcription')
-@section('breadcrumb-title', 'Subscription')
-@section('breadcrumb-backpage', 'Subscription')
-@section('breadcrumb-currentpage', 'Subscription')
+@section('title', 'Subscription')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Subscription</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Subscription</a>
+                    </li>
+                    <li class="breadcrumb-item active">Subscription
+                    </li>
+                </ol>
+            </div>         
+        </div>
+    </div>
+</div>
+@endsection
 @section('content-area')
 
 <div class="section">
@@ -18,14 +35,14 @@
                     @endif
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="title" name="title"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->title : '' }}"
-                                    placeholder="Title">
+                                    >
                                 <label class="active" for="title">{{__('subscription.title')}}</label>
 
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <select id="currency" name="currency">
                                 @if(!isset($EditSubscription))
                                 <option value="" disabled selected>{{__('subscription.currency')}}</option>
@@ -35,20 +52,20 @@
                                      @endforeach
                                 </select>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <input type="text" class="form-control" id="price" name="price"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->price : '' }}"
-                                    placeholder="Price">
+                                    >
                                 <label class="active" for="price">{{__('subscription.price')}}</label>
 
                             </div>
-                            <div class="input-group col s4" id="days">
+                            <div class="input-field col s4" id="days">
                                 <input type="number" class="form-control" id="days" name="days"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->days : '' }}"
-                                    placeholder="Validity">
-                                <!-- <label class="active" for="days">{{__('subscription.validity')}}</label> -->
+                                    >
+                                <label class="active" for="days">{{__('subscription.validity')}} <span class="red-text">({{ __('subscription.in_days') }})</span></label>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <select id="status" name="status">
                                     @if(!isset($EditSubscription))
                                 <option value="" disabled selected>{{__('subscription.status')}}</option>
@@ -58,7 +75,7 @@
                                      @endforeach
                                 </select>
                             </div>
-                            <div class="input-group col s4">
+                            <div class="input-field col s4">
                                 <select id="free_trails">
                               
                                     <option value="" disabled selected>{{isset($EditSubscription)?$EditSubscription->free_trial_days>0?'Yes':'No':__('subscription.free_trails')}}</option>
@@ -67,13 +84,13 @@
                                 </select>
                             </div>
                             
-                            <div class="input-group col s4" id="free_trails_days">
+                            <div class="input-field col s4" id="free_trails_days">
                                 <input type="number" class="form-control" id="free_trial_days" name="free_trial_days"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->free_trial_days : '' }}"
                                     placeholder="Free Trial Days">
                                 <label class="active" for="free_trial_days">{{__('subscription.free_trial_days')}}</label>
                             </div>
-                            <div class="input-group col s3 mt-2">
+                            <div class="input-field col s3 mt-2">
                                 <select class="form-select" id="thumbnail" name="thumbnail">
                                     <option selected disabled>{{__('subscription.thumbnail')}}</option>
                                     <option value="icon">{{__('subscription.icon')}}</option>
@@ -98,50 +115,55 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                            <div class="input-group col s3 mt-2">
+                            <div class="input-field col s3 mt-2">
                                 <input type="number" class="form-control" id="guard_qty" name="guard_qty"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->guard_qty : '' }}"
-                                    placeholder="{{__('subscription.max_guard')}}">
-                                <label class="active" for="bg_color">{{__('subscription.max_guard')}}</label>
+                                >
+                                <label class="active" for="guard_qty">{{__('subscription.max_guard')}}</label>
+                                <small class="red-text">{{__('subscription.unlimited')}}</small>
 
                             </div>
-                            <div class="input-group col s3 mt-2">
+                            <div class="input-field col s3 mt-2">
                                 <input type="number" class="form-control" id="property_qty" name="property_qty"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->property_qty : '' }}"
-                                    placeholder="{{__('subscription.max_property')}}">
-                                <label class="active" for="bg_color">{{__('subscription.max_property')}}</label>
+                                   >
+                                <label class="active" for="property_qty">{{__('subscription.max_property')}}</label>
+                                <small class="red-text">{{__('subscription.unlimited')}}</small>
 
                             </div>
-                            <div class="input-group col s3 mt-2">
+                            <div class="input-field col s3 mt-2">
                                 <input type="number" class="form-control" id="shift_qty" name="shift_qty"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->shift_qty : '' }}"
-                                    placeholder="{{__('subscription.max_shift')}}">
-                                <label class="active" for="bg_color">{{__('subscription.max_shift')}}</label>
+                                    >
+                                <label class="active" for="shift_qty">{{__('subscription.max_shift')}}</label>
+                                <small class="red-text">{{__('subscription.unlimited')}}</small>
 
                             </div>
-                            <div class="input-group col s3 mt-2">
+                            <div class="input-field col s3 mt-2">
                                 <input type="number" class="form-control" id="checkpoint_qty" name="checkpoint_qty"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->shift_qty : '' }}"
-                                    placeholder="{{__('subscription.max_checkpoint')}}">
+                                   >
                                 <label class="active" for="checkpoint_qty">{{__('subscription.max_checkpoint')}}</label>
+                                <small class="red-text">{{__('subscription.unlimited')}}</small>
 
                             </div>
-                            <div class="input-group col s3 mt-2">
-                                <input type="color" class="form-control" id="color" name="color"
+                            <div class="input-field col s4 mt-2">
+                            <label class="active" for="color">{{__('subscription.color')}}</label>
+                                <input type="color" class="form-control mt-4" id="color" name="color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->color : '' }}"
-                                    placeholder="Color">
-                                <label class="active" for="color">{{__('subscription.color')}}</label>
+                                    placeholder="Color" style='width:100%'>
+                               
 
                             </div>
-                            <div class="input-group col s3 mt-2">
-                                <input type="color" class="form-control" id="bg-color" name="bg_color"
+                            <div class="input-field col s4 mt-2">
+                                <input type="color" class="form-control mt-4" id="bg-color" name="bg_color"
                                     value="{{ isset($EditSubscription) ? $EditSubscription->bg_color : '' }}"
-                                    placeholder="Background Color">
+                                    placeholder="Background Color " style='width:100%'>
                                 <label class="active" for="bg_color">{{__('subscription.bg_color')}}</label>
 
                             </div>
                             <div class="row">
-                                <div class="input-group col s12">
+                                <div class="input-field col s12">
                                     <textarea name="desc" id="" cols="30" rows="20"
                                         placeholder="Write Something here!">{{ isset($EditSubscription) ? $EditSubscription->desc : '' }}</textarea>
                                 </div>
@@ -168,7 +190,7 @@
 
                             </div>
                             <div class="row col s12 mt-2">
-                                <div class="input-group col s4">
+                                <div class="input-field col s4">
                                     <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($EditSubscription) ? 'Update' : 'Submit' }}</button>
                                 </div>
                             </div>

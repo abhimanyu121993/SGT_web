@@ -8556,13 +8556,15 @@ textarea.materialize-textarea
 [type='radio'].with-gap:checked + span:before,
 [type='radio'].with-gap:checked + span:after
 {
-    border: 2px solid #ff4081;
+    /* border: 2px solid #ff4081; */
+    border: 2px solid #244B8A;
 }
 
 [type='radio']:checked + span:after,
 [type='radio'].with-gap:checked + span:after
 {
-    background-color: #ff4081;
+    /* background-color: #ff4081; */
+    background-color: #244B8A;
 }
 
 [type='radio']:checked + span:after

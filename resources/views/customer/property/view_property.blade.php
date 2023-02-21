@@ -1,8 +1,27 @@
 @extends('layout.panel')
 @section('title', 'Property')
-@section('breadcrumb-title', 'Property')
-@section('breadcrumb-backpage', 'Property')
-@section('breadcrumb-currentpage', 'Manage Property')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Property</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Property</a>
+                    </li>
+                    <li class="breadcrumb-item active">Property
+                    </li>
+                </ol>
+            </div> 
+            <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
+            </div>        
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-sidebar.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-contacts.css">
@@ -1185,7 +1204,6 @@
                     </aside>
                     <!-- END RIGHT SIDEBAR NAV -->
                 </div>
-                <div class="content-overlay"></div>
             </div>
         </div>
  

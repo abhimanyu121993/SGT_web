@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'Admin Profile')
-@section('breadcrumb-title', 'Admin-Profile')
-@section('breadcrumb-backpage', 'Admin')
-@section('breadcrumb-currentpage', 'profile')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Admin Profile</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Admin</a>
+                    </li>
+                    <li class="breadcrumb-item active">Profile
+                    </li>
+                </ol>
+            </div>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-users.css')}}">
