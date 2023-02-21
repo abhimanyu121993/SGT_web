@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active">Manage Subscription
                     </li>
                 </ol>
-            </div>         
+            </div>
         </div>
     </div>
 </div>
@@ -97,9 +97,9 @@ $guard='customer';
                                                 <i class="ri-more-2-fill"></i>
                                             </a>
                                             @php $bid=Crypt::encrypt($data->id); @endphp
-                                               <a id="pop" class="dropdown-item" href="{{route($guard.'.subscription.edit',$bid)}}">Edit</a>
-                                               <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                                                
+                                            <a id="pop" class="dropdown-item" href="{{route($guard.'.subscription.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                                            <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+
 
                                                 <form id="delete-form-{{ $bid }}" action="{{ route($guard.'.subscription.destroy', $bid) }}" method="post" style="display: none;">
                                                     @method('DELETE')

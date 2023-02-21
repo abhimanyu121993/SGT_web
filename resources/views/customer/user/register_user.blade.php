@@ -37,6 +37,7 @@
                    
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
+                        
                             <div class="input-field col s4">
                                 <input type="text" class="form-control" id="fname" name="first_name"
                                     value="{{ isset($customer) ? $customer->first_name : old('first_name') }}"
@@ -49,6 +50,21 @@
                                     value="{{ isset($customer) ? $customer->last_name : old('last_name') }}"
                                     >
                                 <label class="active" for="lname">{{__('user.lname')}}</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <select id="gender" name="gender">
+                                @if(!isset($customer))
+                                    <option selected disabled>--Select Gender--</option>
+                                    @endif                                 
+                                    <option value="M" @isset($customer) @selected($customer->gender=='M') @else @selected(old('gender')=='M') @endisset>Male</option>
+                                    <option value="F" @isset($customer) @selected($customer->gender=='F') @else @selected(old('gender')=='F') @endisset >Female</option>
+                                    <option value="O" @isset($customer) @selected($customer->gender=='O') @else @selected(old('gender')=='O') @endisset>Other</option>
+                                </select>
+                                <span class="active" for="gender">{{__('security_guard.gender')}}</span>
+                            </div>
+                            <div class="input-field col s4">
+                                <label class="active" for="dob">{{__('user.dob')}}</label>
+                                <input type="date" class="form-control" id="dob" name="dob" value="{{ isset($customer) ? $customer->dob : '' }}">
                             </div>
                             <div class="input-field col s4">
                                 <input type="text" class="form-control" id="email" name="email"

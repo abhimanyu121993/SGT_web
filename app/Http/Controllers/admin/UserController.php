@@ -79,7 +79,9 @@ class UserController extends Controller
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
-                'mobileno'=>$request->mobile
+                'mobileno'=>$request->mobile,
+                'gender'=>$request->gender,
+                'dob'=>$request->dob,
             ]);
         }
        $role_name = Role::find($request->role_id);

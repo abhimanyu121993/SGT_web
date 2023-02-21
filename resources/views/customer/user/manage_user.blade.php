@@ -35,7 +35,10 @@
                                     <th>{{__('user.sr_no')}}</th>
                                     <th>{{__('user.name')}}</th>
                                     <th>{{__('user.email')}}</th>
+                                    <th>{{__('user.role')}}</th>
                                     <th>{{__('user.is_active')}}</th>
+                                    <th>Created at</th>
+                                    <th>Created on</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -45,6 +48,11 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $data->name??'' }}</td>
                                     <td>{{ $data->email??''}}</td>
+                                     <td>
+                                        @foreach($data->roles as $role)
+                                        {{ Helper::role_name($role->name )}}
+                                        @endforeach
+                                     </td>
                                     <td>
                                         <div class="switch">
                                             <label>
@@ -54,6 +62,8 @@
                                         </div>
 
                                     </td>
+                                    <td>{{ $data->created_at->format('d-M-Y') }}</td>
+                                     <td>{{ $data->created_at->format('H:i:s a') }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,7 +105,6 @@
             success: function() {
 
                 $('.is_active').removeAttr('disabled')
-
             }
         });
     });

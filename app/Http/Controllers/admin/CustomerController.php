@@ -94,6 +94,8 @@ class CustomerController extends Controller
                     'last_name'=>$request->last_name,
                     'email'=>$request->email,
                     'mobileno'=>$request->mobileno,
+                    'gender'=>$request->gender,
+                    'dob'=>$request->dob,
                     'city_id'=>$request->city??0,
                     'state_id'=>$request->state ?? 0,
                     'country_id'=>$request->country ?? 0,
