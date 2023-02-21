@@ -139,6 +139,17 @@ $guard='customer';
 <!-- Ajax for Checking IsLimit -->
 <script>
     $('.is_limit').on('click', function() {
+        swal({
+    title: "Are you sure?",
+    text: "Want to change status !",
+    icon: 'warning',
+    dangerMode: true,
+    buttons: {
+      cancel: 'No, Please!',
+      delete: 'Yes, Change It'
+    }
+  }).then(function (willDelete) {
+    if (willDelete) {
         var id = $(this).val();
         $.ajax({
             url: $(this).data('url'),
@@ -152,12 +163,33 @@ $guard='customer';
 
             }
         });
+    } else {
+      swal("Your Previous Status is safe", {
+        title: 'Cancelled',
+        icon: "error",
+      });
+      location.reload(true);
+    }
+  });
+       
     });
 </script>
 
 <!-- Ajax for Checking IsLife_Time -->
 <script>
     $('.is_life_time').on('click', function() {
+
+        swal({
+    title: "Are you sure?",
+    text: "Want to change status !",
+    icon: 'warning',
+    dangerMode: true,
+    buttons: {
+      cancel: 'No, Please!',
+      delete: 'Yes, Change It'
+    }
+  }).then(function (willDelete) {
+    if (willDelete) {
         var id = $(this).val();
         $.ajax({
             url: $(this).data('url'),
@@ -168,9 +200,27 @@ $guard='customer';
             success: function() {
 
                 $('.is_life_time').removeAttr('disabled')
+                
 
             }
         });
+    } else {
+        if($(this).checked){
+            alert();
+        }
+      swal("Your Previous Status is safe", {
+        title: 'Cancelled',
+        icon: "error",
+      });
+      location.reload(true);
+    
+    }
+  });
+
+
+
+
+       
     });
 </script>
 <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
