@@ -66,7 +66,7 @@
                    </p>
                   </div>
           
-                    <div class="card-action new-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right;">View </a></div>
+                    <div class="card-action new-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
           
           
                 </div>
