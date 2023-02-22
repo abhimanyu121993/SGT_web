@@ -11,11 +11,25 @@
             </div>
 
             <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn ccbutton right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Add Property</span><i class="material-icons right">arrow_drop_down</i></a>
-              
-            </div>
+              </div>
 
 
           </div>
+
+      
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="search-widget">
+  <i class="fa fa-search"style="margin-left: 5px; margin-top:10px;"></i>
+  <input class="inputworld" name="name" type="text">
+  <!-- <button id="mybutton"></button> -->
+</div>
+
+
+
+
+
 
         </div>
    

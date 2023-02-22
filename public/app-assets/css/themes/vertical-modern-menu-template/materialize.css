@@ -42,6 +42,14 @@
    }
 
 
+.inputworld{
+
+   height: 1rem !important;
+    margin: 2px 0 -8px 0 !important;
+    border-bottom: 0px solid #9e9e9e !important;
+
+}
+
    
 .materialize-red
 {
