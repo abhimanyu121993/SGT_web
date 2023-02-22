@@ -22,7 +22,10 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role')->middleware(['role:role_read,admin']);
     Route::get('customer-has-permission', [RoleController::class, 'fetch_role'])->name('customer-has-permission');
 });
+
+
 Route::resource('subscription', SubscriptionController::class)->name('subscription','')->middleware(['permission:subscription,admin']);
+
 Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function(){
 Route::get('/islimit/{id}',[SubscriptionController::class,'is_limit'])->name('limit')->middleware(['permission:subscription_edit,admin']);
 Route::get('/islife-time/{id}',[SubscriptionController::class,'is_life_time'])->name('life-time')->middleware(['permission:subscription_edit,admin']);
@@ -35,8 +38,11 @@ Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-u
 });
 //Route for Activate Customer
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function(){
+
 Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('active-customer')->middleware(['permission:customer_edit,admin']);
+
     Route::get('/permissions/{id}',[CustomerController::class,'customer_has_permissions'])->name('customer-has-permission');
+
     Route::post('assign-permission', [CustomerController::class,'assign_permission_to_customer'])->name('assign-permission');
 });
 

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::get('admin', [AuthController::class, 'admin'])->name('admin');
     Route::post('admin-login', [AuthController::class, 'admin_login'])->name('admin-login');
     Route::get('customer', [AuthController::class, 'customer'])->name('customer');
+    
     Route::post('customer-login', [AuthController::class, 'customer_login'])->name('customer-login');
     //  Route for change Password
     Route::post('update-password',[AuthController::class,'update_password'])->name('update-password');

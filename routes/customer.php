@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 
 Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
+
 Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middleware'=>['permission:role,customer','permission:permission,customer']], function(){
     Route::resource('role', RoleController::class)->name('role','');
     Route::resource('permission', PermissionController::class);
@@ -37,8 +38,10 @@ Route::resource('profile',ProfileController::class)->name('profile','');
 
 //Route for Property
 Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
+
 Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
 Route::get('add-checkpoint/{id}',[CheckpointController::class,'addcheckpoint'])->name('add-checkpoint');
+
 });
 //Route for Security Guard
 Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');
