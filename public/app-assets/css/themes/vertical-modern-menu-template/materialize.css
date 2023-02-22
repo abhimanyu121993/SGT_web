@@ -23,17 +23,18 @@
  }
 
  .search-widget {
-    border: 1px solid #858585;
-    width: 300px;
+  border: 2px solid #858585;
+    width: 290px;
     display: inline-block;
-    height: 41px;
+    height: 37px;
     float: right;
     border-radius: 8px;
     margin-right: 251px;
-    margin-top: -78px;
+    margin-top: -76px;
 }
 
 .card .new-card-content{
+
       height: 130px;
     padding: 3px;
     border-radius: 0 0 2px 2px;
@@ -43,6 +44,8 @@
 
 
 .inputworld{
+
+     width: 92% !important; 
 
    height: 1rem !important;
     margin: 2px 0 -8px 0 !important;
