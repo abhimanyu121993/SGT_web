@@ -42,6 +42,7 @@ class CheckpointController extends Controller
         $status=Status::where('type','general')->get();
         $checkpoints = Checkpoint::where('owner_id',Helper::getOwner())->get();
         return view('customer.property.qr_map', compact('checkpoints','status'));
+
     }
 
     /**
