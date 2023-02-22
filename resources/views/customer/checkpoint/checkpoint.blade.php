@@ -1,8 +1,27 @@
 @extends('layout.panel')
 @section('title', 'Checkpoint')
-@section('breadcrumb-title', 'Checkpoint')
-@section('breadcrumb-backpage', 'Checkpoint')
-@section('breadcrumb-currentpage', 'Manage Checkpoint')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Checkpoint</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Checkpoint</a>
+                    </li>
+                    <li class="breadcrumb-item active">Add Checkpoint
+                    </li>
+                </ol>
+            </div> 
+            <div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
+            </div>        
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 @endsection
 @section('content-area')
@@ -76,7 +95,7 @@
                     @endforeach
                     </div>
                     <div class="row col s12 mt-3">
-                    <div class="col s3 m6 l8"><a class="  waves-effect waves-light  right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.task.index')}}"><span>Add More Task?</span></a> 
+                    <div class="col s3 m6 l8"><a class="  waves-effect waves-light  right modal-trigger modal1"  data-url="{{route(Helper::getGuard().'.task.index')}}"><span>Add More Task?</span></a> 
             </div>
                 </div>
             </div>

@@ -1,11 +1,26 @@
 @extends('layout.panel')
 @section('title', 'Property')
-@section('breadcrumb-title', 'Property')
-@section('breadcrumb-backpage', 'Property')
-@section('breadcrumb-currentpage', 'Register Property')
-@section('breadcrumb-menu')
-<div class="col s2 m6 l6"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
-            </div>
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Property</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Property</a>
+                    </li>
+                    <li class="breadcrumb-item active">Add Property
+                    </li>
+                </ol>
+            </div> 
+            <div class="col s2 m6 l6"><a class="btn breadcrumbs-btn right modal-trigger" href="{{route(Helper::getGuard().'.property.index')}}"><span class="hide-on-small-onl">Back To Properties</span></a> 
+            </div>        
+        </div>
+    </div>
+</div>
 @endsection
 @section('content-area')
 
@@ -22,7 +37,7 @@
                         <div class="row gy-4">
                         <div class="file-field input-field col s6" id="image">
                         <div class="btn">
-                            <span>{{__('checkpoint.file')}}</span>
+                            <span>{{__('property.image')}}</span>
                             <input type="file" name="images">
                         </div>
                         <div class="file-path-wrapper">
@@ -71,14 +86,10 @@
                                     <input type="number" class="form-control" id="postcode" name="postcode"
                                         value="{{ isset($propertyEdit) ? $propertyEdit->postcode : old('postcode') }}" placeholder="Postcode">
                                    <label for="postcode">{{__('property.pincode')}}</label>
-
                                 </div>
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
-
-                           
-
                             <div class="input-field col s6">
                                 <input type="number" class="form-control"  id="lattitude" name="lattitude"
                                 value="{{ isset($propertyEdit) ? $propertyEdit->lattitude : (old('lattitude')??0) }}" placeholder="Lattitude" readonly>
@@ -97,7 +108,6 @@
                         <div class="row gy-4 mt-2">
                             <div class="input-field col s12">
                                 <textarea class="materialize-textarea" id='address'name="address"  data-length="120" >{{ isset($propertyEdit) ? $propertyEdit->address : old('address') }}</textarea>
-                                <label for="address">{{__('property.address')}}</label>
                             </div>
                            
                             <!--end col-->

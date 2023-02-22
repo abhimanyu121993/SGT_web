@@ -9,7 +9,7 @@ return array (
   'subscription' => 'Subscription',
   'create' => 'Create',
   'manage' => 'Manage',
-  'user'=>'User',
+  'user'=>'Staff',
   'staff'=>'Staff',
 //Property Management
 'all_property'=>'All Property',
@@ -41,5 +41,8 @@ return array (
     //Root Management
     'route'=>'Route',
     'manage_route'=>'Manage Route',
-
+//Admin panel
+//Staff
+'add_staff'=>'Add Staff',
+'manage_staff'=>'Manage Staff',
 );

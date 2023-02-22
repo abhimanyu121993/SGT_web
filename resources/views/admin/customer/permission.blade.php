@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title','Permission')
-@section('breadcrumb-title','Permissions')
-@section('breadcrumb-backpage','Role & Permission')
-@section('breadcrumb-currentpage','Permission')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Permissions</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Role & Permission</a>
+                    </li>
+                    <li class="breadcrumb-item active">Permissions
+                    </li>
+                </ol>
+            </div>         
+        </div>
+    </div>
+</div>
+@endsection
 @section('content-area')
     <div class="section">
 
@@ -14,7 +31,7 @@
                         <form action="{{ route(Session::get('guard') . '.customer.assign-permission') }}" method="post">
                             @csrf
                             <input type="hidden" name='customerid' value="{{ $customer->id }}">
-                            <table id="scroll-vert-hor" class="display nowrap" style="width:100%">
+                            <table id="page-length-option" class="display nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Permissions Name</th>

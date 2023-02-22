@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'Admin Profile')
-@section('breadcrumb-title', 'Admin-Profile')
-@section('breadcrumb-backpage', 'Admin')
-@section('breadcrumb-currentpage','profile')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Admin Profile</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Admin</a>
+                    </li>
+                    <li class="breadcrumb-item active">Profile
+                    </li>
+                </ol>
+            </div>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-users.css')}}">
@@ -26,9 +43,10 @@
                     </li>
                 </ul>
                 <div class="divider mb-3"></div>
-                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post" >
+                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post"  enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
+                    <input type="file" name="profile" id="fileid" hidden>
                     <div class="row">
                         <div class="col s12" id="account">
                             <!-- users edit media object start -->
@@ -40,7 +58,7 @@
                                 <div class="media-body">
                                     <h5 class="media-heading mt-0">{{ $user->admin_profile->full_name ?? '' }}</h5>
                                     <div class="user-edit-btns display-flex">
-                                        <a href="#" class="btn-small indigo">Change</a>
+                                        <a href="javascript:void(0)" class="btn-small indigo" id="buttonid" >Change</a>
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
@@ -211,4 +229,11 @@
 @section('script-area')
 
     <script src="{{ asset('app-assets/js/scripts/form-file-uploads.js') }}"></script>
+    <script>
+        document.getElementById('buttonid').addEventListener('click', openDialog);
+
+        function openDialog() {
+        document.getElementById('fileid').click();
+        }
+    </script>
 @endsection

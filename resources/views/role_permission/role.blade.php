@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'Role')
-@section('breadcrumb-title', 'Role')
-@section('breadcrumb-backpage', 'Role & Permission')
-@section('breadcrumb-currentpage', 'Role')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Role</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Role & Permission</a>
+                    </li>
+                    <li class="breadcrumb-item active">Role
+                    </li>
+                </ol>
+            </div>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
 @endsection
@@ -33,7 +50,7 @@
                 
                 
                 </div></div>
-                <h4 class="grey-text lighten-1">{{$role->role_name}}</h4>
+                <h6 class="grey-text lighten-1">{{Helper::role_name($role->name)}}</h6>
                 <div class="card-action pb-0">
                     <a href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                     <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-4 ">edit</i></a>

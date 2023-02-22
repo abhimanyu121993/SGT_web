@@ -149,7 +149,7 @@
                     @yield('content-area')
                     @include('panel.include.rightsidebar')
                     <!-- END RIGHT SIDEBAR NAV -->
-                    @include('panel.include.bottom-icon')
+                   {{-- @include('panel.include.bottom-icon') --}}
                 </div>
                 <div class="content-overlay"></div>
             </div>
@@ -159,7 +159,7 @@
 
 
     <!-- Theme Customizer -->
-    @include('panel.include.customizer')
+    <!-- @include('panel.include.customizer') -->
     <!--/ Theme Customizer -->
 
 

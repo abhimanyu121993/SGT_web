@@ -79,6 +79,9 @@ class UserController extends Controller
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
+                'mobileno'=>$request->mobile,
+                'gender'=>$request->gender,
+                'dob'=>$request->dob,
             ]);
         }
        $role_name = Role::find($request->role_id);
@@ -152,10 +155,15 @@ class UserController extends Controller
             'name'=>$request->first_name.' '.$request->last_name,
             'email'=>$request->email,
         ]);
+
+
         $role = Role::find($request->role_id);
 
         if($res)
         {
+            AdminProfile::where('admin_id',$id)->first()->update([
+                'mobileno'=>$request->mobile
+            ]);
             $admin = Admin::find($id);
             $admin->syncRoles($role->name);
                 session()->flash('success','User updated sucessfully');

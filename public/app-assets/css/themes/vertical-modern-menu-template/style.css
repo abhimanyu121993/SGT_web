@@ -9032,9 +9032,9 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 .brand-sidebar .logo-wrapper a.brand-logo img
 {
     height: 45px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     margin-top: -10px;
-    width: 180px !important;
+    /* width: 180px !important; */
 }
 
 .brand-sidebar .logo-wrapper a.navbar-toggler
@@ -9058,9 +9058,10 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 .brand-sidebar span.logo-text
 {
-    font-size: 24px;
+    font-size: 36px;
 
     visibility: visible;
+    font-weight: bolder;
 
     padding-left: 8px;
 
@@ -9080,9 +9081,9 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
     display: inline-block;
 
     margin: 1px 0;
-    padding: 22px 12px 22px 22px;
+    padding: 22px 12px 20px 22px;
 
-    color: #333;
+    color: #244B8A;
 }
 
 .brand-sidebar .brand-logo img
@@ -10235,6 +10236,8 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 #breadcrumbs-wrapper .breadcrumbs-btn
 {
     top: 24px;
+    background-color: white;
+    color:black !important;
 }
 
 #breadcrumbs-wrapper h5.breadcrumbs-header

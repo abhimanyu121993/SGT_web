@@ -36,6 +36,7 @@ class CheckpointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //for show the (Qr Map) page.
     public function create()
     {
         $status=Status::where('type','general')->get();
@@ -49,7 +50,7 @@ class CheckpointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //For store data in property table.
+    //For store data in checkpoint table.
 
     public function store(Request $request)
     {
@@ -111,6 +112,7 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //for show the single property details.
     public function show($id)
     {
         $id=Crypt::decrypt($id);
@@ -197,7 +199,7 @@ else{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //For deleting the data from property table.
+    //For deleting the data from Checkpoint table.
 
     public function destroy($id)
     {
@@ -246,6 +248,7 @@ else{
             }
             // return response()
         }
+        //for add checkpoint.
         public function addcheckpoint($id)
         {
             $id=Crypt::decrypt($id);

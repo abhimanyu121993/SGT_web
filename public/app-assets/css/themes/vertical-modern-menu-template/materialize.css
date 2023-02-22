@@ -3788,8 +3788,7 @@ th
 
     text-align: left;
     vertical-align: middle;
-
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
 
 @media only screen and (max-width: 992px)
@@ -6703,7 +6702,7 @@ small
     letter-spacing: .5px;
 
     color: #fff;
-    background-color: #ff4081;
+    background-color: #244B8A;
 }
 
 .btn:hover,
@@ -7141,7 +7140,7 @@ button.btn-floating
 
     padding: 14px 16px;
 
-    color: #ff4081;
+    color: #244B8A;
 }
 
 .dropdown-content li > span > label
@@ -8592,13 +8591,15 @@ textarea.materialize-textarea
 [type='radio'].with-gap:checked + span:before,
 [type='radio'].with-gap:checked + span:after
 {
-    border: 2px solid #ff4081;
+    /* border: 2px solid #ff4081; */
+    border: 2px solid #244B8A;
 }
 
 [type='radio']:checked + span:after,
 [type='radio'].with-gap:checked + span:after
 {
-    background-color: #ff4081;
+    /* background-color: #ff4081; */
+    background-color: #244B8A;
 }
 
 [type='radio']:checked + span:after
@@ -8949,7 +8950,7 @@ textarea.materialize-textarea
 
 .switch label input[type=checkbox]:checked + .lever
 {
-    background-color: #f7c7d8;
+    background-color: #bac0ea;
 }
 
 .switch label input[type=checkbox]:checked + .lever:before,
@@ -8960,7 +8961,7 @@ textarea.materialize-textarea
 
 .switch label input[type=checkbox]:checked + .lever:after
 {
-    background-color: #ff4081;
+    background-color: #244B8A;
 }
 
 .switch label .lever

@@ -1,8 +1,25 @@
 @extends('layout.panel')
 @section('title', 'Customer Profile')
-@section('breadcrumb-title', 'Customer-Profile')
-@section('breadcrumb-backpage', 'Customer')
-@section('breadcrumb-currentpage', 'profile')
+@section('breadcrumb')
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Customer Profile</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Customer</a>
+                    </li>
+                    <li class="breadcrumb-item active">Profile
+                    </li>
+                </ol>
+            </div>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('link-area')
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-users.css">
@@ -40,6 +57,7 @@
                                 <div class="media-body">
                                     <h5 class="media-heading mt-0">{{ $user->customer_profile->full_name ?? '' }}</h5>
                                     <div class="user-edit-btns display-flex">
+                                       
                                         <a href="#" class="btn-small indigo">Change</a>
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
