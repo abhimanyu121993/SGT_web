@@ -1,4 +1,4 @@
-        <div class="modal-content">
+        <div class="modal-content white">
             <h6>{{ isset($task) ? 'Update Task' : 'Add Task' }}</h6>
             <div class="live-preview">
                 <form action="{{ isset($task) ? route(Session::get('guard').'.task.update', $task->id) : route(Session::get('guard').'.task.store') }}" method="POST" enctype="multipart/form-data">

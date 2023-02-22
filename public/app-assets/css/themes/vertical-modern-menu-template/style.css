@@ -2,6 +2,47 @@
 	Style file contain theme components style
 -------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
+
+
+/* new code */
+
+.langlang{
+
+margin-left: 38px !important;
+    margin-top: -32px !important;
+
+}
+
+.kangjang {
+    border-radius: 10px;
+    width: 636px !important;
+    margin-left: -85px !important;
+}
+
+.getjang{
+
+height:300px;
+
+}
+
+#breadcrumbs-wrapper .breadcrumbs-title
+{
+    font-size: 2.4rem;
+    line-height: 1.4rem;
+}
+
+
+.ccbutton{
+
+top: -10px !important;
+
+}
+
+
+
+/* new code */
+
+
 .materialize-red
 {
     background-color: #e51c23 !important;
@@ -1041,6 +1082,7 @@
 
 .light-blue-text.text-darken-4
 {
+    margin-left: 125px;
     color: #01579b !important;
 }
 

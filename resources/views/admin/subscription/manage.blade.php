@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active">Manage Subscription
                     </li>
                 </ol>
-            </div>         
+            </div>
         </div>
     </div>
 </div>
@@ -72,7 +72,7 @@ $guard='customer';
                                     <td>
                                         <div class="switch">
                                             <label>
-                                                <input type="checkbox" value="{{$data->id}}" class="is_limit" id="is_limit" data-url="{{route('admin.subscription.limit',$data->id) }}" {{ $data->limit==0?'':'checked' }}>
+                                                <input type="checkbox" value="{{$data->id}}" class="is_active" id="is_active" data-url="{{route('admin.subscription.limit',$data->id) }}" {{ $data->limit==0?'':'checked' }}>
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
@@ -80,7 +80,7 @@ $guard='customer';
                                     <td>
                                         <div class="switch">
                                             <label>
-                                                <input type="checkbox" value="{{$data->id}}" class="is_life_time" id="is_life_time" data-url="{{route('admin.subscription.life-time',$data->id) }}" {{ $data->life_time==0?'':'checked' }}>
+                                                <input type="checkbox" value="{{$data->id}}" class="is_active" id="is_active" data-url="{{route('admin.subscription.life-time',$data->id) }}" {{ $data->life_time==0?'':'checked' }}>
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
@@ -97,9 +97,9 @@ $guard='customer';
                                                 <i class="ri-more-2-fill"></i>
                                             </a>
                                             @php $bid=Crypt::encrypt($data->id); @endphp
-                                               <a id="pop" class="dropdown-item" href="{{route($guard.'.subscription.edit',$bid)}}">Edit</a>
-                                               <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                                                
+                                            <a id="pop" class="dropdown-item" href="{{route($guard.'.subscription.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                                            <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+
 
                                                 <form id="delete-form-{{ $bid }}" action="{{ route($guard.'.subscription.destroy', $bid) }}" method="post" style="display: none;">
                                                     @method('DELETE')
@@ -135,43 +135,4 @@ $guard='customer';
         }).change();
     });
 </script>
-<!-- Image and Icon slection -->
-<!-- Ajax for Checking IsLimit -->
-<script>
-    $('.is_limit').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_limit').attr('disabled', 'true');
-            },
-            success: function() {
-
-                $('.is_limit').removeAttr('disabled')
-
-            }
-        });
-    });
-</script>
-
-<!-- Ajax for Checking IsLife_Time -->
-<script>
-    $('.is_life_time').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_life_time').attr('disabled', 'true');
-            },
-            success: function() {
-
-                $('.is_life_time').removeAttr('disabled')
-
-            }
-        });
-    });
-</script>
-<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
 @endsection

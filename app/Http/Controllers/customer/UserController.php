@@ -85,6 +85,8 @@ class UserController extends Controller
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
                 'mobileno'=>$request->mobile,
+                'gender'=>$request->gender,
+                'dob'=>$request->dob,
                 'status'=>Status::where('name','active')->where('type','general')->first()->id,
             ]);
         }

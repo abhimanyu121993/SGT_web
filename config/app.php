@@ -219,6 +219,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Helper' => App\Helpers\Helper::class,
         'Location' => 'Stevebauman\Location\Facades\Location',
+        'ImageUpload'=>App\Helpers\ImageUpload::class,
     ])->toArray(),
 
 ];

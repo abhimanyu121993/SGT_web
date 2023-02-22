@@ -15,6 +15,7 @@ use App\Models\TimeZone;
 use Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Permission;
@@ -117,5 +118,19 @@ class Helper
     {
          $role=explode('_',$name);
          return $role[1];
+    }
+
+    public static function getCustomerBySession()
+    {
+        if(Session::has('customer')){
+            $id=Crypt::decrypt(Session::get('customer'));
+            $customer=Customer::findOrFail($id);
+            return $customer;
+        }
+       
+        
+            Session::flash('warning','Customer Not Selected');
+            return redirect()->back();
+        
     }
 }

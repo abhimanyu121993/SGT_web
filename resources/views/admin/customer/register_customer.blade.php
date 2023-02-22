@@ -49,7 +49,6 @@
                                             name="membership_plan" value="{{$plan->id}}" @checked($plan->id==old('membership_plan'))>
                                         <span>{{$plan->title}}</span>
                                     </label>
-
                                 </div>
                                 @endforeach
                                 @error('membership_plan')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
@@ -80,7 +79,20 @@
                                     placeholder="Last Name">
                                     @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
-
+                            <div class="input-field col s6">
+                                <select id="gender" name="gender">
+                                @if(!isset($CustomerEdit))
+                                    <option selected disabled>--Select Gender--</option>
+                                    @endif                                
+                                    <option value="M" @isset($CustomerEdit) @selected($CustomerEdit->gender=='M') @else @selected(old('gender')=='M') @endisset>Male</option>
+                                    <option value="F" @isset($CustomerEdit) @selected($CustomerEdit->gender=='F') @else @selected(old('gender')=='F') @endisset >Female</option>
+                                    <option value="O" @isset($CustomerEdit) @selected($CustomerEdit->gender=='O') @else @selected(old('gender')=='O') @endisset>Other</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="date" class="form-control" id="dob" name="dob" value="{{ isset($CustomerEdit) ? $CustomerEdit->dob : '' }}">
+                                <label class="active" for="dob">{{__('customer.dob')}}</label>
+                            </div>
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
