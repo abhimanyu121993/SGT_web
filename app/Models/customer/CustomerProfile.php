@@ -18,7 +18,7 @@ class CustomerProfile extends Model
         return $this->first_name.' '.$this->last_name;
     }
     
-    public function customer_profile()
+    public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id','id');
     }

@@ -60,6 +60,7 @@
 
   {{-- Data Table Js cdn --}}
   <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+  <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{asset('vendor/datatables/buttons.server-side.js')}}"></script>
 
 <script src="{{asset('app-assets/js/scripts/form-elements.js')}}"></script>
@@ -71,3 +72,40 @@ $('#change_password_modal').click(function(){
 });
 });
   </script>
+<script>
+    $('.is_active').on('click', function() {
+        swal({
+    title: "Are you sure?",
+    text: "Want to change status !",
+    icon: 'warning',
+    dangerMode: true,
+    buttons: {
+      cancel: 'No, Please!',
+      delete: 'Yes, Change It'
+    }
+  }).then(function (willDelete) {
+    if (willDelete) {
+        var id = $(this).val();
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            beforeSend: function() {
+                $('.is_limit').attr('disabled', 'true');
+            },
+            success: function() {
+
+                $('.is_limit').removeAttr('disabled')
+
+            }
+        });
+    } else {
+      swal("Your Previous Status is safe", {
+        title: 'Cancelled',
+        icon: "error",
+      });
+      location.reload(true);
+    }
+  });
+       
+    });
+</script>

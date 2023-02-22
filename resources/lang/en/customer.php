@@ -20,5 +20,6 @@ return array (
   'federal_ein'=>'Federal EIN',
   'bsis_number'=>'BSIS No.',
   'membership_plan'=>'Membership Plan',
-  'all_permissions'=>'All Permission'
+  'all_permissions'=>'All Permission',
+  'all_property'=>'All Property'
 );
