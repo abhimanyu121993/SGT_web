@@ -22,10 +22,12 @@ use Spatie\Permission\Models\Role;
 
 class Helper
 {
+    
     public static function getCountries()
     {
         return $countries = Country::get();
     } 
+
     public static function getStateByCountry($id)
     {
         try {
@@ -92,6 +94,7 @@ class Helper
             return 'customer';
         }
     }
+
 
     public function sendError($message,$errors=[],$code=401)
     {

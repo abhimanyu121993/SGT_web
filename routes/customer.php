@@ -30,6 +30,7 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middlew
     //Assign all customer permission to customer
     Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 });
+
 //Route for User
 Route::resource('user', UserController::class)->name('user','');
 
@@ -37,12 +38,19 @@ Route::resource('user', UserController::class)->name('user','');
 Route::resource('profile',ProfileController::class)->name('profile','');
 
 //Route for Property
+
 Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
 
+
+
+
 Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
+
 Route::get('add-checkpoint/{id}',[CheckpointController::class,'addcheckpoint'])->name('add-checkpoint');
 
 });
+
+
 //Route for Security Guard
 Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');
 //Route for Activate User

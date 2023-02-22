@@ -26,16 +26,8 @@
   <!-- <button id="mybutton"></button> -->
 </div>
 
-
-
-
-
-
-        </div>
+</div>
    
-
-
-
 
 
 </div>
@@ -50,14 +42,14 @@
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
                   </div>
-                  <div class="card-content new-card-content">
+                   <div class="card-content new-card-content">
                     <span class="card-title activator grey-text text-darken-4">{{ $property->name ?? '' }} 
                         @php $pid=Crypt::encrypt($property->id); @endphp
                     </span>
                     <p><a href="#">{{$property->address}}</a></p>
                   </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
                     </span>
                    <p>
                     <b>City : </b>{{$property->city_detail->name??''}} <br>
@@ -66,9 +58,11 @@
                    </p>
                   </div>
           
-                    <div class="card-action new-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
+          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
+
+
           
-          
+
                 </div>
                 
             </div>
