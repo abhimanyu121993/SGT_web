@@ -6245,8 +6245,7 @@ small
 
 .card .card-action:last-child
 {
-    background-color: grey;
-    border-radius: 0 0 12px 12px;
+   border-radius: 0 0 2px 2px;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating)
@@ -7846,16 +7845,16 @@ input[type=number]:not(.browser-default),
 input[type=search]:not(.browser-default),
 textarea.materialize-textarea
 {
-    font-size: 1rem;
+   font-size: 1rem;
     box-sizing: content-box;
-    width: 90%;
-    height: 2rem;
-    margin: 0 0 -5px 0;
+    width: 100%;
+    height: 3rem;
+    margin: 0px 0 8px 0;
     padding: 0;
     -webkit-transition: box-shadow .3s, border .3s;
     transition: box-shadow .3s, border .3s;
     border: none;
-    border-bottom: 0px solid #9e9e9e;
+    border-bottom: 1px solid #9e9e9e;
     border-radius: 0;
     outline: none;
     background-color: transparent;

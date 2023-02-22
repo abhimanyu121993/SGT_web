@@ -2,7 +2,7 @@
 @section('title', 'Admin Profile')
 @section('breadcrumb-title', 'Admin-Profile')
 @section('breadcrumb-backpage', 'Admin')
-@section('breadcrumb-currentpage', 'profile')
+@section('breadcrumb-currentpage','profile')
 @section('link-area')
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-users.css')}}">
