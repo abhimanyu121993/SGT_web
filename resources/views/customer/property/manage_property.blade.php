@@ -10,11 +10,11 @@
             <br><br>
             </div>
 
-            <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn ccbutton right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Add Property</span><i class="material-icons right">arrow_drop_down</i></a>
-              
+            <div class="col s2 m6 l6 mb-2">
+            <a class="btn  waves-effect waves-light breadcrumbs-btn right ccbutton"
+            href="{{route(Session::get('guard') . '.property.create')}}"><span
+                class="hide-on-small-onl">Add Property</span></a>    
             </div>
-
-
           </div>
 
         </div>
@@ -41,15 +41,22 @@
                         class="material-icons right">more_vert</i>
                         @php $pid=Crypt::encrypt($property->id); @endphp
                     </span>
-                    <p><a href="#">{{$property->address}}</a></p>
+                    <p class="truncate"><a href="#">{{$property->address}}</a></p>
                   </div>
                   <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
                     </span>
                    <p>
-                    <b>City : </b>{{$property->city_detail->name??''}} <br>
-                    <b>State : </b>{{$property->state_detail->name??''}} <br>
-                    <b>City : </b>{{$property->country_detail->name??''}}
+                    <b>City : </b>{{$property->city_details->name??''}} <br>
+                    <b>State : </b>{{$property->state_details->name??''}} <br>
+                    <b>Country : </b>{{$property->country_details->name??''}}<br>
+                    @php $bid=Crypt::encrypt($property->id); @endphp
+                    <a id="pop" class="dropdown-item" href="{{route(Session::get('guard').'.property.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                    <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+                    <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.property.destroy', $bid) }}" method="post" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
                    </p>
                   </div>
           
@@ -78,27 +85,7 @@
                                 </div>
             </div> --}}
             @endforeach
-            <div class="col s12 m6 l4">
-                <div class="card excard">
-                  <div class="card-image waves-effect waves-block waves-light" style="height:173px;">
-                    <img class="activator" src="../../../app-assets/images/gallery/12.png" alt="office" />
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Rivi Property
-                    </span>
-                    <p><a href="#">Sample Property 123</a></p>
-                  </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Rivi Property<i class="material-icons right">close</i>
-                    </span>
-                   
-                  </div>
-          
-                    <div class="card-action"><a href="#">QR map</a> <a href="#" style="float:right;">View </a></div>
-                      </div>
-                
-              </div>
-        </div>
+           </div>
     </div>
 </div>
 

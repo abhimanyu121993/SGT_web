@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\customer\Customer;
 use App\Models\customer\CustomerProfile;
+use App\Models\customer\Property;
 use App\Models\CustomerSubscribePack;
 use App\Models\PermissionName;
 use App\Models\Status;
@@ -40,8 +41,9 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $customers = Customer::where('created_by',Helper::getUserId())->where('type',Customer::$owner)->get();
+    {   
+       
+        $customers = Customer::with('customer_profile')->where('created_by',Helper::getUserId())->where('type',Customer::$owner)->get();
         return view('admin.customer.manage_customer',compact('customers'));
     }
 
@@ -141,7 +143,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        //code 
     }
 
     /**

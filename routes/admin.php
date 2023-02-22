@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\RolePermissionController;
 use App\Http\Controllers\admin\ProfileController;
+use App\Http\Controllers\admin\PropertyController;
 use App\Http\Controllers\admin\SubscriptionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -47,4 +48,9 @@ Route::resource('profile', ProfileController::class)->name('profile', '');
 //Route for Customer Crud
 Route::resource('customer',CustomerController::class)->name('customer','')->middleware(['permission:customer,admin']);
  Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
+//Route for customer property
+Route::resource('property', PropertyController::class)->name('property','');
 
+Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
+    Route::get('/add-property',[PropertyController::class,'add_property'])->name('add_property');
+    });
