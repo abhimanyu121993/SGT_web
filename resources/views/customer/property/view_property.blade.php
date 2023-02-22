@@ -166,11 +166,11 @@
 
    
     <div class="col s12 m12 l6 ">
-      <div class="ct-chart card z-depth-2 border-radius-6">
+      <div class="ct-chart card z-depth-2 border-radius-6 newBox">
         <div class="card-content getjang">
          <img src="{{asset('app-assets/images/icon/Vector.png')}}"><h4 class="card-title langlang"><b>Total Checkpoint</b><br>CHECKPOINTS SUMMARY</h4>
            <img style="float: right;
-                margin-top: -46px;" src="{asset('app-assets/images/icon/claender.png')}}">
+                margin-top: -46px;" src="{{asset('app-assets/images/icon/claender.png')}}">
         </div>
               <div id="bar-chart-sample" class="center" style="margin-top: -113px;
       padding-bottom: 40px;"></div>
