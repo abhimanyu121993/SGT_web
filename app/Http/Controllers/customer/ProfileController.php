@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use App\Helpers\Helper;
+use App\Helpers\ImageUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\customer\Customer;
@@ -102,6 +103,7 @@ class ProfileController extends Controller
                     'federal_ein'=> $request->federal_ein ?? '',
                     'bsis_number'=> $request->bsis_number ?? '',
                 ]);
+                $request->hasFile('profile')?CustomerProfile::updateOrCreate(['customer_id' => $id ],['pic'=>ImageUpload::simpleUpload('customer',$request->profile,'profile')]):'';
              if($res){
                 Session::flash('success', 'User updated successfully');
              }
