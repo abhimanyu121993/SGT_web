@@ -43,22 +43,23 @@
                     </li>
                 </ul>
                 <div class="divider mb-3"></div>
-                <form action="{{ route('customer.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post" >
+                <form action="{{ route('customer.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post"  enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
+                    <input type="file" name="profile" id="fileid" hidden>
                     <div class="row">
                         <div class="col s12" id="account">
                             <!-- users edit media object start -->
                             <div class="media display-flex align-items-center mb-2">
                                 <a class="mr-2" href="#">
-                                    <img src="../../../app-assets/images/avatar/avatar-11.png" alt="users avatar"
-                                        class="z-depth-4 circle" height="64" width="64">
+                                    <img src="{{ asset('storage/'.$user->customer_profile->pic) }}" alt="users avatar"
+                                    class="z-depth-4 circle" height="64" width="64">
                                 </a>
                                 <div class="media-body">
                                     <h5 class="media-heading mt-0">{{ $user->customer_profile->full_name ?? '' }}</h5>
                                     <div class="user-edit-btns display-flex">
                                        
-                                        <a href="#" class="btn-small indigo">Change</a>
+                                        <a href="#" class="btn-small indigo" id="buttonid">Change</a>
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
@@ -201,9 +202,10 @@
                                 </div>
                                 <div class="col s12 m6">
                                     <div class="row">
-                                        <div class="col s12">
-                                            <h6 class="mb-4"><i class="material-icons mr-1">person_outline</i>Personal
-                                                Info</h6>
+                                        <div class="col s12 mt-3">
+                                            <h6 class="mb-4">
+                                                {{-- <i class="material-icons mr-1">person_outline</i>Personal Info--}}
+                                            </h6>
                                         </div>
                                         <div class="col s12 input-field">
                                             <input id="datepicker" name="dob" type="text" class="birthdate-picker datepicker" value="{{ $user->customer_profile->dob ?? '' }}" placeholder="Pick a birthday"
@@ -260,4 +262,11 @@
 @section('script-area')
 
     <script src="{{ asset('app-assets/js/scripts/form-file-uploads.js') }}"></script>
+    <script>
+        document.getElementById('buttonid').addEventListener('click', openDialog);
+
+        function openDialog() {
+        document.getElementById('fileid').click();
+        }
+    </script>
 @endsection

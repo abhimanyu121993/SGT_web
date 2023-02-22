@@ -52,7 +52,7 @@
                             <!-- users edit media object start -->
                             <div class="media display-flex align-items-center mb-2">
                                 <a class="mr-2" href="#">
-                                    <img src="../../../app-assets/images/avatar/avatar-11.png" alt="users avatar"
+                                    <img src="{{ asset('storage/'.$user->admin_profile->pic) }}" alt="users avatar"
                                         class="z-depth-4 circle" height="64" width="64">
                                 </a>
                                 <div class="media-body">
