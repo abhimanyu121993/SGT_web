@@ -7,6 +7,7 @@ return array (
   'name'=>'Name',
   'description'=>'Description',
   'color'=>'Color',
+  'images'=>'Images',
 
   'manage'=>'Manage Route',
   'property'=>'Property',

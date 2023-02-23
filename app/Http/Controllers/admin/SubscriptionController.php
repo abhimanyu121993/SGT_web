@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
+use App\Helpers\ImageUpload;
 use Exception;
 
 class SubscriptionController extends Controller
@@ -71,20 +72,7 @@ class SubscriptionController extends Controller
         ]);
         try
         {
-            $icon = '';
-            $img = '';
-            if($request->hasFile('icon'))
-            {
-                $icon='subscription-'.time().'-'.rand(0,99).'.'.$request->icon->extension();
-                $request->icon->move(public_path('upload/subcription/icon/'),$icon);
-                $icon = 'upload/subcription/icon/'.$icon;
-            }
-            if($request->hasFile('image'))
-            {
-                $img='subscription-'.time().'-'.rand(0,99).'.'.$request->image->extension();
-                $request->image->move(public_path('upload/subcription/img/'),$img);
-                $img = 'upload/subcription/img/'.$img;
-            }
+          
             $res= Subscription::create(['created_by'=>Auth::guard('admin')->user()->id,
             'title'=>$request->title,
             'currency'=>$request->currency,
@@ -92,9 +80,7 @@ class SubscriptionController extends Controller
             'price'=>$request->price,
             'free_trial_days'=>$request->free_trial_days??0,
             'limit'=>$request->limit??0,
-            'status_id'=>$request->status,
-            'icon'=>$icon,
-            'img'=>$img,
+            'status_id'=>$request->status,      
             'color'=>$request->color,
             'bg_color'=>$request->bg_color,
             'life_time'=>$request->lifetime??0,
@@ -103,8 +89,11 @@ class SubscriptionController extends Controller
             'property_qty'=>$request->property_qty,
             'shift_qty'=>$request->shift_qty,
             'checkpoint_qty'=>$request->checkpoint_qty,
+            'img'=>$request->hasFile('image')?ImageUpload::simpleUpload('subscription',$request->image,'sub'):'',
+            'icon'=>$request->hasFile('icon')?ImageUpload::simpleUpload('subscription',$request->icon,'icon'):'',
+           
         ]);
-
+       
             if($res)
             {
                 session()->flash('success','Subscription Added Sucessfully');
@@ -173,22 +162,7 @@ class SubscriptionController extends Controller
         ]);
         try
         {
-            if($request->hasFile('icon'))
-            {
-                $icon='subscription-'.time().'-'.rand(0,99).'.'.$request->icon->extension();
-                $request->icon->move(public_path('upload/subcription/icon/'),$icon);
-                $oldicon=Subscription::find($id)->pluck('icon')[0];
-                File::delete(public_path($oldicon));
-                Subscription::find($id)->update(['icon'=>'upload/subcription/icon/'.$icon]);
-            }
-            if($request->hasFile('image'))
-            {
-                $image='subscription-'.time().'-'.rand(0,99).'.'.$request->image->extension();
-                $request->image->move(public_path('upload/subcription/img/'),$image);
-                $oldimage=Subscription::find($id)->pluck('img')[0];
-                File::delete(public_path($oldimage));
-                Subscription::find($id)->update(['img'=>'upload/subcription/img/'.$image]);
-            }
+           
             $res= Subscription::find($id)->update([
                 'title'=>$request->title,
                 'currency'=>$request->currency,
@@ -203,6 +177,8 @@ class SubscriptionController extends Controller
                 'desc'=>$request->desc,
 
             ]);
+            $request->hasFile('image')?Subscription::find($id)->update(['img'=>ImageUpload::simpleUpload('subscription',$request->image,'sub')]):'';
+            $request->hasFile('icon')?Subscription::find($id)->update(['icon'=>ImageUpload::simpleUpload('subscription',$request->icon,'icon')]):'';
             if($res)
             {
                 session()->flash('success','Subscription Updated Sucessfully');

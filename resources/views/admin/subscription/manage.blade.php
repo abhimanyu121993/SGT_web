@@ -87,7 +87,7 @@ $guard='customer';
                                     </td>
                                     </td>
                                     <td>
-                                        <img src="{{!empty($data->icon)?asset($data->icon):asset($data->img)}}" class="me-75 bg-light-danger" style="height:60px;width:60px;border-radius:100%;" />
+                                        <img src="{{!empty($data->icon)?asset('storage/'.$data->icon):asset('storage/'.$data->img)}}" class="me-75 bg-light-danger" style="height:60px;width:60px;border-radius:100%;" />
                                     </td>
                                     <td>{{ $data->color??'' }}</td>
                                     <td>{{ $data->bg_color??''}}</td>
