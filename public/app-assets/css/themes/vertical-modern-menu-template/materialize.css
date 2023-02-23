@@ -71,10 +71,9 @@ margin: 6rem 0 1rem 0 !important;
 
 }
 
-.floatcard{
-
-width: 16% !important;
-
+.floatcard {
+    display: inline-block;
+    width: auto !important;
 }
 
 .newBox {
