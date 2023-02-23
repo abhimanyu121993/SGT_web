@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Helpers\Helper;
+use App\Helpers\ImageUpload;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\admin\AdminProfile;
@@ -80,9 +81,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         try{
-
                 AdminProfile::updateOrCreate(['admin_id' => $id ],[
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name ?? '',
@@ -94,8 +93,9 @@ class ProfileController extends Controller
                     'city' => $request->city ?? '',
                     'timezone' => $request->timezone ?? '',
                     'address' => $request->address ?? '',
+                    'email'=>$request->email,
                 ]);
-
+                $request->hasFile('profile')?AdminProfile::updateOrCreate(['admin_id' => $id ],['pic'=>ImageUpload::simpleUpload('admin',$request->profile,'profile')]):'';
             Session::flash('success', 'User updated successfully');
             return redirect()->back();
 

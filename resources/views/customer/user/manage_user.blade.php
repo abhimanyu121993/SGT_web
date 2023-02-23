@@ -93,22 +93,4 @@
 </div>
 @endsection
 @section('script-area')
-<script>
-    $('.is_active').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_active').attr('disabled', 'true');
-            },
-            success: function() {
-
-                $('.is_active').removeAttr('disabled')
-            }
-        });
-    });
-</script>
-<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
-
 @endsection

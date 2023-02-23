@@ -21,9 +21,26 @@
 </div>
 @endsection
 @section('link-area')
-
 @endsection
 @section('content-area')
+<div id="card-with-analytics" class="section">
+    <div class="row">
+        <div class="col s6 m4 l4 card-width">
+            <div class="card border-radius-6">
+                <div class="card-content center-align" id="piechart_gender">
+
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4 l4 card-width">
+            <div class="card border-radius-6">
+                <div class="card-content center-align" id="piechart">
+
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
 
 {{-- 
  <div class="card">
@@ -36,6 +53,7 @@
 
 <div class="card">
     <div class="card-content">
+       
     <table id="page-length-option" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
@@ -107,7 +125,7 @@
                             </label>
                         </div>
                         
-            <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
+            <a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">eye</i>{{__('customer.all_property')}}</a>
             </div>
             
             <div class="card-reveal">
@@ -116,6 +134,8 @@
                 <p><i class="material-icons">people</i>&nbsp;{{$data->customer_profile->company_name??''}}</p>
                 <p><i class="material-icons">layers</i>Federal EIN {{$data->customer_profile->federal_ein??''}}</p>
                 <p><i class="material-icons">lens</i>BSIS No {{$data->customer_profile->bsis_number??''}}</p>
+                <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
+
             </div>
         </div>
     </div>
@@ -142,4 +162,72 @@
         });
     });
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Count'],
+          @foreach($customers->groupBy('customer_profile.gender') as $k=>$g )
+            ['{{ $k }}',{{ $g->count() }}],
+          @endforeach
+        ]);
+
+        var options = {
+          title: 'Customer Gender Ratio',
+          titleTextStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 15,
+            bold: true,
+            italic: false
+        },
+          is3D:true,
+          height:'100%',
+          vAxis: {
+       
+    },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_gender'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['User', 'Status'],
+         ['Active',{{ $customers->where('isactive',true)->count() }}],
+         ['Inactive',{{ $customers->where('isactive',false)->count() }}],
+        ]);
+
+        var options = {
+          title: 'User Status',
+          titleTextStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 15,
+            bold: true,
+            italic: false
+        },
+        
+          is3D:true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
 @endsection
