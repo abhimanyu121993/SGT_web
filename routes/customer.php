@@ -81,6 +81,8 @@ Route::group(['prefix' => 'task', 'as' => 'task.'], function(){
     });
 //Route for Checkpoint Management
 Route::resource('checkpoint',CheckpointController::class)->middleware('permission:checkpoint,customer');
+
+
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
 Route::post('/status',[CheckpointController::class,'status'])->name('status');
     });

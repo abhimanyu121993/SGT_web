@@ -47,7 +47,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title">Total <br> Manager</h4>
-               <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+               <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
 
             <div class="col s12 display-flex">
@@ -67,7 +67,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title truncate">Total <br> Property</h4>
-              <i class="fa fa-briefcase" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+              <i class="fa fa-briefcase" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
             <div class="col s12 display-flex">
               <div ></div>
@@ -89,7 +89,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title">Total <br> Guard</h4>
-              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
             <div class="col s12 display-flex light-green-text">
             
@@ -108,7 +108,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title">Total <br> Checkpoints</h4>
-              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
             <div class="col s12 display-flex light-green-text">
             
@@ -126,7 +126,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title">Total <br> Shifts</h4>
-              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
             <div class="col s12 display-flex light-green-text">
             
@@ -144,7 +144,7 @@
           <div class="row">
             <div class="col s12">
               <h4 class="card-title">Leave<br> Requests</h4>
-              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-46px;"></i>
+              <i class="fa fa-address-book" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
             <div class="col s12 display-flex light-green-text">
             
