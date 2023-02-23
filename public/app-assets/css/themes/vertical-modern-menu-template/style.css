@@ -46,6 +46,89 @@ top: -10px !important;
     height: 2rem !important;
 }
 
+.newlightbutton{
+
+     margin-right: 391px;
+    margin-top: -42px;
+    background-color: white !important;
+}
+
+.Xnewlightbutton{
+
+     margin-right: 502px;
+    margin-top: -42px;
+    background-color: white !important;
+
+}
+
+.belowsideOption{
+
+/*    float: left;*/
+    margin-top: -36px;
+   
+
+}
+
+.belowsideOption .waves-effect {
+    margin-left: 161px !important;
+    margin-right: -147px;
+    background-color: white !important;
+    float: left !important;
+}
+
+.newFloat{
+
+   margin-top: -45px;
+    float: left;
+    display: grid;
+}
+
+.classessmonster{
+
+display: inline-block;
+
+width: 60% !important;
+
+}
+
+.classesdino{
+    display: inline-block;
+
+    float:right !important;
+
+width: 35% !important;
+
+}
+
+
+.smallclassesdino{
+display: inline-block;
+float:right !important;
+
+width: 35% !important;
+
+}
+
+.bigsizemake{
+
+
+    
+}
+
+
+.sidecard{
+
+display: grid;
+    float: right;
+    width: 808px;
+    margin-top: -981px;
+
+    
+}
+
+
+
+
 /* new code */
 
 
