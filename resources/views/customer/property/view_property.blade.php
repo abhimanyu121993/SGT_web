@@ -44,7 +44,7 @@
         <div class="card-content">
           <div class="row">
             <div class="col s12">
-              <h4 class="card-title">Total <br> Manager</h4>
+              <h4 class="card-title  tetherbyte">Total <br> Manager</h4>
                <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
             </div>
 

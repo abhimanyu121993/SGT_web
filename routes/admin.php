@@ -15,9 +15,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 // Group Route for role and permission
  Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function(){
+
+    
     Route::resource('role', RoleController::class)->name('role','')->middleware(['permission:role,admin']);
+
+
     Route::resource('permission', PermissionController::class)->name('permission','')->middleware(['permission:permission,admin']);
-    Route::get('role-has-permission', [RolePermissionController::class, 'role_permission'])->name('role-has-permission')->middleware(['permission:permission_read|role:role_read,admin']);
+
+
+    Route::get('role-has-permission', [RolePermissionController::class,'role_permission'])->name('role-has-permission')->middleware(['permission:permission_read|role:role_read,admin']);
+
+
+
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions')->middleware(['permission:permission_read|role:role_read,admin']);
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission')->middleware(['permission:permission_edit,admin']);
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role')->middleware(['role:role_read,admin']);

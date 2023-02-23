@@ -101,3 +101,6 @@ Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
 });
 
 Route::post('update-password',[SecurityGuardController::class,'update_password'])->name('update-password');
+
+
+

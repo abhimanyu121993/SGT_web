@@ -24,8 +24,7 @@
  }
 
  .search-widget {
-    box-shadow: 2px 2px 0px black;
-   border: 2px solid #858585;
+box-shadow: 2px 2px 0px #3a2ec0;  
     width: 290px;
     background-color: white;
     display: inline-block;
@@ -56,7 +55,10 @@
 
 
 .getCardSet{
-width: 130px;
+
+   display: flex;
+
+width: 127px;
 
 margin: 6rem 0 1rem 0 !important;
 
@@ -80,6 +82,14 @@ margin: 6rem 0 1rem 0 !important;
     display: inline-block;
     width: 75%!important;
     margin-left: auto !important;
+}
+
+.tetherbyte{
+
+line-height: 26px !important;
+    display: inline-block !important;
+    margin-bottom: 8px !important;
+
 }
 
 /* new css endline */
@@ -6276,6 +6286,8 @@ small
     display: block;
 
     margin-bottom: 8px;
+
+    font-size:14px;
 }
 
 .card .card-content .card-title i
