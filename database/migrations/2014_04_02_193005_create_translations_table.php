@@ -25,7 +25,7 @@ class CreateTranslationsTable extends Migration {
         });
 	}
      
-  
+ 
  
 
 

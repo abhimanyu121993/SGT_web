@@ -156,12 +156,6 @@
 
 
 
-
-
-
-
-
-
    
     <div class="col s12 m12 l6 ">
       <div class="ct-chart card z-depth-2 border-radius-6 newBox">
@@ -232,16 +226,26 @@
         </table>
      </div>
   </div>
+                  
+                           <div class="new-area content-right">
+                           <div class="app-wrapper">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+                            <div class="datatable-search">
+                                <i class="material-icons mr-2 search-icon">search</i>
+                                <input type="text" placeholder="Search Contact" class="app-filter oldbox" id="global_filter">
+                            </div>
+
+                          </div>
+                        </div>
 
 
-<div class="search-widget" >
-  <i class="fa fa-search"></i>
-  <input name="name" type="text" placeholder="search">
-  
-</div>
+
+          <a class="btn waves-effect newlightbutton waves-light breadcrumbs-btn right" href="#!" style="margin-right:70px;"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black">Routes</span></a>
+
+        <a class="btn waves-effect newlightbutton waves-light breadcrumbs-btn right" href="#!" style="margin-right:30px;"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">QR MAP</span></a>
+
+
+
 
 
     <div class="col s12 m12 l6">
@@ -289,7 +293,8 @@
       </div>
     </div>
   </div>
-</div><!-- START RIGHT SIDEBAR NAV -->
+</div>
+<!-- START RIGHT SIDEBAR NAV -->
             
 
 
