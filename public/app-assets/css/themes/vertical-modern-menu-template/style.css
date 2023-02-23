@@ -8,21 +8,22 @@
 
 .langlang{
 
-margin-left: 38px !important;
+   margin-left: 38px !important;
     margin-top: -32px !important;
 
 }
 
+
+
 .kangjang {
-    border-radius: 10px;
-    width: 636px !important;
-    margin-left: -85px !important;
+   border-radius: 10px;
+    width: 930px !important;
+    margin-left: -260px !important;
 }
 
 .getjang{
 
-height:300px;
-
+height: 435px;
 }
 
 #breadcrumbs-wrapper .breadcrumbs-title
