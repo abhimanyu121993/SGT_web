@@ -33,8 +33,6 @@
 @endsection
 @section('content-area')
 
-        <div class="col s12">
-          <div class="container">
             <div class="section" id="materialize-sparkline">
 
   <!--Simple Line Chart-->
@@ -293,9 +291,6 @@
   </div>
 </div><!-- START RIGHT SIDEBAR NAV -->
             
-            </div>
-      
-        </div>
 
 
  
