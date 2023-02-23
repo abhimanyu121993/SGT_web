@@ -14,6 +14,7 @@ class Admin extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     public static $admin='admin',$sub_admin='sub-admin';
+
     protected $fillable = [
         'name',
         'email',
@@ -42,6 +43,16 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //revoke role and permission on delete 
+    public static function boot()
+    {
+        parent::boot();
+            static::deleting(function ($item){
+                $item->syncRoles([]);
+                $item->syncPermissions();
+            });
+    }
+    
     // get first name and last name seperatally
     public function getFirstnameAttribute()
     {
@@ -51,6 +62,7 @@ class Admin extends Authenticatable
     {
         return explode(' ', $this->name)[1] ?? '';
     }
+
 
     public function admin_profile()
     {
