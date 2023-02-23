@@ -134,6 +134,13 @@
                 <p><i class="material-icons">people</i>&nbsp;{{$data->customer_profile->company_name??''}}</p>
                 <p><i class="material-icons">layers</i>Federal EIN {{$data->customer_profile->federal_ein??''}}</p>
                 <p><i class="material-icons">lens</i>BSIS No {{$data->customer_profile->bsis_number??''}}</p>
+                @php $bid=Crypt::encrypt($data->id); @endphp
+                    <a id="pop" class="dropdown-item" href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                    <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+                    <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.customer.destroy', $bid) }}" method="post" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
                 <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
 
             </div>

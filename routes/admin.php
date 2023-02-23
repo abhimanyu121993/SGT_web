@@ -27,6 +27,7 @@ Route::resource('subscription', SubscriptionController::class)->name('subscripti
 Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function(){
 Route::get('/islimit/{id}',[SubscriptionController::class,'is_limit'])->name('limit')->middleware(['permission:subscription_edit,admin']);
 Route::get('/islife-time/{id}',[SubscriptionController::class,'is_life_time'])->name('life-time')->middleware(['permission:subscription_edit,admin']);
+Route::get('/status/{id}',[SubscriptionController::class,'is_active'])->name('is_active');
 });
 
 Route::resource('user', UserController::class)->name('user','')->middleware(['permission:user,admin']);
@@ -49,7 +50,7 @@ Route::resource('profile', ProfileController::class)->name('profile', '');
 Route::resource('customer',CustomerController::class)->name('customer','')->middleware(['permission:customer,admin']);
  Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
 //Route for customer property
-Route::resource('property', PropertyController::class)->name('property','');
+Route::resource('property', PropertyController::class)->name('property','')->middleware('permission:property,admin');
 
 Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
     Route::get('/add-property',[PropertyController::class,'add_property'])->name('add_property');
