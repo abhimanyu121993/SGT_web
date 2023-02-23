@@ -16,8 +16,10 @@
 
 
 .kangjang {
+     display: inline-block;
+
     border-radius: 10px;
-    width: 130%;
+    width: 124%;
     margin-left: -23% !important;
 }
 
