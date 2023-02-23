@@ -189,8 +189,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
-        try{
+        try{    
+            
                 $res=Admin::find($id)->delete();
+
                 if($res)
                 {
                     session()->flash('success','User deleted sucessfully');
