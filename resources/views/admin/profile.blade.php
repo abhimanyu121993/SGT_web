@@ -63,11 +63,18 @@
                                     </div>
                                 </div>
                             </div>
+                                <div class="col s4 input-field right">
+                                    <p>Account created On</p>
+                                       <h6>{{ $user->admin_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</h6>
+                                    </div>
+                            </div>
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
                             <div class="row">
                                 <div class="col s12 m6">
+                               
                                     <div class="row">
+
                                         <div class="col s12 input-field">
                                             <input id="first_name" name="first_name" type="text" class="validate"
                                                 value="{{ $user->admin_profile->first_name ?? '' }}"

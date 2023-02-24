@@ -52,8 +52,6 @@ class Customer extends Authenticatable
                 $item->syncPermissions();
             });
         }
-        
-
     public function customer_profile()
     {
         return $this->hasOne(CustomerProfile::class, 'customer_id');
