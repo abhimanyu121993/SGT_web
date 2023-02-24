@@ -29,6 +29,7 @@ class PropertyController extends Controller
         $this->middleware('permission:property_delete,customer')->only('destroy');
         $this->middleware('permission:property_edit,customer')->only('edit','update');
     }
+
     public function index()
     {
         $properties = Property::where('owner_id',Helper::getOwner())->get();
