@@ -86,16 +86,23 @@
                                 <label class="active" for="cpassword">{{__('user.cpassword')}}</label>
                             </div>
                             @endif
+
+
+
                             <div class="input-field col s4">
-                                <span class="active" for="cpassword">{{__('user.role')}}</span>
-                                <select class="select2-theme browser-default" id="select2-theme" name="role_id">
+                               
+                                <select class="" id="role_id" name="role_id">
+                                      <option selected disabled>--Select Role--</option>
                                     @foreach ($roles as $role)
                                     <option value="{{$role->id}}" @isset($user)@selected($user->roles->first()->name==$role->name) @endisset>{{Helper::role_name($role->name)}}</option>
                                     @endforeach
                                 </select>
 
-
                             </div>
+
+
+
+
                         </div>
                         <div class="row col s12 mt-2">
                             <div class="input-group col s4">

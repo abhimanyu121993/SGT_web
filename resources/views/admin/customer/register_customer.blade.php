@@ -28,6 +28,8 @@
     <div class="section">
         <div class="card">
             <div class="card-content">
+
+
                 <div class="live-preview">
                     <form
                         action="{{ isset($CustomerEdit) ? route(Session::get('guard') . '.customer.update', $CustomerEdit->id) : route(Session::get('guard') . '.customer.store') }}"
@@ -192,9 +194,15 @@
 
                             <!--end col-->
                         </div>
+
+
+
+                      
+
+
                         <div class="row gy-4 mt-2">
                             <div class="input-group col s12">
-                                <textarea class="form-control" name="address" placeholder="Address">{{old('address')}}</textarea>
+                                <input type = "text" class="form-control" value="{{old('address')}}" name="address" placeholder="Address">
                             </div>
                             <!--end col-->
                         </div>

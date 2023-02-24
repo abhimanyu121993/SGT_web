@@ -125,7 +125,8 @@
                             </label>
                         </div>
                         
-            <a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">eye</i>{{__('customer.all_property')}}</a>
+            <a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}" style="margin-top:-27px;" class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">eye</i>{{__('customer.all_property')}}</a>
+
             </div>
             
             <div class="card-reveal">
