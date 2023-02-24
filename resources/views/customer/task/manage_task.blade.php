@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{$data->name??''}}</td>
-                                    <td><img src="{{ asset($data->file) }}" height="50px" alt="" class="square" /></td>
+                                    <td><img src="{{ asset('storage/'.$data->file) }}" height="50px" alt="" class="square" /></td>
                                     <td>{{$data->desc??''}}</td>
                                     <td>
                                         <div class="switch">
