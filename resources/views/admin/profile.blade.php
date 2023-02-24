@@ -62,12 +62,11 @@
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
+                                <p class="">Account created On <br/> &nbsp;&nbsp;&nbsp;<span class="red-text">{{ $user->admin_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</span></p>
+                                
                             </div>
-                                <div class="col s4 input-field right">
-                                    <p>Account created On</p>
-                                       <h6>{{ $user->admin_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</h6>
-                                    </div>
-                            </div>
+                           
+                               
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
                             <div class="row">

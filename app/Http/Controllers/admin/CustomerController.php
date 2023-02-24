@@ -275,5 +275,24 @@ class CustomerController extends Controller
             return redirect()->back();  
         
         }
-
+        public function is_active($id)
+        {
+            $is_active=Customer::find($id);
+    
+            if($is_active->isactive==1)
+            {
+                $is_active->isactive=0;
+            }else
+            {
+                $is_active->isactive=true;
+            }
+            if($is_active->update()){
+               return 1;
+            }
+            else
+            {
+               return 0;
+    
+            }
+        }
 }

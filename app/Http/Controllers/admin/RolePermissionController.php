@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PermissionName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
@@ -36,5 +37,11 @@ class RolePermissionController extends Controller
         $role->syncPermissions($request->rolepermissions);
         return redirect()->back()->with('success','Permission Assigned Successfully');
     }
+//fetch permission accourding roles
+ public function all_permission($id){
+    $id=Crypt::decrypt($id);
+    $role=Role::find($id);
+    return view('role_permission.role_permission',compact('role'));
+ }
 
 }
