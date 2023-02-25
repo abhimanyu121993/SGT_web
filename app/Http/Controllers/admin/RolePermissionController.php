@@ -14,7 +14,7 @@ class RolePermissionController extends Controller
     // open view for create permission made by super admin
     public function role_permission()
     {
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id)->where('guard_name',PermissionName::$admin)->get();
+        $roles=PermissionName::IsActiveAdminRole()->get();
         return view('role_permission.role_permission',compact('roles'));
     }
 
@@ -40,8 +40,9 @@ class RolePermissionController extends Controller
 //fetch permission accourding roles
  public function all_permission($id){
     $id=Crypt::decrypt($id);
+    $roles=PermissionName::IsActiveAdminRole()->get();
     $role=Role::find($id);
-    return view('role_permission.role_permission',compact('role'));
+    return view('role_permission.role_permission',compact('role','roles'));
  }
 
 }

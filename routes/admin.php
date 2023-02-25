@@ -21,7 +21,7 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions')->middleware(['permission:permission_read|role:role_read,admin']);
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission')->middleware(['permission:permission_edit,admin']);
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role')->middleware(['role:role_read,admin']);
-
+    Route::get('/isactive/{id}',[RoleController::class,'is_active'])->name('active-role')->middleware(['role:role_edit,admin']);
     Route::get('customer-has-permission', [RoleController::class, 'fetch_role'])->name('customer-has-permission');
 });
 
@@ -47,9 +47,9 @@ Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('acti
     Route::get('/permissions/{id}',[CustomerController::class,'customer_has_permissions'])->name('customer-has-permission');
 
     Route::post('assign-permission', [CustomerController::class,'assign_permission_to_customer'])->name('assign-permission');
-    Route::get('/all-permission/{id}',[RolePermissionController::class,'all_permission'])->name('all-permission');
 
 });
+Route::get('/all-permission/{id}',[RolePermissionController::class,'all_permission'])->name('all-permission');
 
 //Route for Profile
 Route::resource('profile', ProfileController::class)->name('profile', '');
