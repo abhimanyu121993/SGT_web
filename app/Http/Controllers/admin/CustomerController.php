@@ -59,6 +59,7 @@ class CustomerController extends Controller
         return view('admin.customer.register_customer', compact('countries', 'plans'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
