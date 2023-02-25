@@ -66,13 +66,12 @@
                                 <label class="active" for="days">{{__('subscription.validity')}} <span class="red-text">({{ __('subscription.in_days') }})</span></label>
                             </div>
                             <div class="input-field col s4">
-                                <select id="status" name="status">
+                                <select id="status" name="is_active">
                                     @if(!isset($EditSubscription))
                                 <option value="" disabled selected>{{__('subscription.status')}}</option>
                                    @endif
-                                    @foreach($status as $s)
-                                    <option value="{{$s->id}}" @isset($EditSubscription)@selected($EditSubscription->status_id==$s->id) @endisset>{{$s->name??''}}</option>
-                                     @endforeach
+                                    <option value="1" @isset($EditSubscription)@selected($EditSubscription->is_active==1) @endisset>Active</option>
+                                    <option value="0" @isset($EditSubscription)@selected($EditSubscription->is_active==0) @endisset>Inctive</option>
                                 </select>
                             </div>
                             <div class="input-field col s4">

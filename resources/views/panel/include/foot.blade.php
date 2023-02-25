@@ -73,7 +73,8 @@ $('#change_password_modal').click(function(){
 });
   </script>
 <script>
-    $('.is_active').on('click', function() {
+    $(document).on('click','.is_active', function() {
+      var url=$(this).data('url');
         swal({
     title: "Are you sure?",
     text: "Want to change status !",
@@ -85,16 +86,15 @@ $('#change_password_modal').click(function(){
     }
   }).then(function (willDelete) {
     if (willDelete) {
-        var id = $(this).val();
         $.ajax({
-            url: $(this).data('url'),
+            url: url,
             method: 'get',
             beforeSend: function() {
-                $('.is_limit').attr('disabled', 'true');
+                $('.is_active').attr('disabled', 'true');
             },
             success: function() {
 
-                $('.is_limit').removeAttr('disabled')
+                $('.is_active').removeAttr('disabled')
 
             }
         });

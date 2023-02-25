@@ -20,7 +20,8 @@ return new class extends Migration
             $table->decimal('price',10,2)->default(0.0)->comment('subscription price');
             $table->string('days')->default('0')->comment('Validity of subscription in days');
             $table->integer('free_trial_days')->default('0')->comment('Number of days for free trial');
-            $table->unsignedbiginteger('status_id')->comment('status of subscription');
+            $table->boolean('is_active')->default(true)->comment('status of subscription');
+            $table->unsignedbiginteger('status_id')->nullable()->comment('status of subscription');
             $table->boolean('limit')->default(false)->comment('validation of limitation if exist');
             $table->boolean('life_time')->default(false)->comment('Is this subscription for lifetime ?');
             $table->string('icon')->nullable()->comment('icon of the subscription');

@@ -43,7 +43,15 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+        //revoke role and permission on delete 
+        public static function boot()
+        {
+            parent::boot();
+            static::deleting(function ($item){
+                $item->syncRoles([]);
+                $item->syncPermissions();
+            });
+        }
     public function customer_profile()
     {
         return $this->hasOne(CustomerProfile::class, 'customer_id');

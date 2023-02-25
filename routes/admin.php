@@ -33,6 +33,7 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
     Route::post('fetch-permissions',[RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions')->middleware(['permission:permission_read|role:role_read,admin']);
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission')->middleware(['permission:permission_edit,admin']);
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role')->middleware(['role:role_read,admin']);
+
     Route::get('customer-has-permission', [RoleController::class, 'fetch_role'])->name('customer-has-permission');
 });
 
@@ -42,6 +43,7 @@ Route::resource('subscription', SubscriptionController::class)->name('subscripti
 Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function(){
 Route::get('/islimit/{id}',[SubscriptionController::class,'is_limit'])->name('limit')->middleware(['permission:subscription_edit,admin']);
 Route::get('/islife-time/{id}',[SubscriptionController::class,'is_life_time'])->name('life-time')->middleware(['permission:subscription_edit,admin']);
+Route::get('/status/{id}',[SubscriptionController::class,'is_active'])->name('is_active');
 });
 
 Route::resource('user', UserController::class)->name('user','')->middleware(['permission:user,admin']);
@@ -58,6 +60,8 @@ Route::get('/isactive/{id}',[CustomerController::class,'is_active'])->name('acti
     Route::get('/permissions/{id}',[CustomerController::class,'customer_has_permissions'])->name('customer-has-permission');
 
     Route::post('assign-permission', [CustomerController::class,'assign_permission_to_customer'])->name('assign-permission');
+    Route::get('/all-permission/{id}',[RolePermissionController::class,'all_permission'])->name('all-permission');
+
 });
 
 //Route for Profile
@@ -70,7 +74,7 @@ Route::resource('customer',CustomerController::class)->name('customer','')->midd
 
  Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
 //Route for customer property
-Route::resource('property', PropertyController::class)->name('property','');
+Route::resource('property', PropertyController::class)->name('property','')->middleware('permission:property,admin');
 
 Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
     Route::get('/add-property',[PropertyController::class,'add_property'])->name('add_property');
