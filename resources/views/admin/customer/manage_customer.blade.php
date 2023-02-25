@@ -82,6 +82,7 @@
                             {{$data->customer_subscribe->subscription->title ??''}} Plan
                         </div>
                     </td>
+                    
                     <td>{{$data->customer_profile->address??''}}</td>
                     <td>{{$data->customer_profile->city->name??''}}</td>
                     <td>{{$data->customer_profile->currency->code??''}}</td>
