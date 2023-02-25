@@ -54,7 +54,7 @@
                 <div class="card-action pb-0">
                     <a href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                     <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-4 ">edit</i></a>
-                    <div class="right mb-5"><a class="btn" href="{{route(Session::get('guard').'.customer.all-permission',Crypt::encrypt($role->id))}}">All Permission</a></div>
+                    <div style="margin-left:20px;"><a class="btn" href="{{route(Session::get('guard').'.customer.all-permission',Crypt::encrypt($role->id))}}">All Permission</a></div>
 
 
                 </div>
