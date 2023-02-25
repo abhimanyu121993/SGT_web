@@ -41,12 +41,11 @@
                                 Choose Membership Plan
                             </div>
                             <div class="col md12">
-
                                 @foreach ($plans as $plan)
-                                <div class="input-group col s3">
+                                <div class="input-field col s3">
                                     <label>
                                         <input type="radio" class="form-control" id="membership_plan"
-                                            name="membership_plan" value="{{$plan->id}}" @checked($plan->id==old('membership_plan'))>
+                                            name="membership_plan" value="{{$plan->id}}" @checked(isset($CustomerEdit)?$CustomerEdit->customer_subscribe->subscribe_id==$plan->id:$plan->id==old('membership_plan'))>
                                         <span>{{$plan->title}}</span>
                                     </label>
                                 </div>
@@ -57,26 +56,26 @@
                         </div>
                         <div class="row gy-4">
 
-                            <div class="input-group col s12">
+                            <div class="input-field col s12">
                                 <input type="text" class="form-control" id="company_name" name="company_name"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->company_name : old('company_name') }}"
-                                    placeholder="Company Name">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->company_name : old('company_name') }}"
+                                    >
                                     @error('company_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <div class="row gy-4">
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="text" class="form-control" id="first_name" name="first_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->first_name : old('first_name') }}"
-                                    placeholder="First Name">
+                                    >
                                     @error('first_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="text" class="form-control" id="last_name" name="last_name"
                                     value="{{ isset($CustomerEdit) ? $CustomerEdit->last_name : old('last_name') }}"
-                                    placeholder="Last Name">
+                                 >
                                     @error('last_name')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
                             <div class="input-field col s6">
@@ -90,23 +89,23 @@
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <input type="date" class="form-control" id="dob" name="dob" value="{{ isset($CustomerEdit) ? $CustomerEdit->dob : '' }}">
+                                <input type="date" class="form-control" id="dob" name="dob" value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->dob : '' }}">
                                 <label class="active" for="dob">{{__('customer.dob')}}</label>
                             </div>
                             <!--end col-->
                         </div>
                         <div class="row gy-4">
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->email : old('email') }}" placeholder="Email">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->email : old('email') }}" >
                                     @error('email')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="number" class="form-control" id="mobileno" name="mobileno"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->mobileno : old('mobileno') }}"
-                                    placeholder="Mobile Number">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->mobileno : old('mobileno') }}"
+                                    >
                                     @error('mobileno')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
@@ -115,75 +114,74 @@
 
                         <div class="row gy-4">
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="text" class="form-control" id="federal_ein" name="federal_ein"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->federal_ein : old('federal_ein') }}" placeholder="Federal EIN">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->federal_ein : old('federal_ein') }}" >
                                     @error('federal_ein')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <input type="number" class="form-control" id="bsis_number" name="bsis_number"
-                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->bsis_number : old('bsis_number') }}"
-                                    placeholder="BSIS Number">
+                                    value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->bsis_number : old('bsis_number') }}"
+                                   >
                                     @error('bsis_number')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
 
                             <!--end col-->
                         </div>
+                        
                         <div class="row gy-4">
-                            <div class="input-group col s4">
-                                <select class="select2 browser-default" id="country" name="country">
-                                    <option value="">--Select Country--</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" @isset($customerEdit) @selected($customerEdit->country_id==$country->id) @else @selected(old('country')==$country->id) @endisset>{{ $country->name }}</option>
+                            <div class="input-field col s6">
+                                   <select class="select2 browser-default"  id="country" name="country">
+                                        <option selected disabled>--Select Country--</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}" @isset($CustomerEdit) @selected($CustomerEdit->customer_profile->country_id==$country->id) @else @selected(old('country')==$country->id) @endisset>{{ $country->name }}</option>
+                                        @endforeach
+                                   </select>
+                                   <label for="country">{{__('property.country')}}</label>
+                                </div>
+                                <div class="input-field col s6">
+                                   <select class="select2 browser-default" id="state" name="state">
+                               
+                                <option value="">--Select State--</option>                                   
+                                @foreach (Helper::getStateByCountry($CustomerEdit->customer_profile->country_id??old('country')) as $st)
+                                   <option value="{{$st->id}}" @isset($CustomerEdit) @selected($CustomerEdit->customer_profile->state_id==$st->id) @else @selected(old('state')==$st->id) @endisset>{{$st->name}}</option>
+                               @endforeach
+                                   </select>
+                                   <label for="state">{{__('property.state')}}</label>
+                                </div>
+                                <div class="input-field col s6">
+                                   <select class="select2 browser-default"  id="city" name="city">
+                                    <option value="">--Select City--</option>  
+                                    @foreach (Helper::getCitiesByState($CustomerEdit->customer_profile->state_id??old('state')) as $ct)
+                                        <option value="{{$ct->id}}" @isset($CustomerEdit) @selected($CustomerEdit->customer_profile->city_id==$ct->id) @else @selected(old('city')==$ct->id) @endisset>{{$ct->name}}</option>
                                     @endforeach
-                                </select>
-                                @error('country')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                            </div>
-                            <div class="input-group col s4">
-                                <select class="select2 browser-default" id="state" name="state">
-                                    @if(old('state'))
-                                    @foreach (Helper::getStateByCountry(old('country')) as $st)
-                                        <option value="{{$st->id}}" @selected(old('state')==$st->id)>{{$st->name}}</option>
-                                    @endforeach
-                                    @else
-                                    <option>--Select State--</option>
-                                    @endif
-                                </select>
-                                @error('state')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                            </div>
-                            <div class="input-group col s4">
-                                <select class="select2 browser-default" id="city" name="city">
-                                    @if(old('state'))
-                                    @foreach (Helper::getCitiesByState(old('state')) as $ct)
-                                        <option value="{{$ct->id}}" @selected(old('city')==$ct->id)>{{$ct->name}}</option>
-                                    @endforeach
-                                    @else
-                                    <option>--Select City--</option>
-                                    @endif
-                                </select>
-                                @error('city')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
-                            </div>
-
+                                   </select>
+                                   <label for="city">{{__('property.city')}}</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="number" class="form-control" id="postcode" name="pincode"
+                                        value="{{ isset($CustomerEdit) ? $CustomerEdit->customer_profile->pincode : old('pincode') }}">
+                                   <label for="postcode">{{__('property.pincode')}}</label>
+                                </div>
                             <!--end col-->
                         </div>
                         <div class="row gy-4 mt-2">
-
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <select class="select2 browser-default" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
                                     @foreach (Helper::getTimeZone() as $timezone)
-                                        <option value="{{ $timezone->id }}" @selected($timezone->id==old('timezone_id'))>{{ $timezone->timezone . ' / ' . $timezone->utc }}
+                                        <option value="{{ $timezone->id }}" @selected(isset($CustomerEdit)?$CustomerEdit->customer_profile->time_zone_id==$timezone->id:$timezone->id==old('timezone_id'))>{{ $timezone->timezone . ' / ' . $timezone->utc }}
                                         </option>
                                     @endforeach
                                 </select>
                                 @error('timezone_id')<span class="pink-text text-accent-3">{{$message}}</span>@enderror
                             </div>
-                            <div class="input-group col s6">
+                            <div class="input-field col s6">
                                 <select class="select2 browser-default" name="currency_id">
                                     <option value="">--Select Currency--</option>
                                     @foreach (Helper::getCurrencies() as $currency)
-                                        <option value="{{ $currency->id }}" @selected($currency->id==old('currency_id'))>
+                                        <option value="{{ $currency->id }}" @selected(isset($CustomerEdit)?$CustomerEdit->customer_profile->currency_id==$currency->id:$currency->id==old('currency_id'))>
                                             {{ $currency->code . ' (' . $currency->symbol . ')' }}</option>
                                     @endforeach
                                 </select>
@@ -193,8 +191,8 @@
                             <!--end col-->
                         </div>
                         <div class="row gy-4 mt-2">
-                            <div class="input-group col s12">
-                                <textarea class="form-control" name="address" placeholder="Address">{{old('address')}}</textarea>
+                            <div class="input-field col s12">
+                                <textarea class="form-control" name="address" >{{isset($CustomerEdit)?$CustomerEdit->customer_profile->address:old('address')}}</textarea>
                             </div>
                             <!--end col-->
                         </div>

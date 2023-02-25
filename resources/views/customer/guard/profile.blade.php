@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="col s4 input-field">
-                                <input id="created_at" name="created_at" type="text" class="validate" value="{{ $guard->created_at ?? '' }}" data-error=".errorTxt2">
+                                <input id="created_at" name="created_at" type="text" class="validate" value="{{ $guard->created_at->format('d-M-Y H:i:s a') ?? '' }}" data-error=".errorTxt2" readonly>
                                 <label for="created_at">{{__('security_guard.account_created_date')}}</label>
                             </div>
 

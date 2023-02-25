@@ -108,6 +108,8 @@ class CustomerController extends Controller
                     'company_name'=>$request->company_name,
                     'federal_ein'=> $request->federal_ein,
                     'bsis_number'=> $request->bsis_number,
+                    'pincode'=> $request->pincode,
+
                 ]);
 
               $customerProfile=  CustomerSubscribePack::create([
@@ -134,7 +136,7 @@ class CustomerController extends Controller
             return redirect()->back();
         }
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -152,10 +154,24 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For show the editing page.
+
     public function edit($id)
     {
-        //
-    }
+
+        $id=Crypt::decrypt($id);
+        $countries = Country::get();
+        $plans = Subscription::where('status_id',Status::where('name','active')->where('type','general')->first()->id)->get();
+        $CustomerEdit=Customer::find($id);
+        if($CustomerEdit)
+        {
+            return view('admin.customer.register_customer',compact('countries','plans','CustomerEdit'));     
+        }
+        else
+        {
+            Session::flash('error','Something Went Wrong OR Data is Deleted');
+            return redirect()->back();
+        }    }
 
     /**
      * Update the specified resource in storage.
@@ -164,10 +180,72 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //For update the the edited data.
+
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'membership_plan'=>'required|numeric',
+            'first_name'=>'required|string',
+            'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/',
+            'city'=>'required|exists:cities,id',
+            'timezone_id'=>'required|exists:time_zones,id',
+            'currency_id'=>'required|exists:currencies,id',
+            'company_name'=>'required',
+            'federal_ein'=>'required',
+            'bsis_number'=>'required|numeric',
+        ]);
+        try
+        {
+            $customer = Customer::find($id)->update([
+                'name' => $request->first_name . ' ' . $request->last_name,
+                'email' => $request->email,
+            ]);
+            if ($customer) {
+                CustomerProfile::where('customer_id',$id)->update([
+                    'first_name'=>$request->first_name,
+                    'last_name'=>$request->last_name,
+                    'email'=>$request->email,
+                    'mobileno'=>$request->mobileno,
+                    'gender'=>$request->gender,
+                    'dob'=>$request->dob,
+                    'city_id'=>$request->city??0,
+                    'state_id'=>$request->state ?? 0,
+                    'country_id'=>$request->country ?? 0,
+                    'address'=>$request->address,
+                    'time_zone_id'=>$request->timezone_id,
+                    'currency_id'=>$request->currency_id,
+                    'status'=>Status::where('name','active')->where('type','general')->first()->id,
+                    'company_name'=>$request->company_name,
+                    'federal_ein'=> $request->federal_ein,
+                    'bsis_number'=> $request->bsis_number,
+                    'pincode'=> $request->pincode,
+                ]);
+            }
+            if($customer){ 
+              $customerProfile=  CustomerSubscribePack::where('customer_id',$id)->update([
+                    'subscribe_id'=>$request->membership_plan,
+                    'taken'=>Carbon::now(),
+                    'start'=>Carbon::now(),
+                    'expiry'=>Carbon::now()->addDays(Subscription::find($request->membership_plan)->days),
+                    'amount'=>0.00,
+                    'currency_id'=>$request->currency_id,
+              ]);
+               
+            }
+                if($customer)
+        {
+                session()->flash('success','Customer updated sucessfully');
+            }
+            else
+            {
+                session()->flash('error','Customer not updated ');
+            }
     }
+        catch(Exception $ex){
+            Helper::handleError($ex);
+        }
+        return redirect()->back();    }
 
     /**
      * Remove the specified resource from storage.
@@ -175,56 +253,46 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //For deleting the data from Customer table.
+
     public function destroy($id)
     {
-        //
-    }
- //For change the status of Isactive.
- public function is_active($id)
- {
-     $is_active=Customer::find($id);
-
-     if($is_active->isactive==1)
-     {
-         $is_active->isactive=0;
-     }else
-     {
-         $is_active->isactive=true;
-     }
-     if($is_active->update()){
-        return 1;
-     }
-     else
-     {
-        return 0;
-
-     }
- }
-
- public function customer_has_permissions($id)
- {
-        $id = Crypt::decrypt($id);
-        $customer=Customer::find($id);
-        $permissionnames=PermissionName::where('guard_name','customer')->get();
-        return view('admin.customer.permission', compact('customer', 'permissionnames'));
- }
- public function assign_permission_to_customer(Request $req)
- {
-        try {
-            $customer = Customer::find($req->customerid);
-            if ($customer->syncPermissions($req->customerpermissions)) {
-                Session::flash('success', 'Permission Synchronised');
-            } else {
-                Session::flash('error', 'OPP\'s Permission not Synchronised');
-
+        $id=Crypt::decrypt($id);
+        try{
+                $res=Customer::find($id)->delete();
+                if($res)
+                {
+                    session()->flash('success','Customer deleted sucessfully');
+                }
+                else
+                {
+                    session()->flash('error','Customer not deleted ');
+                }
             }
-            Artisan::call('optimize:clear');
-            return redirect()->back();
+            catch(Exception $ex){
+                Helper::handleError($ex);
+            }
+            return redirect()->back();  
+        
         }
-        catch(Exception $ex){
-            Session::flash('error', 'Server Error');
-            Helper::handleError($ex);
-            return redirect()->back();
+        public function is_active($id)
+        {
+            $is_active=Customer::find($id);
+    
+            if($is_active->isactive==1)
+            {
+                $is_active->isactive=0;
+            }else
+            {
+                $is_active->isactive=true;
+            }
+            if($is_active->update()){
+               return 1;
+            }
+            else
+            {
+               return 0;
+    
+            }
         }
- }
 }

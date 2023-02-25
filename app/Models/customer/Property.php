@@ -30,4 +30,8 @@ class Property extends Model
     {
         return $this->hasMany(Checkpoint::class,'property_id');
     }
+    public function routes()
+    {
+        return $this->hasMany(Route::class,'property_id');
+    }
 }

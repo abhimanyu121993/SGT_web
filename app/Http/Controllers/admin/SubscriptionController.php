@@ -33,9 +33,8 @@ class SubscriptionController extends Controller
     //For view the (Create Subscription) page.
     public function index()
     {
-        $status=Status::where('Type','guard')->get();     //fetching the status.
         $currency=Helper::getCurrencies(); //fetching the all currency from helper.
-        return view('admin.subscription.create',compact('status','currency'));
+        return view('admin.subscription.create',compact('currency'));
     }
   
     /**
@@ -92,7 +91,7 @@ class SubscriptionController extends Controller
             'price'=>$request->price,
             'free_trial_days'=>$request->free_trial_days??0,
             'limit'=>$request->limit??0,
-            'status_id'=>$request->status,
+            'is_active'=>$request->is_active,
             'icon'=>$icon,
             'img'=>$img,
             'color'=>$request->color,
@@ -141,13 +140,12 @@ class SubscriptionController extends Controller
     public function edit($id)
     {
         $id=Crypt::decrypt($id);           //Decrypting the Encrypted id.
-        $status=Status::all();
         $currency=Helper::getCurrencies(); //Fetching currency from helper.
 
         $EditSubscription=Subscription::find($id);
         if($EditSubscription)
         {
-            return view('admin.subscription.create',compact('EditSubscription','status','currency'));
+            return view('admin.subscription.create',compact('EditSubscription','currency'));
         }
         else
         {
@@ -196,7 +194,7 @@ class SubscriptionController extends Controller
                 'price'=>$request->price,
                 'free_trial_days'=>$request->free_trial_days??0,
                 'limit'=>$request->limit??0,
-                'status_id'=>$request->status,
+                'is_active'=>$request->is_active,
                 'color'=>$request->color,
                 'bg_color'=>$request->bg_color,
                 'life_time'=>$request->lifetime??0,
@@ -282,6 +280,27 @@ class SubscriptionController extends Controller
             $life_time->life_time=true;
         }
         if($life_time->update()){
+           return 1;
+        }
+        else
+        {
+           return 0;
+
+        }
+    }
+    //For active and deactive subscription plan
+    public function is_active($id)
+    {
+        $is_active=Subscription::find($id);
+
+        if($is_active->is_active==1)
+        {
+            $is_active->is_active=0;
+        }else
+        {
+            $is_active->is_active=true;
+        }
+        if($is_active->update()){
            return 1;
         }
         else
