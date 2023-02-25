@@ -15,7 +15,13 @@ use Illuminate\Support\Facades\Session;
 
 class PropertyController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('permission:property_read,admin')->only('index');
+        $this->middleware('permission:property_create,admin')->only('store');
+        $this->middleware('permission:property_delete,admin')->only('destroy');
+        $this->middleware('permission:property_edit,admin')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *

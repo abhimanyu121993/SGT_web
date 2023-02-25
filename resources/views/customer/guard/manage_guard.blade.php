@@ -10,6 +10,8 @@
             </div>
             <div class="col s2 m6 l6 mb-2"><a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" data-url="{{route('customer.secuirty-guard.index') }}"><span class="hide-on-small-onl">Add Guard</span></a></div>
         </div>
+        <div class="col s2 m6 l6 mb-2"><a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" data-url="{{route('customer.guard-duty.index') }}"><span class="hide-on-small-onl">Add Duty</span></a></div>
+        </div>
     </div>
 </div>
 @endsection
@@ -147,7 +149,6 @@
     </div>
 </div>
 <div id="modal1" class="modal modal-fixed-footer">
-
 </div>
 
 @endsection

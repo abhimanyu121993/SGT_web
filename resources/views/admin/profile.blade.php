@@ -62,12 +62,18 @@
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
+                                <p class="">Account created On <br/> &nbsp;&nbsp;&nbsp;<span class="red-text">{{ $user->admin_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</span></p>
+                                
                             </div>
+                           
+                               
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
                             <div class="row">
                                 <div class="col s12 m6">
+                               
                                     <div class="row">
+
                                         <div class="col s12 input-field">
                                             <input id="first_name" name="first_name" type="text" class="validate"
                                                 value="{{ $user->admin_profile->first_name ?? '' }}"

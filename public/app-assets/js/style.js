@@ -15,7 +15,6 @@ $(document).on('change',"#country",function() {
             success: function(p) {
               
                     $("#state").html(p);
-               
             }
         });
     });
@@ -63,6 +62,27 @@ $(document).on('change',"#property_id",function() {
               
                     $("#checkpoint_id").html(p);
                
+            }
+        });
+    });
+}).change();
+
+$(document).on('change',"#property_route",function() {
+    $(this).find("option:selected").each(function() {
+        var optionValue = $(this).attr("value");
+        var newurl = jQuery('meta[name="base-url"]').attr('content');
+        $.ajax({
+            url: newurl+'/customer/property/routes-in-property',
+            method: 'post',
+            data:{
+                '_token':$('meta[name="csrf_token"]').attr('content'),
+                'property_id':optionValue
+            },
+            beforeSend:function(){
+                $('#route').html('<option selected hidden>Fetching..Route....</option>');
+            },
+            success: function(p) {
+                    $("#route").html(p);
             }
         });
     });

@@ -25,7 +25,7 @@
 <div class="search-widget">
   <i class="fa fa-search"style="margin-left: 5px; margin-top:10px;"></i>
   <input class="inputworld" name="name" type="text">
-  <!-- <button id="mybutton"></button> -->
+  
 </div>
 
 </div>
@@ -67,10 +67,9 @@
                    </p>
                   </div>
           
-          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
-
-
-          
+          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}" style="font-size:14px;">QR map</a>
+                
+           <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
 
                 </div>
                 

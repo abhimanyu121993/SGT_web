@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\customer\Property;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use App\Helpers\ImageUpload;
@@ -257,4 +258,11 @@ class SecurityGuardController extends Controller
         }
         return redirect()->back();
     }
+    public function add_duty()
+    {
+        $properties = Property::where('owner_id',Helper::getOwner())->get();
+        $guards = SecurityGuard::where('owner_id',Helper::getOwner())->get();
+        return view('customer.guard.add_duty', compact('properties','guards'));
+    }
+
 }

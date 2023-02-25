@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
+use App\Http\Controllers\customer\GuardDutyController;
 use App\Http\Controllers\customer\PermissionController;
 use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
@@ -20,8 +21,8 @@ use Spatie\Permission\Models\Permission;
 
 Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
 
-Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middleware'=>['permission:role,customer','permission:permission,customer']], function(){
-    Route::resource('role', RoleController::class)->name('role','');
+Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.', 'middleware' => ['permission:role,customer', 'permission:permission,customer']], function () {
+    Route::resource('role', RoleController::class)->name('role', '');
     Route::resource('permission', PermissionController::class);
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions');
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
@@ -32,35 +33,34 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.','middlew
 });
 
 //Route for User
-Route::resource('user', UserController::class)->name('user','');
+Route::resource('user', UserController::class)->name('user', '');
 
 //Route for Profile
-Route::resource('profile',ProfileController::class)->name('profile','');
+Route::resource('profile', ProfileController::class)->name('profile', '');
 
 //Route for Property
 
-Route::resource('property',PropertyController::class)->middleware('permission:property,customer');
+Route::resource('property', PropertyController::class)->middleware('permission:property,customer');
 
 
 
 
-Route::group(['prefix' => 'property', 'as' => 'property.'], function(){
-
-Route::get('add-checkpoint/{id}',[CheckpointController::class,'addcheckpoint'])->name('add-checkpoint');
-
+Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
+    Route::get('add-checkpoint/{id}', [CheckpointController::class, 'addcheckpoint'])->name('add-checkpoint');
+    Route::post('routes-in-property', [PropertyController::class, 'routes_in_property'])->name('routes-in-property');
 });
 
 
 //Route for Security Guard
-Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard','')->middleware('permission:security guard,customer');
+Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard', '')->middleware('permission:security guard,customer');
 //Route for Activate User
-Route::group(['prefix' => 'user', 'as' => 'user.'], function(){
-    Route::get('/isactive/{id}',[UserController::class,'is_active'])->name('active-user');
-    });
-
-    Route::group(['prefix' => 'security-guard', 'as' => 'security-guard.'], function(){
-        Route::post('/status',[SecurityGuardController::class,'status'])->name('status');
-        });
+Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('/isactive/{id}', [UserController::class, 'is_active'])->name('active-user');
+});
+Route::group(['prefix' => 'security-guard', 'as' => 'security-guard.'], function () {
+    Route::post('/status', [SecurityGuardController::class, 'status'])->name('status');
+    Route::get('/add-duty', [SecurityGuardController::class, 'add_duty'])->name('add-duty');
+});
 
 // Give all permmission to customer which are logged In
 Route::get('/all-permissions', function () {
@@ -74,28 +74,42 @@ Route::get('/guard-permission', function () {
     $guard->givePermissionTo($permissions);
 });
 //Route for Task Management
-Route::resource('task',TaskController::class)->middleware('permission:task,customer');
+Route::resource('task', TaskController::class)->middleware('permission:task,customer');
 //Route for Activate Task
-Route::group(['prefix' => 'task', 'as' => 'task.'], function(){
-    Route::get('/isactive/{id}',[TaskController::class,'is_active'])->name('active-task');
-    });
+Route::group(['prefix' => 'task', 'as' => 'task.'], function () {
+    Route::get('/isactive/{id}', [TaskController::class, 'is_active'])->name('active-task');
+});
 //Route for Checkpoint Management
+
 Route::resource('checkpoint',CheckpointController::class)->middleware('permission:checkpoint,customer');
+
+
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
 Route::post('/status',[CheckpointController::class,'status'])->name('status');
     });
 Route::resource('route',RouteController::class)->name('route','');
 
+Route::resource('checkpoint', CheckpointController::class)->middleware('permission:checkpoint,customer');
+Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
+    Route::post('/status', [CheckpointController::class, 'status'])->name('status');
+});
+Route::resource('route', RouteController::class)->name('route', '');
+
+
 //Route for Route Management
-Route::group(['prefix' => 'route', 'as' => 'route.'], function(){
-Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
-Route::get('show-route/{id}',[RouteController::class,'show_route'])->name('show-route');
-Route::get('/isactive/{id}',[RouteController::class,'is_active'])->name('active-route');
+Route::group(['prefix' => 'route', 'as' => 'route.'], function () {
+    Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
+    Route::get('show-route/{id}', [RouteController::class, 'show_route'])->name('show-route');
+    Route::get('/isactive/{id}', [RouteController::class, 'is_active'])->name('active-route');
 });
 //Route for Shift
-Route::resource('shift',ShiftController::class)->name('shift','');
-Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
-    Route::get('/isactive/{id}',[ShiftController::class,'is_active'])->name('active-shift');
+Route::resource('shift', ShiftController::class)->name('shift', '');
+Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
+    Route::get('/isactive/{id}', [ShiftController::class, 'is_active'])->name('active-shift');
 });
 
-Route::post('update-password',[SecurityGuardController::class,'update_password'])->name('update-password');
+
+Route::post('update-password', [SecurityGuardController::class, 'update_password'])->name('update-password');
+
+
+Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty','');
