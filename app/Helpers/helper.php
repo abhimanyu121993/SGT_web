@@ -8,8 +8,10 @@ use App\Models\Currency;
 use App\Models\customer\Checkpoint;
 use App\Models\customer\Customer;
 use App\Models\customer\Property;
+use App\Models\customer\Route;
 use App\Models\PermissionName;
 use App\Models\ProjectError;
+use App\Models\SecurityGuard;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
@@ -116,6 +118,27 @@ class Helper
             return response()->json(['message' => $ex->getMessage()],501);
         }
     }
+    public static function getRouteByProperty($id)
+    {
+        try {
+            $routes = Route::where('property_id', $id)->get();
+            return $routes;
+        }
+        catch(Exception $ex){
+            return response()->json(['message' => $ex->getMessage()],501);
+        }
+    }
+
+    public static function getGuardByProperty($id)
+    {
+        try {
+            $guards = SecurityGuard::where('property_id', $id)->get();
+            return $guards;
+        }
+        catch(Exception $ex){
+            return response()->json(['message' => $ex->getMessage()],501);
+        }
+    }
 
     public static function role_name($name)
     {
@@ -129,9 +152,7 @@ class Helper
             $id=Crypt::decrypt(Session::get('customer'));
             $customer=Customer::findOrFail($id);
             return $customer;
-        }
-       
-        
+        }        
             Session::flash('warning','Customer Not Selected');
             return redirect()->back();
         

@@ -218,5 +218,20 @@ else{
             catch(Exception $ex){
                 Helper::handleError($ex);
             }
-            return redirect()->back();    }
+            return redirect()->back();   
+         }
+     //Fetch route by properties.
+     public function routes_in_property(Request $request)
+     {
+         $request->validate([
+             'property_id'=>'required|numeric'
+         ]);
+         $routes=Helper::getRouteByProperty($request->property_id); //Fetch route by properties from helper.
+         $html = '';
+         $html .= "<option value=''>--Select Route</option>";
+         foreach($routes as $route){
+             $html .= "<option value='" . $route->id . "'>" . $route->name . "</option>";
+         }
+         return $html;
+     }
 }

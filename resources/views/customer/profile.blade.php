@@ -63,6 +63,10 @@
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
+                                <div class="col s4 input-field right">
+                                    <p>Account created On</p>
+                                       <h6>{{ $user->customer_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</h6>
+                                    </div>
                             </div>
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
@@ -76,6 +80,7 @@
                                         <label for="company_name">Company Name</label>
                                         <small class="errorTxt1"></small>
                                     </div>
+                                    
                                 </div>
                                 @endif
                                 <div class="col s12 m6">
