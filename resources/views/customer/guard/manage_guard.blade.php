@@ -94,7 +94,7 @@
                             <tbody>
                                 @foreach ($guards as $data)
                                 <tr>
-                                    <td> <img src="{{ asset($data->images) }}" height="50px" alt="" class="circle" /></td>
+                                    <td> <img src="{{ asset('storage/'.$data->images) }}" height="50px" alt="" class="circle" /></td>
                                     <td>{{ $data->name??'' }}</td>
                                     <td>{{$data->country->name??''}}</td>
                                     <td>{{$data->state->name??''}}</td>
