@@ -30,10 +30,10 @@ class CustomerController extends Controller
 {
     public function __construct()
     {
-        
+
         $this->middleware('permission:customer_create,admin')->only('store');
         $this->middleware('permission:customer_delete,admin')->only('destroy');
-        $this->middleware('permission:customer_edit,admin')->only('edit','update');
+        $this->middleware('permission:customer_edit,admin')->only('edit', 'update');
     }
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-       
-        $customers = Customer::with('customer_profile')->where('created_by',Helper::getUserId())->where('type',Customer::$owner)->get();
-        return view('admin.customer.manage_customer',compact('customers'));
+    {
+
+        $customers = Customer::with('customer_profile')->where('created_by', Helper::getUserId())->where('type', Customer::$owner)->get();
+        return view('admin.customer.manage_customer', compact('customers'));
     }
 
     /**
@@ -55,8 +55,8 @@ class CustomerController extends Controller
     public function create()
     {
         $countries = Country::get();
-        $plans = Subscription::where('status_id',Status::where('name','active')->where('type','general')->first()->id)->get();
-        return view('admin.customer.register_customer',compact('countries','plans'));
+        $plans = Subscription::where('status_id', Status::where('name', 'active')->where('type', 'general')->first()->id)->get();
+        return view('admin.customer.register_customer', compact('countries', 'plans'));
     }
 
     /**
@@ -69,16 +69,16 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'membership_plan'=>'required|numeric',
-            'first_name'=>'required|string',
-            'email'=>'required|email|unique:customers,email',
-            'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/',
-            'city'=>'required|exists:cities,id',
-            'timezone_id'=>'required|exists:time_zones,id',
-            'currency_id'=>'required|exists:currencies,id',
-            'company_name'=>'required',
-            'federal_ein'=>'required',
-            'bsis_number'=>'required|numeric',
+            'membership_plan' => 'required|numeric',
+            'first_name' => 'required|string',
+            'email' => 'required|email|unique:customers,email',
+            'mobileno' => 'required|regex:/^[6-9][0-9]{9}$/',
+            'city' => 'required|exists:cities,id',
+            'timezone_id' => 'required|exists:time_zones,id',
+            'currency_id' => 'required|exists:currencies,id',
+            'company_name' => 'required',
+            'federal_ein' => 'required',
+            'bsis_number' => 'required|numeric',
         ]);
 
         try {
@@ -86,43 +86,43 @@ class CustomerController extends Controller
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make('12345678'),
-                'type'=>Customer::$owner,
-                'created_by'=> Helper::getUserId(),
+                'type' => Customer::$owner,
+                'created_by' => Helper::getUserId(),
             ]);
             if ($customer) {
                 CustomerProfile::create([
-                    'customer_id'=>$customer->id,
-                    'first_name'=>$request->first_name,
-                    'last_name'=>$request->last_name,
-                    'email'=>$request->email,
-                    'mobileno'=>$request->mobileno,
-                    'gender'=>$request->gender,
-                    'dob'=>$request->dob,
-                    'city_id'=>$request->city??0,
-                    'state_id'=>$request->state ?? 0,
-                    'country_id'=>$request->country ?? 0,
-                    'address'=>$request->address,
-                    'time_zone_id'=>$request->timezone_id,
-                    'currency_id'=>$request->currency_id,
-                    'status'=>Status::where('name','active')->where('type','general')->first()->id,
-                    'company_name'=>$request->company_name,
-                    'federal_ein'=> $request->federal_ein,
-                    'bsis_number'=> $request->bsis_number,
-                    'pincode'=> $request->pincode,
+                    'customer_id' => $customer->id,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'mobileno' => $request->mobileno,
+                    'gender' => $request->gender,
+                    'dob' => $request->dob,
+                    'city_id' => $request->city ?? 0,
+                    'state_id' => $request->state ?? 0,
+                    'country_id' => $request->country ?? 0,
+                    'address' => $request->address,
+                    'time_zone_id' => $request->timezone_id,
+                    'currency_id' => $request->currency_id,
+                    'status' => Status::where('name', 'active')->where('type', 'general')->first()->id,
+                    'company_name' => $request->company_name,
+                    'federal_ein' => $request->federal_ein,
+                    'bsis_number' => $request->bsis_number,
+                    'pincode' => $request->pincode,
 
                 ]);
 
-              $customerProfile=  CustomerSubscribePack::create([
-                    'customer_id'=>$customer->id,
-                    'subscribe_id'=>$request->membership_plan,
-                    'taken'=>Carbon::now(),
-                    'start'=>Carbon::now(),
-                    'expiry'=>Carbon::now()->addDays(Subscription::find($request->membership_plan)->days),
-                    'amount'=>0.00,
-                    'currency_id'=>$request->currency_id
+                $customerProfile =  CustomerSubscribePack::create([
+                    'customer_id' => $customer->id,
+                    'subscribe_id' => $request->membership_plan,
+                    'taken' => Carbon::now(),
+                    'start' => Carbon::now(),
+                    'expiry' => Carbon::now()->addDays(Subscription::find($request->membership_plan)->days),
+                    'amount' => 0.00,
+                    'currency_id' => $request->currency_id
 
                 ]);
-                if($customerProfile){
+                if ($customerProfile) {
                     Notification::send(Auth::guard(Session::get('guard'))->user(), new CustomerRegisterNoti($customerProfile));
                     Session::flash('success', 'Customer Created and Package allot successfully');
                 }
@@ -130,8 +130,7 @@ class CustomerController extends Controller
                 Session::flash('error', 'Customer not created');
             }
             return redirect()->back();
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             Helper::handleError($ex);
             return redirect()->back();
         }
@@ -159,19 +158,17 @@ class CustomerController extends Controller
     public function edit($id)
     {
 
-        $id=Crypt::decrypt($id);
+        $id = Crypt::decrypt($id);
         $countries = Country::get();
-        $plans = Subscription::where('status_id',Status::where('name','active')->where('type','general')->first()->id)->get();
-        $CustomerEdit=Customer::find($id);
-        if($CustomerEdit)
-        {
-            return view('admin.customer.register_customer',compact('countries','plans','CustomerEdit'));     
-        }
-        else
-        {
-            Session::flash('error','Something Went Wrong OR Data is Deleted');
+        $plans = Subscription::where('status_id', Status::where('name', 'active')->where('type', 'general')->first()->id)->get();
+        $CustomerEdit = Customer::find($id);
+        if ($CustomerEdit) {
+            return view('admin.customer.register_customer', compact('countries', 'plans', 'CustomerEdit'));
+        } else {
+            Session::flash('error', 'Something Went Wrong OR Data is Deleted');
             return redirect()->back();
-        }    }
+        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -180,72 +177,67 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     //For update the the edited data.
+    //For update the the edited data.
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'membership_plan'=>'required|numeric',
-            'first_name'=>'required|string',
-            'mobileno'=>'required|regex:/^[6-9][0-9]{9}$/',
-            'city'=>'required|exists:cities,id',
-            'timezone_id'=>'required|exists:time_zones,id',
-            'currency_id'=>'required|exists:currencies,id',
-            'company_name'=>'required',
-            'federal_ein'=>'required',
-            'bsis_number'=>'required|numeric',
+            'membership_plan' => 'required|numeric',
+            'first_name' => 'required|string',
+            'mobileno' => 'required|regex:/^[6-9][0-9]{9}$/',
+            'city' => 'required|exists:cities,id',
+            'timezone_id' => 'required|exists:time_zones,id',
+            'currency_id' => 'required|exists:currencies,id',
+            'company_name' => 'required',
+            'federal_ein' => 'required',
+            'bsis_number' => 'required|numeric',
         ]);
-        try
-        {
+        try {
             $customer = Customer::find($id)->update([
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
             ]);
             if ($customer) {
-                CustomerProfile::where('customer_id',$id)->update([
-                    'first_name'=>$request->first_name,
-                    'last_name'=>$request->last_name,
-                    'email'=>$request->email,
-                    'mobileno'=>$request->mobileno,
-                    'gender'=>$request->gender,
-                    'dob'=>$request->dob,
-                    'city_id'=>$request->city??0,
-                    'state_id'=>$request->state ?? 0,
-                    'country_id'=>$request->country ?? 0,
-                    'address'=>$request->address,
-                    'time_zone_id'=>$request->timezone_id,
-                    'currency_id'=>$request->currency_id,
-                    'status'=>Status::where('name','active')->where('type','general')->first()->id,
-                    'company_name'=>$request->company_name,
-                    'federal_ein'=> $request->federal_ein,
-                    'bsis_number'=> $request->bsis_number,
-                    'pincode'=> $request->pincode,
+                CustomerProfile::where('customer_id', $id)->update([
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'mobileno' => $request->mobileno,
+                    'gender' => $request->gender,
+                    'dob' => $request->dob,
+                    'city_id' => $request->city ?? 0,
+                    'state_id' => $request->state ?? 0,
+                    'country_id' => $request->country ?? 0,
+                    'address' => $request->address,
+                    'time_zone_id' => $request->timezone_id,
+                    'currency_id' => $request->currency_id,
+                    'status' => Status::where('name', 'active')->where('type', 'general')->first()->id,
+                    'company_name' => $request->company_name,
+                    'federal_ein' => $request->federal_ein,
+                    'bsis_number' => $request->bsis_number,
+                    'pincode' => $request->pincode,
                 ]);
             }
-            if($customer){ 
-              $customerProfile=  CustomerSubscribePack::where('customer_id',$id)->update([
-                    'subscribe_id'=>$request->membership_plan,
-                    'taken'=>Carbon::now(),
-                    'start'=>Carbon::now(),
-                    'expiry'=>Carbon::now()->addDays(Subscription::find($request->membership_plan)->days),
-                    'amount'=>0.00,
-                    'currency_id'=>$request->currency_id,
-              ]);
-               
+            if ($customer) {
+                $customerProfile =  CustomerSubscribePack::where('customer_id', $id)->update([
+                    'subscribe_id' => $request->membership_plan,
+                    'taken' => Carbon::now(),
+                    'start' => Carbon::now(),
+                    'expiry' => Carbon::now()->addDays(Subscription::find($request->membership_plan)->days),
+                    'amount' => 0.00,
+                    'currency_id' => $request->currency_id,
+                ]);
             }
-                if($customer)
-        {
-                session()->flash('success','Customer updated sucessfully');
+            if ($customer) {
+                session()->flash('success', 'Customer updated sucessfully');
+            } else {
+                session()->flash('error', 'Customer not updated ');
             }
-            else
-            {
-                session()->flash('error','Customer not updated ');
-            }
-    }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             Helper::handleError($ex);
         }
-        return redirect()->back();    }
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -257,23 +249,61 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
-        $id=Crypt::decrypt($id);
-        try{
-                $res=Customer::find($id)->delete();
-                if($res)
-                {
-                    session()->flash('success','Customer deleted sucessfully');
-                }
-                else
-                {
-                    session()->flash('error','Customer not deleted ');
-                }
+        $id = Crypt::decrypt($id);
+        try {
+            $res = Customer::find($id)->delete();
+            if ($res) {
+                session()->flash('success', 'Customer deleted sucessfully');
+            } else {
+                session()->flash('error', 'Customer not deleted ');
             }
-            catch(Exception $ex){
-                Helper::handleError($ex);
-            }
-            return redirect()->back();  
-        
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
         }
+        return redirect()->back();
+    }
 
+
+
+
+    public function is_active($id)
+    {
+        $is_active = Customer::find($id);
+
+        if ($is_active->isactive == 1) {
+            $is_active->isactive = 0;
+        } else {
+            $is_active->isactive = true;
+        }
+        if ($is_active->update()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public function customer_has_permissions($id)
+    {
+        $id = Crypt::decrypt($id);
+        $customer = Customer::find($id);
+        $permissionnames = PermissionName::where('guard_name', 'customer')->get();
+        return view('admin.customer.permission', compact('customer', 'permissionnames'));
+    }
+
+    public function assign_permission_to_customer(Request $req)
+    {
+        try {
+            $customer = Customer::find($req->customerid);
+            if ($customer->syncPermissions($req->customerpermissions)) {
+                Session::flash('success', 'Permission Synchronised');
+            } else {
+                Session::flash('error', 'OPP\'s Permission not Synchronised');
+            }
+            Artisan::call('optimize:clear');
+            return redirect()->back();
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+        }
+        return redirect()->back();
+    }
 }
