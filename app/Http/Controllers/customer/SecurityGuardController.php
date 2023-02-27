@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\customer;
 
 use App\Helpers\Helper;
+
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\customer\Property;
 use App\Models\SecurityGuard;
 use App\Models\Status;
+use App\Helpers\ImageUpload;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -66,7 +68,6 @@ class SecurityGuardController extends Controller
             'city' => 'required|exists:cities,id',
             'street' => 'required',
             'pincode' => 'required',
-
             'cpassword' => 'required|same:password|min:6',
             'password' => 'required|min:6',
             'email' => 'required|email|unique:security_guards,email',
@@ -75,13 +76,7 @@ class SecurityGuardController extends Controller
             'name' => 'required|string',
 
         ]);
-        try {
-            $images = '';
-            if ($request->hasFile('images')) {
-                $images = 'guard-' . time() . '-' . rand(0, 99) . '.' . $request->images->extension();
-                $request->images->move(public_path('upload/security_guard/images/'), $images);
-                $images = 'upload/security_guard/images/' . $images;
-            }
+        try { 
             $res = SecurityGuard::create([
                 'created_by' => Helper::getUserId(),
                 'owner_id' => Helper::getOwner(),
@@ -91,13 +86,13 @@ class SecurityGuardController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'images' => $images,
                 'country_id' => $request->country,
                 'state_id' => $request->state,
                 'city_id' => $request->city,
                 'pincode' => $request->pincode,
                 'street' => $request->street,
                 'status' => 1,
+                'images'=>$request->hasFile('images')?ImageUpload::simpleUpload('security_guard',$request->images,'guard'):'',
             ]);
             if ($res) {
                 Session::flash('success', 'Guard created successfully');
@@ -171,14 +166,7 @@ class SecurityGuardController extends Controller
             'gender' => 'required',
             'name' => 'required|string',
         ]);
-        try {
-            if ($request->hasFile('images')) {
-                $image = 'guard-' . time() . '-' . rand(0, 99) . '.' . $request->images->extension();
-                $request->images->move(public_path('upload/security_guard/images/'), $image);
-                $oldimage = SecurityGuard::find($id)->pluck('images')[0];
-                File::delete(public_path($oldimage));
-                SecurityGuard::find($id)->update(['images' => 'upload/security_guard/images/' . $image]);
-            }
+        try { 
             $res = SecurityGuard::find($id)->update([
                 'name' => $request->name,
                 'gender' => $request->gender,
@@ -191,6 +179,7 @@ class SecurityGuardController extends Controller
                 'street' => $request->street,
 
             ]);
+            $request->hasFile('images')?SecurityGuard::find($id)->update(['images'=>ImageUpload::simpleUpload('security_guard',$request->images,'security_guard')]):'';
             if ($res) {
                 session()->flash('success', 'Guard updated sucessfully');
             } else {

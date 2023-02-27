@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\customer;
-
+use App\Helpers\ImageUpload;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -69,13 +69,7 @@ class PropertyController extends Controller
             'longitude'=>'required'
         ]);
         try{
-            $images = '';
-            if($request->hasFile('images'))
-            {
-                $images='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/property/'),$images);
-                $images = 'upload/property/'.$images;
-            }
+           
            $res= Property::create([
                 'created_by'=>Helper::getUserId(),
                 'owner_id'=>Helper::getOwner(),
@@ -83,11 +77,11 @@ class PropertyController extends Controller
                 'country' => $request->country ?? '',
                 'state' => $request->state ?? '',
                 'city' => $request->city ?? '',
-                'file' => $images ?? '',
                 'postcode' => $request->postcode ?? '',
                 'address' => $request->address ?? '',
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
+                'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
             ]);
 if($res){
     Session::flash('success', 'Property created successfully');
@@ -160,14 +154,7 @@ else{
         ]);
         try
         {
-            if($request->hasFile('images'))
-            {
-                $image='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/property/'),$image);
-                $oldimage=Property::find($id)->pluck('file')[0];
-                File::delete(public_path($oldimage));
-                Property::find($id)->update(['file'=>'upload/property/'.$image]);
-            }
+           
              $res= Property::find($id)->update([ 
              'name' => $request->name,
              'country' => $request->country ?? '',
@@ -179,6 +166,7 @@ else{
              'longitude' => $request->longitude ?? '',
              
         ]);
+        $request->hasFile('images')?Property::find($id)->update(['file'=>ImageUpload::simpleUpload('property',$request->images,'property')]):'';
         if($res)
         {
                 session()->flash('success','Property updated sucessfully');

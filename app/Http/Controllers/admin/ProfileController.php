@@ -96,8 +96,8 @@ class ProfileController extends Controller
                     'email'=>$request->email,
                 ]);
                 $request->hasFile('profile')?AdminProfile::updateOrCreate(['admin_id' => $id ],['pic'=>ImageUpload::simpleUpload('admin',$request->profile,'profile')]):'';
-            Session::flash('success', 'User updated successfully');
-            return redirect()->back();
+                Session::flash('success', 'User updated successfully');
+                return redirect()->back();
 
         }
         catch(Exception $ex){

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\customer;
-
+use App\Helpers\ImageUpload;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Checkpoint;
@@ -58,26 +58,20 @@ class CheckpointController extends Controller
             'name'=>'required|string',
         ]);
         try{
-            $images = '';
-            if($request->hasFile('images'))
-            {
-                $images='Checkpoint-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/checkpoint/'),$images);
-                $images = 'upload/checkpoint/'.$images;
-            }
+           
            $checkpoint= Checkpoint::create([
                 'owner_id'=>Helper::getOwner(),
                 'property_id'=>$request->property_id,
                 'checkpoint_id'=>Str::random(30),
                 'name'=>$request->name,
                 'desc'=>$request->description,
-                'file'=>$images,
                 'longitude'=>$request->longitude,
                 'lattitude'=>$request->lattitude,
                 'color'=>$request->color,
                 'status_id'=>1,
                 'created_by'=>Auth::guard(Helper::getGuard())->user()->id,
-                'task_id'=>json_encode($request->task_id)
+                'task_id'=>json_encode($request->task_id),
+                'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('checkpoint',$request->images,'checkpoint'):'',
             ]);
             if (is_array($request->task_id) and $request->task_id[0]!=null) {
               foreach ($request->task_id as $i) {
@@ -157,14 +151,7 @@ else{
          ]);
         try
         {
-            if($request->hasFile('images'))
-            {
-                $image='Checkpoint-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/Checkpoint/'),$image);
-                $oldimage=Checkpoint::find($id)->pluck('file')[0];
-                File::delete(public_path($oldimage));
-                Checkpoint::find($id)->update(['file'=>'upload/checkpoint/'.$image]);
-            }
+           
              $checkpoint= Checkpoint::find($id)->update([ 
                 'name'=>$request->name,
                 'desc'=>$request->description,
@@ -172,6 +159,9 @@ else{
                 'lattitude'=>$request->lattitude,
                 'color'=>$request->color,
         ]);
+
+        $request->hasFile('images')?Checkpoint::find($id)->update(['file'=>ImageUpload::simpleUpload('checkpoint',$request->images,'checkpoint')]):'';
+
         if (is_array($request->task_id) and $request->task_id[0]!=null) {  
                 CheckpointHasTask::where('checkpoint_id',$id)->delete(); 
             foreach ($request->task_id as $i) {

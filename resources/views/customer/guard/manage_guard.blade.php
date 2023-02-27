@@ -94,7 +94,7 @@
                             <tbody>
                                 @foreach ($guards as $data)
                                 <tr>
-                                    <td> <img src="{{ asset($data->images) }}" height="50px" alt="" class="circle" /></td>
+                                    <td> <img src="{{ asset('storage/'.$data->images) }}" height="50px" alt="" class="circle" /></td>
                                     <td>{{ $data->name??'' }}</td>
                                     <td>{{$data->country->name??''}}</td>
                                     <td>{{$data->state->name??''}}</td>
@@ -148,7 +148,7 @@
         </div>
     </div>
 </div>
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="modal1" style="border-radius: 8px;" class="modal modal-fixed-footer">
 </div>
 
 @endsection

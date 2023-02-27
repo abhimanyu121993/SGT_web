@@ -65,6 +65,7 @@
              <th scope="col">{{__('route.is_active')}}</th>
              <th scope="col">{{__('route.color')}}</th>
              <th scope="col">{{__('route.description')}}</th>
+             <th scope="col">{{__('route.images')}}</th>
              <th scope="col">Action</th>
          </tr>
      </thead>
@@ -84,7 +85,7 @@
              </td>
              <td>{{ $data->color??'' }}</td>
              <td>{{ $data->desc??'' }}</td>
-
+              <td> <img class="activator" src="{{asset('storage/'.$data->file)??'' }}"  alt="sample" style="height:30px;"></td>
              <td>
                  <div class="dropdown">
                      <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

@@ -24,8 +24,7 @@
  }
 
  .search-widget {
-    box-shadow: 2px 2px 0px black;
-   border: 2px solid #858585;
+box-shadow: 2px 2px 0px #3a2ec0;  
     width: 290px;
     background-color: white;
     display: inline-block;
@@ -56,9 +55,12 @@
 
 
 .getCardSet{
-width: 211px;
 
-margin: 6rem 0 1rem 0 !important;
+display: flex;
+
+width: 127px;
+
+margin: 0rem 0 1rem 0 !important;
 
 }
 
@@ -71,21 +73,71 @@ margin: 6rem 0 1rem 0 !important;
 
 }
 
-.floatcard{
+.floatcard {
+    display: inline-block;
+    width: auto !important;
+}
 
-width: 16% !important;
+.newBox {
+    display: inline-block;
+    width: 75%!important;
+    margin-left: auto !important;
+}
+
+.tetherbyte{
+
+line-height: 26px !important;
+    display: inline-block !important;
+    margin-bottom: 8px !important;
 
 }
 
-.newBox{
 
-     width: 382px !important;
+.new-area {
 
+    width: calc(67% - 280px);
+    margin-top: 49px;
 }
 
+.new-area .app-wrapper .datatable-search {
+    position: relative;
+}
 
+.new-area .app-wrapper .datatable-search .app-filter {
+        max-width: calc(93% - 3rem);
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+    padding-left: 2.75rem;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
 
-
+.new-area .app-wrapper .datatable-search .search-icon {
+      margin-top: 8px;
+    position: absolute;
+    color: #bdbdbd;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: normal;
+    text-transform: none;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+}
+                
 
 
 /* new css endline */
@@ -6282,6 +6334,8 @@ small
     display: block;
 
     margin-bottom: 8px;
+
+    font-size:14px;
 }
 
 .card .card-content .card-title i
@@ -7421,7 +7475,7 @@ body.keyboard-focused .dropdown-content li:focus
     display: none;
     overflow-y: auto;
 
-    width: 55%;
+    width: 50%;
     max-height: 70%;
     margin: auto;
     padding: 0;
