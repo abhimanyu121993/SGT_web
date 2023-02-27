@@ -37,6 +37,9 @@ class RoleController extends Controller
     {
         // return $dataTable->render('role_permission.role');
         $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin)->paginate(10);
+
+        
+
         return view('role_permission.role', compact('roles'));
     }
 

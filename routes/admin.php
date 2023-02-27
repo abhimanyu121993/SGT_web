@@ -21,12 +21,8 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
 
     
     Route::resource('role', RoleController::class)->name('role','')->middleware(['permission:role,admin']);
-
-
-    Route::resource('permission',PermissionController::class)->name('permission','')->middleware(['permission:permission,admin']);
-
-
-    Route::get('role-has-permission',[RolePermissionController::class,'role_permission'])->name('role-has-permission')->middleware(['permission:permission_read|role:role_read,admin']);
+Route::resource('permission',PermissionController::class)->name('permission','')->middleware(['permission:permission,admin']);
+Route::get('role-has-permission',[RolePermissionController::class,'role_permission'])->name('role-has-permission')->middleware(['permission:permission_read|role:role_read,admin']);
 
 
 
