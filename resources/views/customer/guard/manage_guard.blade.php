@@ -148,7 +148,7 @@
         </div>
     </div>
 </div>
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="modal1" style="border-radius: 8px;" class="modal modal-fixed-footer">
 </div>
 
 @endsection
