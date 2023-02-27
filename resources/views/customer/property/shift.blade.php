@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="card-content">
-        <h4>Add shift</h4>
+        <h4>{{__('shift.add_shift') }}</h4>
         <div class="live-preview">
             <form action="{{ isset($shift) ? route(Session::get('guard').'.shift.update', $shift->id) : route(Session::get('guard').'.shift.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -9,17 +9,19 @@
                 @endif
                 <div class="row gy-4">
                     <div class="col-xxl-3 col-md-12">
+                    <div class="input-field col s12">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($shift) ? $shift->name : old('name') }}">
+                            <label class="active" for="name">{{__('shift.name')}}</label>
+                        </div>
                         <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($shift) ? $shift->property_id : $property_id }}" hidden>
                         <div class="input-field col s12">
                             <input type="time" class="form-control" id="start_time" name="start_time" value="{{ isset($shift) ? $shift->start_time : old('start_time') }}">
                             <label class="active" for="start_time">{{__('shift.start_time')}}</label>
                         </div>
-                        <div class="col-xxl-3 col-md-12">
                         <div class="input-field col s12">
                             <input type="time" class="form-control" id="end_time" name="end_time" value="{{ isset($shift) ? $shift->end_time : old('end_time') }}">
                             <label class="active" for="end_time">{{__('shift.end_time')}}</label>
                         </div>
-                    </div>
                     <div class="row col s12 mt-2">
                         <div class="input-field col s12">
                             <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($shift) ? 'Update' : 'Submit' }}</button>
@@ -38,6 +40,7 @@
  <table class="table table-nowrap container" id="example">
      <thead>
          <tr>
+         <th scope="col">{{__('shift.name')}}</th>
              <th scope="col">{{__('shift.start_time')}}</th>
              <th scope="col">{{__('shift.end_time')}}</th>
              <th scope="col">{{__('shift.is_active')}}</th>
@@ -47,6 +50,7 @@
      <tbody>
          @foreach ($shifts as $data)
          <tr>
+         <td>{{ $data->name??'' }}</td>
              <td>{{ $data->start_time??'' }}</td>
              <td>{{ $data->end_time??'' }}</td>
              <td>

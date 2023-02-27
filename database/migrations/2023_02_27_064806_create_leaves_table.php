@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guard_duties', function (Blueprint $table) {
+        Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('property_id')->commet('Id of Property');
-            $table->unsignedBigInteger('route_id')->commet('Id of Route');
-            $table->unsignedBigInteger('guard_id')->commet('Id of Security Guard');
-            $table->unsignedBigInteger('shift_id')->commet('Id of Shifts');
+            $table->string('subject')->comment('subject leave');
+            $table->longText('desc')->comment('description of leave');
+            $table->string('user_type')->comment('model name');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('leave_date')->nullable();
+            $table->boolean('status')->comment('leave status verified or pending');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guard_duties');
+        Schema::dropIfExists('leaves');
     }
 };
