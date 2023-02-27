@@ -53,6 +53,8 @@ Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
 
 //Route for Security Guard
 Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard', '')->middleware('permission:security guard,customer');
+
+
 //Route for Activate User
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/isactive/{id}', [UserController::class, 'is_active'])->name('active-user');
