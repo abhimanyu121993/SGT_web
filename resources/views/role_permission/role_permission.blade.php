@@ -34,7 +34,7 @@
                                     <div class="input-field">
                                         <select class="select2-theme browser-default" id="select2-theme" name="role">
                                           @foreach ($roles as $r)
-                                              <option value="{{$role->id}}" @isset($role)@selected($role->id==$r->id) @endisset>{{Helper::role_name($r->name)}}</option>
+                                              <option value="{{$r->id}}" @isset($role)@selected($role->id==$r->id) @endisset>{{Helper::role_name($r->name)}}</option>
                                           @endforeach
                                         </select>
                                       </div>
