@@ -60,7 +60,7 @@ display: flex;
 
 width: 127px;
 
-margin: 0rem 0 1rem 0 !important;
+margin:2rem 0 1rem 0 !important;
 
 }
 
@@ -6317,7 +6317,7 @@ small
 
 .card .card-content
 {
-    padding: 20px;
+    padding: 21px;
 
     border-radius: 0 0 2px 2px;
 }
