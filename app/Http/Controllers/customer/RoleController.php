@@ -165,4 +165,21 @@ class RoleController extends Controller
         $admin = Auth::guard('customer')->user();
         $admin->givePermissionTo(Permission::where('guard_name', 'customer')->get());
     }
+
+    //for active inactive roles
+    public function is_active($id)
+    {
+        $is_active = Role::find($id);
+
+        if ($is_active->is_active == 1) {
+            $is_active->is_active = 0;
+        } else {
+            $is_active->is_active = true;
+        }
+        if ($is_active->update()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

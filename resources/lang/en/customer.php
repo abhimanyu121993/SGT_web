@@ -21,5 +21,7 @@ return array (
   'bsis_number'=>'BSIS No.',
   'membership_plan'=>'Membership Plan',
   'all_permissions'=>'All Permission',
-  'all_property'=>'All Property'
+  'all_property'=>'All Property',
+  'manage_customer'=>'Manage Customer',
+  'is_active'=>'Is Active'
 );

@@ -56,7 +56,7 @@
                                     <td>
                                         <div class="switch">
                                             <label>
-                                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('customer.user.active-user',$data->id) }}" class="is_active" id="is_active" {{ $data->isactive==0?'':'checked'   }}>
+                                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.user.active-user',$data->id) }}" class="is_active" id="is_active" {{ $data->isactive==0?'':'checked'   }}>
                                                 <span class="lever"></span>
                                             </label>
                                         </div>

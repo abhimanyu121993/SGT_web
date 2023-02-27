@@ -4,25 +4,31 @@
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
 
+
+
+
 /* new code */
 
 .langlang{
 
-margin-left: 38px !important;
+   margin-left: 38px !important;
     margin-top: -32px !important;
 
 }
 
+
+
 .kangjang {
+     display: inline-block;
+
     border-radius: 10px;
-    width: 636px !important;
-    margin-left: -85px !important;
+    width: 124%;
+    margin-left: -23% !important;
 }
 
 .getjang{
 
-height:300px;
-
+height: 435px;
 }
 
 #breadcrumbs-wrapper .breadcrumbs-title
@@ -37,6 +43,92 @@ height:300px;
 top: -10px !important;
 
 }
+
+.oldbox{
+
+    height: 2rem !important;
+}
+
+.newlightbutton{
+
+     margin-right: 391px;
+    margin-top: -42px;
+    background-color: white !important;
+}
+
+.Xnewlightbutton{
+
+     margin-right: 502px;
+    margin-top: -42px;
+    background-color: white !important;
+
+}
+
+.belowsideOption{
+
+/*    float: left;*/
+    margin-top: -36px;
+   
+
+}
+
+.belowsideOption .waves-effect {
+    margin-left: 161px !important;
+    margin-right: -147px;
+    background-color: white !important;
+    float: left !important;
+}
+
+.newFloat{
+
+   margin-top: -45px;
+    float: left;
+    display: grid;
+}
+
+.classessmonster{
+
+display: inline-block;
+
+width: 60% !important;
+
+}
+
+.classesdino{
+    display: inline-block;
+
+    float:right !important;
+
+width: 35% !important;
+
+}
+
+
+.smallclassesdino{
+display: inline-block;
+float:right !important;
+
+width: 35% !important;
+
+}
+
+.bigsizemake{
+
+
+    
+}
+
+
+.sidecard{
+
+display: grid;
+    float: right;
+    width: 808px;
+    margin-top: -981px;
+
+    
+}
+
 
 
 

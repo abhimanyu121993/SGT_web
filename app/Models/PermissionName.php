@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionName extends Model
 {
@@ -21,5 +23,12 @@ class PermissionName extends Model
     public function permissions()
     {
         return $this->hasMany(Permission::class, 'permission_name_id', 'id');
+    }
+
+    public static function scopeIsActiveAdminRole($query){
+        return Role::where('is_active',true)->where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin);
+    }
+    public static function scopeIsActiveCustomerRole($query){
+        return Role::where('is_active',true)->where('created_by',Auth::guard('customer')->user()->id ?? '')->where('guard_name',PermissionName::$customer);
     }
 }

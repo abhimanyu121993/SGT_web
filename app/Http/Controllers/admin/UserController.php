@@ -189,8 +189,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
-        try{
+        try{    
+            
                 $res=Admin::find($id)->delete();
+
                 if($res)
                 {
                     session()->flash('success','User deleted sucessfully');
@@ -208,9 +210,24 @@ class UserController extends Controller
 
    //For change the status of Isactive.
 
-    public function is_active($id)
-    {
-        return 1;
-        $res=SecurityGuard::find($id)->update('status',$id);
-    }
+   public function is_active($id)
+   {
+       $is_active=Admin::find($id);
+
+       if($is_active->isactive==1)
+       {
+           $is_active->isactive=0;
+       }else
+       {
+           $is_active->isactive=true;
+       }
+       if($is_active->update()){
+          return 1;
+       }
+       else
+       {
+          return 0;
+
+       }
+   }
 }

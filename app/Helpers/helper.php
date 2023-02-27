@@ -8,8 +8,11 @@ use App\Models\Currency;
 use App\Models\customer\Checkpoint;
 use App\Models\customer\Customer;
 use App\Models\customer\Property;
+use App\Models\customer\Route;
 use App\Models\PermissionName;
 use App\Models\ProjectError;
+use App\Models\SecurityGuard;
+use App\Models\Shift;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
@@ -23,10 +26,12 @@ use Spatie\Permission\Models\Role;
 
 class Helper
 {
+    
     public static function getCountries()
     {
         return $countries = Country::get();
     } 
+
     public static function getStateByCountry($id)
     {
         try {
@@ -94,6 +99,7 @@ class Helper
         }
     }
 
+
     public function sendError($message,$errors=[],$code=401)
     {
         $response = ['success' => false, 'message' => $message];
@@ -113,6 +119,27 @@ class Helper
             return response()->json(['message' => $ex->getMessage()],501);
         }
     }
+    public static function getRouteByProperty($id)
+    {
+        try {
+            $routes = Route::where('property_id', $id)->get();
+            return $routes;
+        }
+        catch(Exception $ex){
+            return response()->json(['message' => $ex->getMessage()],501);
+        }
+    }
+
+    public static function getShiftByProperty($id)
+    {
+        try {
+            $shifts = Shift::where('property_id', $id)->get();
+            return $shifts;
+        }
+        catch(Exception $ex){
+            return response()->json(['message' => $ex->getMessage()],501);
+        }
+    }
 
     public static function role_name($name)
     {
@@ -126,9 +153,7 @@ class Helper
             $id=Crypt::decrypt(Session::get('customer'));
             $customer=Customer::findOrFail($id);
             return $customer;
-        }
-       
-        
+        }        
             Session::flash('warning','Customer Not Selected');
             return redirect()->back();
         

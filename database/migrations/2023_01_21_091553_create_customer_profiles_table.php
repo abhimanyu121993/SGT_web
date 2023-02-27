@@ -33,6 +33,7 @@ return new class extends Migration
             $table->unsignedBigInteger('status')->default(true)->comment('status of customer: active/inactive');
             $table->unsignedBigInteger('time_zone_id')->nullable()->comment('id from the timezone table');
             $table->unsignedBigInteger('currency_id')->nullable()->comment('id from the currency table');
+            $table->string('pincode')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
