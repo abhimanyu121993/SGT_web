@@ -67,7 +67,7 @@ $(document).on('change',"#property_id",function() {
     });
 }).change();
 
-$(document).on('change',"#property_route",function() {
+$(document).on('change',".property_route_shift",function() {
     $(this).find("option:selected").each(function() {
         var optionValue = $(this).attr("value");
         var newurl = jQuery('meta[name="base-url"]').attr('content');
@@ -83,6 +83,27 @@ $(document).on('change',"#property_route",function() {
             },
             success: function(p) {
                     $("#route").html(p);
+            }
+        });
+    });
+}).change();
+
+$(document).on('change',".property_route_shift",function() {
+    $(this).find("option:selected").each(function() {
+        var optionValue = $(this).attr("value");
+        var newurl = jQuery('meta[name="base-url"]').attr('content');
+        $.ajax({
+            url: newurl+'/customer/property/shifts-in-property',
+            method: 'post',
+            data:{
+                '_token':$('meta[name="csrf_token"]').attr('content'),
+                'property_id':optionValue
+            },
+            beforeSend:function(){
+                $('#shift').html('<option selected hidden>Fetching..Shift....</option>');
+            },
+            success: function(p) {
+                    $("#shift").html(p);
             }
         });
     });

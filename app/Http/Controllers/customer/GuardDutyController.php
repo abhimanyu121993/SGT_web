@@ -50,12 +50,15 @@ class GuardDutyController extends Controller
             'property' => 'required',
              'route' => 'required',
              'guard' =>'required',
+             'shift'=>'required',
          ]);
          try{
             $res= GuardDuty::create([
                  'property_id' => $request->property,
                  'route_id' => $request->route,
                  'guard_id' => $request->guard,
+                 'shift_id' => $request->shift,
+
              ]);
  if($res){
      Session::flash('success', 'Duty created successfully');
@@ -131,8 +134,7 @@ class GuardDutyController extends Controller
               'property_id' => $request->property,
               'route_id' => $request->route,
               'guard_id' => $request->guard,
-
-          
+              'shift_id' => $request->shift,      
               
          ]);
          if($res)

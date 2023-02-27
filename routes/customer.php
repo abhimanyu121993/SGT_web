@@ -49,6 +49,7 @@ Route::resource('property', PropertyController::class)->middleware('permission:p
 Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
     Route::get('add-checkpoint/{id}', [CheckpointController::class, 'addcheckpoint'])->name('add-checkpoint');
     Route::post('routes-in-property', [PropertyController::class, 'routes_in_property'])->name('routes-in-property');
+    Route::post('shifts-in-property', [PropertyController::class, 'shifts_in_property'])->name('shifts-in-property');
 });
 
 

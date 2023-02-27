@@ -12,6 +12,7 @@ use App\Models\customer\Route;
 use App\Models\PermissionName;
 use App\Models\ProjectError;
 use App\Models\SecurityGuard;
+use App\Models\Shift;
 use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
@@ -129,11 +130,11 @@ class Helper
         }
     }
 
-    public static function getGuardByProperty($id)
+    public static function getShiftByProperty($id)
     {
         try {
-            $guards = SecurityGuard::where('property_id', $id)->get();
-            return $guards;
+            $shifts = Shift::where('property_id', $id)->get();
+            return $shifts;
         }
         catch(Exception $ex){
             return response()->json(['message' => $ex->getMessage()],501);

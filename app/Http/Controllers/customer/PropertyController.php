@@ -234,4 +234,19 @@ else{
          }
          return $html;
      }
+
+          //Fetch route by properties.
+          public function shifts_in_property(Request $request)
+          {
+              $request->validate([
+                  'property_id'=>'required|numeric'
+              ]);
+              $shifts=Helper::getShiftByProperty($request->property_id); //Fetch shift by properties from helper.
+              $html = '';
+              $html .= "<option value=''>--Select Shift</option>";
+              foreach($shifts as $shift){
+                  $html .= "<option value='" . $shift->id . "'>" . $shift->name . "</option>";
+              }
+              return $html;
+          }
 }
