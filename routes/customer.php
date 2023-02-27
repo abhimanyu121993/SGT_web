@@ -80,11 +80,21 @@ Route::group(['prefix' => 'task', 'as' => 'task.'], function () {
     Route::get('/isactive/{id}', [TaskController::class, 'is_active'])->name('active-task');
 });
 //Route for Checkpoint Management
+
+Route::resource('checkpoint',CheckpointController::class)->middleware('permission:checkpoint,customer');
+
+
+Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
+Route::post('/status',[CheckpointController::class,'status'])->name('status');
+    });
+Route::resource('route',RouteController::class)->name('route','');
+
 Route::resource('checkpoint', CheckpointController::class)->middleware('permission:checkpoint,customer');
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
     Route::post('/status', [CheckpointController::class, 'status'])->name('status');
 });
 Route::resource('route', RouteController::class)->name('route', '');
+
 
 //Route for Route Management
 Route::group(['prefix' => 'route', 'as' => 'route.'], function () {
@@ -98,7 +108,8 @@ Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
     Route::get('/isactive/{id}', [ShiftController::class, 'is_active'])->name('active-shift');
 });
 
+
 Route::post('update-password', [SecurityGuardController::class, 'update_password'])->name('update-password');
 
-//For Guard Duty
+
 Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty','');

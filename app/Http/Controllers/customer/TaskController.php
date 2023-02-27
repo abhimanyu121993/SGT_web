@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Task;
 use Exception;
+use App\Helpers\ImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
@@ -56,21 +57,14 @@ class TaskController extends Controller
         $request->validate([
             'name'=>'required|string',
         ]);
-        try{
-            $images = '';
-            if($request->hasFile('images'))
-            {
-                $images='task-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/task/'),$images);
-                $images = 'upload/task/'.$images;
-            }
+        try{    
            $res= Task::create([
                 'created_by'=>Helper::getUserId(),
                 'owner_id'=>Helper::getOwner(),
                 'name'=>$request->name,
                 'desc'=>$request->description,
-                'file'=>$images,
                 'is_active'=>1,
+                'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('task',$request->images,'task'):'',
             ]);
 if($res){
     Session::flash('success', 'Task created successfully');
@@ -138,18 +132,12 @@ else{
          ]);
         try
         {
-            if($request->hasFile('images'))
-            {
-                $image='task-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/task/'),$image);
-                $oldimage=Task::find($id)->pluck('file')[0];
-                File::delete(public_path($oldimage));
-                Task::find($id)->update(['file'=>'upload/task/'.$image]);
-            }
+           
              $res= Task::find($id)->update([ 
              'name' => $request->name,
              'desc'=>$request->description,
         ]);
+        $request->hasFile('images')?Task::find($id)->update(['file'=>ImageUpload::simpleUpload('task',$request->images,'task')]):'';
         if($res)
         {
                 session()->flash('success','Task updated sucessfully');
