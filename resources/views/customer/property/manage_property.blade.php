@@ -42,7 +42,7 @@
             <div class="col s12 m6 l4">
                 <div class="card excard">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+                    <img class="activator" src="{{asset('storage/'.$property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
                   </div>
                    <div class="card-content new-card-content">
                     <span class="card-title activator grey-text text-darken-4">{{ $property->name ?? '' }} 
@@ -77,7 +77,7 @@
             {{-- <div class="col s12 m6 l4">
                                 <div class="card small">
                                     <div class="card-image">
-                                        <img src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+                                        <img src="{{asset('storage/'.$property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
 
                                     </div>
                                     <div class="card-content  " >
