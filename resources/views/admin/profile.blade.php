@@ -43,30 +43,37 @@
                     </li>
                 </ul>
                 <div class="divider mb-3"></div>
-                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post" >
+                <form action="{{ route('admin.profile.update', Auth::guard(Session::get('guard'))->user()->id) }}" method="post"  enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
+                    <input type="file" name="profile" id="fileid" hidden>
                     <div class="row">
                         <div class="col s12" id="account">
                             <!-- users edit media object start -->
                             <div class="media display-flex align-items-center mb-2">
                                 <a class="mr-2" href="#">
-                                    <img src="../../../app-assets/images/avatar/avatar-11.png" alt="users avatar"
+                                    <img src="{{ asset('storage/'.$user->admin_profile->pic) }}" alt="users avatar"
                                         class="z-depth-4 circle" height="64" width="64">
                                 </a>
                                 <div class="media-body">
                                     <h5 class="media-heading mt-0">{{ $user->admin_profile->full_name ?? '' }}</h5>
                                     <div class="user-edit-btns display-flex">
-                                        <a href="#" class="btn-small indigo">Change</a>
+                                        <a href="javascript:void(0)" class="btn-small indigo" id="buttonid" >Change</a>
                                         <a href="#" class="btn-small btn-light-pink">Reset</a>
                                     </div>
                                 </div>
+                                <p class="">Account created On <br/> &nbsp;&nbsp;&nbsp;<span class="red-text">{{ $user->admin_profile->created_at->format('d-M-Y H:i:s a')?? '' }}</span></p>
+                                
                             </div>
+                           
+                               
                             <!-- users edit media object ends -->
                             <!-- users edit account form start -->
                             <div class="row">
                                 <div class="col s12 m6">
+                               
                                     <div class="row">
+
                                         <div class="col s12 input-field">
                                             <input id="first_name" name="first_name" type="text" class="validate"
                                                 value="{{ $user->admin_profile->first_name ?? '' }}"
@@ -228,4 +235,11 @@
 @section('script-area')
 
     <script src="{{ asset('app-assets/js/scripts/form-file-uploads.js') }}"></script>
+    <script>
+        document.getElementById('buttonid').addEventListener('click', openDialog);
+
+        function openDialog() {
+        document.getElementById('fileid').click();
+        }
+    </script>
 @endsection

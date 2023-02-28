@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\customer;
-
+use App\Helpers\ImageUpload;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -29,6 +29,7 @@ class PropertyController extends Controller
         $this->middleware('permission:property_delete,customer')->only('destroy');
         $this->middleware('permission:property_edit,customer')->only('edit','update');
     }
+
     public function index()
     {
         $properties = Property::where('owner_id',Helper::getOwner())->get();
@@ -68,13 +69,7 @@ class PropertyController extends Controller
             'longitude'=>'required'
         ]);
         try{
-            $images = '';
-            if($request->hasFile('images'))
-            {
-                $images='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/property/'),$images);
-                $images = 'upload/property/'.$images;
-            }
+           
            $res= Property::create([
                 'created_by'=>Helper::getUserId(),
                 'owner_id'=>Helper::getOwner(),
@@ -82,11 +77,11 @@ class PropertyController extends Controller
                 'country' => $request->country ?? '',
                 'state' => $request->state ?? '',
                 'city' => $request->city ?? '',
-                'file' => $images ?? '',
                 'postcode' => $request->postcode ?? '',
                 'address' => $request->address ?? '',
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
+                'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
             ]);
 if($res){
     Session::flash('success', 'Property created successfully');
@@ -159,14 +154,7 @@ else{
         ]);
         try
         {
-            if($request->hasFile('images'))
-            {
-                $image='property-'.time().'-'.rand(0,99).'.'.$request->images->extension();
-                $request->images->move(public_path('upload/property/'),$image);
-                $oldimage=Property::find($id)->pluck('file')[0];
-                File::delete(public_path($oldimage));
-                Property::find($id)->update(['file'=>'upload/property/'.$image]);
-            }
+           
              $res= Property::find($id)->update([ 
              'name' => $request->name,
              'country' => $request->country ?? '',
@@ -178,6 +166,7 @@ else{
              'longitude' => $request->longitude ?? '',
              
         ]);
+        $request->hasFile('images')?Property::find($id)->update(['file'=>ImageUpload::simpleUpload('property',$request->images,'property')]):'';
         if($res)
         {
                 session()->flash('success','Property updated sucessfully');
@@ -217,5 +206,35 @@ else{
             catch(Exception $ex){
                 Helper::handleError($ex);
             }
-            return redirect()->back();    }
+            return redirect()->back();   
+         }
+     //Fetch route by properties.
+     public function routes_in_property(Request $request)
+     {
+         $request->validate([
+             'property_id'=>'required|numeric'
+         ]);
+         $routes=Helper::getRouteByProperty($request->property_id); //Fetch route by properties from helper.
+         $html = '';
+         $html .= "<option value=''>--Select Route</option>";
+         foreach($routes as $route){
+             $html .= "<option value='" . $route->id . "'>" . $route->name . "</option>";
+         }
+         return $html;
+     }
+
+          //Fetch route by properties.
+          public function shifts_in_property(Request $request)
+          {
+              $request->validate([
+                  'property_id'=>'required|numeric'
+              ]);
+              $shifts=Helper::getShiftByProperty($request->property_id); //Fetch shift by properties from helper.
+              $html = '';
+              $html .= "<option value=''>--Select Shift</option>";
+              foreach($shifts as $shift){
+                  $html .= "<option value='" . $shift->id . "'>" . $shift->name . "</option>";
+              }
+              return $html;
+          }
 }

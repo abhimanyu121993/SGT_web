@@ -21,22 +21,34 @@
 </div>
 @endsection
 @section('link-area')
-
 @endsection
 @section('content-area')
+<div id="card-with-analytics" class="section">
+    <div class="row">
+        <div class="col s6 m4 l4 card-width">
+            <div class="card border-radius-6">
+                <div class="card-content center-align" id="piechart_gender">
 
-{{-- 
- <div class="card">
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4 l4 card-width">
+            <div class="card border-radius-6">
+                <div class="card-content center-align" id="piechart">
 
-    <div class="card-content">
-        <h4 class="card-title mb-0 flex-grow-1" id="h1">Manage Customer</h4>
+                </div>
+            </div>
+        </div>       
     </div>
-
 </div>
 
 <div class="card">
+
     <div class="card-content">
-    <table id="page-length-option" class="display nowrap" style="width:100%">
+        <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('customer.manage_customer') }}</h4>
+    </div>
+    <div class="card-content">
+        <table id="page-length-option" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>{{__('customer.sr_no')}}</th>
@@ -51,6 +63,9 @@
                     <th>{{__('customer.company_name')}}</th>
                     <th>{{__('customer.federal_ein')}}</th>
                     <th>{{__('customer.bsis_number')}}</th>
+                    <th>{{__('customer.is_active')}}</th>
+                    <th>{{__('customer.all_property')}}</th>
+                    <th>{{__('customer.all_permissions')}}</th>
                     <th>Action</th>
 
                 </tr>
@@ -67,21 +82,40 @@
                             {{$data->customer_subscribe->subscription->title ??''}} Plan
                         </div>
                     </td>
+                    
                     <td>{{$data->customer_profile->address??''}}</td>
                     <td>{{$data->customer_profile->city->name??''}}</td>
                     <td>{{$data->customer_profile->currency->code??''}}</td>
+                    <td>{{$data->customer_profile->country->name??''}}</td>
                     <td>{{$data->customer_profile->company_name??''}}</td>
                     <td>{{$data->customer_profile->federal_ein??''}}</td>
                     <td>{{$data->customer_profile->bsis_number??''}}</td>
-                    <th></th>
+                    <td> <div class="switch">
+                            <label>
+                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.customer.active-customer',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
+                                <span class="lever"></span>
+                            </label>
+                        </div></td>
+                    <td><a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}" class=""><i class="material-icons">visibility</i></a></td>
+                    <td><a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">cloud</i></a></td>
+                    <td>
+                        @php $bid=Crypt::encrypt($data->id); @endphp
+                        <a href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons">edit</i></a>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
+                        <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.customer.destroy', $bid) }}" method="post" style="display: none;">
+                            @method('DELETE')
+                            @csrf
+                        </form>
+                    </td>
+
+
                 </tr>
                 @endforeach
-</tbody>
+            </tbody>
         </table>
     </div>
-</div>  --}}
-
-@foreach($customers as $data)
+</div>
+{{--@foreach($customers as $data)
 
 <div class="row">
         <div class="col s4">
@@ -107,7 +141,8 @@
                             </label>
                         </div>
                         
-            <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
+            <a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}" style="margin-top:-27px;" class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">eye</i>{{__('customer.all_property')}}</a>
+
             </div>
             
             <div class="card-reveal">
@@ -116,30 +151,90 @@
                 <p><i class="material-icons">people</i>&nbsp;{{$data->customer_profile->company_name??''}}</p>
                 <p><i class="material-icons">layers</i>Federal EIN {{$data->customer_profile->federal_ein??''}}</p>
                 <p><i class="material-icons">lens</i>BSIS No {{$data->customer_profile->bsis_number??''}}</p>
+                @php $bid=Crypt::encrypt($data->id); @endphp
+                    <a id="pop" class="dropdown-item" href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                    <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+                    <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.customer.destroy', $bid) }}" method="post" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
+                <a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}"class="waves-effect waves-light btn-small right mb-5"><i class="material-icons left">cloud</i>{{__('customer.all_permissions')}}</a>
+
             </div>
         </div>
     </div>
    
     @endforeach
-</div>
+</div>--}}
 @endsection
 @section('script-area')
 <script src="{{ asset('app-assets/js/scripts/ui-chips.js')}}"></script>
-<script>
-    $('.is_active').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_active').attr('disabled', 'true');
-            },
-            success: function() {
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-                $('.is_active').removeAttr('disabled')
+      function drawChart() {
 
-            }
-        });
-    });
-</script>
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Count'],
+          @foreach($customers->groupBy('customer_profile.gender') as $k=>$g )
+            ['{{ $k }}',{{ $g->count() }}],
+          @endforeach
+        ]);
+
+        var options = {
+          title: 'Customer Gender Ratio',
+          titleTextStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 15,
+            bold: true,
+            italic: false
+        },
+          is3D:true,
+          height:'100%',
+          vAxis: {
+       
+    },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_gender'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['User', 'Status'],
+         ['Active',{{ $customers->where('isactive',true)->count() }}],
+         ['Inactive',{{ $customers->where('isactive',false)->count() }}],
+        ]);
+
+        var options = {
+          title: 'User Status',
+          titleTextStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 15,
+            bold: true,
+            italic: false
+        },
+        
+          is3D:true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
 @endsection

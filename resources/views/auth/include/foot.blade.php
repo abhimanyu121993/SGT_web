@@ -14,6 +14,7 @@ $('.check').on('change', function() {
     this.value = this.checked ? 1 : 0;
 }).change();
 </script>
+
 <!-- jquery change password modal -->
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->

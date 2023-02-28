@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{$data->name??''}}</td>
-                                    <td><img src="{{ asset($data->file) }}" height="50px" alt="" class="square" /></td>
+                                    <td><img src="{{ asset('storage/'.$data->file) }}" height="50px" alt="" class="square" /></td>
                                     <td>{{$data->desc??''}}</td>
                                     <td>
                                         <div class="switch">
@@ -54,20 +54,16 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-2-fill"></i>
-                                            </a>
+                                        
                                             @php $bid=Crypt::encrypt($data->id); @endphp
-                                            <a id="pop" class="  waves-effect waves-light  right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.task.edit',$bid)}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a>
-                                                <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
+                                            <a  class="  waves-effect waves-light  right modal-trigger modal1" data-url="{{route(Helper::getGuard().'.task.edit',$bid)}}"><i class="material-icons light-blue-text text-darken-4">edit</i></a>
+                                                <a  href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                                              
 
                                                 <form id="delete-form-{{ $bid }}" action="{{ route(Helper::getGuard().'.task.destroy', $bid) }}" method="post" style="display: none;">
                                                     @method('DELETE')
                                                     @csrf
                                                 </form>
-                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -79,28 +75,11 @@
         </div>
     </div>
 </div>
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="modal1" class="modal white modal-header" style="max-width: 250px !important;">
 </div>
 @endsection
 
 @section('script-area')
-<script>
-    $('.is_active').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_active').attr('disabled', 'true');
-            },
-            success: function() {
-
-                $('.is_active').removeAttr('disabled')
-
-            }
-        });
-    });
-</script>
 <script>
     $(document).ready(function() {
         $(document).on('click', '.modal1', function() {
@@ -118,5 +97,4 @@
         });
     });
 </script>
-<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
 @endsection

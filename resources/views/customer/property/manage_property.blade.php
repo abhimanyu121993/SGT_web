@@ -3,78 +3,102 @@
 @section('breadcrumb')
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
     <!-- Search for small screen-->
-    <div class="container">
-        <div class="row">
+        <div class="container">
+          <div class="row">
             <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>All Property</span></h5>
-                <ol class="breadcrumbs mb-0">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item"><a href="#">All Property</a>
-                    </li>
-                    <li class="breadcrumb-item active">All Property
-                    </li>
-                </ol>
-            </div> 
-            <div class="col s2 m6 l6 mb-2"><a class="btn  waves-effect waves-light breadcrumbs-btn right modal-triggert" href="{{route(Helper::getGuard().'.property.create')}}"><span class="hide-on-small-onl">{{__('property.add_property')}}</span></a> 
-            </div>       
-        </div>
-    </div>
+              <h5 class="breadcrumbs-title mt-0 mb-0"><span>GreyLock Security Properties</span></h5>
+            <br><br>
+            </div>
+
+ 
+            <div class="col s2 m6 l6 mb-2">
+            <a class="btn  waves-effect waves-light breadcrumbs-btn right ccbutton"
+            href="{{route(Session::get('guard') . '.property.create')}}"><span
+                class="hide-on-small-onl">Add Property</span></a>    
+            </div>
+          </div>
+
+      
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="search-widget">
+  <i class="fa fa-search"style="margin-left: 5px; margin-top:10px;"></i>
+  <input class="inputworld" name="name" type="text">
+  
+</div>
+
+</div>
+   
+
+
 </div>
 @endsection
 @section('content-area')
 <div class="card-content">
-    <div id="work-collections" class="seaction">
+    <div  id="card-reveal" class="seaction">
         <div class="row">
             @foreach ($properties as $property)
             <div class="col s12 m6 l4">
-                <div class="card">
+                <div class="card excard">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+                    <img class="activator" src="{{asset('storage/'.$property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
                   </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{ $property->name ?? '' }} <i
-                        class="material-icons right">more_vert</i>
+                   <div class="card-content new-card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ $property->name ?? '' }} 
                         @php $pid=Crypt::encrypt($property->id); @endphp
                     </span>
-                    <p><a href="#">{{$property->address}}</a></p>
+                    <p class="truncate"><a href="#">{{$property->address}}</a></p>
                   </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
                     </span>
                    <p>
-                    <b>City : </b>{{$property->city_detail->name??''}} <br>
-                    <b>State : </b>{{$property->state_detail->name??''}} <br>
-                    <b>City : </b>{{$property->country_detail->name??''}}
+                    <b>City : </b>{{$property->city_details->name??''}} <br>
+                    <b>State : </b>{{$property->state_details->name??''}} <br>
+                    <b>Country : </b>{{$property->country_details->name??''}}<br>
+                    @php $bid=Crypt::encrypt($property->id); @endphp
+                    <a id="pop" class="dropdown-item" href="{{route(Session::get('guard').'.property.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                    <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+                    <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.property.destroy', $bid) }}" method="post" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
                    </p>
                   </div>
           
-                    <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">QR map</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right;">View </a></div>
-          
-          
+          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}" style="font-size:14px;">QR map</a>
+                
+           <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
+
                 </div>
                 
             </div>
             {{-- <div class="col s12 m6 l4">
                                 <div class="card small">
                                     <div class="card-image">
-                                        <img src="{{asset($property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
+                                        <img src="{{asset('storage/'.$property->file)}}" onerror="this.onerror=null;this.src='{{asset('app-assets/images/gallery/23.png')}}';" alt="sample" />
 
                                     </div>
-                                    <div class="card-content">
+                                    <div class="card-content  " >
                                     <p class="card-title">
                                         <strong>{{ $property->name ?? '' }}</strong>
                                         
                                     </p>
                                        
                                     </div>
+
+
                                       @php $pid=Crypt::encrypt($property->id); @endphp
 
                                     <div class="card-action"><a href="{{ route(Helper::getGuard().'.checkpoint.show',$pid) }}">{{__('property.qr_map')}}</a> <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}">{{__('property.view_property')}}</a></div>
                                 </div>
             </div> --}}
             @endforeach
+
         </div>
+
+           </div>
     </div>
 </div>
 

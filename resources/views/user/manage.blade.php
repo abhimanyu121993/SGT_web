@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active">Manage Staff
                     </li>
                 </ol>
-            </div>         
+            </div>
         </div>
     </div>
 </div>
@@ -41,54 +41,59 @@ $guard='customer';
                 </h4>
                 <div class="row">
                     <div class="col s12">
-                    <table id="page-length-option" class="display nowrap" style="width:100%">
+                        <table id="page-length-option" class="display nowrap" style="width:100%">
                             <thead class="">
                                 <tr>
-                                <th>{{__('user.sr_no')}}</th>
-                                <th>{{__('user.name')}}</th>
-                                 <th>{{__('user.email')}}</th>
-                                 <th>{{__('user.is_active')}}</th>
-                                 <th>Action</th>
+                                    <th>{{__('user.sr_no')}}</th>
+                                    <th>{{__('user.name')}}</th>
+                                    <th>{{__('user.email')}}</th>
+                                    <th>{{__('user.role')}}</th>
+                                    <th>{{__('user.is_active')}}</th>
+                                    <th>Created at</th>
+                                    <th>Created on</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($admin as $data)
-                <tr>
-                    <th scope="row">{{ $loop->index + 1 }}</th>
-                    <td>{{ $data->name??'' }}</td>
-                    <td>{{ $data->email??''}}</td>
-                    <td>
-                    <div class="switch">
-                            <label>
-                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.user.active-user',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
-                                <span class="lever"></span>
-                            </label>
-                        </div>
+                                @foreach ($admin as $data)
+                                <tr>
+                                    <th scope="row">{{ $loop->index + 1 }}</th>
+                                    <td>{{ $data->name??'' }}</td>
+                                    <td>{{ $data->email??''}}</td>
+                                    <td>
+                                        @foreach($data->roles as $role)
+                                            {{ Helper::role_name($role->name )}}
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.user.active-user',$data->id) }}" class="is_active" id="is_active" {{ $data->isactive==0?'':'checked'   }}>
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
 
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="ri-more-2-fill"></i>
-                            </a>
-                            @php $bid=Crypt::encrypt($data->id); @endphp
-                            <a id="pop" class="dropdown-item"
-                                        href="{{route($guard.'.user.edit',$bid)}}">Edit</a>
-                                <a id="pop" class="dropdown-item" href="#"
-                                        onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">Delete</a>
-                              
+                                    </td>
+                                    <td>{{ $data->created_at->format('d-M-Y') }}</td>
+                        <td>{{ $data->created_at->format('H:i:s a') }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-more-2-fill"></i>
+                                            </a>
+                                            @php $bid=Crypt::encrypt($data->id); @endphp
+                                            <a id="pop" class="dropdown-item" href="{{route($guard.'.user.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
+                                            <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
 
-                                <form id="delete-form-{{ $bid }}"
-                                    action="{{ route($guard.'.user.destroy', $bid) }}" method="post"
-                                    style="display: none;">
-                                    @method('DELETE')
-                                    @csrf
-                                </form>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
+
+                                            <form id="delete-form-{{ $bid }}" action="{{ route($guard.'.user.destroy', $bid) }}" method="post" style="display: none;">
+                                                @method('DELETE')
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -99,23 +104,4 @@ $guard='customer';
 </div>
 @endsection
 @section('script-area')
-<script>
-    $('.is_active').on('click', function() {
-        var id = $(this).val();
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'get',
-            beforeSend: function() {
-                $('.is_active').attr('disabled', 'true');
-            },
-            success: function() {
-
-                $('.is_active').removeAttr('disabled')
-
-            }
-        });
-    });
-</script>
-<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
-
 @endsection

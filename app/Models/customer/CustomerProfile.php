@@ -3,6 +3,7 @@
 namespace App\Models\customer;
 
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,13 +19,17 @@ class CustomerProfile extends Model
         return $this->first_name.' '.$this->last_name;
     }
     
-    public function customer_profile()
+    public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id','id');
     }
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
     public function currency()
     {

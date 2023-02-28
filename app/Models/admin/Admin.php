@@ -2,18 +2,25 @@
 
 namespace App\Models\admin;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, LogsActivity;
 
-    public static $admin='admin',$sub_admin='sub-admin';
+    public static $admin = 'admin', $sub_admin = 'sub-admin';
+
     protected $fillable = [
         'name',
         'email',
@@ -42,6 +49,29 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //revoke role and permission on delete 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($item) {
+            $item->syncRoles([]);
+            $item->syncPermissions();
+        });
+    }
+
+    // Activity log using model
+    public function getActivitylogOptions(): LogOptions
+    {
+       
+        return LogOptions::defaults()->logAll();
+        // Chain fluent methods for configuration options
+    }
+    public function tapActivity(Activity $activity, string $eventName)
+    {
+
+        $activity->causer_type = get_class(Auth::guard(Helper::getGuard())->user());
+        $activity->causer_id = Helper::getUserId();
+    }
     // get first name and last name seperatally
     public function getFirstnameAttribute()
     {
@@ -51,6 +81,7 @@ class Admin extends Authenticatable
     {
         return explode(' ', $this->name)[1] ?? '';
     }
+
 
     public function admin_profile()
     {
@@ -62,4 +93,3 @@ class Admin extends Authenticatable
         return $this->hasOne(AdminProfile::class, 'admin_id');
     }
 }
-

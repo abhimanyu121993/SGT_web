@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('leaves', function (Blueprint $table) {
+            $table->id();
+            $table->string('subject')->comment('subject leave');
+            $table->longText('desc')->comment('description of leave');
+            $table->string('user_type')->comment('model name');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('leave_date')->nullable();
+            $table->boolean('status')->comment('leave status verified or pending');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('leaves');
+    }
+};
