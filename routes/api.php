@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\customer\LeaveController;
+use App\Http\Controllers\admin\LeaveController as AdminLeaveController;
+use App\Http\Controllers\guard\LeaveController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('leave', LeaveController::class);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('leave-guard', LeaveController::class);
+});

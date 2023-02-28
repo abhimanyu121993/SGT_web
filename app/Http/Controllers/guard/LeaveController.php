@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\customer\Customer;
 use App\Models\Leave;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Laravel\Sanctum\Sanctum;
 
 class LeaveController extends Controller
 {
@@ -22,8 +19,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getOwner());
-        return view('customer.leave_management.staff_leave',compact('leaves'));
+        //
     }
 
     /**
@@ -33,11 +29,8 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getUserId());
-
-        return view('customer.leave_management.manage_staff_leave',compact('leaves')); 
-       }
-
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,30 +41,42 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            'user_id' => 'required',
+            'leave_date*' => 'required',
+            'desc' => 'required',
+            'subject' => 'required',
         ]);
         try {
-            $startDate = Carbon::createFromFormat('Y-m-d', $request->leave_start);
-             $endDate = Carbon::createFromFormat('Y-m-d', $request->leave_end);
-        $dateRange = CarbonPeriod::create($startDate, $endDate);
-                    foreach ($dateRange as $date)
-                    {
-                        $user=Auth::guard(Helper::getGuard())->user();
-                        $r=$user->leaves()->create([
-                            'subject' => $request->subject,
-                            'desc' => $request->desc,
-                            'leave_date' => $date->format('Y-m-d'),
-                            'status' => false
-                        ]);
-                    }
-                    Session::flash('success','Leave Apply Successfully');
-                    return redirect()->back();
+            foreach ($request->leave_date as $k => $i)
+                    $user=Auth::guard('sanctum')->user();
+                    $leave=$user->leaves()->create([
+                        'subject' => $request->subject,
+                        'desc' => $request->desc,
+                        'leave_date' => $request->leave_date[$k],
+                        'status' => false
+                    ]);
+            if ($leave) {
+                $result = [
+                    'message' => 'Leave Request send successfully',
+                    'status' => 200,
+                    'error' => NULL
+                ];
+            } else {
+                $result = [
+                    'data' => NULL,
+                    'message' => 'Leave Request not send',
+                    'status' => 200,
+                    'error' => [
+                        'message' => 'Server Error',
+                        'code' => 305,
+                    ]
+                ];
             }
-        catch (Exception $ex) {
+            return response()->json($result);
+        } catch (Exception $ex) {
             Helper::handleError($ex);
         }
     }
-
     /**
      * Display the specified resource.
      *

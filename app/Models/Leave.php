@@ -10,4 +10,9 @@ class Leave extends Model
 {
     use HasFactory,SoftDeletes;
     protected $guarded=[];
+
+    public function leaveable()
+    {
+        return $this->morphTo();
+    }
 }

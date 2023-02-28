@@ -124,9 +124,21 @@
                             data-i18n="14">{{ __('sidebar.manage_customer') }}</span></a>
                 </li>
                 @endif
+               
             </ul>
         </div>
     </li>
     @endif
-    
+    <li class=" {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active open' : '' }} bold ">
+        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i
+                class="material-icons">people</i><span class="menu-title"
+               >{{ __('leave.leave_management') }}</span></a></li>
+
+               <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.leave.create') }}"><i
+                class="material-icons">people</i><span class="menu-title"
+               >{{ __('leave.staff_leave_request') }}</span></a></li>
+
 </ul>
