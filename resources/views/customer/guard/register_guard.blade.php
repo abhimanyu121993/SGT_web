@@ -58,20 +58,14 @@ img {
             @method('patch')
             @endif
 
-
-
-                    <div class="row">
+   <div class="row">
    
 </div>
 <br><br><br>
 
-
-
-            <div class="row gy-4">
+<div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
-                    <!-- <div class="file-field input-field col s12" id="image"> -->
-                        <!-- <div class="btn"> -->
-
+                   
                   
                   <div class="small-12 medium-2 large-2 columns" >
      <div class="circle">
