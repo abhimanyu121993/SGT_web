@@ -156,37 +156,40 @@
         </div>
       </div>
     </div>
-
-
-
+  </div>
    
-    <div class="col s12 m12 l6 ">
-      <div class="ct-chart card z-depth-2 border-radius-6 newBox">
+
+
+
+
+
+    <div class="col s6 m4 12">
+      <div id="basic-form" class="card card card-default scrollspy">
         <div class="card-content getjang">
-         <img src="{{asset('app-assets/images/icon/Vector.png')}}"><h4 class="card-title langlang"><b>Total Checkpoint</b><br>CHECKPOINTS SUMMARY</h4>
+           <img src="{{asset('app-assets/images/icon/Vector.png')}}"><h4 class="card-title langlang"><b>Total Checkpoint</b><br>CHECKPOINTS SUMMARY</h4>
            <img style="float: right;
                 margin-top: -46px;" src="{{asset('app-assets/images/icon/claender.png')}}">
         </div>
-              <div id="bar-chart-sample" class="center" style="margin-top: -113px;
+          <div id="bar-chart-sample" class="center" style="margin-top: -113px;
       padding-bottom: 40px;"></div>
-  
       </div>
     </div>
 
 
-
-  <div class="col s12 m12 l6">
-    
-     <div class="card subscriber-list-card animate fadeRight  kangjang">
-        <div class="card-content pb-1 ">
-           <h4 class="card-title mb-0">Live tracking of guard<i class="material-icons float-right">more_vert</i></h4>
-        </div>
-        <table class="subscription-table responsive-table highlight">
-           <thead>
+    <!-- Form with placeholder -->
+    <div class="col s16 m8 12">
+      <div id="placeholder" class="card card card-default scrollspy">
+        <div class="card-content">
+  <h4 class="card-title mb-0">Live tracking of guard<i class="material-icons float-right">more_vert</i></h4>
+         
+         <table class="subscription-table responsive-table highlight">
+           <thead style="background-color: #3f51b5; color:black;">
               <tr>
                  <th>Name</th>
                  <th>Company</th>
                  <th>Start Date</th>
+                 <th>Status</th>
+                 <th>Status</th>
                  <th>Status</th>
                 
               </tr>
@@ -226,8 +229,16 @@
               </tr>
            </tbody>
         </table>
-     </div>
-  </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+   
+
                   
                            <div class="new-area content-right">
                            <div class="app-wrapper">
@@ -301,7 +312,101 @@
 
 
 
-    <div class="col s12 m12 l6 classessmonster">
+
+
+
+
+
+ <div class="col s16 m7 12">
+      <div id="placeholder" class="card card card-default scrollspy">
+        <div class="card-content">
+  <h4 class="card-title mb-0">Live tracking of guard<i class="material-icons float-right">more_vert</i></h4>
+         
+         <table class="subscription-table responsive-table highlight">
+           <thead style="background-color: #3f51b5;color:black; ">
+              <tr>
+                 <th>Name</th>
+                 <th>Company</th>
+                 <th>Start Date</th>
+                 <th>Status</th>
+                 <th>Status</th>
+                 <th>Status</th>
+                
+              </tr>
+           </thead>
+           <tbody>
+              <tr>
+                 <td>Michael Austin</td>
+                 <td>ABC Fintech LTD.</td>
+                 <td>Jan 1,2019</td>
+                 <td><span class="badge pink lighten-5 pink-text text-accent-2">Close</span></td>
+                 <td>$1000.00</td>
+                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
+              </tr>
+              <tr>
+                 <td>Aldin Rakić</td>
+                 <td>ACME Pvt LTD.</td>
+                 <td>Jan 10,2019</td>
+                 <td><span class="badge green lighten-5 green-text text-accent-4">Open</span></td>
+                 <td>$ 3000.00</td>
+                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
+              </tr>
+              <tr>
+                 <td>İris Yılmaz</td>
+                 <td>Collboy Tech LTD.</td>
+                 <td>Jan 12,2019</td>
+                 <td><span class="badge green lighten-5 green-text text-accent-4">Open</span></td>
+                 <td>$ 2000.00</td>
+                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
+              </tr>
+              <tr>
+                 <td>Lidia Livescu</td>
+                 <td>My Fintech LTD.</td>
+                 <td>Jan 14,2019</td>
+                 <td><span class="badge pink lighten-5 pink-text text-accent-2">Close</span></td>
+                 <td>$ 1100.00</td>
+                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
+              </tr>
+           </tbody>
+        </table>
+
+
+        </div>
+      </div>
+    </div>
+
+  <div class="col s6 m3 12" style="float:right;margin-left: -27px;">
+      <div id="basic-form" class="card card card-default scrollspy">
+        <div class="card-content ">
+          Share on Twitter Share via Email Download PDF In the pursuit of wisdom, executives may find themselves taking off their masks to become truly authentic and reflective leaders. “I cannot teach anyone anything, I can only make them think.” - Socrates The day after becoming the CEO of a company facing turbulent times, David had a dream. In it, while walking on a 
+        </div>
+         
+      </div>
+   
+      <div id="basic-form" class="card card card-default scrollspy">
+        <div class="card-content">
+          Share on Twitter Share via Email Download PDF In the pursuit of wisdom, executives may find themselves taking off their masks to become truly authentic and reflective leaders. “I cannot teach anyone anything, I can only make them think.” - Socrates The day after becoming the CEO of a company facing turbulent times, David had a dream. In it, while walking on a 
+        </div>
+        
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="col s12 m12 l6 classessmonster">
 
 
       <div class="ct-chart card z-depth-2 border-radius-6  bigsizemake">
@@ -473,17 +578,25 @@
     </table>
 
 
-
-
-
-
-
-
-
-
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    
    <div class="sidecard" style="display:grid;">
@@ -503,12 +616,7 @@ Download PDF
 In the pursuit of wisdom, executives may find themselves taking off their masks to become truly authentic and reflective leaders.
 “I cannot teach anyone anything, I can only make them think.” - Socrates
 
-The day after becoming the CEO of a company facing turbulent times, David had a dream. In it, while walking on a beach he discovered a bottle. On opening, a genie appeared offering him a wish in exchange for her freedom. Eschewing riches, fame or a long life, David opted for the one thing he knew he needed to help him guide his people in the best way possible. He chose the gift of wisdom.
-
-
-
-
-
+The day after becoming the CEO of a company facing turbulent times, David had a dream. In it, while walking on a beach he discovered a bottle. On opening, a genie appeared offering him a wish in exchange for her freedom. Eschewing riches, fame or a long life, David opted for the one thing he knew he needed to help him guide his people in the best way possible. He chose the gift of wisdom. -->
 
 
 
@@ -519,6 +627,8 @@ The day after becoming the CEO of a company facing turbulent times, David had a 
 
 
 
+
+<!-- 
     <div class="col s12 m12 l6 smallclassesdino">
       <div class="ct-chart card z-depth-2 border-radius-6">
         <div class="card-content">
@@ -536,12 +646,10 @@ The day after becoming the CEO of a company facing turbulent times, David had a 
         </div>
 
 
-
-
-
-
       </div>
     </div>
+ -->
+
 </div>
 
 

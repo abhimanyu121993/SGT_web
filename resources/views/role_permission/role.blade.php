@@ -51,11 +51,21 @@
                 
                 </div></div>
                 <h6 class="grey-text lighten-1">{{Helper::role_name($role->name)}}</h6>
-                <div class="card-action pb-0">
-                    <a href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
-                    <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-4 ">edit</i></a>
-                    <div style="margin-left:20px;"><a class="btn" href="{{route(Session::get('guard').'.customer.all-permission',Crypt::encrypt($role->id))}}">All Permission</a></div>
-
+              
+                    <div class="row">
+                <div class="card-action pb-0 col s8">
+                    <a href="#"><i class="material-icons danger red-text">delete</i></a>
+                    <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-3 ">edit</i></a>
+                    @if($role->is_active==true)
+                    <a class="" href="{{route(Session::get('guard').'.all-permission',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text">cloud</i></a>
+               @endif
+                </div>
+                    <div class="switch col s4 right">
+                                            <label>
+                                                <input type="checkbox" value="{{$role->id}}" data-url="{{route(Session::get('guard').'.role-permission.active-role',$role->id)}}" class="is_active" id="is_active" {{ $role->is_active==0?'':'checked'   }}>
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
 
                 </div>
             </div>

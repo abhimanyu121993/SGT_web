@@ -44,12 +44,14 @@ class ShiftController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name'=>'nullable',
             'start_time' => 'required',
             'end_time' => 'required',
         ]);
         try {
             $res = Shift::create([
                 'property_id' => $request->property_id,
+                'name'=>$request->name,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
                 'is_active' => 1,
@@ -110,12 +112,14 @@ class ShiftController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'name'=>'nullable',
             'start_time' => 'required',
             'end_time' => 'required',
 
         ]);
         try {
             $res = Shift::find($id)->update([
+                'name'=>$request->name,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
             ]);

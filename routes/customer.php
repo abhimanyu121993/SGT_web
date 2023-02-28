@@ -28,6 +28,7 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.', 'middle
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role');
     Route::get('role-has-permission', [RolePermissionController::class, 'role_has_permission'])->name('role-has-permission');
+    Route::get('/isactive/{id}',[RoleController::class,'is_active'])->name('active-role');
     //Assign all customer permission to customer
     Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 });
@@ -48,6 +49,7 @@ Route::resource('property', PropertyController::class)->middleware('permission:p
 Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
     Route::get('add-checkpoint/{id}', [CheckpointController::class, 'addcheckpoint'])->name('add-checkpoint');
     Route::post('routes-in-property', [PropertyController::class, 'routes_in_property'])->name('routes-in-property');
+    Route::post('shifts-in-property', [PropertyController::class, 'shifts_in_property'])->name('shifts-in-property');
 });
 
 
@@ -69,7 +71,7 @@ Route::get('/all-permissions', function () {
     $permissions = Permission::where('guard_name', 'customer')->pluck('name');
     Auth::guard('customer')->user()->syncPermissions($permissions);
 });
-
+Route::get('/all-permission/{id}',[RolePermissionController::class,'all_permission'])->name('all-permission');
 Route::get('/guard-permission', function () {
     $permissions = Permission::where('guard_name', 'security_guard')->pluck('id');
     $guard = SecurityGuard::find(2);

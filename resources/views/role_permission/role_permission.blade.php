@@ -33,13 +33,9 @@
                             <h6>{{__('rolepermission.role')}}</h6>
                                     <div class="input-field">
                                         <select class="select2-theme browser-default" id="select2-theme" name="role">
-                                            @if(isset($role))
-                                            <option value="{{$role->id}}">{{Helper::role_name($role->name)}}</option>
-                                            @else
-                                          @foreach ($roles as $role)
-                                              <option value="{{$role->id}}">{{Helper::role_name($role->name)}}</option>
+                                          @foreach ($roles as $r)
+                                              <option value="{{$r->id}}" @isset($role)@selected($role->id==$r->id) @endisset>{{Helper::role_name($r->name)}}</option>
                                           @endforeach
-                                          @endif
                                         </select>
                                       </div>
                                  

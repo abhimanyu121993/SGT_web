@@ -36,10 +36,7 @@ class RoleController extends Controller
     public function index(RoleDataTable $dataTable)
     {
         // return $dataTable->render('role_permission.role');
-        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin)->paginate(10);
-
-        
-
+        $roles=Role::where('created_by',Auth::guard('admin')->user()->id ?? '')->where('guard_name',PermissionName::$admin)->get();
         return view('role_permission.role', compact('roles'));
     }
 
@@ -185,5 +182,21 @@ class RoleController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $admin->givePermissionTo(Permission::where('guard_name', 'admin')->get());
+    }
+//for active inactive roles
+    public function is_active($id)
+    {
+        $is_active = Role::find($id);
+
+        if ($is_active->is_active == 1) {
+            $is_active->is_active = 0;
+        } else {
+            $is_active->is_active = true;
+        }
+        if ($is_active->update()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

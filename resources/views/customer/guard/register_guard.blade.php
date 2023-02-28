@@ -67,8 +67,6 @@ img {
 
 
 
-
-
             <div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
                     <!-- <div class="file-field input-field col s12" id="image"> -->
@@ -87,17 +85,7 @@ img {
   </div>
 
 <br><br><br>
-
-                            <!-- <span>{{__('security_guard.image')}}</span> -->
-                            <!-- <input type="file" > -->
-
-
-
-
-
-
-
-                      
+       
                     </div>
              <div class="input-field col s6">
                  <label class="active" for="name">{{__('security_guard.name')}}</label>
@@ -137,7 +125,7 @@ img {
                        
                     </div>
                    
-                    <div class="input-field col s6">
+                     <div class="input-field col s6">
                         
                         <select class="select2 browser-default" id="country" name="country">
                             <option selected disabled>--Select Country--</option>
@@ -148,7 +136,10 @@ img {
                        
 
                     </div>
-                    <div class="input-field col s6">
+
+                    
+
+                    <div class="input-field col s6" style="margin-top:-58px;">
                         
                         <select class="select2 browser-default" id="state" name="state">
                             <option value="">--Select State--</option>
@@ -169,11 +160,14 @@ img {
                         
 
                     </div>
-                    <div class="input-field col s6">
+
+                     <div class="input-field col s6" style="margin-top:-58px;">
                         <label class="active" for="street">{{__('security_guard.street')}}</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}">
                         
                     </div>
+
+                   
                         <div class="input-field col s4">
                         <label class="active" for="pincode">{{__('security_guard.pincode')}}</label>
                         <input type="text" class="form-control" id="pincode" name="pincode" value="{{ isset($guard) ? $guard->pincode : '' }}">

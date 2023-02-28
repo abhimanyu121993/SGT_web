@@ -3,10 +3,6 @@
 -------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
-
-
-
-
 /* new code */
 
 .langlang{
@@ -27,7 +23,7 @@
 }
 
 .getjang{
-
+padding: 19px !important;
 height: 435px;
 }
 

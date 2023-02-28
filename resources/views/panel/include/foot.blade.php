@@ -95,6 +95,7 @@ $('#change_password_modal').click(function(){
             success: function() {
 
                 $('.is_active').removeAttr('disabled')
+                location.reload();
 
             }
         });
