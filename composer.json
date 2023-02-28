@@ -9,10 +9,12 @@
         "amrshawky/laravel-currency": "^5.0",
         "barryvdh/laravel-translation-manager": "^0.6.3",
         "guzzlehttp/guzzle": "^7.2",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-permission": "^5.8",
         "stevebauman/location": "^6.5",
         "yajra/laravel-datatables": "^9.0"
