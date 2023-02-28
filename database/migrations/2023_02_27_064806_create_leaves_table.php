@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('subject')->comment('subject leave');
             $table->longText('desc')->comment('description of leave');
-            $table->string('user_type')->comment('model name');
-            $table->unsignedBigInteger('user_id');
+            $table->morphs('leaveable');
             $table->timestamp('leave_date')->nullable();
             $table->boolean('status')->comment('leave status verified or pending');
             $table->softDeletes();
