@@ -131,6 +131,24 @@ display: grid;
 /* new code */
 
 
+
+
+/*komal designing      */
+
+.guardstaff{
+    font-size:25px;margin-left: 10px; padding-top:10px;
+}
+
+.all-guardbtn{
+    margin-left: 10px; 
+}
+.linewhite{
+    background:white;height:2px; 
+}
+
+
+
+
 .materialize-red
 {
     background-color: #e51c23 !important;
@@ -12175,3 +12193,4 @@ tr.group:hover
 .theme-bg{
     background-color: #244B8A;
 }
+
