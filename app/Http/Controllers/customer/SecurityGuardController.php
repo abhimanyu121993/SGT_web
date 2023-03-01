@@ -236,7 +236,6 @@ class SecurityGuardController extends Controller
         } catch (Exception $ex) {
             Helper::handleError($ex);
         }
-        // return response()
     }
 
     // For change the password.

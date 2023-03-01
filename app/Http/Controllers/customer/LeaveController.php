@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Customer;
 use App\Models\Leave;
+use App\Models\Status;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Exception;
@@ -38,7 +39,6 @@ class LeaveController extends Controller
         return view('customer.leave_management.manage_staff_leave',compact('leaves')); 
        }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -51,9 +51,9 @@ class LeaveController extends Controller
 
         ]);
         try {
-            $startDate = Carbon::createFromFormat('Y-m-d', $request->leave_start);
+             $startDate = Carbon::createFromFormat('Y-m-d', $request->leave_start);
              $endDate = Carbon::createFromFormat('Y-m-d', $request->leave_end);
-        $dateRange = CarbonPeriod::create($startDate, $endDate);
+             $dateRange = CarbonPeriod::create($startDate, $endDate);
                     foreach ($dateRange as $date)
                     {
                         $user=Auth::guard(Helper::getGuard())->user();
@@ -61,7 +61,7 @@ class LeaveController extends Controller
                             'subject' => $request->subject,
                             'desc' => $request->desc,
                             'leave_date' => $date->format('Y-m-d'),
-                            'status' => false
+                            'status' =>Status::where('name','pending')->where('type','leave')->first()->id,
                         ]);
                     }
                     Session::flash('success','Leave Apply Successfully');
@@ -116,4 +116,5 @@ class LeaveController extends Controller
     {
         //
     }
+    
 }
