@@ -6570,7 +6570,6 @@ small
     line-height: 48px;
 
     display: inline-block;
-
     height: 48px;
     margin: 0;
     padding: 0;
@@ -6591,7 +6590,7 @@ small
     padding: 0 24px;
 
     -webkit-transition: color .28s ease, background-color .28s ease;
-            transition: color .28s ease, background-color .28s ease;
+    transition: color .28s ease, background-color .28s ease;
     text-overflow: ellipsis;
 
     color: rgba(63, 81, 181, .7);

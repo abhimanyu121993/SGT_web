@@ -48,4 +48,15 @@ Route::group(['prefix' => 'general','as' => 'general.'],function () {
 });
 
 
+Route::group(['prefix'=>'test','as'=>'testproject'],function(){
 
+
+Route::get('activity',function(){
+
+   
+
+return view('test.activity');
+
+})->name('trial');
+
+});

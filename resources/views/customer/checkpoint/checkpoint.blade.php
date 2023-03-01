@@ -77,10 +77,10 @@
                     </div>
                 </div>
                 <div class="section">
-               <div id="address-map-container" style="width:100%;height:400px; ">
+               <div id="address-map-container" style="width:151%;height:700px; ">
                 <div style="width: 100%; height: 100%" id="address-map"></div>
                 </div>
-</div>
+         </div>
             </div>
             </div>
             <div class="col s12 m6 l4"> 
@@ -104,7 +104,7 @@
             <!--end col-->
         </form>
 
-        <div id="address-map-container mt-3" style="width:100%;height:400px; ">
+        <div id="address-map-container mt-3" style="width:150%;height:400px; ">
             <div style="width: 100%; height: 100%" id="address-map"></div>
         </div>
 </div>
