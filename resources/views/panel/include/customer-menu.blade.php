@@ -100,13 +100,30 @@
         <li class=" {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active open' : '' }} bold ">
             <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }} "
                 href="{{ route(Session::get('guard') . '.task.create') }}"><i class="material-icons">today</i><span
-                    class="menu-title" data-i18n="File Manager">{{ __('sidebar.task') }}</span></a>
+                    class="menu-title" data-i18n="File Manager">{{ __('sidebar.task') }}</span></a></li>
     @endif
 
     <li class=" {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active open' : '' }} bold ">
         <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active' : '' }} "
             href="{{ route(Session::get('guard') . '.secuirty-guard.create') }}"><i
                 class="material-icons">people</i><span class="menu-title"
-               >{{ __('security_guard.security_guard') }}</span></a>
+               >{{ __('security_guard.security_guard') }}</span></a></li>
 
+               <li class=" {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active open' : '' }} bold ">
+        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i
+                class="material-icons">people</i><span class="menu-title"
+               >{{ __('leave.leave_management') }}</span></a></li>
+               
+               <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.leave.create') }}"><i
+                class="material-icons">people</i><span class="menu-title"
+               >{{ __('leave.staff_leave_request') }}</span></a></li>
+             
+               <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.leave.index') }}"><i
+                class="material-icons">people</i><span class="menu-title"
+               >{{ __('leave.guard_leave_request') }}</span></a></li>
 </ul>

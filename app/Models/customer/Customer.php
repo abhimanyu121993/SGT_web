@@ -5,6 +5,7 @@ namespace App\Models\customer;
 use App\Helpers\Helper;
 use App\Models\City;
 use App\Models\CustomerSubscribePack;
+use App\Models\Leave;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -17,13 +18,11 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, LogsActivity;
-
     public static $owner = 'owner', $employee = 'employee';
-
     protected $fillable = [
         'name',
         'email',
@@ -102,5 +101,9 @@ class Customer extends Authenticatable
         } else if (strtolower($this->type) == strtolower(Customer::$owner)) {
             return $this->owner_id;
         }
+    }
+    public function leaves():MorphMany
+    {
+        return $this->morphMany(Leave::class,'leaveable');
     }
 }
