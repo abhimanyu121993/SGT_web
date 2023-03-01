@@ -19,7 +19,7 @@ return new class extends Migration
             $table->longText('desc')->comment('description of leave');
             $table->morphs('leaveable');
             $table->timestamp('leave_date')->nullable();
-            $table->boolean('status')->comment('leave status verified or pending');
+            $table->string('status')->comment('leave status confirmed or pending or rejected');
             $table->softDeletes();
             $table->timestamps();
         });
