@@ -3,6 +3,7 @@
 namespace App\Models\admin;
 
 use App\Helpers\Helper;
+use App\Models\Leave;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -91,5 +92,10 @@ class Admin extends Authenticatable
     public function user_detail()
     {
         return $this->hasOne(AdminProfile::class, 'admin_id');
+    }
+
+    public function leaves()
+    {
+        return $this->morphMany(Leave::class,'leaveable');
     }
 }

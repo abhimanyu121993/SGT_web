@@ -31,4 +31,9 @@ class SecurityGuard extends Authenticatable
     {
         return $this->belongsTo(Status::class, 'status');
     }
+
+    public function leaves()
+    {
+        return $this->morphMany(Leave::class,'leaveable');
+    }
 }

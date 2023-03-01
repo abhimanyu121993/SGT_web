@@ -3,6 +3,8 @@
 use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\GuardDutyController;
+use App\Http\Controllers\customer\LeaveController;
+use App\Http\Controllers\customer\LeaveManagementController;
 use App\Http\Controllers\customer\PermissionController;
 use App\Http\Controllers\customer\ProfileController;
 use App\Http\Controllers\customer\PropertyController;
@@ -117,3 +119,7 @@ Route::post('update-password', [SecurityGuardController::class, 'update_password
 
 
 Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty','');
+//for leave
+Route::resource('leave',LeaveController::class)->name('leave','');
+Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
+

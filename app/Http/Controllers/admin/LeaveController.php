@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\admin;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\customer\Customer;
+use App\Models\admin\Admin;
 use App\Models\Leave;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -22,8 +22,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getOwner());
-        return view('customer.leave_management.staff_leave',compact('leaves'));
+        $leaves=Admin::with('leaves')->find(Helper::getOwner());
+        return view('admin.leave_management.staff_leave',compact('leaves'));
     }
 
     /**
@@ -33,11 +33,9 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getUserId());
-
-        return view('customer.leave_management.manage_staff_leave',compact('leaves')); 
+        $leaves=Admin::with('leaves')->find(Helper::getUserId());
+        return view('admin.leave_management.manage_staff_leave',compact('leaves')); 
        }
-
 
     /**
      * Store a newly created resource in storage.
