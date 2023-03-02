@@ -109,9 +109,9 @@ Route::group(['prefix' => 'route', 'as' => 'route.'], function () {
     Route::get('/isactive/{id}', [RouteController::class, 'is_active'])->name('active-route');
 });
 //Route for Shift
-Route::resource('shift', ShiftController::class)->name('shift', '');
-Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
-    Route::get('/isactive/{id}', [ShiftController::class, 'is_active'])->name('active-shift');
+Route::resource('shift',ShiftController::class)->name('shift','');
+Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
+Route::get('/isactive/{id}',[ShiftController::class,'is_active'])->name('active-shift');
 });
 
 
