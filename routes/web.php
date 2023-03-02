@@ -48,14 +48,7 @@ Route::group(['prefix' => 'general','as' => 'general.'],function () {
 });
 
 
-
-Route::get('/mydesign',function(){
-return view('mydesign');
-});
-Route::get('/activitylog',function(){
-    return view('activitylog'); 
-    });
-
+Route::group(['prefix'=>'test','as'=>'testproject'],function(){
 
 
 Route::get('/mydesign',function(){

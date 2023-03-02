@@ -58,6 +58,27 @@ class StatusSeeder extends Seeder
             'bg_color'=>'white',
             'type'=>'guard',
         ]);
+        Status::create([
+            'name' => 'pending',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'leave',
+        ]);
+        Status::create([
+            'name' => 'Rejected',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'leave',
+        ]);
+        Status::create([
+            'name' => 'Confirmed',
+            'icon' => '',
+            'color' => 'green',
+            'bg_color'=>'white',
+            'type'=>'leave',
+        ]);
 
         }
 }

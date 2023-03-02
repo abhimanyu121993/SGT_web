@@ -81,7 +81,7 @@ class CheckpointController extends Controller
             
             }  
             else{
-               Session::flash('success', 'Checkpoint created but task not alloted');
+               Session::flash('success','Checkpoint created but task not alloted');
                return redirect()->back();
 
             }
@@ -195,6 +195,7 @@ else{
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
+        
         try{
                 $res=Checkpoint::find($id)->delete();
                 if($res)
@@ -224,7 +225,7 @@ else{
             if($res)
             {
                 return response()->json([
-                    'success' => 'Checkpoint status upadted' // for status 200
+                    'success' => 'Checkpoint status updated' // for status 200
                 ]);
 
                 }

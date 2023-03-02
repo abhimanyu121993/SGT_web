@@ -24,6 +24,56 @@
 @endsection
 @section('content-area')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+     
+
+
+.profile-pic {
+    width: 200px;
+    height: 120px;
+    display: inline-block;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 72px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+  position: absolute;
+  top: 167px;
+  right: 30px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+    font-size: 1.2em;
+    float: right;
+    margin-right: 498px;
+}
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+
+
+    </style>
+
     <div class="section">
         <div class="card">
             <div class="card-content">
@@ -34,16 +84,29 @@
                             @method('patch')
                         @endif
                         @csrf
-                        <div class="row gy-4">
-                        <div class="file-field input-field col s6" id="image">
-                        <div class="btn">
-                            <span>{{__('property.image')}}</span>
-                            <input type="file" name="images">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
+
+                         
+ <div class="file-field col s6" style="margin-bottom: 200px;
+    margin-top: -106px;" id="image">
+
+                        
+
+   <div class="small-12 medium-2 large-2 columns" >
+     <div class="circle">
+       <img class="profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+
+     </div>
+     <div class="p-image">
+       <i class="fa fa-camera upload-button"></i>
+        <input class="file-upload" name="images" type="file" style="display:none;" accept="image/*"/>
+     </div>
+  </div>
+
                     </div>
+                 
+
+                        <div class="row gy-4">
+                     
                             <div class="input-field col s6">
                                
                                 <input type="text" class="form-control" id="property_name" name="name"
@@ -141,4 +204,36 @@
      console.log(a);
     });
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+
+
+    </script>
 @endsection

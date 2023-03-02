@@ -80,4 +80,6 @@ Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
 //for leave
 Route::resource('leave', LeaveController::class)->name('leave','');
 Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
-
+Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
+    Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
+});
