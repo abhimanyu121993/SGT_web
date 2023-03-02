@@ -2869,7 +2869,7 @@ border : 0px solid #000000;
 
 .white-text
 {
-    color: #fff !important;
+    color: black !important;
 }
 
 .transparent
@@ -7217,7 +7217,7 @@ li.home:before
 
 .white-text
 {
-    color: #fff !important;
+    color: #fff ;
 }
 
 .transparent

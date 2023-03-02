@@ -66,7 +66,7 @@ Route::resource('profile', ProfileController::class)->name('profile', '');
 // Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 
 //Route for Customer Crud
-Route::resource('customer', CustomerController::class)->name('customer', '')->middleware(['permission:customer,admin']);
+Route::resource('customer',CustomerController::class)->name('customer', '')->middleware(['permission:customer,admin']);
 
 
 Route::get('get-states/{id}', [Helper::class, 'getStateByCountry']);
@@ -79,5 +79,6 @@ Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
 
 //for leave
 Route::resource('leave', LeaveController::class)->name('leave','');
+
 Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
 

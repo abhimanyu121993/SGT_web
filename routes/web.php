@@ -52,11 +52,15 @@ Route::group(['prefix'=>'test','as'=>'testproject'],function(){
 
 
 Route::get('activity',function(){
-
-   
-
 return view('test.activity');
 
 })->name('trial');
+
+
+Route::get('leave',function(){
+
+return view('test.leaveRequest');
+
+})->name('holiday');
 
 });

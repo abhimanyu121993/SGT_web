@@ -52,7 +52,7 @@
                             </div>    
                             <div class="input-field col s12">
                                 <textarea type="text" class="form-control" id="desc" name="desc">{{ isset($leave) ? $leave->desc : old('desc') }}</textarea>
-                                <label class="active" for="desc">{{__('leave.desc')}}</label>
+                                <label style="margin-left:12px;" class="active" for="desc">{{__('leave.desc')}}</label>
                             </div>                
                                 </div>
                             <div class="row col s12 mt-2">

@@ -64,7 +64,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($leaves->leaves as $data)
+                                @foreach($leaves->leaves as $data)
                                 <tr>
                                     <th>{{ $loop->index + 1 }}</th>
                                     <td>{{ $data->leaveable->name??'' }}</td>
