@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\Leave;
+use App\Models\Status;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Exception;
@@ -59,7 +60,7 @@ class LeaveController extends Controller
                             'subject' => $request->subject,
                             'desc' => $request->desc,
                             'leave_date' => $date->format('Y-m-d'),
-                            'status' => false
+                            'status' =>Status::where('name','pending')->where('type','leave')->first()->id,
                         ]);
                     }
                     Session::flash('success','Leave Apply Successfully');

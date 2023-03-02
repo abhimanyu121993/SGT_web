@@ -42,6 +42,7 @@ class CheckpointController extends Controller
         $status=Status::where('type','general')->get();
         $checkpoints = Checkpoint::where('owner_id',Helper::getOwner())->get();
         return view('customer.property.qr_map', compact('checkpoints','status'));
+
     }
 
     /**
@@ -80,7 +81,7 @@ class CheckpointController extends Controller
             
             }  
             else{
-               Session::flash('success', 'Checkpoint created but task not alloted');
+               Session::flash('success','Checkpoint created but task not alloted');
                return redirect()->back();
 
             }
@@ -194,6 +195,7 @@ else{
     public function destroy($id)
     {
         $id=Crypt::decrypt($id);
+        
         try{
                 $res=Checkpoint::find($id)->delete();
                 if($res)
@@ -223,7 +225,7 @@ else{
             if($res)
             {
                 return response()->json([
-                    'success' => 'Checkpoint status upadted' // for status 200
+                    'success' => 'Checkpoint status updated' // for status 200
                 ]);
 
                 }
