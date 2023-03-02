@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ActivityController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\LeaveController;
@@ -83,3 +84,10 @@ Route::resource('leave-management', LeaveManagementController::class)->name('lea
 Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
     Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
 });
+
+//Route for Activity
+Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
+    Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');
+    Route::get('/customer/{id}', [ActivityController::class, 'customer_activity'])->name('customer-activity');
+    Route::get('/staff-activity/{id}', [ActivityController::class, 'staff_activity'])->name('staff-activity');
+}); 

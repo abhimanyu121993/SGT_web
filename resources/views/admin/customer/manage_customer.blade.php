@@ -66,6 +66,8 @@
                     <th>{{__('customer.is_active')}}</th>
                     <th>{{__('customer.all_property')}}</th>
                     <th>{{__('customer.all_permissions')}}</th>
+                    <th>{{__('customer.activity')}}</th>
+
                     <th>Action</th>
 
                 </tr>
@@ -98,6 +100,7 @@
                         </div></td>
                     <td><a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}" class=""><i class="material-icons">visibility</i></a></td>
                     <td><a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">cloud</i></a></td>
+                    <td><a href="{{route(Session::get('guard').'.activity.customer-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
                     <td>
                         @php $bid=Crypt::encrypt($data->id); @endphp
                         <a href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons">edit</i></a>

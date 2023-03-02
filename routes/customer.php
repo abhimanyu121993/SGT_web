@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\customer\ActivityController;
 use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\GuardDutyController;
@@ -134,3 +135,11 @@ Route::resource('guard-leave-management', GuardLeaveManagementController::class)
 Route::group(['prefix' => 'guard-leave', 'as' => 'guard-leave.'], function () {
     Route::post('/status', [GuardLeaveManagementController::class, 'status'])->name('status');
 });
+
+//Route for Activity
+Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
+    Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');
+    Route::get('/staff-activity/{id}', [ActivityController::class, 'staff_activity'])->name('staff-activity');
+    Route::get('/guard-activity/{id}', [ActivityController::class, 'guard_activity'])->name('guard-activity');
+
+}); 
