@@ -16,7 +16,8 @@
                 style="{{ strpos(Route::currentRouteName(), 'role-permission') !== false ? 'display:block' : '' }}">
                 <ul class="collapsible collapsible-sub" data-collapsible="accordion">
                     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('role', Session::get('guard')))
-                        <li class="{{ strpos(Route::currentRouteName(), 'role-permission.role') !== false ? 'active' : '' }}  bold">
+                        <li
+                            class="{{ strpos(Route::currentRouteName(), 'role-permission.role') !== false ? 'active' : '' }}  bold">
                             <a href="{{ route(Session::get('guard') . '.role-permission.role.index') }}"><i
                                     class="material-icons">{{ strpos(Route::currentRouteName(), 'role-permission.role') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.role') }}</span></a>
                         </li>
@@ -81,9 +82,10 @@
                                     class="material-icons">{{ strpos(Route::currentRouteName(), 'user.index') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.add_staff') }}</span></a>
                         </li>
                     @endif
-                  
+
                     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_read', Session::get('guard')))
-                        <li class="{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'active' : '' }}  bold">
+                        <li
+                            class="{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'active' : '' }}  bold">
                             <a href="{{ route(Session::get('guard') . '.user.create') }}"><i
                                     class="material-icons">{{ strpos(Route::currentRouteName(), 'user.create') !== false ? 'radio_button_checked' : 'radio_button_unchecked' }}</i><span>{{ __('sidebar.manage_staff') }}</span></a>
                         </li>
@@ -100,32 +102,37 @@
         <li class=" {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active open' : '' }} bold ">
             <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'task') !== false ? 'active' : '' }} "
                 href="{{ route(Session::get('guard') . '.task.create') }}"><i class="material-icons">today</i><span
-                    class="menu-title" data-i18n="File Manager">{{ __('sidebar.task') }}</span></a></li>
+                    class="menu-title" data-i18n="File Manager">{{ __('sidebar.task') }}</span></a>
+        </li>
     @endif
 
     <li class=" {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active open' : '' }} bold ">
         <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'secuirty-guard') !== false ? 'active' : '' }} "
             href="{{ route(Session::get('guard') . '.secuirty-guard.create') }}"><i
-                class="material-icons">people</i><span class="menu-title"
-               >{{ __('security_guard.security_guard') }}</span></a></li>
-               @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('leave-management', Session::get('guard')))
-               <li class=" {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active open' : '' }} bold ">
-        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} "
-            href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i
-                class="material-icons">people</i><span class="menu-title"
-               >{{ __('leave.leave_management') }}</span></a></li>
-               @endif
-               @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('leave', Session::get('guard')))
+                class="material-icons">people</i><span
+                class="menu-title">{{ __('security_guard.security_guard') }}</span></a>
+    </li>
+    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('leave-management', Session::get('guard')))
+        <li class=" {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} "
+                href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i
+                    class="material-icons">people</i><span
+                    class="menu-title">{{ __('leave.staff_leave_management') }}</span></a>
+        </li>
+    @endif
+    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('leave', Session::get('guard')))
+        <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
+                href="{{ route(Session::get('guard') . '.leave.create') }}"><i class="material-icons">people</i><span
+                    class="menu-title">{{ __('leave.staff_leave_request') }}</span></a>
+        </li>
+    @endif
+    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('guard-leave-management', Session::get('guard')))
 
-               <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
-            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
-            href="{{ route(Session::get('guard') . '.leave.create') }}"><i
-                class="material-icons">people</i><span class="menu-title"
-               >{{ __('leave.staff_leave_request') }}</span></a></li>
-             @endif
-               <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
-            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
-            href="{{ route(Session::get('guard') . '.leave.index') }}"><i
-                class="material-icons">people</i><span class="menu-title"
-               >{{ __('leave.guard_leave_request') }}</span></a></li>
+    <li class=" {{ strpos(Route::currentRouteName(), 'guard-leave-management') !== false ? 'active open' : '' }} bold ">
+        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'guard-leave') !== false ? 'active' : '' }} "
+            href="{{ route(Session::get('guard') . '.guard-leave-management.index') }}"><i class="material-icons">people</i><span
+                class="menu-title">{{ __('leave.guard_leave_management') }}</span></a>
+    </li>
+    @endif
 </ul>

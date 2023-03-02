@@ -5,6 +5,10 @@ namespace App\Http\Controllers\guard;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\SecurityGuard;
+use App\Models\Status;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +23,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        //
+        $leaves=SecurityGuard::with('leaves')->find(Helper::getUserId());
+        dd($leaves);
+        return view('customer.guard.leave_management.manage_guard_leave',compact('leaves'));
     }
 
     /**
@@ -40,21 +46,26 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'user_id' => 'required',
-            'leave_date*' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'desc' => 'required',
             'subject' => 'required',
         ]);
         try {
-            foreach ($request->leave_date as $k => $i)
-                    $user=Auth::guard('sanctum')->user();
-                    $leave=$user->leaves()->create([
-                        'subject' => $request->subject,
-                        'desc' => $request->desc,
-                        'leave_date' => $request->leave_date[$k],
-                        'status' => false
-                    ]);
+            $startDate = Carbon::createFromFormat('Y-m-d', $request->start_date);
+            $endDate = Carbon::createFromFormat('Y-m-d', $request->end_date);
+            $dateRange = CarbonPeriod::create($startDate, $endDate);
+            foreach ($dateRange as $date) {
+                $user = Auth::guard('sanctum')->user();
+                $leave = $user->leaves()->create([
+                    'subject' => $request->subject,
+                    'desc' => $request->desc,
+                    'leave_date' => $date->format('Y-m-d'),
+                    'status' => Status::where('name', 'pending')->where('type', 'leave')->first()->id,
+                ]);
+            }
             if ($leave) {
                 $result = [
                     'message' => 'Leave Request send successfully',
