@@ -64,7 +64,7 @@
                             </div>
                             <div class="input-field col s4">
                                 <label class="active" for="dob">{{__('user.dob')}}</label>
-                                <input type="date" class="form-control" id="dob" name="dob" value="{{ isset($customer) ? $customer->dob : '' }}">
+                                <input  type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" class="form-control" id="dob" name="dob" value="{{ isset($customer) ? $customer->dob : '' }}">
                             </div>
                             <div class="input-field col s4">
                                 <input type="text" class="form-control" id="email" name="email"
