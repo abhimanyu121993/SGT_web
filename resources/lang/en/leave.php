@@ -17,6 +17,9 @@ return [
      'created_at'=>'Created at',
      'created_on'=>'Created on',
      'leave_date'=>'Leave Date',
-     
+     'guard_leave_management'=>'Guard Leave Management',
+     'staff_leave_management'=>'Staff Leave Management',
+
+
 
 ];

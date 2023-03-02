@@ -36,24 +36,26 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
     Route::post('customer-login', [AuthController::class, 'customer_login'])->name('customer-login');
     //  Route for change Password
-    Route::post('update-password',[AuthController::class,'update_password'])->name('update-password');
+    Route::post('update-password', [AuthController::class, 'update_password'])->name('update-password');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    //Lock Screen 
-    Route::get('lock',[AuthController::class,'lock'])->name('lock');
+    //Lock Screen
+    Route::get('lock', [AuthController::class, 'lock'])->name('lock');
 });
 //General route for country/state/city
-Route::group(['prefix' => 'general','as' => 'general.'],function () {
-        Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-country');
-        Route::post('cities-in-state', [GeneralController::class, 'cities_in_state'])->name('cities-in-state');
+Route::group(['prefix' => 'general', 'as' => 'general.'], function () {
+    Route::post('states-in-country', [GeneralController::class, 'states_in_country'])->name('states-in-country');
+    Route::post('cities-in-state', [GeneralController::class, 'cities_in_state'])->name('cities-in-state');
 });
 
-
-Route::group(['prefix'=>'test','as'=>'testproject'],function(){
-
-
-Route::get('/mydesign',function(){
-return view('mydesign');
-});
-Route::get('/activitylog',function(){
-    return view('activitylog'); 
+Route::group(['prefix' => '/test', 'as' => 'test',], function () {
+    Route::get('/activitylog', function () {
+        return view('activitylog');
     });
+
+    Route::get('/mydesign', function () {
+        return view('mydesign');
+    });
+    Route::get('/testlog', function () {
+        return view('test.activity');
+    });
+});

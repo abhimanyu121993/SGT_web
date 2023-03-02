@@ -16,6 +16,8 @@ use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\ShiftController;
 use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
+use App\Http\Controllers\guard\LeaveController as GuardLeaveController;
+use App\Http\Controllers\guard\LeaveManagementController as GuardLeaveManagementController;
 use App\Models\SecurityGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -124,4 +126,11 @@ Route::resource('leave',LeaveController::class)->name('leave','');
 Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
 Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
     Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
+});
+
+//for guard leave management
+Route::resource('guard-leave',GuardLeaveController::class)->name('guard-leave','');
+Route::resource('guard-leave-management', GuardLeaveManagementController::class)->name('guard-leave-management','')->middleware('permission:guard-leave-management,customer');
+Route::group(['prefix' => 'guard-leave', 'as' => 'guard-leave.'], function () {
+    Route::post('/status', [GuardLeaveManagementController::class, 'status'])->name('status');
 });
