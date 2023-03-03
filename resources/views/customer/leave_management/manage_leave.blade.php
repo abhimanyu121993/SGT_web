@@ -38,6 +38,8 @@
                                     <th>{{ __('leave.email') }}</th>
                                     <th>{{ __('leave.subject') }}</th>
                                     <th>{{ __('leave.desc') }}</th>
+                                    <th>{{ __('leave.leave_start') }}</th>
+                                    <th>{{ __('leave.leave_end') }}</th>
                                     <th>{{__('leave.status')}}</th>
                                     <th>{{__('leave.created_at')}}</th>
                                     <th>{{__('leave.created_on')}}</th>
@@ -51,6 +53,9 @@
                                     <td>{{ $data->leaveable->email??'' }}</td>
                                     <td>{{ $data->subject??''}}</td>
                                     <td>{{ $data->desc??'' }}</td>
+                                    <td>{{\Carbon\Carbon::parse($data->leave_start)->format('d-M-Y')??'' }}</td>
+                                    <td>{{\Carbon\Carbon::parse($data->leave_end)->format('d-M-Y')??'' }}</td>
+
                                     <td>
                                     <div class="input-group">
                                             <select class="browser-default status" id="" data="{{ $data->id }}" name="status">

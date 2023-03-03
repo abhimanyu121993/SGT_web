@@ -16,7 +16,7 @@
         <div class="col-rt-12">
             <div class="Scriptcontent" style="margin-left: 24px;">
 
-
+              @foreach($activities as $activity)
                 <div class="step">
                     <div>
                         <div class="circle"></div>
@@ -35,7 +35,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="hello">1111:7777:9999:7777</td>
+                                    <td class="hello">{{ $activity}}</td>
                                     <td class="hello">sharry yawar</td>
                                     <td class="hello">Transparent</td>
                                 </tr>
@@ -43,7 +43,8 @@
                         </table>
                     </div>
                 </div>
-                <div class="step ">
+                @endforeach
+                <!-- <div class="step ">
                     <div>
                         <div class="circle"></div>
                     </div>
@@ -98,7 +99,7 @@
 
 
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
