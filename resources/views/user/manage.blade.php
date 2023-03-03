@@ -75,6 +75,14 @@ $guard='customer';
                                         </div>
 
                                     </td>
+                                    <td>
+                                     @if($data->verify?? '')
+                                    <button class="btn btn-success verifybtnyes">Yes</button>
+                                    @else
+                                    <button class="btn btn-danger verifybtnno">No</button>
+                                    @endif
+                                    </td>
+
                                     <td>{{ $data->created_at->format('d-M-Y') }}</td>
                         <td>{{ $data->created_at->format('H:i:s a') }}</td>
                         <td><a href="{{route(Session::get('guard').'.activity.staff-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
