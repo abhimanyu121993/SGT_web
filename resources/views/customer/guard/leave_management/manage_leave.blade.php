@@ -1,25 +1,22 @@
 @extends('layout.panel')
-@section('title', 'Leave')
+@section('title', 'Leave Management')
 @section('breadcrumb')
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
     <!-- Search for small screen-->
     <div class="container">
         <div class="row">
             <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Leave</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Leave Management</span></h5>
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">Leave</a>
                     </li>
-                    <li class="breadcrumb-item active">Add Leave
+                    <li class="breadcrumb-item active">Leave Management
                     </li>
                 </ol>
             </div>
-            <div class="col s2 m6 l6 mb-2">
-            <a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
-            data-url="{{ route(Helper::getGuard() . '.leave.index') }}"><span class="hide-on-small-onl">Apply Leave</span></a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -29,7 +26,7 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <h4 class="card-title">{{ __('leave.staff_leave_request') }}
+                <h4 class="card-title">{{ __('leave.guard_leave_management') }}
                 </h4>
                 <div class="row">
                     <div class="col s12">
@@ -41,22 +38,31 @@
                                     <th>{{ __('leave.email') }}</th>
                                     <th>{{ __('leave.subject') }}</th>
                                     <th>{{ __('leave.desc') }}</th>
-                                    <th>{{ __('leave.leave_date') }}</th>
                                     <th>{{__('leave.status')}}</th>
+                                    <th>{{__('leave.created_at')}}</th>
+                                    <th>{{__('leave.created_on')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($leaves->leaves as $data)
+                                @foreach ($leaves as $data)
                                 <tr>
                                     <th>{{ $loop->index + 1 }}</th>
                                     <td>{{ $data->leaveable->name??'' }}</td>
                                     <td>{{ $data->leaveable->email??'' }}</td>
                                     <td>{{ $data->subject??''}}</td>
                                     <td>{{ $data->desc??'' }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($data->leave_date)->format('d-M-Y')??'' }}</td>
                                     <td>
-                                    {{ $data->status_info->name??''}}
+                                    <div class="input-group">
+                                            <select class="browser-default status" id="" data="{{ $data->id }}" name="status">
+                                                @foreach ($status as $st)
+                                                <option value="{{ $st->id }}" {{ $data->status }} @selected($data->status == $st->id)>{{ $st->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                     </td>
+                                    <td>{{ $data->created_at->format('d-M-Y') }}</td>
+                                     <td>{{ $data->created_at->format('H:i:s a') }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -69,24 +75,29 @@
     </div>
 </div>
 
-<div id="modal1" class="modal modal-fixed-footer"></div>
 @endsection
 @section('script-area')
 <script>
-        $(document).ready(function() {
-            $(document).on('click', '.modal1', function() {
+    $(document).ready(function() {
+        $(document).on('change', '.status', function() {
+            var leave_id = $(this).attr("data");
+            $(this).find("option:selected").each(function() {
+                var status_id = $(this).val();
+                var newurl = "{{ route('customer.guard-leave.status') }}";
                 $.ajax({
-                    url: $(this).data('url'),
-                    method: 'get',
-                    success: function(data) {
-
-                        $('#modal1').html(data);
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');
+                    url: newurl,
+                    method: 'post',
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'leave_id': leave_id,
+                        'status_id': status_id
+                    },
+                    success: function(p) {
 
                     }
                 });
             });
-        });
-    </script>
-@endsection
+        }).change();
+    });
+</script>
+@endsectionō

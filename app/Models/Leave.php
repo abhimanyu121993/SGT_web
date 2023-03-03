@@ -15,4 +15,8 @@ class Leave extends Model
     {
         return $this->morphTo();
     }
+    public function status_info()
+    {
+        return $this->belongsTo(Status::class, 'status');
+    }
 }

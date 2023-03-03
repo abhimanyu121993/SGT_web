@@ -14,9 +14,9 @@
   .shiftclass{
    
    height: 1rem !important
-;
+ ;
 
-  }
+}
 
   .makestyle{
 
@@ -5177,7 +5177,7 @@ table span.badge
         right: auto;
         left: auto;
 
-        width: 50%;
+        /* width: 50%; */
         margin-left: auto;
     }
     .row .col.l7

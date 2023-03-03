@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
+use App\Models\Leave;
+use App\Models\Status;
+use Exception;
 use Illuminate\Http\Request;
 
 class LeaveManagementController extends Controller
@@ -16,10 +19,10 @@ class LeaveManagementController extends Controller
      */
     public function index()
     {
-        
-            $leaves=Admin::with('leaves')->where('created_by',Helper::getUserId())->get();
-            dd($leaves->leaves);
-            return view('admin.leave_management.manage_leave',compact('leaves')); 
+        $status = Status::where('type', 'leave')->get();
+        $admins=Admin::where('created_by', Helper::getUserId())->pluck('id')->toArray();
+        $leaves=Leave::with('leaveable')->where('leaveable_type','App\Models\admin\Admin')->whereIn('leaveable_id',$admins)->get();
+        return view('admin.leave_management.manage_leave',compact('leaves','status')); 
 
            }    
 
@@ -88,4 +91,25 @@ class LeaveManagementController extends Controller
     {
         //
     }
+     //For change the status of Leave
+     public function status(Request $request)
+     {
+ 
+         try {
+             $res = Leave::find($request->leave_id)->update([
+                 'status' => $request->status_id,
+             ]);
+             if ($res) {
+                 return response()->json([
+                     'success' => 'Leave status upadted' // for status 200
+                 ]);
+             } else {
+                 return response()->json([
+                     'success' => 'Leave status not upadted' // for status 503
+                 ]);
+             }
+         } catch (Exception $ex) {
+             Helper::handleError($ex);
+         }
+     }
 }

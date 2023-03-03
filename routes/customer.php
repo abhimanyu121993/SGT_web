@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\customer\ActivityController;
 use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\GuardDutyController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\ShiftController;
 use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
+use App\Http\Controllers\guard\LeaveController as GuardLeaveController;
+use App\Http\Controllers\guard\LeaveManagementController as GuardLeaveManagementController;
 use App\Models\SecurityGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -109,9 +112,13 @@ Route::group(['prefix' => 'route', 'as' => 'route.'], function () {
     Route::get('/isactive/{id}', [RouteController::class, 'is_active'])->name('active-route');
 });
 //Route for Shift
-Route::resource('shift',ShiftController::class)->name('shift', '');
-Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
-    Route::get('/isactive/{id}', [ShiftController::class,'is_active'])->name('active-shift');
+
+
+
+Route::resource('shift',ShiftController::class)->name('shift','');
+Route::group(['prefix' => 'shift', 'as' => 'shift.'], function(){
+Route::get('/isactive/{id}',[ShiftController::class,'is_active'])->name('active-shift');
+
 });
 
 
@@ -122,4 +129,21 @@ Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty','')
 //for leave
 Route::resource('leave',LeaveController::class)->name('leave','');
 Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
+Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
+    Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
+});
 
+//for guard leave management
+Route::resource('guard-leave',GuardLeaveController::class)->name('guard-leave','');
+Route::resource('guard-leave-management', GuardLeaveManagementController::class)->name('guard-leave-management','')->middleware('permission:guard-leave-management,customer');
+Route::group(['prefix' => 'guard-leave', 'as' => 'guard-leave.'], function () {
+    Route::post('/status', [GuardLeaveManagementController::class, 'status'])->name('status');
+});
+
+//Route for Activity
+Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
+    Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');
+    Route::get('/staff-activity/{id}', [ActivityController::class, 'staff_activity'])->name('staff-activity');
+    Route::get('/guard-activity/{id}', [ActivityController::class, 'guard_activity'])->name('guard-activity');
+
+}); 

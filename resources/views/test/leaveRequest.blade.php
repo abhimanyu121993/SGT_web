@@ -67,12 +67,9 @@
       <p style="margin-top:-7px;">Add guard details below</p>
     </div>
 
-    
-
        
        <form>
       
-
                             <div class="input-field col s12" style=" display:flex;">
                                
                                <span>SHIFT_1:</span> &nbsp;&nbsp;<input type="text" class="form-control shiftclass" id="property_name" name="name"

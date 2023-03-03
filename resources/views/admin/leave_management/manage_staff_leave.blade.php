@@ -15,6 +15,10 @@
                     <li class="breadcrumb-item active">Add Leave
                     </li>
                 </ol>
+            </div>  
+            <div class="col s2 m6 l6 mb-2">
+            <a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
+            data-url="{{route(Helper::getGuard() . '.leave.index') }}"><span class="hide-on-small-onl">Apply Leave</span></a> 
             </div>         
         </div>
     </div>
@@ -96,12 +100,7 @@
                                     <td>{{ $data->subject??''}}</td>
                                     <td>{{ $data->desc??'' }}</td>
                                     <td>
-                                            <div class="switch">
-                                                <label>
-                                                    <input type="checkbox" value="{{ $data->id}}" data-url="" class="is_verified" id="is_verified" {{ $data->status==0?'':'checked'}}>
-                                                    <span class="lever"></span>
-                                                </label>
-                                            </div>
+                                    {{ $data->status_info->name}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -115,6 +114,24 @@
     </div>
 </div>
 
+<div id="modal1" class="modal modal-fixed-footer"></div>
 @endsection
 @section('script-area')
+<script>
+        $(document).ready(function() {
+            $(document).on('click', '.modal1', function() {
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'get',
+                    success: function(data) {
+
+                        $('#modal1').html(data);
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');
+
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
