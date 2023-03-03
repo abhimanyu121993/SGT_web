@@ -49,9 +49,11 @@ $guard='customer';
                                     <th>{{__('user.email')}}</th>
                                     <th>{{__('user.role')}}</th>
                                     <th>{{__('user.is_active')}}</th>
+                                    <th>{{__('user.verify')}}</th>
                                     <th>{{__('user.created_at')}}</th>
                                     <th>{{__('user.created_on')}}</th>
                                     <th>{{__('user.activity')}}</th>
+                                 
                                     <th>Action</th>
                                 </tr>
                             </thead>
