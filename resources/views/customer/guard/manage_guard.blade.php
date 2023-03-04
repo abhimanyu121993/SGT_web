@@ -88,6 +88,7 @@
                                     <th scope="col">{{__('security_guard.joined')}}</th>
                                     <th scope="col">{{__('security_guard.last_login')}}</th>
                                     <th scope="col">{{__('security_guard.status')}}</th>
+                                    <th scope="col">{{__('security_guard.activity')}}</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -121,6 +122,8 @@
                                         </div>
 
                                     </td>
+                                    <td><a href="{{route(Session::get('guard').'.activity.guard-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
+
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

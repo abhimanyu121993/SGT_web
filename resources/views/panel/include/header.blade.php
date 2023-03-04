@@ -41,7 +41,7 @@
                     <li><a class="grey-text text-darken-1" href="{{ route(Session::get('guard').'.profile.edit', Auth::guard(Session::get('guard'))->user()->id ?? '') }}"><i class="material-icons">person_outline</i> Profile</a></li>
                     <li class="divider"></li>
                     <li><a class="grey-text text-darken-1" id="change_password_modal" href="#" data-url="{{route('auth.update-password', Auth::guard(Session::get('guard'))->user()->id) }}"><i class="material-icons ">lock_outline</i> Change Password</a></li>
-                    <li><a class="grey-text text-darken-1" href="#"><i class="material-icons">lock_outline</i> Activity</a></li>
+                    <li><a class="grey-text text-darken-1" href="{{ route(Session::get('guard').'.activity.admin-activity',Crypt::encrypt(Helper::getUserId()) ?? '') }}"><i class="material-icons">lock_outline</i> Activity</a></li>
                     <li><a class="grey-text text-darken-1" href="{{route('auth.lock')}}"><i class="material-icons">lock_outline</i> Lock</a></li>
                     <li><a class="grey-text text-darken-1" href="{{route('auth.logout')}}"><i class="material-icons">keyboard_tab</i> Logout</a></li>
                 </ul>

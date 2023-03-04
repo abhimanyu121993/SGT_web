@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\v1\ApiAuthController;
 use App\Http\Controllers\v1\guard\ProfileController as GuardProfileController;
+use App\Http\Controllers\v1\guard\LeaveController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

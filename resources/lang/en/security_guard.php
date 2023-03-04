@@ -51,7 +51,7 @@ return array (
 'guard_job_id_card'=>'Guard Job Id Card',
 'account_created_date'=>'Account creation Date',
 'change_password'=>'Change Password',
-
+'activity'=>'Activity',
 
 
 
