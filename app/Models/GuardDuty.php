@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use App\Helpers\Helper;
+
+use App\Models\customer\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,4 +32,8 @@ class GuardDuty extends Model
               $activity->causer_id=Helper::getUserId();
           
       }
+    public function properties()
+    {
+        return $this->belongsTo(Property::class, 'property_id');
+    }
 }
