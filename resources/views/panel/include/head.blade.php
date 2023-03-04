@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/data-tables/css/select.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/data-tables.css')}}">
 
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css'}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/flag-icon/css/flag-icon.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/fullcalendar/css/fullcalendar.min.css')}}">
 

@@ -44,7 +44,7 @@
   
 </div>
 
-<a class="btn waves-effect waves-light modal-trigger breadcrumbs-btn right ddbutton"
+     <a class="btn waves-effect waves-light modal-trigger breadcrumbs-btn right ddbutton"
             href="#modal1"><span
                 class="hide-on-small-onl">Shift duty to another</span></a>    
 
@@ -66,11 +66,8 @@
 " readonly>
       <p style="margin-top:-7px;">Add guard details below</p>
     </div>
-
-       
-       <form>
-      
-                            <div class="input-field col s12" style=" display:flex;">
+ <form>
+             <div class="input-field col s12" style=" display:flex;">
                                
                                <span>SHIFT_1:</span> &nbsp;&nbsp;<input type="text" class="form-control shiftclass" id="property_name" name="name"
                                     value="" >
@@ -100,14 +97,12 @@
                                     <label for="property_name">AVAILABLE GUARD</label>
                                    
                             </div>
-   <div class="input-field col s12 " style="display:flex;">
+                              <div class="input-field col s12 " style="display:flex;">
                                
                                 <span>SHIFT_3:</span> &nbsp;&nbsp; <input type="text" class="form-control shiftclass" id="property_name" name="name"
                                     value="" >
                                     </div>
-
-
-                            <div class="input-field col s12">
+                                    <div class="input-field col s12">
                                
                                 <input type="text" class="form-control" id="property_name" name="name"
                                     value="" >
