@@ -87,6 +87,7 @@
                                     <th scope="col">{{__('security_guard.phone')}}</th>
                                     <th scope="col">{{__('security_guard.joined')}}</th>
                                     <th scope="col">{{__('security_guard.last_login')}}</th>
+                                    <th scope="col">{{__('security_guard.verify')}}</th>
                                     <th scope="col">{{__('security_guard.status')}}</th>
                                     <th scope="col">{{__('security_guard.activity')}}</th>
                                     <th scope="col">Action</th>
@@ -111,6 +112,13 @@
                                     <td>{{ $data->phone??''}}</td>
                                     <td></td>
                                     <td></td>
+                                    <td>
+                                     @if($data->verify?? '')
+                                    <button class="btn btn-success verifybtnyes">Yes</button>
+                                    @else
+                                    <button class="btn btn-danger verifybtnno">No</button>
+                                    @endif
+                                    </td>
 
                                     <td>
                                         <div class="input-group">
