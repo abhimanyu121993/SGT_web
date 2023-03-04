@@ -19,6 +19,11 @@ class GuardDuty extends Model
     use HasFactory,SoftDeletes,LogsActivity;
     protected $guarded=[];
 
+    public function properties()
+    {
+        return $this->belongsTo(Property::class, 'property_id');
+    }
+
       //revoke role and permission on delete 
       public function getActivitylogOptions(): LogOptions
       {
@@ -32,8 +37,4 @@ class GuardDuty extends Model
               $activity->causer_id=Helper::getUserId();
           
       }
-    public function properties()
-    {
-        return $this->belongsTo(Property::class, 'property_id');
-    }
 }
