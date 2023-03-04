@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->string('street');
             $table->string('pincode');
-
+            $table->string('card_image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
