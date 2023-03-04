@@ -13,13 +13,32 @@
 <script src="{{asset('app-assets/vendors/select2/select2.full.min.js')}}"></script>
 <script src="{{asset('app-assets/js/scripts/form-select2.js')}}"></script>
 {{-- <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.js')}}"></script> --}}
- <script src="{{asset('app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.js')}}"></script>
+  <script src="{{asset('app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.js')}}"></script>
   <script src="{{asset('app-assets/vendors/data-tables/js/dataTables.select.min.js')}}"></script>
-
   <script src="{{asset('app-assets/js/scripts/data-tables.js')}}"></script>
-
   <script src="{{asset('app-assets/js/scripts/advance-ui-modals.js')}}"></script>
- <script src="{{asset('app-assets/js/style.js')}}"></script>
+  <script src="{{asset('app-assets/js/style.js')}}"></script>
+ 
+    <script src="{{asset('app-assets/vendors/fullcalendar/lib/moment.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/fullcalendar/js/fullcalendar.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/fullcalendar/daygrid/daygrid.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/fullcalendar/timegrid/timegrid.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/fullcalendar/interaction/interaction.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/app-calendar.js')}}"></script>
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
   <script>
        $(document).on('click',".toggle-fullscreen",function () {
       toggleFullScreen();
@@ -59,8 +78,8 @@
   <!-- END PAGE LEVEL JS-->
 
   {{-- Data Table Js cdn --}}
-  <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-  <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
+<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+<script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{asset('vendor/datatables/buttons.server-side.js')}}"></script>
 
 <script src="{{asset('app-assets/js/scripts/form-elements.js')}}"></script>

@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/sweetalert/sweetalert.css')}}">
 
-
-
 <link rel="stylesheet" href="{{asset('app-assets/vendors/select2/select2.min.css')}}" type="text/css">
 <link rel="stylesheet" href="{{asset('app-assets/vendors/select2/select2-materialize.css')}}" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/form-select2.css')}}">
@@ -23,6 +21,17 @@
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/data-tables/css/select.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/data-tables.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css'}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/flag-icon/css/flag-icon.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/fullcalendar/css/fullcalendar.min.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/fullcalendar/daygrid/daygrid.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/fullcalendar/timegrid/timegrid.min.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-calendar.css')}}">
+
+
 
 {{-- Data Table Cdn Links --}}
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="

@@ -52,7 +52,6 @@ Route::group(['prefix' => '/test', 'as' => 'test',], function () {
         return view('activitylog');
     });
 
-
 });
 
 
@@ -71,6 +70,11 @@ Route::get('leave',function(){
 return view('test.leaveRequest');
 
 })->name('holiday');
+
+
+Route::get('timesheet',function(){
+                return view('test.timesheet');
+})->name('time');
 
 
     Route::get('/mydesign', function () {

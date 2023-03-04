@@ -17,7 +17,7 @@
                 </ol>
             </div>  
             <div class="col s2 m6 l6 mb-2">
-            <a class="btn  waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
+            <a class="btn waves-effect waves-light breadcrumbs-btn right modal-trigger modal1"
             data-url="{{route(Helper::getGuard() . '.leave.index') }}"><span class="hide-on-small-onl">Apply Leave</span></a> 
             </div>         
         </div>
