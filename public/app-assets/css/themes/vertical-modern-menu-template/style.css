@@ -3,6 +3,21 @@
 -------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
+  /* komal code */
+.verifybtnyes{
+    background:radial-gradient(green, transparent) !important;
+     border-radius:30px !important;  
+}
+
+.verifybtnno{
+    background:radial-gradient(red, transparent) !important;
+     border-radius:30px !important;  
+}
+
+
+
+
+
 /* new code */
 
 .langlang{

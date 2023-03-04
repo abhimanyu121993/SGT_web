@@ -61,7 +61,7 @@
                    </p>
                   </div>
           
-                    <div class="card-action">
+                    <div class="card-action new-action">
                      <a href="{{ route(Helper::getGuard().'.property.show',$pid) }}" style="float:right;">View </a></div>
           
           

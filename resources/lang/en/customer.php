@@ -24,5 +24,6 @@ return array (
   'all_property'=>'All Property',
   'manage_customer'=>'Manage Customer',
   'is_active'=>'Is Active',
-  'activity'=>'Activity'
+  'activity'=>'Activity',
+  'verify'=>'Verify'
 );

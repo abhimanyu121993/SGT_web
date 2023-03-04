@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\guard;
+namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\Leave;
 use App\Models\SecurityGuard;
 use App\Models\Status;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Sanctum\Sanctum;
 
 class LeaveController extends Controller
 {
@@ -23,9 +19,31 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves=SecurityGuard::with('leaves')->find(Helper::getUserId());
-        dd($leaves);
-        return view('customer.guard.leave_management.manage_guard_leave',compact('leaves'));
+        try {
+            $leaves=SecurityGuard::with('leaves')->find(Helper::getUserId());
+            if ($leaves) {
+                $result = [
+                    'data'=>$leaves,
+                    'message' => 'Found leave details',
+                    'status' => 200,
+                    'error' => NULL
+                ];
+            } else {
+                $result = [
+                    'data' => NULL,
+                    'message' => 'Leave details not found',
+                    'status' => 200,
+                    'error' => [
+                        'message' => 'Server Error',
+                        'code' => 305,
+                    ]
+                ];
+            }
+            return response()->json($result);
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+        }
+
     }
 
     /**
@@ -46,28 +64,24 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'leave_start' => 'required',
+            'leave_end' => 'required',
             'desc' => 'required',
             'subject' => 'required',
         ]);
         try {
-            $startDate = Carbon::createFromFormat('Y-m-d', $request->start_date);
-            $endDate = Carbon::createFromFormat('Y-m-d', $request->end_date);
-            $dateRange = CarbonPeriod::create($startDate, $endDate);
-            foreach ($dateRange as $date) {
-                $user = Auth::guard('sanctum')->user();
-                $leave = $user->leaves()->create([
-                    'subject' => $request->subject,
-                    'desc' => $request->desc,
-                    'leave_date' => $date->format('Y-m-d'),
-                    'status' => Status::where('name', 'pending')->where('type', 'leave')->first()->id,
-                ]);
-            }
-            if ($leave) {
+            $user = Auth::guard(Helper::getGuard())->user();
+            $res = $user->leaves()->create([
+                'subject' => $request->subject,
+                'desc' => $request->desc,
+                'leave_start' => $request->leave_start,
+                'leave_end' => $request->leave_start,
+                'status' => Status::where('name', 'pending')->where('type', 'leave')->first()->id,
+            ]);
+            if ($res) {
                 $result = [
+                    'data'=>$res,
                     'message' => 'Leave Request send successfully',
                     'status' => 200,
                     'error' => NULL
