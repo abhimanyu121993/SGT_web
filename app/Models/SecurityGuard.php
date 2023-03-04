@@ -51,4 +51,10 @@ class SecurityGuard extends Authenticatable
     {
         return $this->morphMany(Leave::class,'leaveable');
     }
+    
+    public function getTeamAttribute()
+    {
+        $teams=SecurityGuard::where('owner_id',Helper::getOwner())->get();
+        return $teams;
+    }
 }

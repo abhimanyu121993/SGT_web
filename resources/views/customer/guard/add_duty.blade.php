@@ -42,7 +42,11 @@
                             @endforeach
                         </select>
                         <span class="active" for="shift">{{__('duty.shift')}}</span>
-                    </div>                   
+                    </div>
+                    <div class="col s12 input-field">
+                                <input id="duty_date" name="duty_date[]" type="date" class="validate" value="{{ $duty->duty_date ?? '' }}" data-error=".errorTxt2">
+                                <label for="name">{{__('duty.duty_date')}}</label>
+                    </div>                  
                     <!--end col-->
                 </div>
                 <div class="row col s12 mt-2">

@@ -53,15 +53,18 @@ class GuardDutyController extends Controller
              'shift'=>'required',
          ]);
          try{
-            $res= GuardDuty::create([
-                 'property_id' => $request->property,
-                 'route_id' => $request->route,
-                 'guard_id' => $request->guard,
-                 'shift_id' => $request->shift,
-
-             ]);
- if($res){
-     Session::flash('success', 'Duty created successfully');
+            foreach($request->duty_date as $k=>$i){
+                $res= GuardDuty::create([
+                    'property_id' => $request->property,
+                    'route_id' => $request->route,
+                    'guard_id' => $request->guard,
+                    'shift_id' => $request->shift,
+                    'duty_date'=>$i
+                ]);
+            }
+           
+      if($res){
+            Session::flash('success', 'Duty created successfully');
  
  }
  else{

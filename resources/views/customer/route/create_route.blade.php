@@ -11,8 +11,8 @@
                  <div class="row gy-4">
                      <div class="col-xxl-3 col-md-12">
                          <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($route) ? $route->property_id : $property_id }}" hidden>
-                         <div class="input-group col s12">
-                             <input type="text" class="form-control" id="name" name="name" value="{{ isset($route) ? $route->name : old('name') }}" placeholder="Name">
+                         <div class="input-field col s12">
+                             <input type="text" class="form-control" id="name" name="name" value="{{ isset($route) ? $route->name : old('name') }}">
                              <label class="active" for="name">{{__('route.name')}}</label>
                          </div>
                          <div class="file-field input-field col s12" id="image">
@@ -24,23 +24,23 @@
                                     <input class="file-path validate" type="text">
                                 </div>
                             </div>
-                         <div class="input-group col s12">
-                             <input type="color" class="form-control" id="color" name="color" value="{{ isset($route) ? $route->color : old('color') }}" placeholder="Color">
+                         <div class="input-field col s12">
+                             <input type="color" class="form-control" id="color" name="color" value="{{ isset($route) ? $route->color : old('color') }}">
                              <label class="active" for="name">{{__('route.color')}}</label>
                          </div>
 
-                         <div class="input-group col s12">
-                             <input type="number" class="form-control" id="time" name="time" value="{{ isset($route) ? $route->complition_time : old('complition_time') }}" placeholder="Complition Time">
+                         <div class="input-field col s12">
+                             <input type="number" class="form-control" id="time" name="time" value="{{ isset($route) ? $route->complition_time : old('complition_time') }}">
                              <label class="active" for="time">{{__('route.time')}}</label>
                          </div>
-                         <div class="input-group col s12">
+                         <div class="input-field col s12">
                              <textarea type="text" class="form-control" id="description" name="description" value="" placeholder="Write Something Here...">{{ isset($route) ? $route->desc : old('desc') }}</textarea>
                              <label class="active" for="description">{{__('route.description')}}</label>
                          </div>
                          <!--end col-->
                      </div>
                      <div class="row col s12 mt-2">
-                         <div class="input-group col s12">
+                         <div class="input-field col s12">
                              <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($route) ? 'Update' : 'Submit' }}</button>
                          </div>
                      </div>

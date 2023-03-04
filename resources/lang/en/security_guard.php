@@ -52,6 +52,8 @@ return array (
 'account_created_date'=>'Account creation Date',
 'change_password'=>'Change Password',
 'activity'=>'Activity',
+'timezone'=>'TimeZone',
+
 
 
 
