@@ -140,8 +140,10 @@ line-height: 26px !important;
 
 .new-area {
 
-    width: calc(67% - 280px);
-    margin-top: 49px;
+   width: calc(60% - 280px);
+    margin-top: 51px;
+    margin-left: 166px;
+    margin-bottom: -42px;
 }
 
 .new-area .app-wrapper .datatable-search {
@@ -149,7 +151,7 @@ line-height: 26px !important;
 }
 
 .new-area .app-wrapper .datatable-search .app-filter {
-        max-width: calc(93% - 3rem);
+        max-width: calc(86% - 3rem);
     margin-bottom: 0.5rem;
     padding: 0.2rem;
     padding-left: 2.75rem;
@@ -7724,7 +7726,7 @@ body.keyboard-focused .dropdown-content li:focus
     display: none;
 
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 1rem;
 
     border-bottom: 1px solid #ddd;
 }
