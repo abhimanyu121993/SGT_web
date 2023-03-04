@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\GeneralController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::group(['prefix' => 'general', 'as' => 'general.'], function () {
 });
 
 Route::group(['prefix' => '/test', 'as' => 'test',], function () {
+
+    
     Route::get('/activitylog', function () {
         return view('activitylog');
     });
@@ -58,4 +61,13 @@ Route::group(['prefix' => '/test', 'as' => 'test',], function () {
     Route::get('/testlog', function () {
         return view('test.activity');
     });
+
+    Route::get('general-report', [TestingController::class, 'generalReport']);
+   
 });
+
+
+
+
+
+
