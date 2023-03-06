@@ -35,16 +35,16 @@
                 <div class="card-title"><small>{{__('rolepermission.total')}} {{$role->users->count()}} {{__('rolepermission.users')}}</small> <div class="right">
                     <div class="card-text display-flex mt-2">
                         <a href="" class="mr-1">
-                          <img src="../../../app-assets/images/avatar/avatar-10.png" class="circle" width="38" alt="">
+                          <img src="../../../app-assets/images/avatar/avatar-10.png" class="circle1" width="38" alt="">
                         </a>
                         <a href="" class="mr-1">
-                          <img src="../../../app-assets/images/avatar/avatar-11.png" class="circle" width="38" alt="">
+                          <img src="../../../app-assets/images/avatar/avatar-11.png" class="circle1" width="38" alt="">
                         </a>
                         <a href="" class="mr-1">
-                          <img src="../../../app-assets/images/avatar/avatar-12.png" class="circle" width="38" alt="">
+                          <img src="../../../app-assets/images/avatar/avatar-12.png" class="circle1" width="38" alt="">
                         </a>
                         <a href="" class="mr-1">
-                          <img src="../../../app-assets/images/avatar/avatar-13.png" class="circle" width="38" alt="">
+                          <img src="../../../app-assets/images/avatar/avatar-13.png" class="circle1" width="38" alt="">
                         </a>
                       </div>    
                 

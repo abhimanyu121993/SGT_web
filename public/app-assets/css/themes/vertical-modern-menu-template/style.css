@@ -159,6 +159,19 @@ display: grid;
   background-color: #4285f4;
 }
 
+.circle1{
+background: gray;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 11.5em;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 0 3px #fff;
+
+
+}
 
 .circle {
     background: gray;
