@@ -4,7 +4,6 @@ return [
      'sr_no'=>'Sr.No',
      'name'=>'Name',
     'add_property'=>'Add Property',
-
     'property_name'=>'Property Name',
     'country'=>'Country',
     'state'=>'State',

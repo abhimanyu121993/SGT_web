@@ -117,22 +117,14 @@
             <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} "
                 href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i
                     class="material-icons">people</i><span
-                    class="menu-title">{{ __('leave.staff_leave_management') }}</span></a>
+                    class="menu-title">{{ __('leave.leave_management') }}</span></a>
         </li>
     @endif
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('leave', Session::get('guard')))
-        <li class=" {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active open' : '' }} bold ">
-            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave') !== false ? 'active' : '' }} "
+        <li class=" {{ strpos(Route::currentRouteName(), 'leave.create') !== false ? 'active open' : '' }} bold ">
+            <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave.create') !== false ? 'active' : '' }} "
                 href="{{ route(Session::get('guard') . '.leave.create') }}"><i class="material-icons">people</i><span
-                    class="menu-title">{{ __('leave.staff_leave_request') }}</span></a>
+                    class="menu-title">{{ __('leave.leave_request') }}</span></a>
         </li>
-    @endif
-    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('guard-leave-management', Session::get('guard')))
-
-    <li class=" {{ strpos(Route::currentRouteName(), 'guard-leave-management') !== false ? 'active open' : '' }} bold ">
-        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'guard-leave') !== false ? 'active' : '' }} "
-            href="{{ route(Session::get('guard') . '.guard-leave-management.index') }}"><i class="material-icons">people</i><span
-                class="menu-title">{{ __('leave.guard_leave_management') }}</span></a>
-    </li>
     @endif
 </ul>

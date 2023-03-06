@@ -19,7 +19,7 @@ return [
      'leave_date'=>'Leave Date',
      'guard_leave_management'=>'Guard Leave Management',
      'staff_leave_management'=>'Staff Leave Management',
-
+'leave_request'=>'Leave Request',
 
 
 ];
