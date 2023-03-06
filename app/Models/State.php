@@ -9,7 +9,7 @@ class State extends Model
 {
     use HasFactory;
 
-    public function scopeState($query)
+    public function scopeActive($query)
     {
         return $query->where('status',1);
     }

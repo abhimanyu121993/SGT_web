@@ -36,5 +36,9 @@ class CustomerProfile extends Model
     {
         return $this->belongsTo(Currency::class, 'currency_id');
     }
+    public function timezone()
+    {
+       return $this->belongsTo(TimeZone::class,'time_zone_id');
+    }
    
 }

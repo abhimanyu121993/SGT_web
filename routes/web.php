@@ -89,6 +89,14 @@ Route::get('timesheet',function(){
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
    
+  Route::get('/email', function(){
+  
+      return view('test.email');
+
+
+  });
+
+
 });
 
 

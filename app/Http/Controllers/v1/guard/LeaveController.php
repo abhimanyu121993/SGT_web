@@ -4,10 +4,12 @@ namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LeaveResource;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class LeaveController extends Controller
@@ -75,13 +77,14 @@ class LeaveController extends Controller
             $res = $user->leaves()->create([
                 'subject' => $request->subject,
                 'desc' => $request->desc,
-                'leave_start' => $request->leave_start,
-                'leave_end' => $request->leave_start,
+                'leave_start' => Helper::saveUtc(Carbon::createFromFormat('d-m-Y',$request->leave_start)->format('Y-m-d h:i')),
+                'leave_end' => Helper::saveUtc(Carbon::createFromFormat('d-m-Y',$request->leave_end)->format('Y-m-d h:i')),
                 'status' => Status::where('name', 'pending')->where('type', 'leave')->first()->id,
             ]);
             if ($res) {
                 $result = [
-                    'data'=>$res,
+                    'data'=>new LeaveResource($res),
+                    // 'data'=>$res,
                     'message' => 'Leave Request send successfully',
                     'status' => 200,
                     'error' => NULL
@@ -100,6 +103,14 @@ class LeaveController extends Controller
             return response()->json($result);
         } catch (Exception $ex) {
             Helper::handleError($ex);
+            $result=[
+                'data'=>null,
+                'error'=>[
+                    'code'=>503,
+                    'msg'=>'Internal Server Error'
+                ]
+                ];
+                return response()->json($result,200);
         }
     }
     /**

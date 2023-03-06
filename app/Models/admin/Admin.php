@@ -102,4 +102,9 @@ class Admin extends Authenticatable
     {
         return $this->morphMany(Activity::class,'causer');
     }
+
+    public function timezone()
+    {
+       return $this->admin_profile()->timezone;
+    }
 }

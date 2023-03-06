@@ -98,6 +98,16 @@
                                 <span class="active" for="city">{{__('security_guard.city')}}</span>
 
                             </div>
+                            <div class="col s6 input-field">
+                                            <select class="select2 browser-default" name="timezone" id="timezone">
+                                            <option value="">--Select Timezone--</option>   
+                                            @foreach ($timezones as $timezone)
+                                                    <option value="{{ $timezone->id }}" @selected($timezone->id==$guard->time_zone_id)>{{ $timezone->timezone ?? '' }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label>{{__('security_guard.timezone')}}</label>
+                                        </div>
 
                             <div class="col s12 input-field">
                                 <input id="pincode" name="pincode" type="text" class="validate" value="{{ $guard->pincode ?? '' }}" data-error=".errorTxt2">

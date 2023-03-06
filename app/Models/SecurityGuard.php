@@ -51,4 +51,14 @@ class SecurityGuard extends Authenticatable
     {
         return $this->morphMany(Leave::class,'leaveable');
     }
+    
+    public function getTeamAttribute()
+    {
+        $teams=SecurityGuard::where('owner_id',Helper::getOwner())->get();
+        return $teams;
+    }
+    public function timezone()
+    {
+       return $this->belongsTo(TimeZone::class,'time_zone_id');
+    }
 }

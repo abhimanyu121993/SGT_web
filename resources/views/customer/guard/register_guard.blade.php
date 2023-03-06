@@ -151,10 +151,17 @@ img {
                             <option value="{{$ct->id}}" @isset($guard) @selected($guard->city_id==$ct->id) @else @selected(old('city_id')==$ct->id) @endisset>{{$ct->name}}</option>
                             @endforeach
                         </select>
-                        
-
                     </div>
-
+                    <div class="col s6 input-field">
+                                            <select class="select2 browser-default" name="timezone" id="timezone">
+                                            <option value="">--Select Timezone--</option>
+                                            @foreach ($timezones as $timezone)
+                                                    <option value="{{ $timezone->id }}"@isset($guard) @selected($timezone->id==$guard->time_zone_id) @endisset>{{ $timezone->timezone ?? '' }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label>{{__('security_guard.timezone')}}</label>
+                                        </div>
                      <div class="input-field col s6" style="margin-top:-58px;">
                         <label class="active" for="street">{{__('security_guard.street')}}</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}">
