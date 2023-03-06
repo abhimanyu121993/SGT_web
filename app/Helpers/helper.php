@@ -17,6 +17,7 @@ use App\Models\State;
 use App\Models\TimeZone;
 use Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
@@ -35,7 +36,7 @@ class Helper
     public static function getStateByCountry($id)
     {
         try {
-            $states = State::where('country_id', $id)->get();
+            $states = State::active()->where('country_id', $id)->get();
             return $states;
         }
         catch(Exception $ex){
@@ -45,7 +46,7 @@ class Helper
     public static function getCitiesByState($id)
     {
         try {
-            $cities = City::where('state_id', $id)->get();
+            $cities = City::active()->where('state_id', $id)->get();
             return $cities;
         }
         catch(Exception $ex){
@@ -59,9 +60,20 @@ class Helper
         return $logged_in_user_id;
     }
 
+    public static function getUser()
+    {
+       if(Auth::guard(Session::get('guard')??'web')->user()){
+        return Auth::guard(Session::get('guard'))->user();
+       }
+       else if(Auth::guard('sanctum')->user())
+       {
+        return Auth::guard('sanctum')->user();
+       }
+       return false;
+    }
     public static function getTimeZone()
     {
-        return $timezones = TimeZone::where('is_active', true)->get();
+        return $timezones = TimeZone::active()->get();
     }
 
     public static function getCurrencies()
@@ -157,5 +169,15 @@ class Helper
             Session::flash('warning','Customer Not Selected');
             return redirect()->back();
         
+    }
+
+    public static function saveUtc($date)
+    {
+        
+        return Carbon::createFromFormat('Y-m-d h:i', $date)->timezone('UTC');
+    }
+    public static function getLocalTime($date)
+    {
+        return Carbon::createFromFormat('d-m-Y h:i', $date)->timezone(Helper::getUser()->timezone->timezone)->format('d-m-Y h:i');
     }
 }

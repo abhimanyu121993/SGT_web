@@ -106,4 +106,8 @@ class Customer extends Authenticatable
     {
         return $this->morphMany(Leave::class,'leaveable');
     }
+    public function timezone()
+    {
+       return $this->customer_profile()->timezone;
+    }
 }

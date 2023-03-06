@@ -57,4 +57,8 @@ class SecurityGuard extends Authenticatable
         $teams=SecurityGuard::where('owner_id',Helper::getOwner())->get();
         return $teams;
     }
+    public function timezone()
+    {
+       return $this->belongsTo(TimeZone::class,'time_zone_id');
+    }
 }

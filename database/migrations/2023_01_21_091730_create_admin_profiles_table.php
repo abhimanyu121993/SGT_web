@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('country')->nullable()->comment('id from country table');
             $table->string('state')->nullable()->comment('id from state table');
             $table->string('city')->nullable()->comment('id from city table');
-            $table->string('timezone')->nullable()->comment('id from timezone table');
+            $table->string('time_zone_id')->nullable()->comment('id from timezone table');
             $table->softDeletes();
             $table->timestamps();
         });

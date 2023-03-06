@@ -14,7 +14,7 @@ class City extends Model
         return $this->belongsTo(State::class, 'state_id');
     }
 
-    public function scopeCity($query)
+    public function scopeActive($query)
     {
         return $query->where('status',1);
     }
