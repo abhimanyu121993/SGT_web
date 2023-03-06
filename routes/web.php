@@ -55,6 +55,31 @@ Route::group(['prefix' => '/test', 'as' => 'test',], function () {
         return view('activitylog');
     });
 
+});
+
+
+
+Route::group(['prefix'=>'test','as'=>'testproject'],function(){
+
+
+Route::get('activity',function(){
+return view('test.activity');
+
+})->name('trial');
+
+
+Route::get('leave',function(){
+
+return view('test.leaveRequest');
+
+})->name('holiday');
+
+
+Route::get('timesheet',function(){
+                return view('test.timesheet');
+})->name('time');
+
+
     Route::get('/mydesign', function () {
         return view('mydesign');
     });
@@ -64,6 +89,14 @@ Route::group(['prefix' => '/test', 'as' => 'test',], function () {
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
    
+  Route::get('/email', function(){
+  
+      return view('test.email');
+
+
+  });
+
+
 });
 
 

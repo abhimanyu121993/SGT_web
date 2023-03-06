@@ -4,6 +4,34 @@
 
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
+.ddbutton{
+        font-size:18px;
+        margin-right:5px;
+        background-color:white;
+        color:black;
+    }
+
+  .shiftclass{
+   
+   height: 1rem !important
+ ;
+
+}
+
+  .makestyle{
+
+    position: relative !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+  }
+
+   
+.leavecard{
+
+margin: 3rem 0 1rem 0 !important;
+
+}
+
 .excard{
 
 
@@ -35,6 +63,22 @@ box-shadow: 2px 2px 0px #3a2ec0;
     margin-top: -76px;
 }
 
+
+.searchdibba{
+
+box-shadow: 2px 2px 0px #3a2ec0;  
+    width: 336px;
+    background-color: white;
+    display: inline-block;
+    height: 35px;
+    float: right;
+    border-radius: 8px;
+    margin-right: 251px;
+    margin-top: 0px;
+
+
+}
+
 .card .new-card-content{
 
       height: 130px;
@@ -45,10 +89,11 @@ box-shadow: 2px 2px 0px #3a2ec0;
 
 .inputworld{
 
-     width: 92% !important; 
+    margin-top: 17px !important;
+    position: absolute;
+    width: 18% !important;
 
    height: 1rem !important;
-    margin: 2px 0 -8px 0 !important;
     border-bottom: 0px solid #9e9e9e !important;
 
 }
@@ -95,8 +140,10 @@ line-height: 26px !important;
 
 .new-area {
 
-    width: calc(67% - 280px);
-    margin-top: 49px;
+   width: calc(60% - 280px);
+    margin-top: 51px;
+    margin-left: 166px;
+    margin-bottom: -42px;
 }
 
 .new-area .app-wrapper .datatable-search {
@@ -104,7 +151,7 @@ line-height: 26px !important;
 }
 
 .new-area .app-wrapper .datatable-search .app-filter {
-        max-width: calc(93% - 3rem);
+        max-width: calc(86% - 3rem);
     margin-bottom: 0.5rem;
     padding: 0.2rem;
     padding-left: 2.75rem;
@@ -137,7 +184,37 @@ line-height: 26px !important;
     -webkit-font-feature-settings: 'liga';
     font-feature-settings: 'liga';
 }
-                
+        
+.xmodal{
+
+    position: fixed !important;
+    right: 0 !important;
+    left: 0 !important;
+    display: none;
+    overflow-y: auto !important;
+    width: 40% !important;
+    max-height: 70% !important;
+    margin: auto !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    background-color: #fafafa !important;
+    will-change: top, opacity !important;
+
+}    
+
+
+
+@media only screen and (max-width: 600px){
+  
+  .ddbutton {
+    display:inline-grid !important;
+    font-size: 18px;
+    margin-right: 5px;
+    background-color: white;
+    color: black;
+}
+
+}    
 
 
 /* new css endline */
@@ -4618,7 +4695,7 @@ table span.badge
     right: auto;
     left: auto;
 
-    width: 91.66667%;
+    width: 87.66667%;
     margin-left: auto;
 }
 
@@ -6807,7 +6884,7 @@ small
 .btn-small:focus,
 .btn-floating:focus
 {
-    background-color: #ff0d5f;
+    background-color: #77c3ec;
 }
 
 .btn,
@@ -7649,7 +7726,7 @@ body.keyboard-focused .dropdown-content li:focus
     display: none;
 
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 1rem;
 
     border-bottom: 1px solid #ddd;
 }
@@ -8055,8 +8132,8 @@ input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly])
 {
-    border-bottom: 1px solid #ff4081;
-    box-shadow: 0 1px 0 0 #ff4081;
+    border-bottom: 1px solid ;
+    box-shadow: 0 1px 0 0 ;
 }
 
 input:not([type]):focus:not([readonly]) + label,
@@ -8073,7 +8150,7 @@ input[type=number]:not(.browser-default):focus:not([readonly]) + label,
 input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label
 {
-    color: #ff4081;
+    color: black;
 }
 
 input:not([type]):focus.valid ~ label,
@@ -8376,7 +8453,7 @@ textarea.materialize-textarea + label:after,
 
 .input-field.col label
 {
-    left: .75rem;
+    left: 1.75rem;
 }
 
 .input-field.col .prefix ~ label,
@@ -8570,7 +8647,7 @@ textarea
 {
     width: 100%;
     height: 3rem;
-
+    border-radius:9px;
     background-color: transparent;
 }
 
