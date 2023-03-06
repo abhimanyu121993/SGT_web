@@ -51,7 +51,7 @@ class ProfileController extends Controller
             'state_id' => 'required',
             'city_id' => 'required',
             'pincode' => 'required|numeric',
-            'card_image' => 'required|image',
+            'card_image' => 'required|image|max:1024',
         ]);
 
         $data = Auth::guard('sanctum')->user()->update([
@@ -63,7 +63,7 @@ class ProfileController extends Controller
             'state_id' => $request->state_id,
             'pincode' => $request->pincode,
             'country_id' => $request->country_id,
-            'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('card_image', $request->card_image, 'card') : '',
+            'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('security_guard', $request->card_image, 'card-'.Auth::guard('sanctum')->id()) : '',
         ]);
         if ($data) {
             $res = response()->json([
@@ -80,76 +80,7 @@ class ProfileController extends Controller
         }
         return $res;
     }
-    public function state()
-    {
-        $data = State::state()->get();
-        if ($data) {
-            $res = response()->json([
-                'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of state !',
-            ]);
-        }
-        return $res;
-    }
-    public function city()
-    {
-        $data = City::city()->get();
-        if ($data) {
-            $res = response()->json([
-                'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of City !',
-            ]);
-        }
-        return $res;
-    }
-    public function country()
-    {
-        $data = Country::country()->get();
-        if ($data) {
-            $res = response()->json([
-                'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of Country !',
-            ]);
-        }
-        return $res;
-    }
-    public function change_password(Request $request)
-    {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'new_confirm_password' => 'same:new_password',
-        ]);
-        if (Hash::check($request->old_password, Auth::guard('sanctum')->user()->password)) {
-            $data = Auth::guard('sanctum')->user()->update([
-                'password' => Hash::make($request->new_password),
-            ]);
-            $res = response()->json([
-                'status' => false,
-                'data' => $data,
-                'message' => 'your password is updated successfully !',
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'your old password is not mached !',
-            ]);
-        }
-
-        return $res;
-    }
+   
 
     public function guard_properties(Request $request)
     {
