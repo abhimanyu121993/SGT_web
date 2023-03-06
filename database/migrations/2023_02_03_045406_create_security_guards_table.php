@@ -27,10 +27,13 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('time_zone_id')->nullable()->comment('id from timezone table');
             $table->string('status')->default('active');
             $table->string('street');
             $table->string('pincode');
-
+            $table->string('card_image')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });

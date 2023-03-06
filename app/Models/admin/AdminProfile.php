@@ -5,6 +5,7 @@ namespace App\Models\admin;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\State;
+use App\Models\TimeZone;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,4 +36,9 @@ class AdminProfile extends Model
     {
         return $this->belongsTo(City::class, 'city');
     }
+    public function timezone()
+    {
+       return $this->belongsTo(TimeZone::class,'time_zone_id');
+    }
+
 }

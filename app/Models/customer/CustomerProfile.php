@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class CustomerProfile extends Model
 {
     use HasFactory, SoftDeletes;
@@ -34,6 +35,10 @@ class CustomerProfile extends Model
     public function currency()
     {
         return $this->belongsTo(Currency::class, 'currency_id');
+    }
+    public function timezone()
+    {
+       return $this->belongsTo(TimeZone::class,'time_zone_id');
     }
    
 }

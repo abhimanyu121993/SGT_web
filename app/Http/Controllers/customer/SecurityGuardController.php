@@ -10,6 +10,7 @@ use App\Models\customer\Property;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use App\Helpers\ImageUpload;
+use App\Models\TimeZone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -36,7 +37,8 @@ class SecurityGuardController extends Controller
     public function index()
     {
         $countries = Country::get();
-        return view('customer.guard.register_guard', compact('countries'));
+        $timezones = TimeZone::get();
+        return view('customer.guard.register_guard', compact('countries','timezones'));
     }
 
     /**
@@ -91,6 +93,7 @@ class SecurityGuardController extends Controller
                 'city_id' => $request->city,
                 'pincode' => $request->pincode,
                 'street' => $request->street,
+                'time_zone_id' => $request->timezone,
                 'status' => 1,
                 'images'=>$request->hasFile('images')?ImageUpload::simpleUpload('security_guard',$request->images,'guard'):'',
             ]);
@@ -136,8 +139,9 @@ class SecurityGuardController extends Controller
         $id = Crypt::decrypt($id);
         $countries = Country::get();
         $guard = SecurityGuard::find($id);
+        $timezones = TimeZone::get();
         if ($guard) {
-            return view('customer.guard.register_guard', compact('guard', 'countries'));
+            return view('customer.guard.register_guard', compact('guard', 'countries','timezones'));
         } else {
             Session::flash('error', 'Something Went Wrong OR Data is Deleted');
             return redirect()->back();
@@ -177,6 +181,7 @@ class SecurityGuardController extends Controller
                 'city_id' => $request->city,
                 'pincode' => $request->pincode,
                 'street' => $request->street,
+                'time_zone_id' => $request->timezone,
 
             ]);
             $request->hasFile('images')?SecurityGuard::find($id)->update(['images'=>ImageUpload::simpleUpload('security_guard',$request->images,'security_guard')]):'';
@@ -236,7 +241,6 @@ class SecurityGuardController extends Controller
         } catch (Exception $ex) {
             Helper::handleError($ex);
         }
-        // return response()
     }
 
     // For change the password.

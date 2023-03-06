@@ -307,4 +307,24 @@ class CustomerController extends Controller
         }
         return redirect()->back();
     }
+
+
+
+
+    public function verifyCheck($id)
+    {
+            if (Customer::where('id', $id)->exists()) {
+                $verified= Customer::find($id);
+                if ($verified->verify == false) {
+                    $verified->verify = true;
+                 } else {
+                    $verified->verify = false;
+                }
+                if ($verified->update()) {
+                            return true;
+                        } else {
+                            return false;
+                        } 
+              }    
+         }
 }

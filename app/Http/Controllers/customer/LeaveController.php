@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\customer\Customer;
 use App\Models\Leave;
+use App\Models\Status;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Exception;
@@ -22,8 +23,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getOwner());
-        return view('customer.leave_management.staff_leave',compact('leaves'));
+        $leaves = Customer::with('leaves')->find(Helper::getOwner());
+        return view('customer.leave_management.staff_leave', compact('leaves'));
     }
 
     /**
@@ -33,11 +34,10 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        $leaves=Customer::with('leaves')->find(Helper::getUserId());
+        $leaves = Customer::with('leaves')->find(Helper::getUserId());
 
-        return view('customer.leave_management.manage_staff_leave',compact('leaves')); 
-       }
-
+        return view('customer.leave_management.manage_staff_leave', compact('leaves'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,26 +48,28 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            'leave_start' => 'required',
+            'leave_end' => 'required',
+            'desc' => 'required',
+            'subject' => 'required',
         ]);
         try {
-            $startDate = Carbon::createFromFormat('Y-m-d', $request->leave_start);
-             $endDate = Carbon::createFromFormat('Y-m-d', $request->leave_end);
-        $dateRange = CarbonPeriod::create($startDate, $endDate);
-                    foreach ($dateRange as $date)
-                    {
-                        $user=Auth::guard(Helper::getGuard())->user();
-                        $r=$user->leaves()->create([
-                            'subject' => $request->subject,
-                            'desc' => $request->desc,
-                            'leave_date' => $date->format('Y-m-d'),
-                            'status' => false
-                        ]);
-                    }
-                    Session::flash('success','Leave Apply Successfully');
-                    return redirect()->back();
+
+            $user = Auth::guard(Helper::getGuard())->user();
+            $res = $user->leaves()->create([
+                'subject' => $request->subject,
+                'desc' => $request->desc,
+                'leave_start' => $request->leave_start,
+                'leave_end' => $request->leave_start,
+                'status' => Status::where('name', 'pending')->where('type', 'leave')->first()->id,
+            ]);
+            if ($res) {
+                Session::flash('success', 'Leave Apply Successfully');
+            } else {
+                Session::flash('success', 'Leave Not Apply');
             }
-        catch (Exception $ex) {
+            return redirect()->back();
+        } catch (Exception $ex) {
             Helper::handleError($ex);
         }
     }

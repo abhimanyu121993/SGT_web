@@ -98,4 +98,13 @@ class Admin extends Authenticatable
     {
         return $this->morphMany(Leave::class,'leaveable');
     }
+    public function activities()
+    {
+        return $this->morphMany(Activity::class,'causer');
+    }
+
+    public function timezone()
+    {
+       return $this->admin_profile()->timezone;
+    }
 }

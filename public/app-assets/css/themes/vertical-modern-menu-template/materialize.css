@@ -5102,7 +5102,7 @@ table span.badge
         right: auto;
         left: auto;
 
-        width: 50%;
+        /* width: 50%; */
         margin-left: auto;
     }
     .row .col.l7
@@ -6570,7 +6570,6 @@ small
     line-height: 48px;
 
     display: inline-block;
-
     height: 48px;
     margin: 0;
     padding: 0;
@@ -6591,7 +6590,7 @@ small
     padding: 0 24px;
 
     -webkit-transition: color .28s ease, background-color .28s ease;
-            transition: color .28s ease, background-color .28s ease;
+    transition: color .28s ease, background-color .28s ease;
     text-overflow: ellipsis;
 
     color: rgba(63, 81, 181, .7);
@@ -6830,7 +6829,7 @@ small
 .btn-large:hover,
 .btn-small:hover
 {
-    background-color: #ff5a92;
+    background-color: #77c3ec;
 }
 
 .btn-floating

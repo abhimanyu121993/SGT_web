@@ -91,7 +91,7 @@ class ProfileController extends Controller
                     'country' => $request->country ?? '',
                     'state' => $request->state ?? '',
                     'city' => $request->city ?? '',
-                    'timezone' => $request->timezone ?? '',
+                    'time_zone_id' => $request->timezone ?? '',
                     'address' => $request->address ?? '',
                     'email'=>$request->email,
                 ]);

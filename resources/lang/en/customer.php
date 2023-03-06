@@ -23,5 +23,7 @@ return array (
   'all_permissions'=>'All Permission',
   'all_property'=>'All Property',
   'manage_customer'=>'Manage Customer',
-  'is_active'=>'Is Active'
+  'is_active'=>'Is Active',
+  'activity'=>'Activity',
+  'verify'=>'Verify'
 );

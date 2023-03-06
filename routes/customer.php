@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\customer\ActivityController;
 use App\Http\Controllers\customer\CheckpointController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\customer\GuardDutyController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\customer\SecurityGuardController;
 use App\Http\Controllers\customer\ShiftController;
 use App\Http\Controllers\customer\TaskController;
 use App\Http\Controllers\customer\UserController;
+use App\Http\Controllers\guard\LeaveController as GuardLeaveController;
+use App\Http\Controllers\guard\LeaveManagementController as GuardLeaveManagementController;
 use App\Models\SecurityGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +33,7 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.', 'middle
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission');
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role');
     Route::get('role-has-permission', [RolePermissionController::class, 'role_has_permission'])->name('role-has-permission');
-    Route::get('/isactive/{id}',[RoleController::class,'is_active'])->name('active-role');
+    Route::get('/isactive/{id}', [RoleController::class, 'is_active'])->name('active-role');
     //Assign all customer permission to customer
     Route::get('permission-assing', [RoleController::class, 'assign_permission']);
 });
@@ -73,7 +76,7 @@ Route::get('/all-permissions', function () {
     $permissions = Permission::where('guard_name', 'customer')->pluck('name');
     Auth::guard('customer')->user()->syncPermissions($permissions);
 });
-Route::get('/all-permission/{id}',[RolePermissionController::class,'all_permission'])->name('all-permission');
+Route::get('/all-permission/{id}', [RolePermissionController::class, 'all_permission'])->name('all-permission');
 Route::get('/guard-permission', function () {
     $permissions = Permission::where('guard_name', 'security_guard')->pluck('id');
     $guard = SecurityGuard::find(2);
@@ -87,13 +90,13 @@ Route::group(['prefix' => 'task', 'as' => 'task.'], function () {
 });
 //Route for Checkpoint Management
 
-Route::resource('checkpoint',CheckpointController::class)->middleware('permission:checkpoint,customer');
+Route::resource('checkpoint', CheckpointController::class)->middleware('permission:checkpoint,customer');
 
 
-Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function(){
-Route::post('/status',[CheckpointController::class,'status'])->name('status');
-    });
-Route::resource('route',RouteController::class)->name('route','');
+Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
+    Route::post('/status', [CheckpointController::class, 'status'])->name('status');
+});
+Route::resource('route', RouteController::class)->name('route', '');
 
 Route::resource('checkpoint', CheckpointController::class)->middleware('permission:checkpoint,customer');
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
@@ -118,8 +121,16 @@ Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
 Route::post('update-password', [SecurityGuardController::class, 'update_password'])->name('update-password');
 
 
-Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty','');
+Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty', '');
 //for leave
-Route::resource('leave',LeaveController::class)->name('leave','');
-Route::resource('leave-management', LeaveManagementController::class)->name('leave-management','');
-
+Route::resource('leave', LeaveController::class)->name('leave', '');
+Route::resource('leave-management', LeaveManagementController::class)->name('leave-management', '');
+Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
+    Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
+});
+//Route for Activity
+Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
+    Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');
+    Route::get('/staff-activity/{id}', [ActivityController::class, 'staff_activity'])->name('staff-activity');
+    Route::get('/guard-activity/{id}', [ActivityController::class, 'guard_activity'])->name('guard-activity');
+});

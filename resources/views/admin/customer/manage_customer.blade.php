@@ -64,8 +64,11 @@
                     <th>{{__('customer.federal_ein')}}</th>
                     <th>{{__('customer.bsis_number')}}</th>
                     <th>{{__('customer.is_active')}}</th>
+                    <th>{{__('customer.verify')}}</th>
                     <th>{{__('customer.all_property')}}</th>
                     <th>{{__('customer.all_permissions')}}</th>
+                    <th>{{__('customer.activity')}}</th>
+
                     <th>Action</th>
 
                 </tr>
@@ -90,14 +93,22 @@
                     <td>{{$data->customer_profile->company_name??''}}</td>
                     <td>{{$data->customer_profile->federal_ein??''}}</td>
                     <td>{{$data->customer_profile->bsis_number??''}}</td>
-                    <td> <div class="switch">
+                    <td><div class="switch">
                             <label>
                                 <input type="checkbox" value="{{$data->id}}" data-url="{{route('admin.customer.active-customer',$data->id) }}" class="is_active" id="is_active"  {{ $data->isactive==0?'':'checked'   }} >
                                 <span class="lever"></span>
                             </label>
                         </div></td>
+                     <td>
+                     @if($user->verify?? '')
+                        <button class="btn btn-success verifybtnyes">Yes</button>
+                    @else
+                        <button class="btn btn-danger verifybtnno">No</button>
+                    @endif
+                     </td>
                     <td><a href="{{route(Session::get('guard') . '.property.show',Crypt::encrypt($data->id))}}" class=""><i class="material-icons">visibility</i></a></td>
                     <td><a href="{{route(Session::get('guard').'.customer.customer-has-permission',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">cloud</i></a></td>
+                    <td><a href="{{route(Session::get('guard').'.activity.customer-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
                     <td>
                         @php $bid=Crypt::encrypt($data->id); @endphp
                         <a href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons">edit</i></a>

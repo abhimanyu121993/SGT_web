@@ -49,8 +49,11 @@ $guard='customer';
                                     <th>{{__('user.email')}}</th>
                                     <th>{{__('user.role')}}</th>
                                     <th>{{__('user.is_active')}}</th>
-                                    <th>Created at</th>
-                                    <th>Created on</th>
+                                    <th>{{__('user.verify')}}</th>
+                                    <th>{{__('user.created_at')}}</th>
+                                    <th>{{__('user.created_on')}}</th>
+                                    <th>{{__('user.activity')}}</th>
+                                 
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -74,8 +77,17 @@ $guard='customer';
                                         </div>
 
                                     </td>
+                                    <td>
+                                     @if($data->verify?? '')
+                                    <button class="btn btn-success verifybtnyes">Yes</button>
+                                    @else
+                                    <button class="btn btn-danger verifybtnno">No</button>
+                                    @endif
+                                    </td>
+
                                     <td>{{ $data->created_at->format('d-M-Y') }}</td>
                         <td>{{ $data->created_at->format('H:i:s a') }}</td>
+                        <td><a href="{{route(Session::get('guard').'.activity.staff-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

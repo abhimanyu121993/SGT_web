@@ -14,5 +14,11 @@ return array (
   'cpassword' => 'Confirm Password',
   'is_active' => 'Is Active',
   'role' => 'Role',
-  'mobile'=>'Mobile No'
+  'mobile'=>'Mobile No',
+  'verify'=>'Verify',
+  'created_at'=>'Created at',
+  'created_on'=>'Created on',
+  'activity'=>'Activity',
+
+
 );

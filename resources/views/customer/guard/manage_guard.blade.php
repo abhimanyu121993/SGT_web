@@ -87,7 +87,9 @@
                                     <th scope="col">{{__('security_guard.phone')}}</th>
                                     <th scope="col">{{__('security_guard.joined')}}</th>
                                     <th scope="col">{{__('security_guard.last_login')}}</th>
+                                    <th scope="col">{{__('security_guard.verify')}}</th>
                                     <th scope="col">{{__('security_guard.status')}}</th>
+                                    <th scope="col">{{__('security_guard.activity')}}</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -110,6 +112,13 @@
                                     <td>{{ $data->phone??''}}</td>
                                     <td></td>
                                     <td></td>
+                                    <td>
+                                     @if($data->verify?? '')
+                                    <button class="btn btn-success verifybtnyes">Yes</button>
+                                    @else
+                                    <button class="btn btn-danger verifybtnno">No</button>
+                                    @endif
+                                    </td>
 
                                     <td>
                                         <div class="input-group">
@@ -121,6 +130,8 @@
                                         </div>
 
                                     </td>
+                                    <td><a href="{{route(Session::get('guard').'.activity.guard-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
+
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
