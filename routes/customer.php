@@ -128,13 +128,6 @@ Route::resource('leave-management', LeaveManagementController::class)->name('lea
 Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
     Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
 });
-
-//for guard leave management
-Route::resource('guard-leave-management', GuardLeaveManagementController::class)->name('guard-leave-management', '')->middleware('permission:guard-leave-management,customer');
-Route::group(['prefix' => 'guard-leave', 'as' => 'guard-leave.'], function () {
-    Route::post('/status', [GuardLeaveManagementController::class, 'status'])->name('status');
-});
-
 //Route for Activity
 Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
     Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');

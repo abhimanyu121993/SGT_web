@@ -53,6 +53,8 @@ return array (
 'change_password'=>'Change Password',
 'verify'=>'Verify',
 'activity'=>'Activity',
+'timezone'=>'TimeZone',
+
 
 
 

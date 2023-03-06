@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('route_id')->commet('Id of Route');
             $table->unsignedBigInteger('guard_id')->commet('Id of Security Guard');
             $table->unsignedBigInteger('shift_id')->commet('Id of Shifts');
+            $table->date('duty_date')->nullable()->comment('Guard working dates');
             $table->softDeletes();
             $table->timestamps();
         });
