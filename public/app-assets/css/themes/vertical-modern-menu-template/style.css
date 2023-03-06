@@ -8872,9 +8872,9 @@ span.badge.pill
 
 .navbar #profile-dropdown
 {
-    width: 160px;
+    width: 20% !important;
+    border-radius: 10px;
 }
-
 .navbar #profile-dropdown li a i
 {
     margin-right: 10px;
