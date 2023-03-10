@@ -130,8 +130,12 @@
                                         </div>
 
                                     </td>
+<<<<<<< Updated upstream
                                     <td><a href="{{route(Session::get('guard').'.activity.guard-activity',Crypt::encrypt($data->id))}}" class=""><i class="material-icons left">visibility</i></a></td>
 
+=======
+                                   
+>>>>>>> Stashed changes
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
