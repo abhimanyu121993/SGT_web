@@ -10,4 +10,11 @@ class TestingController extends Controller
    {
   return view('test.general_report');
    }
+   public function NewgeneralReport()
+   {
+  return view('test.new_general_report');
+   }
+
+
+   
 } 

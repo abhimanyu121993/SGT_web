@@ -93,6 +93,11 @@ Route::get('timesheet',function(){
     });
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
+    Route::get('new-general-report', [TestingController::class, 'NewgeneralReport']);
+    Route::get('track-guard', [TestingController::class, 'trackGuard']);
+
+    
+    
    
   Route::get('/email', function(){
   
