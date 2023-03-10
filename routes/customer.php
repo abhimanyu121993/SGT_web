@@ -108,17 +108,18 @@ Route::resource('route', RouteController::class)->name('route', '');
 //Route for Route Management
 Route::group(['prefix' => 'route', 'as' => 'route.'], function () {
     Route::post('checkpoint-in-property', [RouteController::class, 'checkpoint_in_property'])->name('checkpoint-in-property');
-    Route::get('show-route/{id}', [RouteController::class, 'show_route'])->name('show-route');
+    Route::get('show-route/{id}',[RouteController::class, 'show_route'])->name('show-route');
     Route::get('/isactive/{id}', [RouteController::class, 'is_active'])->name('active-route');
 });
 //Route for Shift
+
 Route::resource('shift', ShiftController::class)->name('shift', '');
 Route::group(['prefix' => 'shift', 'as' => 'shift.'], function () {
     Route::get('/isactive/{id}', [ShiftController::class, 'is_active'])->name('active-shift');
 });
 
 
-Route::post('update-password', [SecurityGuardController::class, 'update_password'])->name('update-password');
+Route::post('update-password', [SecurityGuardController::class,'update_password'])->name('update-password');
 
 
 Route::resource('guard-duty', GuardDutyController::class)->name('guard-duty', '');
@@ -128,13 +129,6 @@ Route::resource('leave-management', LeaveManagementController::class)->name('lea
 Route::group(['prefix' => 'leave', 'as' => 'leave.'], function () {
     Route::post('/status', [LeaveManagementController::class, 'status'])->name('status');
 });
-
-//for guard leave management
-Route::resource('guard-leave-management', GuardLeaveManagementController::class)->name('guard-leave-management', '')->middleware('permission:guard-leave-management,customer');
-Route::group(['prefix' => 'guard-leave', 'as' => 'guard-leave.'], function () {
-    Route::post('/status', [GuardLeaveManagementController::class, 'status'])->name('status');
-});
-
 //Route for Activity
 Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
     Route::get('/admin/{id}', [ActivityController::class, 'admin_activity'])->name('admin-activity');

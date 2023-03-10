@@ -28,6 +28,8 @@
             </ul>
         </div>
     </li>
+
+
     @endif
     @if(Auth::guard('admin'))
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('subscription', Session::get('guard')))
@@ -74,6 +76,10 @@
 
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('customer', Session::get('guard')))
     <li class=" {{ strpos(Route::currentRouteName(), Session::get('guard') . '.customer') !== false ? 'active open' : '' }} bold ">
+
+       
+
+
         <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), Session::get('guard') . '.customer') !== false ? 'active' : '' }} " href="JavaScript:void(0)"><i class="material-icons">people</i><span class="menu-title" data-i18n="12">{{ __('sidebar.customer') }} </span></a>
         <div class="collapsible-body" style="{{ strpos(Route::currentRouteName(), 'customer') !== false ? 'display:block' : '' }}">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">

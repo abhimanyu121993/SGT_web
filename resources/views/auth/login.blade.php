@@ -19,8 +19,8 @@
                 <p class="ml-4">{{__('auth.please_signing')}} 
                 </p>
                     @csrf
-                    <a href="{{route('auth.customer')}}" class="btn ml-4 {{$guard=='customer'?'theme-active':'theme-text'}}" >{{__('auth.customer')}}</a>
-                    <a  href="{{route('auth.admin')}}" class="btn ml-4 {{$guard=='admin'?'theme-active':'theme-text'}}" >{{__('auth.admin')}}</a>
+                    {{-- <a href="{{route('auth.customer')}}" class="btn ml-4 {{$guard=='customer'?'theme-active':'theme-text'}}" >{{__('auth.customer')}}</a>
+                    <a  href="{{route('auth.admin')}}" class="btn ml-4 {{$guard=='admin'?'theme-active':'theme-text'}}" >{{__('auth.admin')}}</a> --}}
                     <br><br>
                 <div class="row margin mt-5">
                     <div class="input-field col s12">

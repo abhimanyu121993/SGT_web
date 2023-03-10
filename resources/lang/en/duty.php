@@ -8,4 +8,6 @@ return [
     'shift'=>'Shift',
     'update'=>'Update',
     'submit'=>'Submit',
+    'duty_date'=>'Duty Date',
+
 ];

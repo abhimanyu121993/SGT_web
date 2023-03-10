@@ -13,88 +13,6 @@
     background:radial-gradient(red, transparent) !important;
      border-radius:30px !important;  
 }
-    .genrel{
-        font-size: 22px;
-    margin-left: 18px;
-    font-weight: 900;   
-    }
-    .div#modal1{
-        width: 348px !important;
-        border-radius: 10px;
-    }
-    .generalImage{
-        height:45px; 
-        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
-         0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
-         border-radius:7px;  
-    }
-    .Parking{
-        font-size: 22px;
-        font-weight: 900;      
-    }
-    .parking_image{
-        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
-        0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
-        border-radius:7px;
-        height:40px;
-
-    }
-    img.parking_image {
-        margin-left: -23px;
-    }
-    .parking_vdo{
-    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
-    0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
-    border-radius:7px;
-    height:45px;  
-    }
-
-    video.parking_vdo {
-        margin-left: -26px;
-    }
-    .headingg{
-        margin-top:10px;
-        margin-left: 10px;
-    }
-    .Location{
-        margin-top:30px;  
-        margin-left: 10px;
-    }
-  .cardhedding{
-    margin-left: -12px !important;
-    font-weight: bold !important;
-    color: #244B8A;
-   }
-   .cardimage{
-    margin-top: -43px;
-    font-size: 45px;
-   float: right;
-   color: #244B8A;
-   }
-
-   .deletebtn{
-    float:right;
-    background:white;
-    color: #244B8A;
-   }
-  .exporttbtn{
-    float:right;
-    background:white;
-   color: #244B8A;
-   margin-left:10px;
-}
-  
-.filterbtn{
-    color: #244B8A;
-    background:white;  
-}
-
-/* @media screen and (min-width: 480px) {
-    a.dropdown-trigger-KK.btn.filterbtn {
-        margin-left: 217px !important;
-        margin-top: -57px !important;;
-    }
-  } */
 
 
 /* new code */
@@ -105,8 +23,6 @@
     margin-top: -32px !important;
 
 }
-
-
 
 .kangjang {
      display: inline-block;
@@ -163,8 +79,8 @@ top: -10px !important;
 }
 
 .belowsideOption .waves-effect {
-    margin-left: 161px !important;
-    margin-right: -147px;
+   margin-left: 486px !important;
+    margin-right: -482px;
     background-color: white !important;
     float: left !important;
 }
@@ -243,6 +159,19 @@ display: grid;
   background-color: #4285f4;
 }
 
+.circle1{
+background: gray;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 11.5em;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 0 3px #fff;
+
+
+}
 
 .circle {
     background: gray;
@@ -2981,7 +2910,7 @@ border : 0px solid #000000;
 
 .white-text
 {
-    color: #fff !important;
+    color: black !important;
 }
 
 .transparent
@@ -7329,7 +7258,7 @@ li.home:before
 
 .white-text
 {
-    color: #fff !important;
+    color: #fff ;
 }
 
 .transparent
@@ -8943,9 +8872,9 @@ span.badge.pill
 
 .navbar #profile-dropdown
 {
-    width: 160px;
+    width: 20% !important;
+    border-radius: 10px;
 }
-
 .navbar #profile-dropdown li a i
 {
     margin-right: 10px;
@@ -10513,7 +10442,7 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 #breadcrumbs-wrapper .breadcrumbs-btn
 {
-    top: 24px;
+    top: -20px;
     background-color: white;
     color:black !important;
 }

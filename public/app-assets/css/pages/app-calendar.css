@@ -14,11 +14,10 @@
 {
     height: auto;
     padding: 10px;
-
-    color: #fff !important;
-    border-color: #ff4081 !important;
+    color: #992727 !important;
+    border-color: blue !important;
     border-radius: 2px;
-    background: #ff4081 !important;
+    background: #fafafa;
     text-shadow: none;
 }
 
