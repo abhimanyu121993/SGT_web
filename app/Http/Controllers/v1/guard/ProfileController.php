@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\ImageUpload;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SecurityGuardResource;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\customer\Checkpoint;
@@ -51,7 +52,7 @@ class ProfileController extends Controller
             'state_id' => 'required',
             'city_id' => 'required',
             'pincode' => 'required|numeric',
-            'card_image' => 'required|image|max:1024',
+            'card_image' => 'nullable|image|max:1024',
         ]);
 
         $data = Auth::guard('sanctum')->user()->update([
@@ -63,22 +64,30 @@ class ProfileController extends Controller
             'state_id' => $request->state_id,
             'pincode' => $request->pincode,
             'country_id' => $request->country_id,
-            'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('security_guard', $request->card_image, 'card-'.Auth::guard('sanctum')->id()) : '',
         ]);
-        if ($data) {
-            $res = response()->json([
-                'status' => true,
-                'data' => $data,
-                'message' => 'Profile Updated Successfully !',
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'data' => $data,
-                'message' => 'Something Went Wrong !',
+        if($request)
+        {
+            Auth::guard('sanctum')->user()->update([
+            'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('security_guard', $request->card_image, 'card-'.Auth::guard('sanctum')->id()) : '',
             ]);
         }
-        return $res;
+        if ($data) {
+            $res =[
+                'data' => new SecurityGuardResource(Auth::guard('sanctum')->user()),
+                'message' => 'Profile Updated Successfully !',
+                'error'=>NULL,
+            ];
+        } else {
+            $res =[
+                 'data' => NULL,
+                'message' => 'Something Went Wrong !',
+                'error'=>[
+                    'code'=>503                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+                    ]   
+                ];
+            
+        }                                                                                                                       
+        return response()->json($res);
     }
    
 
@@ -87,56 +96,50 @@ class ProfileController extends Controller
         if ($request->guard_id) {
 
             $properies = GuardDuty::with('properties')->where('guard_id',$request->guard_id)->get();
-            $res = response()->json([
-                'status' => true,
+            $res = [
                 'data' => $properies,
                 'message' => 'guard assigned properties',
-            ]);
+            ];
         } else {
-            $res = response()->json([
-                'status' => false,
+            $res =[
                 'data' => null,
                 'message' => 'property not assigned',
-            ]);
+            ];
         }
-        return $res;
+        return response()->json($res);
     }
     public function guard_properties_details(Request $request)
     {
         if ($request->property_id) {
 
             $properies = Property::find($request->property_id);
-            $res = response()->json([
-                'status' => true,
+            $res = [
                 'data' => $properies,
                 'message' => 'property details',
-            ]);
+            ];
         } else {
-            $res = response()->json([
-                'status' => false,
+            $res =[
                 'data' => null,
                 'message' => 'Something went wrong !',
-            ]);
+            ];
         }
-        return $res;
+        return response()->json($res);
     }
-    public function guard_properties_checkpoints(Request $request)
+     public function guard_properties_checkpoints(Request $request)
     {
         if ($request->property_id) {
 
             $checkpoints = Checkpoint::where('property_id',$request->property_id)->get();
-            $res = response()->json([
-                'status' => true,
+            $res = [
                 'data' => $checkpoints,
                 'message' => 'property checkpoints',
-            ]);
+            ];
         } else {
-            $res = response()->json([
-                'status' => false,
+            $res = [
                 'data' => null,
                 'message' => 'Something went wrong !',
-            ]);
+            ];
         }
-        return $res;
+        return response()->json($res);
     }
 }
