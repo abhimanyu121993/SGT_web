@@ -28,11 +28,11 @@
 
 </div>
    
-
-
 </div>
 @endsection
 @section('content-area')
+
+
 <div class="card-content">
     <div  id="card-reveal" class="seaction">
         <div class="row">

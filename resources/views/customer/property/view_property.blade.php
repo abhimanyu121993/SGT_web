@@ -218,14 +218,69 @@
         </div>
      </div>
   </div>
+
+
 </div>
 
+<style>
+
+.belowsideOption{
+display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.belowsideOption .waves-effect {
+   margin-left: 486px !important;
+    margin-right: -482px;
+    background-color: white !important;
+    float: left !important;
+}
+
+
+@media only screen and (max-width: 500px) {
+
+ .belowsideOption .waves-effect {
+  margin-left: 0px !important;
+    margin-right: 0px;
+    background-color: white !important;
+}
+
+.belowsideOption{
+display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.new-area {
+    width: calc(115% - 331px);
+    margin-top: -10px;
+    margin-left: 75px;
+    margin-bottom: -26px;
+}
+
+
+
+
+}
+
+
+
+
+
+    </style>
+
                   
-           <div class="row">               
+   <div class="row">               
 <div class="card" style="height: 500px;">
   <br>
 
-      <div class="belowsideOption">
+       
+            
 
                  <div class="new-area content-right">
                            <div class="app-wrapper">
@@ -237,34 +292,39 @@
 
                           </div>
                         </div>
- 
 
-         <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Filter</span></a>
-           
-           <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Filter</span><i class="material-icons right">arrow_drop_down</i></a>
+                       
+<div class="belowsideOption">
+         <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Filter</span></a>
+        
 
 
-          <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Sort</span></a>
+          <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Sort</span></a>
 
     
 
-           <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Export</span></a>
+           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Export</span></a>
 
       </div>
+
+
     <br><br>
 
 
     
  
   
-      <div class="col s2" style="margin-top: -47px;">
+      <div class="col s12 m2 16 animate fadeRight" style="margin-top: -47px;">
          <ul class="collapsible collapsible-accordion">
             <li>
                <div class="collapsible-header"> Shifts</div>
                <div class="collapsible-body">
                  <a href="">completed</a>
+                 <br>
                   <a href="">Upcoming</a>
+                  <br>
                  <a href="">Missed</a>
+                 <br>
                   <a href="">In Progress</a>
 
                </div>
@@ -273,8 +333,11 @@
                <div class="collapsible-header">Guards Assigned</div>
                <div class="collapsible-body">
                   <a href="">completed</a>
+                  <br>
                   <a href="">Upcoming</a>
+                  <br>
                   <a href="">Missed</a>
+                  <br>
                   <a href="">In Progress</a>
 
                </div>
@@ -283,8 +346,11 @@
                <div class="collapsible-header">Time Sheets</div>
                <div class="collapsible-body">
                     <a href="">completed</a>
+                    <br>
                   <a href="">Upcoming</a>
+                  <br>
                  <a href="">Missed</a>
+                 <br>
                   <a href="">In Progress</a>
                </div>
             </li>
@@ -294,8 +360,11 @@
                <div class="collapsible-header">Property Details</div>
                <div class="collapsible-body">
                    <a href="">completed</a>
+                   <br>
                   <a href="">Upcoming</a>
+                  <br>
                  <a href="">Missed</a>
+                 <br>
                   <a href="">In Progress</a>
                </div>
             </li>
@@ -305,8 +374,11 @@
                <div class="collapsible-header">Reports</div>
                <div class="collapsible-body">
                     <a href="">completed</a>
+                    <br>
                   <a href="">Upcoming</a>
+                  <br>
                  <a href="">Missed</a>
+                 <br>
                   <a href="">In Progress</a>
                </div>
             </li>
@@ -316,25 +388,37 @@
                <div class="collapsible-header">Activity Log</div>
                <div class="collapsible-body">
                    <a href="">completed</a>
+                   <br>
                   <a href="">Upcoming</a>
+                  <br>
                  <a href="">Missed</a>
+                 <br>
                   <a href="">In Progress</a>
                </div>
             </li>
 
          </ul>
       </div>
+
+
+
+     
    
 
 
 
- <div class="col s16 m10 12">
-      <div id="placeholder" class="card card card-default scrollspy">
+<div class="col s12 m10 20 animate fadeRight">
+     <!-- Total Transaction -->
+     <div class="card">
         <div class="card-content">
-  <h4 class="card-title mb-0">Live tracking of guard<i class="material-icons float-right">more_vert</i></h4>
+            <h3 class="card-title mb-0"><center>Real Time Guard Location</center> <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" style="margin-right:5px; margin-right: 5px;
+    margin-bottom: 9px;
+    margin-top: -24px;"><span class="hide-on-small-onl" style="color:black;">Map view</span>&nbsp;&nbsp;<img src="{{asset('app-assets/images/icon/map.png')}}"></a></h3>
+    <p style="margin-left: 250px;">Tracking Summary</p>
+          
          
          <table class="subscription-table responsive-table highlight">
-           <thead style="background-color: #3f51b5;color:black; ">
+           <thead style="background-color: #3f51b5; color:black;">
               <tr>
                  <th>Name</th>
                  <th>Company</th>
@@ -383,8 +467,11 @@
 
 
         </div>
-      </div>
-    </div>
+     </div>
+  </div>
+
+
+
 </div>
 
 </div>

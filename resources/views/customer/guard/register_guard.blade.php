@@ -79,6 +79,10 @@ img {
   </div>
 
 <br><br><br>
+                 
+    <input style="background-color:#efeff0;color:#800d7e;"   value="2015-W16" type="week" >
+    <input style="background-color:#efeff0;color:#800d7e;"   value="2015-12" type="month" >
+
        
                     </div>
              <div class="input-field col s6">
@@ -162,7 +166,8 @@ img {
                                             </select>
                                             <label>{{__('security_guard.timezone')}}</label>
                                         </div>
-                     <div class="input-field col s6" style="margin-top:-58px;">
+                     <div class="input-field col s6" style="margin-top: -136px;
+    margin-right: 20px;">
                         <label class="active" for="street">{{__('security_guard.street')}}</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}">
                         

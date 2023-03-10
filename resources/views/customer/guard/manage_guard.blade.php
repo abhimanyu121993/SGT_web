@@ -70,6 +70,7 @@
                     <div class="col s12">
                     <table id="page-length-option" class="display nowrap" style="width:100%">
                             <thead>
+                               
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">{{__('security_guard.username')}}</th>
