@@ -2,239 +2,182 @@
 @section('title', 'Property')
 @section('breadcrumb')
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-   <!-- Search for small screen-->
-   <div class="container" style="min-height:100%">
-      <div class="row">
-         <div class="col s10 m6 l6">
-            <h5 class="breadcrumbs-title mt-20 mb-0" style="margin-top:-42px;"><span>Greylock Security Reports</span></h5>
-         </div>
-         <div class="row">
-         <div class="col s12 m6 l6 x">
-            <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text animate fadeLeft">
-               <div class="padding-4">
-                  <div class="row">
-                     <div class="col s7 m7">
-                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
-                        <p>Orders</p>
-                     </div>
-                     <div class="col s5 m5 right-align">
-                        <h5 class="mb-0 white-text">690</h5>
-                        <p class="no-margin">New</p>
-                        <p>6,00,00</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col s12 m6 l6 xl3">
-            <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text animate fadeLeft">
-               <div class="padding-4">
-                  <div class="row">
-                     <div class="col s7 m7">
-                        <i class="material-icons background-round mt-5">perm_identity</i>
-                        <p>Clients</p>
-                     </div>
-                     <div class="col s5 m5 right-align">
-                        <h5 class="mb-0 white-text">1885</h5>
-                        <p class="no-margin">New</p>
-                        <p>1,12,900</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col s12 m6 l6 xl3">
-            <div class="card gradient-45deg-amber-amber gradient-shadow min-height-100 white-text animate fadeRight">
-               <div class="padding-4">
-                  <div class="row">
-                     <div class="col s7 m7">
-                        <i class="material-icons background-round mt-5">timeline</i>
-                        <p>Sales</p>
-                     </div>
-                     <div class="col s5 m5 right-align">
-                        <h5 class="mb-0 white-text">80%</h5>
-                        <p class="no-margin">Growth</p>
-                        <p>3,42,230</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col s12 m6 l6 xl3">
-            <div class="card gradient-45deg-green-teal gradient-shadow min-height-100 white-text animate fadeRight">
-               <div class="padding-4">
-                  <div class="row">
-                     <div class="col s7 m7">
-                        <i class="material-icons background-round mt-5">attach_money</i>
-                        <p>Profit</p>
-                     </div>
-                     <div class="col s5 m5 right-align">
-                        <h5 class="mb-0 white-text">$890</h5>
-                        <p class="no-margin">Today</p>
-                        <p>$25,000</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-         <!-- <div class="row">
-            <div class="col s12 m4 l8">
-               <div class="row">
-                  <div class="col s12 m6 l3 floatcard">
-                     <div class="ct-chart card z-depth-2 border-radius-6 getCardSet" style="display: flex;
-                        width: 127px;
-                        margin: -1rem 0 1rem 0 !important;">
-                        <div class="card-content center">
-                           <div class="row">
-                              <div class="col s12">
-                                 <h4 class="card-title ">Total <br> Manager</h4>
-                                 <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
-                              </div>
-                              <div class="col s12 display-flex">
-                                 <p class="mt-4 pink-text accent-2">
-                                    9504
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <div class="ct-chart card z-depth-2 border-radius-6 getCardSet" style="display: flex;
-                        width: 127px;
-                        margin: -1rem 0 1rem 0 !important;">
-                        <div class="card-content">
-                           <div class="row">
-                              <div class="col s12">
-                                 <h4 class="card-title ">Total <br> Manager</h4>
-                                 <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
-                              </div>
-                              <div class="col s12 display-flex">
-                                 <p class="mt-4 pink-text accent-2">
-                                    9504
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <div class="ct-chart card z-depth-2 border-radius-6 getCardSet" style="display: flex;
-                        width: 127px;
-                        margin: -1rem 0 1rem 0 !important;">
-                        <div class="card-content">
-                           <div class="row">
-                              <div class="col s12">
-                                 <h4 class="card-title ">Total <br> Manager</h4>
-                                 <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
-                              </div>
-                              <div class="col s12 display-flex">
-                                 <p class="mt-4 pink-text accent-2">
-                                    9504
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <div class="ct-chart card z-depth-2 border-radius-6 getCardSet" style="display: flex;
-                        width: 127px;
-                        margin: -1rem 0 1rem 0 !important;">
-                        <div class="card-content">
-                           <div class="row">
-                              <div class="col s12">
-                                 <h4 class="card-title ">Total <br> Manager</h4>
-                                 <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
-                              </div>
-                              <div class="col s12 display-flex">
-                                 <p class="mt-4 pink-text accent-2">
-                                    9504
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col">
-               <div class="ct-chart card z-depth-2 border-radius-6" style="height:160px; display: flex;
-                  margin: -2rem 0 1rem 0 !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6" style="margin-top:-42px;">
+                <h5 class="breadcrumbs-title mt-0 mb-0" ><span>Greylock Security Reports</span></h5> 
+            </div> 
+            </div> 
+            <div class="row">
+            <div class="col s12 m4 l10" style="margin-top:-16px;">
+            <div class="col s10 m5 l3">
+            <div class="card gradient-shadow border-radius-3 animate fadeUp">
                   <div class="card-content">
-                     <div class="row">
-                        <div class="col s12">
-                           <h4 class="card-title ">Total <br> Manager</h4>
-                           <i class="fa fa-user-circle" aria-hidden="true" style="float:right; margin-top:-64px;"></i>
-                        </div>
-                        <div class="col s12 display-flex">
-                           <p class="mt-4 pink-text accent-2">
-                              9504
-                           </p>
-                        </div>
-                     </div>
+                    <p class="cardhedding">General
+                        <br> Reports</p>
+                         <i class="material-icons cardimage">donut_small</i>
+                      <h5 class="lighten-4 center">8546</h5>
+                    <i class="material-icons cardimage"  style="float:right; margin-top:-11px;">insert_invitation</i>
                   </div>
                </div>
             </div>
-            <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn right modal-trigger addGuard" style="margin-top: 68px;"><span class="hide-on-small-onl">Export</span></a>
-         </div> -->
-      </div>
-   </div>
+            <div class="col s10 m5 l3">
+            <div class="card gradient-shadow border-radius-3 animate fadeUp">
+                  <div class="card-content">
+                    <p class="cardhedding">Maintenance
+                        <br> Reports</p>
+                         <i class="material-icons cardimage">donut_small</i>
+                      <h5 class="lighten-4 center">8546</h5>
+                    <i class="material-icons cardimage"  style="float:right; margin-top:-11px;">insert_invitation</i>
+                  </div>
+               </div>
+            </div>
+            <div class="col s10 m5 l3">
+            <div class="card gradient-shadow border-radius-3 animate fadeUp">
+                  <div class="card-content">
+                    <p class="cardhedding">Parking
+                        <br> Reports</p>
+                         <i class="material-icons cardimage">donut_small</i>
+                      <h5 class="lighten-4 center">8546</h5>
+                    <i class="material-icons cardimage"  style="float:right; margin-top:-11px;">insert_invitation</i>
+                  </div>
+               </div>
+            </div>
+            <div class="col s10 m5 l3">
+            <div class="card gradient-shadow border-radius-3 animate fadeUp">
+                  <div class="card-content">
+                    <p class="cardhedding">Emergency
+                        <br> Reports</p>
+                         <i class="material-icons cardimage">donut_small</i>
+                      <h5 class="lighten-4 center">8546</h5>
+                    <i class="material-icons cardimage"  style="float:right; margin-top:-11px;">insert_invitation</i>
+                  </div>
+               </div>
+            </div>
+           </div>
+           <div class="row">
+            <div class="col s12 m4 l2">
+            <div class="input-field">
+                <select class="select2 browser-default" multiple="multiple" style="width: 15.33333% !important">
+                  <optgroup label="Export">
+                  <option value="Last Week" selected>Last Week</option>
+                  <option value="Last Month"> Last Month</option>
+                  <option value="Year to Date">Year to Date</option>
+                    <option  value="Range Date">Range date </option>
+                  </optgroup>
+               </select>
+                        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1' style="margin-top: 95px; background:white;  color: #244B8A; width: 164.719px!important;">Export</a> -->
+                <!-- <ul id='dropdown1' class='dropdown-content' style="color: #244B8A; width: 200px;">
+                     <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px;"> Last Week </span></a></li>
+                      <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px;">   <span></a></li>
+                    <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px; ">Yearto Date <span></a></li>
+                    <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      
+                      <span style="font-size:12px;"> Date Range <span></a></li>
+                      <span style="font-size:12px; "> <input type="date"> <span></a></li>
+                        <li><input type="date"></li>         
+                      <a class='dropdown-trigger btn mb-2' href='#'  style="float:right;"data-target='dropdown1'>Apply</a>
+                        
+                </ul> -->
+             </div>
+            </div>
+           </div> 
+        </div>
+    </div>
 </div>
+
 @endsection
 @section('content-area')
 <div class="row">
-   <div class="col s12">
-      <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn modal-trigger addGuard" style="background:white;color:navy;"><i class="material-icons left">clear</i> <span class="hide-on-small-onl">General</span></a>
-      <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn  modal-trigger addGuard"style="background:white;color:navy;" ><i class="material-icons left" >clear</i><span class="hide-on-small-onl">Maintenance</span></a>
-      <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn  modal-trigger addGuard" style="background:white;color:navy;"><i class="material-icons left">clear</i><span class="hide-on-small-onl">Parking</span></a>
-      <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn  modal-trigger addGuard" style="background:white;color:navy;"><i class="material-icons left">clear</i><span class="hide-on-small-onl">Emergency</span></a>
-      <!-- <a class="btn btn-light  waves-effect waves-light breadcrumbs-btn  modal-trigger addGuard" style="background:white;color:navy;"><i class="material-icons left">clear</i><span class="hide-on-small-onl">Filter</span></a> -->
-      <a class='dropdown-trigger btn ' href='#' data-target='dropdown1' style="margin-left: 50px;width:250px;  ">Filter</a>
-        <ul id='dropdown1' class='dropdown-content'>
-        <li><a class=" waves-effect waves-light modal-trigger "
-        href="#modal1"><i class="material-icons">check_box</i><span
-        class="hide-on-small-onl">General Report</span></a></li>
-        <li><a class=" waves-effect waves-light modal-trigger "
-        href="#modal2"><i class="material-icons">check_box</i><span
-        class="hide-on-small-onl">Maintenance Report</span></a></li>
-        <li><a class=" waves-effect waves-light modal-trigger "
-        href="#modal3"><i class="material-icons">check_box</i><span
-        class="hide-on-small-onl">Parking Report</span></a></li>
-        <li><a class=" waves-effect waves-light modal-trigger "
-        href="#modal4"><i class="material-icons">check_box</i><span
-        class="hide-on-small-onl">Emergency Report</span></a></li>
-        </ul>
-      <a class="search-widgett" style="box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);">
-   </div>
+    <div class="col s12 m4 l2">
+    <div class="input-field">
+     <select class="select2 browser-default" multiple="multiple">
+    <optgroup label="Property">
+      <option value="Property 1"selected>Property 1</option>
+      <option value="Property 2">Property 2</option>
+      <option value="Property 3">Property 3</option>
+    </optgroup>
+  </select>
 </div>
-<div class="row">
-<div class="col s12 mt-2 ">
-<a class="mx-2" style="background:white;color:navy;margin-left: 10px;
-   "><span class="hide-on-small-onl">View All</span></a>
-<a class="mx-2" style="background:white;color:navy;margin-left: 13px;"><span class="hide-on-small-onl">Property 1</span></a>
-<a class="mx-2" style="background:white;color:navy;margin-left: 13px;"><span class="hide-on-small-onl">Property 2</span></a>
-<a class="mx-2" style="background:white;color:navy;margin-left: 13px;"><span class="hide-on-small-onl">Property 3</span></a>
-<!-- <a class='dropdown-trigger btn ' href='#' data-target='dropdown1' style="margin-left: 50px;width:250px;  ">Report!</a>
-<ul id='dropdown1' class='dropdown-content'>
-<li><a class=" waves-effect waves-light modal-trigger "
-   href="#modal1"><i class="material-icons">check_box</i><span
-   class="hide-on-small-onl">General Report</span></a></li>
-<li><a class=" waves-effect waves-light modal-trigger "
-   href="#modal2"><i class="material-icons">check_box</i><span
-   class="hide-on-small-onl">Maintenance Report</span></a></li>
-<li><a class=" waves-effect waves-light modal-trigger "
-   href="#modal3"><i class="material-icons">check_box</i><span
-   class="hide-on-small-onl">Parking Report</span></a></li>
-<li><a class=" waves-effect waves-light modal-trigger "
-   href="#modal4"><i class="material-icons">check_box</i><span
-   class="hide-on-small-onl">Emergency Report</span></a></li>
-</ul> -->
-<a class="mx-2" style="background:white;color:navy;margin-left: 13px; float:right;"><lable>Range Date<lable><span class="hide-on-small-onl"><input type="date"></span></a>
+
+<!-- </div> -->
+     <!-- <a class='dropdown-trigger-KK btn filterbtn' href='#' data-target='dropdown11'>Property </a>
+     <ul id='dropdown11' class='dropdown-content' style="color: #244B8A; width: 200px;">
+                     <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px;">Property1 </span></a></li>
+                      <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px;">Property2 <span></a></li>
+                    <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                      <span style="font-size:12px;">Property3<span></a></li>
+                    <li><a href="#!" style="color:#244B8A;"> <label>
+                        <input type="checkbox" class="select-all" />
+                      </label>
+                      <a class='dropdown-trigger btn' data-target='dropdown1' style="color:white;padding-top:10px !important">Apply</a>
+                     
+                </ul> -->
+    </div>
+    <div class="col s12 m4 l8">
+    <div class="input-container" style="display: flex;
+      width: 100%;
+      margin-bottom: 15px; border-radius :10px;
+">
+    <i class="material-icons"  style="margin-top: 17px;">search</i>
+    <input class="input-field" type="search" placeholder="Search by Guard name , shift name..." name="search">
+  </div>
+    </div>
+    <div class="col s12 m4 l2">
+    <div class="input-field">
+                <select class="select2 browser-default" multiple="multiple">
+                  <optgroup label="Filter">
+                  <option value="General Reports" selected>General Reports</option>
+                  <option value="Maintenance Repots"> Maintenance Repots</option>
+                  <option value="Parking Reports">Parking Reports</option>
+                    <option  value="Emergency Reports">Emergency Reports</option>
+                  </optgroup>
+               </select>
+    <!-- <a class='dropdown-trigger-gggg btn filterbtn' href='#' data-target='dropdown12'>Filter</a>
+    <ul id='dropdown12' class='dropdown-content'>
+    <li><a href="#!">General Reports</a></li>
+    <li><a href="#!">Maintenance Repots</a></li>
+    <li><a href="#!"> Parking Reports</a></li>
+    <li><a href="#!">Emergency Reports</a></li> 
+    </ul> -->
+    </div>
+ </div>
+
+ <div class="row  end">
+ <div class="col s12 m4 l4">
+ </div>
+ <div class="col s12 m4 l8">
+ <a class="waves-effect waves-light  btn exporttbtn">Export</a>
+ <a class="waves-effect waves-light  btn deletebtn">Delete</a>
+ </div>
 </div>
-</div>
+
 <div class="row mt-3">
    <div class="col s12">
       <div class="card">
@@ -246,43 +189,100 @@
                   <table id="page-length-option" class="display nowrap" style="width:100%">
                      <thead style="background-color:#224B8A;color: white;">
                         <tr>
-                           <th>{{__('guardshift.sr_no')}}</th>
+                        <th>
+                      <label>
+                        <input type="checkbox" class="select-all" />
+                        <span></span>
+                      </label>
+                    </th>
                            <th>{{__('guardshift.guard_name')}}</th>
                            <th>{{__('guardshift.shift_name')}}</th>
                            <th>{{__('guardshift.property')}}</th>
                            <th>{{__('guardshift.assignBy')}}</th>
                            <th>{{__('guardshift.checkpoint')}}</th>
                            <th>{{__('guardshift.time')}}</th>
-                           <th>{{__('guardshift.Apply')}}</th>
+                           <th>REPORT TYPE</th>
+                           <th>Action</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
-                           <td>1</td>
+                          <tr>
+                          <td>
+                      <label>
+                        <input type="checkbox" />
+                        <span></span>
+                      </label>
+                    </td>
                            <td>John Daly</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
+                           <td><a href="#modal4" class="waves-effect waves-light modal-trigger">Emergency</a></td> 
+                           <td>
+                           <i class="material-icons"> file_download</i>
+                           <i class="material-icons"> delete</i>
+                          
+                           </td>      
                         </tr>
                         <tr>
-                           <td>1</td>
+                        <td>
+                      <label>
+                        <input type="checkbox" />
+                        <span></span>
+                      </label>
+                    </td>
                            <td>John Daly</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
+                           <td> <a href="#modal1" class="waves-effect waves-light modal-trigger">Parking</a></td> 
+                           <td>
+                           <i class="material-icons"> file_download</i>
+                           <i class="material-icons"> delete</i>
+                          
+                           </td>      
                         </tr>
                         <tr>
-                           <td>1</td>
+                        <td>
+                      <label>
+                        <input type="checkbox" />
+                        <span></span>
+                      </label>
+                    </td>
                            <td>John Daly</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
+                           <td><a href="#modal1" class="waves-effect waves-light modal-trigger">General</a></td> 
+                           <td>
+                           <i class="material-icons"> file_download</i>
+                           <i class="material-icons"> delete</i>
+                           </td>      
+                        </tr>
+                        <tr>
+                        <td>
+                      <label>
+                        <input type="checkbox" />
+                        <span></span>
+                      </label>
+                    </td>
+                           <td>John Daly</td>
+                           <td>Rivi properties</td>
+                           <td>Rivi properties</td>
+                           <td>Rivi properties</td>
+                           <td>ASDF</td>
+                           <td>2:00PM</td>
+                           <td ><a href="#modal2" class="waves-effect waves-light modal-trigger">Maintenance</a></td> 
+                           <td>
+                           <i class="material-icons"> file_download</i>
+                           <i class="material-icons"> delete</i>
+                           </td>      
                         </tr>
                      </tbody>
                   </table>
@@ -665,16 +665,41 @@
           </div>
    </div>
 </div>
+
 @endsection
 @section('script-area')
 <script>
-   function myMap() {
-   var mapProp= {
-     center:new google.maps.LatLng(51.508742,-0.120850),
-     zoom:5,
-   };
-   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-   }
+    $('.dropdown-trigger-KK').dropdown({
+  inDuration: 300,
+  outDuration: 225,
+  constrainWidth: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  coverTrigger: false, // Displays dropdown below the button
+  alignment: 'left', // Displays dropdown with edge aligned to the left of button
+  stopPropagation: false // Stops event propagation
+  }
+  );
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+<script>
+    $('.dropdown-trigger-gggg').dropdown({
+  inDuration: 300,
+  outDuration: 225,
+  constrainWidth: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  coverTrigger: false, // Displays dropdown below the button
+  alignment: 'left', // Displays dropdown with edge aligned to the left of button
+  stopPropagation: false // Stops event propagation
+  }
+  );
+
+
+  $(".max-length").select2({
+    dropdownAutoWidth: true,
+    width: '100%',
+    maximumSelectionLength: 2,
+    placeholder: "Select maximum 2 items"
+});
+</script>
 @endsection

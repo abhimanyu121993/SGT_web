@@ -63,6 +63,8 @@ Route::group(['prefix' => '/test', 'as' => 'test',], function () {
     });
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
+    Route::get('new-general-report', [TestingController::class, 'NewgeneralReport']);
+    
    
 });
 
