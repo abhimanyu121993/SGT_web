@@ -25,10 +25,10 @@ class ApiAuthController extends Controller
             if (Auth::guard('security_guard')->attempt($req->only('email', 'password'))) {
                 $abilities = $sguard->getAllPermissions()->pluck('name');
                 $result = [
-                    'status' => true,
                     'message' => 'Logged In Successfully',
                     'token' => $sguard->createToken('Api Token', $abilities->toArray())->plainTextToken,
-                    'abilities' => $abilities,
+                    // 'abilities' => $abilities,
+                    'user'=>new SecurityGuardResource($sguard)
                 ];
             } else {
                 $result = [
@@ -96,19 +96,17 @@ class ApiAuthController extends Controller
             $data = Auth::guard('sanctum')->user()->update([
                 'password' => Hash::make($request->new_password),
             ]);
-            $res = response()->json([
-                'status' => false,
-                'data' => $data,
+            $res =[
                 'message' => 'your password is updated successfully !',
-            ]);
+            ];
         } else {
-            $res = response()->json([
-                'status' => false,
+            $res=[
+                
                 'message' => 'your old password is not mached !',
-            ]);
+            ];
         }
 
-        return response()->json($res,200);
+        return response()->json($res);
     }
     catch(Exception $ex){
         Helper::handleError($ex);
