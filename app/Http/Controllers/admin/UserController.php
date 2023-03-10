@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Mail\auth\CreatePasswordEmail;
 use App\Models\admin\Admin;
 use App\Models\admin\AdminProfile;
 use App\Models\PermissionName;
@@ -15,12 +16,14 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Support\Str;
 class UserController extends Controller
 {
     /**
@@ -88,6 +91,12 @@ class UserController extends Controller
             if($admin)
             {
                 $admin->assignRole($role_name);
+                $token=Str::random(60);
+                $pass=DB::table('password_resets')->insert([
+                    'email'=>$admin->email,
+                    'token'=>$token,
+                ]);
+                Mail::to($admin->email)->send(new CreatePasswordEmail(['route'=>url('auth/admin-create-password/'.$token.'/'.$admin->email)]));
                 session()->flash('success','User added sucessfully');
             }
             else

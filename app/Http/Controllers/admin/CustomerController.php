@@ -4,11 +4,13 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Mail\auth\CreatePasswordEmail;
 use App\Models\Country;
 use App\Models\customer\Customer;
 use App\Models\customer\CustomerProfile;
 use App\Models\customer\Property;
 use App\Models\CustomerSubscribePack;
+use App\Models\PasswordReset;
 use App\Models\PermissionName;
 use App\Models\Status;
 use App\Models\Subscription;
@@ -20,12 +22,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Permission;
-
+use Illuminate\Support\Str;
 class CustomerController extends Controller
 {
     public function __construct()
@@ -55,7 +59,7 @@ class CustomerController extends Controller
     public function create()
     {
         $countries = Country::get();
-        $plans = Subscription::where('status_id', Status::where('name', 'active')->where('type', 'general')->first()->id)->get();
+        $plans = Subscription::where('is_active',true)->get();
         return view('admin.customer.register_customer', compact('countries', 'plans'));
     }
 
@@ -124,7 +128,13 @@ class CustomerController extends Controller
 
                 ]);
                 if ($customerProfile) {
+                    $token=Str::random(60);
+                    $pass=DB::table('password_resets')->insert([
+                        'email'=>$customer->email,
+                        'token'=>$token,
+                    ]);
                     Notification::send(Auth::guard(Session::get('guard'))->user(), new CustomerRegisterNoti($customerProfile));
+                    Mail::to($customer->email)->send(new CreatePasswordEmail(['route'=>url('auth/customer-create-password/'.$token.'/'.$customer->email)]));
                     Session::flash('success', 'Customer Created and Package allot successfully');
                 }
             } else {

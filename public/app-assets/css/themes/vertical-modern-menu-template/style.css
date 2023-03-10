@@ -15,9 +15,6 @@
 }
 
 
-
-
-
 /* new code */
 
 .langlang{
@@ -26,8 +23,6 @@
     margin-top: -32px !important;
 
 }
-
-
 
 .kangjang {
      display: inline-block;
@@ -84,8 +79,8 @@ top: -10px !important;
 }
 
 .belowsideOption .waves-effect {
-    margin-left: 161px !important;
-    margin-right: -147px;
+   margin-left: 486px !important;
+    margin-right: -482px;
     background-color: white !important;
     float: left !important;
 }
@@ -164,6 +159,19 @@ display: grid;
   background-color: #4285f4;
 }
 
+.circle1{
+background: gray;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 11.5em;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 0 3px #fff;
+
+
+}
 
 .circle {
     background: gray;
@@ -2902,7 +2910,7 @@ border : 0px solid #000000;
 
 .white-text
 {
-    color: #fff !important;
+    color: black !important;
 }
 
 .transparent
@@ -7250,7 +7258,7 @@ li.home:before
 
 .white-text
 {
-    color: #fff !important;
+    color: #fff ;
 }
 
 .transparent
@@ -8864,9 +8872,9 @@ span.badge.pill
 
 .navbar #profile-dropdown
 {
-    width: 160px;
+    width: 20% !important;
+    border-radius: 10px;
 }
-
 .navbar #profile-dropdown li a i
 {
     margin-right: 10px;
@@ -10434,7 +10442,7 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 #breadcrumbs-wrapper .breadcrumbs-btn
 {
-    top: 24px;
+    top: -20px;
     background-color: white;
     color:black !important;
 }
