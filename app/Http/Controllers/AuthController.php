@@ -6,13 +6,16 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Admin;
 use App\Models\customer\Customer;
+use App\Models\PermissionName;
 use App\Models\ProjectError;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Spatie\Permission\Models\Permission;
 
 class AuthController extends Controller
 {
@@ -180,5 +183,95 @@ public function lock()
     Auth::guard('customer')->logout();
     Session::put('user',$user);
         abort(201);
+}
+
+// create password 
+public function admin_create_password($token,$email)
+{
+    if($dt=DB::table('password_resets')
+    ->where([
+      'email' => $email, 
+      'token' => $token
+    ])
+    ->first())
+    {
+        return view('auth.generate_password',['token'=>$token,'return'=>route('auth.admin-create-password')]);
+    }
+    else
+    {
+        return redirect()->back()->with(['msg'=>'Not Found']);
+    }
+   return view('auth.generate_password');
+}
+public function admin_create_password_code(Request $req)
+{
+    $req->validate([
+        'password'=>'required|min:8',
+        'cnpassword'=>'same:password',
+        'token'=>'required|exists:password_resets,token'
+    ]);
+   
+    $dt=DB::table('password_resets')
+    ->where([
+      'token' => $req->token
+    ])
+    ->first();
+       $res= Admin::where('email',$dt->email)->update(['password'=>Hash::make($req->password)]);
+       if($res){
+        $admin=Admin::where('email',$dt->email)->first();
+        Auth::guard('admin')->loginUsingId($admin->id);
+        return redirect()->route('admin.dashboard');
+       }
+       else
+       {
+        Session::flash('warning','Invalid Token');
+        return redirect()->back();
+       }
+        
+}
+
+public function customer_create_password($token,$email)
+{
+    if($dt=DB::table('password_resets')
+    ->where([
+      'email' => $email, 
+      'token' => $token
+    ])
+    ->first())
+    {
+        return view('auth.generate_password',['token'=>$token,'return'=>route('auth.customer-create-password')]);
+    }
+    else
+    {
+        return redirect()->back()->with(['msg'=>'Not Found']);
+    }
+   return view('auth.generate_password');
+}
+public function customer_create_password_code(Request $req)
+{
+
+    $req->validate([
+        'password'=>'required|min:8',
+        'cnpassword'=>'same:password',
+        'token'=>'required|exists:password_resets,token'
+    ]);
+   
+    $dt=DB::table('password_resets')
+    ->where([
+      'token' => $req->token
+    ])
+    ->first();
+       $res=Customer::where('email',$dt->email)->update(['password'=>Hash::make($req->password)]);
+       if($res){
+        $customer=Customer::where('email',$dt->email)->first();
+        Auth::guard('customer')->loginUsingId($customer->id);
+        return redirect()->route('customer.dashboard');
+       }
+       else
+       {
+        Session::flash('warning','Invalid Token');
+        return redirect()->back();
+       }
+        
 }
 }
