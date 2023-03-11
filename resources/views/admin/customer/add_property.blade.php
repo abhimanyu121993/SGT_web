@@ -113,6 +113,14 @@
                            
                             <!--end col-->
                         </div>
+                        <div class="btn">
+        <span>Property images</span>
+        <input type="file" name="property_pic[]" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
                         <div class="row gy-4">
                             <div class="col-xxl-3 col md-4">
                                 <button class="btn btn-primary" id="btn-btn"

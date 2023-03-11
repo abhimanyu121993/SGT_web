@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Helper;
+use App\Models\customer\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -61,4 +62,5 @@ class SecurityGuard extends Authenticatable
     {
        return $this->belongsTo(TimeZone::class,'time_zone_id');
     }
+  
 }

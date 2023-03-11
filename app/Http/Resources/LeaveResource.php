@@ -17,9 +17,12 @@ class LeaveResource extends JsonResource
     public function toArray($request)
     {
       return [
-        'leave_start'=>Helper::getLocalTime($this->leave_start->format('d-m-Y h:i')),
-        'leave_end'=>Helper::getLocalTime($this->leave_end->format('d-m-Y h:i')),
+        'leave_start'=>Helper::getLocalTime(carbon::parse($this->leave_start)->format('d-m-Y h:i')),
+        'leave_end'=>Helper::getLocalTime(carbon::parse($this->leave_end)->format('d-m-Y h:i')),
+        'subject'=>$this->subject,
+        'description'=>$this->desc,
         'status'=>$this->status_info->name
       ];
+      
     }
 }

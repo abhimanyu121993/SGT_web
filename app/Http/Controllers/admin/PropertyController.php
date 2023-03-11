@@ -65,6 +65,17 @@ class PropertyController extends Controller
             'images'=>'required',
         ]);
         try{
+
+            $mainpic=[];
+            if($request->hasFile('property_pic'))
+            {
+                foreach($request->file('property_pic') as $file)
+                {
+                    $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                    $file->move(public_path('upload/property'),$prop_name);
+                    $mainpic []=$prop_name;
+                }
+            }
            
            $res= Property::create([
                 'created_by'=>Helper::getCustomerBySession()->id,
@@ -78,6 +89,8 @@ class PropertyController extends Controller
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
                 'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
+                'property_pics' => json_encode($mainpic),
+
 
             ]);
 if($res){
@@ -153,6 +166,18 @@ else{
         ]);
         try
         {
+            if($request->hasFile('property_pic'))
+        {
+            foreach($request->file('property_pic') as $file)
+            {
+                $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                $file->move(public_path('upload/building'),$prop_name);
+                $mainpic[]=$prop_name;
+            }
+        }
+           if (count($mainpic) > 0) {
+            Property::find($id)->update(['property_pics' => json_encode($mainpic)]);
+            }
           
              $res= Property::find($id)->update([ 
              'name' => $request->name,
@@ -163,8 +188,6 @@ else{
              'address' => $request->address ?? '',
              'lattitude' => $request->lattitude ?? '',
              'longitude' => $request->longitude ?? '',
-
-             
         ]);
         $request->hasFile('images')?Property::find($id)->update(['file'=>ImageUpload::simpleUpload('property',$request->images,'property')]):'';
         if($res)
