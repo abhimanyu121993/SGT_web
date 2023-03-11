@@ -70,7 +70,7 @@
                     <div class="col s12">
                     <table id="page-length-option" class="display nowrap" style="width:100%">
                             <thead>
-                               
+
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">{{__('security_guard.username')}}</th>
@@ -160,6 +160,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <div id="modal1" style="border-radius: 8px;" class="modal modal-fixed-footer">
 </div>
 
@@ -203,12 +208,63 @@
             });
         });
     });
+
+
+
 </script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
 
 <script src="{{asset('app-assets/vendors/data-tables/js/jquery.dataTables.min.js') }}"></script>
 
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+
+<table id="table-data" border="1"></table>
+
+
+<script>
+
+var arr = [];
+
+function removeRow(r) {
+  var index = arr.indexOf(r);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+}
+$('#multiple-date-select').multiDatesPicker({
+  onSelect: function(datetext) {
+    let table = $('#table-data');
+    let rowLast = table.data('lastrow');
+    let rowNext = rowLast + 1;
+    let r = table.find('tr').filter(function() {
+      return ($(this).data('date') == datetext);
+    }).eq(0);
+    // a little redundant checking both here 
+    if (!!r.length && arr.includes(datetext)) {
+      removeRow(datetext);
+      r.remove();
+    } else {
+      // not found so add it
+      let col = $('<td></td>').html(datetext);
+      let row = $('<tr></tr>');
+      row.data('date', datetext);
+      row.attr('id', 'newrow' + rowNext);
+      row.append(col).appendTo(table);
+      table.data('lastrow', rowNext);
+      arr.push(datetext);
+    }
+  }
+});
+// set start, first row will be 0 could be in markup
+$('#table-data').data('lastrow', -1);
+
+
+</script>
 <!-- END THEME  JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 @endsection

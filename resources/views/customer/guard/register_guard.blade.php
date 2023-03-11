@@ -1,5 +1,9 @@
 <div class="modal-content">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
     <style>
      
 
@@ -47,6 +51,8 @@ img {
 }
 
 
+
+
     </style>
     <h4>
     {{ isset($guard) ? 'Update Guard ': 'Add Guard' }}
@@ -79,12 +85,15 @@ img {
   </div>
 
 <br><br><br>
-                 
-    <input style="background-color:#efeff0;color:#800d7e;"   value="2015-W16" type="week" >
-    <input style="background-color:#efeff0;color:#800d7e;"   value="2015-12" type="month" >
+           
 
-       
-                    </div>
+           <form name="select-multiple">
+  <input id="multiple-date-select" />
+</form>
+              
+
+
+
              <div class="input-field col s6">
                  <label class="active" for="name">{{__('security_guard.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ isset($guard) ? $guard->name : old('name') }}">
@@ -192,9 +201,10 @@ img {
     </form>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <script>
+
+
 
     $(document).ready(function() {
 
@@ -223,3 +233,8 @@ img {
 
 
     </script>
+
+
+
+
+
