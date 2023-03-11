@@ -100,7 +100,6 @@
     </div>
 </div>
 
-
 {{--<div class="card">
     <div class="card-content">
         <table id="scroll-dynamic" class="display">
