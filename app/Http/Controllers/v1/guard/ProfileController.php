@@ -93,19 +93,16 @@ class ProfileController extends Controller
 
     public function guard_properties(Request $request)
     {
-        if ($request->guard_id) {
-
-            $properies = GuardDuty::with('properties')->where('guard_id',$request->guard_id)->get();
+       
+            $properies = GuardDuty::with('properties')->where('guard_id',Auth::guard('sanctum')->id())->get();
             $res = [
                 'data' => $properies,
                 'message' => 'guard assigned properties',
+                'success'=>true
             ];
-        } else {
-            $res =[
-                'data' => null,
-                'message' => 'property not assigned',
-            ];
-        }
+       
+         
+        
         return response()->json($res);
     }
     public function guard_properties_details(Request $request)
