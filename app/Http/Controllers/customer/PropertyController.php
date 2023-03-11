@@ -69,7 +69,16 @@ class PropertyController extends Controller
             'longitude'=>'required'
         ]);
         try{
-           
+            $mainpic=[];
+            if($request->hasFile('property_pic'))
+            {
+                foreach($request->file('property_pic') as $file)
+                {
+                    $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                    $file->move(public_path('upload/property'),$prop_name);
+                    $mainpic []=$prop_name;
+                }
+            }
            $res= Property::create([
                 'created_by'=>Helper::getUserId(),
                 'owner_id'=>Helper::getOwner(),
@@ -82,6 +91,8 @@ class PropertyController extends Controller
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
                 'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
+                'property_pics' => json_encode($mainpic),
+
             ]);
 if($res){
     Session::flash('success', 'Property created successfully');
@@ -154,6 +165,18 @@ else{
         ]);
         try
         {
+            if($request->hasFile('property_pic'))
+            {
+                foreach($request->file('property_pic') as $file)
+                {
+                    $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                    $file->move(public_path('upload/building'),$prop_name);
+                    $mainpic[]=$prop_name;
+                }
+            }
+               if (count($mainpic) > 0) {
+                Property::find($id)->update(['property_pics' => json_encode($mainpic)]);
+                }
            
              $res= Property::find($id)->update([ 
              'name' => $request->name,

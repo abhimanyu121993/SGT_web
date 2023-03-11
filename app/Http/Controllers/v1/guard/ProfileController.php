@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\v1\guard;
 
+use App\Helpers\Helper;
 use App\Helpers\ImageUpload;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CheckpointCollection;
+use App\Http\Resources\CheckpointResource;
+use App\Http\Resources\DutyCollection;
+use App\Http\Resources\GuardPropertyCollection;
+use App\Http\Resources\GuardPropertyResource;
+use App\Http\Resources\jobCollection;
 use App\Http\Resources\SecurityGuardResource;
 use App\Models\City;
 use App\Models\Country;
@@ -11,6 +18,7 @@ use App\Models\customer\Checkpoint;
 use App\Models\customer\Property;
 use App\Models\GuardDuty;
 use App\Models\State;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,81 +73,100 @@ class ProfileController extends Controller
             'pincode' => $request->pincode,
             'country_id' => $request->country_id,
         ]);
-        if($request)
-        {
+        if ($request) {
             Auth::guard('sanctum')->user()->update([
-            'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('security_guard', $request->card_image, 'card-'.Auth::guard('sanctum')->id()) : '',
+                'card_image' => $request->hasFile('card_image') ? ImageUpload::simpleUpload('security_guard', $request->card_image, 'card-' . Auth::guard('sanctum')->id()) : '',
             ]);
         }
         if ($data) {
-            $res =[
+            $res = [
                 'data' => new SecurityGuardResource(Auth::guard('sanctum')->user()),
                 'message' => 'Profile Updated Successfully !',
-                'error'=>NULL,
+                'error' => NULL,
             ];
         } else {
-            $res =[
-                 'data' => NULL,
+            $res = [
+                'data' => NULL,
                 'message' => 'Something Went Wrong !',
-                'error'=>[
-                    'code'=>503                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                    ]   
-                ];
-            
-        }                                                                                                                       
+                'error' => [
+                    'code' => 503
+                ]
+            ];
+        }
         return response()->json($res);
     }
-   
+
 
     public function guard_properties(Request $request)
     {
-        if ($request->guard_id) {
+        try {
+            $duties = GuardDuty::with('property')->where('guard_id', Auth::guard('sanctum')->id())->get();
+            if ($duties) {
+                $res = [
+                    'data' => new jobCollection($duties),
+                    'message' => 'guard assigned properties',
+                    'success' => true
+                ];
+            }
+            return response()->json($res);
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+            $result = [
+                'data' => NULL,
+                'message' => $ex->getMessage(),
+                'success' => false,
 
-            $properies = GuardDuty::with('properties')->where('guard_id',$request->guard_id)->get();
-            $res = [
-                'data' => $properies,
-                'message' => 'guard assigned properties',
             ];
-        } else {
-            $res =[
-                'data' => null,
-                'message' => 'property not assigned',
-            ];
+            return response()->json($result);
         }
-        return response()->json($res);
     }
     public function guard_properties_details(Request $request)
-    {
+    { try{
         if ($request->property_id) {
 
-            $properies = Property::find($request->property_id);
+            $properties = Property::find($request->property_id);
             $res = [
-                'data' => $properies,
+                'data' => new GuardPropertyResource($properties),
                 'message' => 'property details',
+                'success'=>true
             ];
-        } else {
-            $res =[
-                'data' => null,
-                'message' => 'Something went wrong !',
-            ];
-        }
+        } 
         return response()->json($res);
     }
-     public function guard_properties_checkpoints(Request $request)
+    catch (Exception $ex) {
+        Helper::handleError($ex);
+        $result = [
+            'data' => NULL,
+            'message' => $ex->getMessage(),
+            'success' => false,
+
+        ];
+        return response()->json($result);
+    }
+    }
+    public function guard_properties_checkpoints(Request $request)
     {
+        try{ 
         if ($request->property_id) {
 
-            $checkpoints = Checkpoint::where('property_id',$request->property_id)->get();
+            $checkpoints = Checkpoint::where('property_id', $request->property_id)->get();
             $res = [
-                'data' => $checkpoints,
+                'data' =>new CheckpointCollection($checkpoints),
                 'message' => 'property checkpoints',
+                'success'=>true
             ];
-        } else {
-            $res = [
-                'data' => null,
-                'message' => 'Something went wrong !',
-            ];
-        }
+        } 
         return response()->json($res);
     }
+    catch (Exception $ex) {
+        Helper::handleError($ex);
+        $result = [
+            'data' => NULL,
+            'message' => $ex->getMessage(),
+            'success' => false,
+
+        ];
+        return response()->json($result);
+    }
+}
 }

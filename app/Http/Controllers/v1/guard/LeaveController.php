@@ -4,7 +4,9 @@ namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LeaveCollection;
 use App\Http\Resources\LeaveResource;
+use App\Models\Leave;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use Exception;
@@ -22,29 +24,24 @@ class LeaveController extends Controller
     public function index()
     {
         try {
-            $leaves=SecurityGuard::with('leaves')->find(Helper::getUserId());
+            $leaves=SecurityGuard::find(Auth::guard('sanctum')->id())->leaves;
             if ($leaves) {
                 $result = [
-                    'data'=>$leaves,
-                    'message' => 'Found leave details',
-                    'status' => 200,
-                    'error' => NULL
-                ];
-            } else {
-                $result = [
-                    'data' => NULL,
-                    'message' => 'Leave details not found',
-                    'status' => 200,
-                    'error' => [
-                        'message' => 'Server Error',
-                        'code' => 305,
-                    ]
+                    'data'=>new LeaveCollection($leaves),
+                    'message' => 'Guard leave details',
+                    'success' => True,
                 ];
             }
             return response()->json($result);
         } catch (Exception $ex) {
             Helper::handleError($ex);
-        }
+            $result = [
+                'data' => NULL,
+                'message' => $ex->getMessage(),
+                'success' => false,
+            ];     
+            return response()->json($result);
+           }
 
     }
 
@@ -84,16 +81,14 @@ class LeaveController extends Controller
             if ($res) {
                 $result = [
                     'data'=>new LeaveResource($res),
-                    // 'data'=>$res,
                     'message' => 'Leave Request send successfully',
-                    'status' => 200,
-                    'error' => NULL
+                    'success' => True,
                 ];
             } else {
                 $result = [
                     'data' => NULL,
                     'message' => 'Leave Request not send',
-                    'status' => 200,
+                    'success' => false,
                     'error' => [
                         'message' => 'Server Error',
                         'code' => 305,

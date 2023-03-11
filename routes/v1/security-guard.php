@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user', [ApiAuthController::class, 'logged_in']);
     Route::get('logout', [ApiAuthController::class, 'logged_out']);
     Route::post('change-password',[ApiAuthController::class,'change_password'])->middleware('can:profile');
-    Route::apiResource('leave-guard', LeaveController::class)->middleware('can:leave');
+    Route::apiResource('leave', LeaveController::class)->middleware('can:leave');
     Route::post('guard-properties',[GuardProfileController::class,'guard_properties'])->middleware('can:profile');
     Route::post('guard-properties-details',[GuardProfileController::class,'guard_properties_details'])->middleware('can:profile');
     Route::post('guard-properties-checkpoints',[GuardProfileController::class,'guard_properties_checkpoints'])->middleware('can:profile');

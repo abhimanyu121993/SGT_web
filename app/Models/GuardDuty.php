@@ -19,7 +19,7 @@ class GuardDuty extends Model
     use HasFactory,SoftDeletes,LogsActivity;
     protected $guarded=[];
 
-    public function properties()
+    public function property()
     {
         return $this->belongsTo(Property::class, 'property_id');
     }
