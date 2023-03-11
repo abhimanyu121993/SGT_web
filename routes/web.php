@@ -41,6 +41,11 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     //Lock Screen
     Route::get('lock', [AuthController::class, 'lock'])->name('lock');
+    //Create Password
+    Route::get('admin-create-password/{token}/{email}',[AuthController::class,'admin_create_password'])->name('admin-create-password');
+    Route::post('admin-create-password',[AuthController::class,'admin_create_password_code'])->name('admin-create-password');
+    Route::get('customer-create-password/{token}/{email}',[AuthController::class,'customer_create_password'])->name('customer-create-password');
+    Route::post('customer-create-password',[AuthController::class,'customer_create_password_code'])->name('customer-create-password');
 });
 //General route for country/state/city
 Route::group(['prefix' => 'general', 'as' => 'general.'], function () {
@@ -88,6 +93,11 @@ Route::get('timesheet',function(){
     });
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
+    Route::get('new-general-report', [TestingController::class, 'NewgeneralReport']);
+    Route::get('track-guard', [TestingController::class, 'trackGuard']);
+
+    
+    
    
   Route::get('/email', function(){
   

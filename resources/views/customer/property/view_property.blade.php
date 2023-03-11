@@ -263,13 +263,7 @@ display: inline-flex;
     margin-bottom: -26px;
 }
 
-
-
-
 }
-
-
-
 
 
     </style>
@@ -278,9 +272,6 @@ display: inline-flex;
    <div class="row">               
 <div class="card" style="height: 500px;">
   <br>
-
-       
-            
 
                  <div class="new-area content-right">
                            <div class="app-wrapper">

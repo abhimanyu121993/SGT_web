@@ -2,12 +2,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-
-
     <style>
      
-
-
 .profile-pic {
     width: 200px;
     height: 120px;
@@ -30,6 +26,7 @@ img {
     max-width: 100%;
     height: auto;
 }
+
 .p-image {
   position: absolute;
   top: 167px;
@@ -37,20 +34,21 @@ img {
   color: #666666;
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
+
 .p-image:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
+
 .upload-button {
     font-size: 1.2em;
     float: right;
     margin-right: 498px;
 }
+
 .upload-button:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
   color: #999;
 }
-
-
 
 
     </style>
