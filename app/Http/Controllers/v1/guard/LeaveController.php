@@ -39,7 +39,6 @@ class LeaveController extends Controller
                 'data' => NULL,
                 'message' => $ex->getMessage(),
                 'success' => false,
-                
             ];     
             return response()->json($result);
            }
