@@ -3,8 +3,10 @@
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\v1\ApiAuthController;
 use App\Http\Controllers\v1\GeneralController;
+use App\Http\Controllers\v1\guard\JobController;
 use App\Http\Controllers\v1\guard\ProfileController as GuardProfileController;
 use App\Http\Controllers\v1\guard\LeaveController;
+use App\Http\Controllers\v1\guard\ReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +48,8 @@ Route::post('get-country',[GeneralController::class,'country']);
 Route::post('get-state',[GeneralController::class,'state']);
 Route::post('get-timezone',[GeneralController::class,'time_zone']);
 });
+//Guard Report 
+Route::group(['prefix'=>'report','as'=>'report.'],function(){
+    Route::post('general',[ReportController::class,'general_report']);
+    Route::post('maintenance',[ReportController::class,'maintenance_report']);
+    });

@@ -72,8 +72,9 @@ class PropertyController extends Controller
                 foreach($request->file('property_pic') as $file)
                 {
                     $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
-                    $file->move(public_path('upload/property'),$prop_name);
-                    $mainpic []=$prop_name;
+                    $path=$file->storeAs('property',$prop_name,'public');
+
+                    $mainpic []=$path;
                 }
             }
            
@@ -171,8 +172,8 @@ else{
             foreach($request->file('property_pic') as $file)
             {
                 $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
-                $file->move(public_path('upload/building'),$prop_name);
-                $mainpic[]=$prop_name;
+                $path=$file->storeAs('property',$prop_name,'public');
+                $mainpic[]=$path;
             }
         }
            if (count($mainpic) > 0) {
