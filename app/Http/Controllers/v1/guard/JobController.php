@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AssignedPropertyResource;
 use App\Http\Resources\CheckpointCollection;
 use App\Http\Resources\GeneralReportResource;
 use App\Http\Resources\GuardPropertyResource;
@@ -45,11 +46,10 @@ class JobController extends Controller
     public function guard_properties_details(Request $request)
     {
         try {
-            if ($request->property_id) {
-
-                $properties = Property::find($request->property_id);
+            if ($request->duty_id) {
+                $properties = GuardDuty::with('property')->with('shift')->find($request->duty_id);
                 $res = [
-                    'data' => new GuardPropertyResource($properties),
+                    'data' => new AssignedPropertyResource($properties),
                     'message' => 'property details',
                     'success' => true
                 ];

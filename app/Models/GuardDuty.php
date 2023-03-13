@@ -37,4 +37,9 @@ class GuardDuty extends Model
               $activity->causer_id=Helper::getUserId();
           
       }
+      public function shift()
+      {
+          return $this->belongsTo(Shift::class, 'shift_id');
+      }
+
 }

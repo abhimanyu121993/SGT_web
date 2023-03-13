@@ -146,7 +146,8 @@ else{
         {
             Session::flash('error','Something Went Wrong OR Data is Deleted');
             return redirect()->back();
-        }    }
+        }  
+      }
 
     /**
      * Update the specified resource in storage.
@@ -203,7 +204,8 @@ else{
         catch(Exception $ex){
             Helper::handleError($ex);
         }
-        return redirect()->back();    }
+        return redirect()->back();  
+      }
 
     /**
      * Remove the specified resource from storage.
