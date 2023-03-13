@@ -91,6 +91,7 @@ class PropertyController extends Controller
                 'longitude' => $request->longitude ?? '',
                 'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
                 'property_pics' => json_encode($mainpic),
+                'description'=>$request->description,
 
 
             ]);
@@ -190,6 +191,8 @@ else{
              'address' => $request->address ?? '',
              'lattitude' => $request->lattitude ?? '',
              'longitude' => $request->longitude ?? '',
+             'description'=>$request->description,
+
         ]);
         $request->hasFile('images')?Property::find($id)->update(['file'=>ImageUpload::simpleUpload('property',$request->images,'property')]):'';
         if($res)
