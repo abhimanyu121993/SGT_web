@@ -3,8 +3,10 @@
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\v1\ApiAuthController;
 use App\Http\Controllers\v1\GeneralController;
+use App\Http\Controllers\v1\guard\JobController;
 use App\Http\Controllers\v1\guard\ProfileController as GuardProfileController;
 use App\Http\Controllers\v1\guard\LeaveController;
+use App\Http\Controllers\v1\guard\ReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +31,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('logout', [ApiAuthController::class, 'logged_out']);
     Route::post('change-password',[ApiAuthController::class,'change_password'])->middleware('can:profile');
     Route::apiResource('leave', LeaveController::class)->middleware('can:leave');
-    Route::post('guard-properties',[GuardProfileController::class,'guard_properties'])->middleware('can:profile');
-    Route::post('guard-properties-details',[GuardProfileController::class,'guard_properties_details'])->middleware('can:profile');
-    Route::post('guard-properties-checkpoints',[GuardProfileController::class,'guard_properties_checkpoints'])->middleware('can:profile');
+    Route::post('guard-properties',[JobController::class,'guard_properties'])->middleware('can:profile');
+    Route::post('guard-properties-details',[JobController::class,'guard_properties_details'])->middleware('can:profile');
+    Route::post('guard-properties-checkpoints',[JobController::class,'guard_properties_checkpoints'])->middleware('can:profile');
 
     //Profile Routes
     Route::group(['prefix'=>'profile','as'=>'profile.','middleware'=>'ability:profile,profile_edit'],function(){
@@ -46,3 +48,8 @@ Route::post('get-country',[GeneralController::class,'country']);
 Route::post('get-state',[GeneralController::class,'state']);
 Route::post('get-timezone',[GeneralController::class,'time_zone']);
 });
+//Guard Report 
+Route::group(['prefix'=>'report','as'=>'report.'],function(){
+    Route::post('general',[ReportController::class,'general_report']);
+    Route::post('maintenance',[ReportController::class,'maintenance_report']);
+    });

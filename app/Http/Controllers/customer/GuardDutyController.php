@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\customer\Property;
 use App\Models\GuardDuty;
 use App\Models\SecurityGuard;
+use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -59,7 +60,8 @@ class GuardDutyController extends Controller
                     'route_id' => $request->route,
                     'guard_id' => $request->guard,
                     'shift_id' => $request->shift,
-                    'duty_date'=>$i
+                    'duty_date'=>$i,
+                    'status_id' =>Status::where('name', 'pending')->where('type', 'guard_duty')->first()->id,
                 ]);
             }
            
