@@ -72,8 +72,9 @@ class PropertyController extends Controller
                 foreach($request->file('property_pic') as $file)
                 {
                     $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
-                    $file->move(public_path('upload/property'),$prop_name);
-                    $mainpic []=$prop_name;
+                    $path=$file->storeAs('property',$prop_name,'public');
+
+                    $mainpic []=$path;
                 }
             }
            
@@ -145,7 +146,8 @@ else{
         {
             Session::flash('error','Something Went Wrong OR Data is Deleted');
             return redirect()->back();
-        }    }
+        }  
+      }
 
     /**
      * Update the specified resource in storage.
@@ -171,8 +173,8 @@ else{
             foreach($request->file('property_pic') as $file)
             {
                 $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
-                $file->move(public_path('upload/building'),$prop_name);
-                $mainpic[]=$prop_name;
+                $path=$file->storeAs('property',$prop_name,'public');
+                $mainpic[]=$path;
             }
         }
            if (count($mainpic) > 0) {
@@ -202,7 +204,8 @@ else{
         catch(Exception $ex){
             Helper::handleError($ex);
         }
-        return redirect()->back();    }
+        return redirect()->back();  
+      }
 
     /**
      * Remove the specified resource from storage.

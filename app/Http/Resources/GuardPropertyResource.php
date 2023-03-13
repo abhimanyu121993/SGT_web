@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\GuardDuty;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class GuardPropertyResource extends JsonResource
 {
@@ -16,13 +18,13 @@ class GuardPropertyResource extends JsonResource
     {
        return [
         'id'=>$this->id,
-        'name'=>$this->name,
+        'property_name'=>$this->name,
         'address'=>$this->address,
         'pincode'=>$this->postcode,
         'longitude'=>$this->longitude,
         'lattitude'=>$this->lattitude,
         'thumbnail'=>$this->file,
-        'property_images'=>$this->property_images
+        'property_images'=>$this->property_images,
        ];
 
 }
