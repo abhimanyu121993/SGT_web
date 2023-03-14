@@ -108,7 +108,8 @@
             </div>
         </div>
     </section>
-    <div >
+   
+    <div>
         <div id="address-map-container" style="width:100%;height:400px; ">
             <div style="width: 100%; height: 100%" id="address-map"></div>
         </div>
@@ -202,10 +203,8 @@
         </div>
     </div>
 
-  
-
-
-    <div id="modal1" class="modal modal-fixed-footer">
+ 
+    <div id="modal1" class="modal xmodal modal-fixed-footer" style="width:30% !important;">
 
     </div>
 
@@ -254,7 +253,7 @@
     <script src="{{ asset('app-assets/vendors/chartist-js/chartist.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/chartist-js/chartist-plugin-tooltip.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js') }}"></script>
-    {{-- <script src="{{asset('app-assets/js/scripts/dashboard-modern.js')}}"></script> --}}
+    {{--<script src="{{asset('app-assets/js/scripts/dashboard-modern.js')}}"></script> --}}
     <script>
         $(document).ready(function() {
             new Chartist.Pie("#current-balance-donut-chart", {

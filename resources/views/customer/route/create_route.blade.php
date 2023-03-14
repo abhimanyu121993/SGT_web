@@ -1,7 +1,12 @@
 
- <div class="modal-content">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-todo.css')}}">
+
+
+<div class="modal-content">
      <div class="card-content">
-        <h4>Add Route</h4>
+        <h4 class="ghjhgjh" style="color:black !important;">Create Route</h4>
+
+        <hr style="top: 46px;">
          <div class="live-preview">
              <form action="{{ isset($route) ? route(Session::get('guard').'.route.update', $route->id) : route(Session::get('guard').'.route.store') }}" method="POST" enctype="multipart/form-data">
                  @csrf
@@ -13,36 +18,123 @@
                          <input type="text" class="form-control property_id" id="property_id" name="property_id" value="{{ isset($route) ? $route->property_id : $property_id }}" hidden>
                          <div class="input-field col s12">
                              <input type="text" class="form-control" id="name" name="name" value="{{ isset($route) ? $route->name : old('name') }}">
-                             <label class="active" for="name">{{__('route.name')}}</label>
+                             <label class="active" for="name">{{__('route.name')}}<span style="color:red;">*</span></label>
                          </div>
-                         <div class="file-field input-field col s12" id="image">
-                                <div class="btn">
-                                    <span>Image</span>
-                                    <input type="file" name="images">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text">
-                                </div>
-                            </div>
-                         <div class="input-field col s12">
-                             <input type="color" class="form-control" id="color" name="color" value="{{ isset($route) ? $route->color : old('color') }}">
-                             <label class="active" for="name">{{__('route.color')}}</label>
-                         </div>
+                          
 
                          <div class="input-field col s12">
                              <input type="number" class="form-control" id="time" name="time" value="{{ isset($route) ? $route->complition_time : old('complition_time') }}">
-                             <label class="active" for="time">{{__('route.time')}}</label>
+                             <label class="active" for="time">{{__('route.time')}}<span style="color:red;">*</span></label>
                          </div>
-                         <div class="input-field col s12">
-                             <textarea type="text" class="form-control" id="description" name="description" value="" placeholder="Write Something Here...">{{ isset($route) ? $route->desc : old('desc') }}</textarea>
-                             <label class="active" for="description">{{__('route.description')}}</label>
-                         </div>
+
                          <!--end col-->
                      </div>
-                     <div class="row col s12 mt-2">
-                         <div class="input-field col s12">
-                             <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($route) ? 'Update' : 'Submit' }}</button>
-                         </div>
+                     <div class="row col s12">
+                        
+                        <p style="color:black;"><b>Checkpoints</b><span style="color:red;">*</span>(drag)</p>
+
+ <div class="app-todo">
+  
+    <div class="app-wrapper">
+
+
+          <ul class="collection1 todo-collection">
+            <li class=" todo-items">
+
+              <div class="list-content">
+              
+                 <div class="list-desc">
+              <span class = "number-alex">1.</span><i class="material-icons icon-move">more_vert</i>
+                 <a class="waves-effect waves-light btn jj"><span class="hide-on-small-onl">checkpoint 1</span></a>
+
+                      <a class="waves-effect waves-light btn jj" ><span class="hide-on-small-onl">10 minutes</span></a>
+
+
+                    <div class="delete-task"><i class="material-icons">delete</i></div>
+                 </div>
+
+              </div>
+             
+            </li>
+            <li class="todo-items">
+              
+             
+              <div class="list-content">
+              
+                 <div class="list-desc">
+              <span class = "number-alex">2.</span><i class="material-icons icon-move">more_vert</i>
+                 <a class="waves-effect waves-light btn jj"> <span class="hide-on-small-onl">checkpoint 1</span> </a>
+
+                      <a class="waves-effect waves-light btn jj"> <span class="hide-on-small-onl">10 minutes</span> </a>
+
+
+                    <div class="delete-task"><i class="material-icons">delete</i></div>
+                 </div>
+
+              </div>
+              
+                
+             
+            </li>
+
+
+            <li class="todo-items">
+              
+             
+              <div class="list-content">
+              
+                 <div class="list-desc">
+                 <span class = "number-alex">3.</span><i class="material-icons icon-move">more_vert</i>
+                 <a class="waves-effect waves-light btn jj"><span class="hide-on-small-onl">checkpoint 1</span></a>
+
+                      <a class="waves-effect waves-light btn jj" ><span class="hide-on-small-onl">10 minutes</span></a>
+
+
+                    <div class="delete-task"><i class="material-icons">delete</i></div>
+                 </div>
+
+              </div>
+              
+                
+             
+            </li>
+
+            <li class="todo-items">
+              
+             
+              <div class="list-content">
+              
+                 <div class="list-desc">
+              <span class = "number-alex">4.</span><i class="material-icons icon-move">more_vert</i>
+                 <a class="waves-effect waves-light btn jj" >checkpoint 1</a>
+
+                      <a class="waves-effect waves-light btn jj" >10 minutes</a>
+
+
+                    <div class="delete-task"><i class="material-icons">delete</i></div>
+                 </div>
+
+              </div>
+             
+            </li>
+          </ul>
+
+          <hr>
+
+
+             <a class="waves-effect waves-light btn ww" style="background-color: white;
+                   color: black;">Cancel</a>&nbsp;&nbsp;
+
+                      <a class="waves-effect waves-light btn ww" style="background-color: white;
+                color: black;">Save</a>
+
+
+    </div>
+    </div>
+
+
+
+
                      </div>
                  </div>
 
@@ -52,67 +144,25 @@
      </div>
  
 
-
- <div class="card">
-    <div class="card-content">
-        <h4 class="card-title mb-0 flex-grow-1" id="h1">{{__('route.manage')}}</h4>
-        <table id="page-length-option" class="display nowrap" style="width:100%">
-     <thead>
-         <tr>
-             <th scope="col">{{__('route.sr_no')}}</th>
-             <th scope="col">{{__('route.route')}}</th>
-             <th scope="col">{{__('route.time')}}</th>
-             <th scope="col">{{__('route.is_active')}}</th>
-             <th scope="col">{{__('route.color')}}</th>
-             <th scope="col">{{__('route.description')}}</th>
-             <th scope="col">{{__('route.images')}}</th>
-             <th scope="col">Action</th>
-         </tr>
-     </thead>
-     <tbody>
-         @foreach ($routes as $data)
-         <tr>
-             <th scope="row">{{ $loop->index + 1 }}</th>
-             <td>{{ $data->name??'' }}</td>
-             <td>{{ $data->complition_time??'' }}</td>
-             <td>
-                 <div class="switch">
-                     <label>
-                         <input type="checkbox" value="{{$data->id}}" data-url="{{route('customer.route.active-route',$data->id) }}" class="is_active" id="is_active" {{ $data->is_active==0?'':'checked'   }}>
-                         <span class="lever"></span>
-                     </label>
-                 </div>
-             </td>
-             <td>{{ $data->color??'' }}</td>
-             <td>{{ $data->desc??'' }}</td>
-              <td> <img class="activator" src="{{asset('storage/'.$data->file)??'' }}"  alt="sample" style="height:30px;"></td>
-             <td>
-                 <div class="dropdown">
-                     <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                         <i class="ri-more-2-fill"></i>
-                     </a>
-                     @php $bid=Crypt::encrypt($data->id); @endphp
-                     <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                         <li><a id="pop" class="dropdown-item" href="{{route(Helper::getGuard().'.route.edit',$bid)}}">
-                                 <i class="material-icons light-blue-text text-darken-4">edit</i>
-                             </a></li>
-                         <li><a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();">
-                                 <i class="material-icons danger red-text text-accent-4">delete</i>
-                             </a>
-                         </li>
-                         <form id="delete-form-{{ $bid }}" action="{{ route(Helper::getGuard().'.route.destroy', $bid) }}" method="post" style="display: none;">
-                             @method('DELETE')
-                             @csrf
-                         </form>
-                     </ul>
-                 </div>
-             </td>
-             @endforeach
-         </tr>
-     </tbody>
- </table>
- </div></div>
  </div>
+
+ <script src="{{asset('/app-assets/js/vendors.min.js')}}"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="{{asset('/app-assets/vendors/sortable/jquery-sortable-min.js')}}"></script>
+    <script src="{{asset('/app-assets/vendors/quill/quill.min.js')}}"></script>
+    <script src="{{asset('/app-assets/vendors/select2/select2.full.min.js')}}"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="{{asset('/app-assets/js/plugins.js')}}"></script>
+    <script src="{{asset('/app-assets/js/search.js')}}"></script>
+    <script src="{{asset('/app-assets/js/custom/custom-script.js')}}"></script>
+    <script src="{{asset('/app-assets/js/scripts/customizer.js')}}"></script> 
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="{{asset('/app-assets/js/scripts/app-todo.js')}}"></script>
+
+
 
  <script>
     $('.is_active').on('click', function() {

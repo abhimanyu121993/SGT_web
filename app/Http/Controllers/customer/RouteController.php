@@ -37,6 +37,7 @@ class RouteController extends Controller
     public function create()
     {
         $routes = Route::where('owner_id', Helper::getOwner())->get();
+
         return view('customer.Route.manage_Route', compact('routes'));
     }
 
@@ -93,7 +94,7 @@ class RouteController extends Controller
         $checkpoints = Checkpoint::where('property_id', $id)->get();
         $property_id = $id;
         $routes = Route::where('property_id', $id)->get();
-        return view('customer.route.create_route', compact('checkpoints', 'property_id', 'routes'));    }
+          return view('customer.route.create_route', compact('checkpoints', 'property_id', 'routes'));    }
 
     /**
      * Show the form for editing the specified resource.

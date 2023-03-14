@@ -5,6 +5,7 @@
             @if (isset($checkpoint))
             @method('patch')
             @endif
+
             <div class="row gy-4">
                 <div class="col-xxl-3 col-md-6">
                     <div class="input-field col s4">
@@ -51,7 +52,7 @@
                 </div>
                 <div class="row col s12 mt-2">
                     <div class="input-field col s2">
-                        <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($checkpoint) ? 'Update' : 'Submit' }}</button>
+                        <button class="btn btn-primary" id="btn-btn" type="submit">{{ isset($checkpoint) ? 'Update' : 'Submit'}}</button>
                     </div>
                 </div>
               

@@ -180,7 +180,6 @@
                         'status_id': status_id
                     },
                     success: function(p) {
-
                     }
                 });
             });

@@ -109,6 +109,9 @@
         </div>
 </div>
   </div>
+
+
+
   <div id="modal1"  class="modal modal-fixed-footer">
    </div>
 @endsection

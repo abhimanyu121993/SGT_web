@@ -4,7 +4,7 @@
 .content-area
 {
     width: calc(100% - 280px);
-    margin-top: 49px;
+    margin-top: 0px;
 }
 
 .content-area.content-left
@@ -38,7 +38,7 @@
 {
     min-width: 69px;
 
-    color: #616161;
+  
 }
 
 .content-area .app-wrapper .dataTables_wrapper table.dataTable thead th.background-image-none
@@ -201,15 +201,15 @@
 
 .content-area .app-wrapper .datatable-search .app-filter
 {
-    max-width: calc(100% - 3rem);
-    margin-bottom: .5rem;
-    padding: .2rem;
+    height: 35px;
+    margin-top: 5px;
+    max-width: calc(50% - 3rem);
+    margin-bottom: -0.5rem;
     padding-left: 2.75rem;
-
     border: none;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     background-color: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12), 0 1px 5px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 }
 
 .content-area .app-wrapper .datatable-search .app-filter:focus
