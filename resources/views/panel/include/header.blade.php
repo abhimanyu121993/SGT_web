@@ -28,8 +28,8 @@
                     </li>
                     <li class="divider"></li>
                     @foreach (Auth::guard(Helper::getGuard())->user()->unreadNotifications as $unreadnoti)
-                    <li><a class="black-text" href="#!">{!!$unreadnoti->data['icon']!!} </a>
-                        <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">{{$unreadnoti->created_at->DiffForHumans()}}</time>
+                    <li><a class="black-text tooltipped" href="#!" data-position="bottom" data-tooltip="{{ $unreadnoti->data['description']??'' }}">{!!$unreadnoti->data['icon']!!} {{ $unreadnoti->data['title']??'' }}</a>
+                        <time class="media-meta grey-text darken-2" datetime="{{$unreadnoti->created_at}}">{{$unreadnoti->created_at->DiffForHumans()}}</time>
                     </li>
                     @endforeach
             </ul>

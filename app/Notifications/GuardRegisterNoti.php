@@ -7,20 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CustomerRegisterNoti extends Notification
+class GuardRegisterNoti extends Notification
 {
     use Queueable;
 
+    protected $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public $customer;
-
-    public function __construct($customer)
+    public function __construct($user)
     {
-        $this->customer=$customer;
+        $this->user=$user;
     }
 
     /**
@@ -58,9 +57,8 @@ class CustomerRegisterNoti extends Notification
     {
         return [
             'icon'=>'<span class="material-icons icon-bg-circle red small">face</span>',
-            'title'=>'New Customer Registered',
-            'description'=>'customer- '.$this->customer->name.'has been created',
-
+            'title'=>'New Guard Registered',
+            'description'=>'User - '.$this->user->name.' has been created',
         ];
     }
 }
