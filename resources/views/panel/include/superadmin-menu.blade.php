@@ -3,7 +3,7 @@
     <li class=" {{ strpos(Route::currentRouteName(), 'dashboard') !== false ? 'active' : '' }} bold">
         <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'dashboard') !== false ? 'active' : '' }}"
             href="{{ route(Session::get('guard') . '.dashboard') }}">
-            <i class="material-icons">settings_input_svideo</i><span class="menu-title"
+            <i class="material-icons">album</i><span class="menu-title"
                 data-i18n="Pages">{{ __('sidebar.dashboard') }}</span>
         </a>
     </li>

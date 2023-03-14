@@ -16,5 +16,10 @@ class TestingController extends Controller
    }
 
 
+   public function guardtrack()
+   {
+  return view('test.track_guard');
+   }
+
    
 } 

@@ -140,25 +140,25 @@ class RoleController extends Controller
      */
      //For deleting the data from role table.
 
-    public function destroy($id)
-    {
-        $id = Crypt::decrypt($id);
-        try{
-        $data=Role::find($id);
-        if($data->delete())
-        {
-           session()->flash('success','Data Deleted successfully.');
-        }
-        else
-        {
-           session()->flash('error','Data not deleted.');
-        }  
-    }
-    catch(Exception $ex){
-        Helper::handleError($ex);
-    }
-    return redirect()->back();  
-    }
+     public function destroy($id)
+     {
+         $id = Crypt::decrypt($id);
+      try{
+        $role= Role::findOrFail($id);
+         if($role->delete())
+         {
+             return redirect()->back()->with('success','Data Deleted successfully.');
+         }
+         else
+         {
+             return redirect()->back()->with('error','Data not deleted.');
+         }  
+     }
+     catch(Exception $ex){
+         Helper::handleError($ex);
+     }
+     return redirect()->back();
+     }
        //For assigning the permission.
     public function assign_permission()
     {

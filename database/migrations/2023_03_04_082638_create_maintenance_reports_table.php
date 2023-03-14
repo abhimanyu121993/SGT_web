@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('property_id')->comment('Id of Property table');
             $table->unsignedBigInteger('guard_id')->comment('Id of SecurityGuard table');
+            $table->unsignedBigInteger('duty_id')->comment('Id of Duty table');
             $table->string('title')->comment('title of report');
             $table->longText('notes')->comment('description of report');
             $table->json('record_sample')->nullable()->comment('Record related file');

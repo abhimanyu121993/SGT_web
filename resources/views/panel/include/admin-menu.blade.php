@@ -1,7 +1,8 @@
 <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
     <li class=" {{ strpos(Route::currentRouteName(), 'dashboard') !== false ? 'active' : '' }} bold">
         <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'dashboard') !== false ? 'active' : '' }}" href="{{ route(Session::get('guard') . '.dashboard') }}">
-            <i class="material-icons">settings_input_svideo</i><span class="menu-title" data-i18n="1">{{ __('sidebar.dashboard') }}</span>
+            <i class="material-icons">album
+</i><span class="menu-title" data-i18n="1">{{ __('sidebar.dashboard') }}</span>
         </a>
     </li>
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('role', Session::get('guard')) ||
@@ -57,7 +58,7 @@
     @endif
     @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user', Session::get('guard')))
     <li class=" {{ strpos(Route::currentRouteName(),  Session::get('guard').'.user') !== false ? 'active open' : '' }} bold ">
-        <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), Session::get('guard') .'.user') !== false ? 'active' : '' }} " href="JavaScript:void(0)"><i class="material-icons">person</i><span class="menu-title" data-i18n="Authentication">{{ __('sidebar.staff') }} </span></a>
+        <a class="collapsible-header waves-effect waves-cyan {{ strpos(Route::currentRouteName(), Session::get('guard') .'.user') !== false ? 'active' : '' }} " href="JavaScript:void(0)"><i class="material-icons">person_pin</i><span class="menu-title" data-i18n="Authentication">{{ __('sidebar.staff') }} </span></a>
         <div class="collapsible-body" style="{{ strpos(Route::currentRouteName(),  Session::get('guard') .'.user') !== false ? 'display:block' : '' }}">
             <ul class="collapsible collapsible-sub" data-collapsible="accordion">
                 @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_create', Session::get('guard')))
@@ -99,11 +100,11 @@
     </li>
     @endif
     <li class=" {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active open' : '' }} bold ">
-        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i class="material-icons">people</i><span class="menu-title">{{ __('leave.leave_management') }}</span></a>
+        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave-management') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.leave-management.index') }}"><i class="material-icons">border_color</i><span class="menu-title">{{ __('leave.leave_management') }}</span></a>
     </li>
 
     <li class=" {{ strpos(Route::currentRouteName(), 'leave.create') !== false ? 'active open' : '' }} bold ">
-        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave.create') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.leave.create') }}"><i class="material-icons">people</i><span class="menu-title">{{ __('leave.staff_leave_request') }}</span></a>
+        <a class="waves-effect waves-cyan {{ strpos(Route::currentRouteName(), 'leave.create') !== false ? 'active' : '' }} " href="{{ route(Session::get('guard') . '.leave.create') }}"><i class="material-icons">account_box</i><span class="menu-title">{{ __('leave.staff_leave_request') }}</span></a>
     </li>
 
 </ul>

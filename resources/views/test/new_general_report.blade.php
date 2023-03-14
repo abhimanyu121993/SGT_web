@@ -58,42 +58,26 @@
            <div class="row">
             <div class="col s12 m4 l2">
             <div class="input-field">
-                <select class="select2 browser-default" multiple="multiple" style="width: 15.33333% !important">
-                  <optgroup label="Export">
-                  <option value="Last Week" selected>Last Week</option>
-                  <option value="Last Month"> Last Month</option>
-                  <option value="Year to Date">Year to Date</option>
-                    <option  value="Range Date">Range date </option>
-                  </optgroup>
-               </select>
-                        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1' style="margin-top: 95px; background:white;  color: #244B8A; width: 164.719px!important;">Export</a> -->
-                <!-- <ul id='dropdown1' class='dropdown-content' style="color: #244B8A; width: 200px;">
-                     <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px;"> Last Week </span></a></li>
-                      <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px;">   <span></a></li>
-                    <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px; ">Yearto Date <span></a></li>
-                    <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      
-                      <span style="font-size:12px;"> Date Range <span></a></li>
-                      <span style="font-size:12px; "> <input type="date"> <span></a></li>
-                        <li><input type="date"></li>         
-                      <a class='dropdown-trigger btn mb-2' href='#'  style="float:right;"data-target='dropdown1'>Apply</a>
-                        
-                </ul> -->
+           <div id="view-flat-button">
+            <div class="row">
+              <div class="col s12 mt-3">
+                <div class="col s12 m4 l2">
+                <a class="btn-flat mb-1 dropdown-trigger waves-effect" href="#!" data-target="dropdown562" style="background:white;color: #244B8A;     margin-top: 78px;">Export<i
+                    class="material-icons right">arrow_drop_down</i></a>
+                <ul id="dropdown562" class="dropdown-content">
+                  <li ><a href="#!" class="-text" style="color:#244B8A;">Last Week </a>
+                  </li>
+                  <li ><a href="#!" class="-text" style="color:#244B8A;">Last Month</a>
+                  </li>
+                  <li ><a href="#!" class="-text" style="color:#244B8A;">Year to Date</a>
+                  </li>
+                  <li><a href="#!" class="-text" style="color:#244B8A;">Date Range</a>
+                 </li>
+                 
+                </ul>
+              </div>
+            </div>
+          </div>
              </div>
             </div>
            </div> 
@@ -104,75 +88,38 @@
 @endsection
 @section('content-area')
 <div class="row">
-    <div class="col s12 m4 l2">
-    <div class="input-field">
-     <select class="select2 browser-default" multiple="multiple">
-    <optgroup label="Property">
-      <option value="Property 1"selected>Property 1</option>
-      <option value="Property 2">Property 2</option>
-      <option value="Property 3">Property 3</option>
-    </optgroup>
-  </select>
-</div>
-
-<!-- </div> -->
-     <!-- <a class='dropdown-trigger-KK btn filterbtn' href='#' data-target='dropdown11'>Property </a>
-     <ul id='dropdown11' class='dropdown-content' style="color: #244B8A; width: 200px;">
-                     <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px;">Property1 </span></a></li>
-                      <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px;">Property2 <span></a></li>
-                    <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                        <span></span>
-                      </label>
-                      <span style="font-size:12px;">Property3<span></a></li>
-                    <li><a href="#!" style="color:#244B8A;"> <label>
-                        <input type="checkbox" class="select-all" />
-                      </label>
-                      <a class='dropdown-trigger btn' data-target='dropdown1' style="color:white;padding-top:10px !important">Apply</a>
-                     
-                </ul> -->
+    <div class="col s12 m4 l3">
+    
+     <select class="select2 browser-default"  id="propertyList" name="property">
+        <option> Property List</option>  
+        <option value="">Property 1</option>
+        <option value="">Property 2</option>
+        <option value="">Property 3</option>
+       </select>            
     </div>
-    <div class="col s12 m4 l8">
+    <div class="col s12 m4 l7">
     <div class="input-container" style="display: flex;
       width: 100%;
       margin-bottom: 15px; border-radius :10px;
-">
+    ">
     <i class="material-icons"  style="margin-top: 17px;">search</i>
     <input class="input-field" type="search" placeholder="Search by Guard name , shift name..." name="search">
   </div>
     </div>
     <div class="col s12 m4 l2">
-    <div class="input-field">
-                <select class="select2 browser-default" multiple="multiple">
-                  <optgroup label="Filter">
-                  <option value="General Reports" selected>General Reports</option>
-                  <option value="Maintenance Repots"> Maintenance Repots</option>
-                  <option value="Parking Reports">Parking Reports</option>
-                    <option  value="Emergency Reports">Emergency Reports</option>
-                  </optgroup>
-               </select>
-    <!-- <a class='dropdown-trigger-gggg btn filterbtn' href='#' data-target='dropdown12'>Filter</a>
-    <ul id='dropdown12' class='dropdown-content'>
-    <li><a href="#!">General Reports</a></li>
-    <li><a href="#!">Maintenance Repots</a></li>
-    <li><a href="#!"> Parking Reports</a></li>
-    <li><a href="#!">Emergency Reports</a></li> 
-    </ul> -->
+      <select class="select2 browser-default"  id="Filter" name="filter">
+        <option value="">Filter</option>  
+        <option value="">General Reports</option>
+        <option value="">Parking Reports</option>
+        <option value="">Emergency Reports</option>
+       </select> 
     </div>
  </div>
 
  <div class="row  end">
  <div class="col s12 m4 l4">
  </div>
- <div class="col s12 m4 l8">
+ <div class="col s12 m4 l8 mt-2">
  <a class="waves-effect waves-light  btn exporttbtn">Export</a>
  <a class="waves-effect waves-light  btn deletebtn">Delete</a>
  </div>
@@ -182,8 +129,7 @@
    <div class="col s12">
       <div class="card">
          <div class="card-content">
-            <h4 class="card-title">{{__('guardshift.guard_shift' )}}
-            </h4>
+         
             <div class="row">
                <div class="col s12">
                   <table id="page-length-option" class="display nowrap" style="width:100%">
@@ -219,7 +165,7 @@
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
-                           <td><a href="#modal4" class="waves-effect waves-light modal-trigger">Emergency</a></td> 
+                           <td><a href="#modal4" class="waves-effect waves-light modal-trigger"  style="color: #6b6f82; text-decoration: underline;">Emergency</a></td> 
                            <td>
                            <i class="material-icons"> file_download</i>
                            <i class="material-icons"> delete</i>
@@ -239,7 +185,7 @@
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
-                           <td> <a href="#modal1" class="waves-effect waves-light modal-trigger">Parking</a></td> 
+                           <td> <a href="#modal3" class="waves-effect waves-light modal-trigger"   style="color: #6b6f82; text-decoration: underline;">Parking</a></td> 
                            <td>
                            <i class="material-icons"> file_download</i>
                            <i class="material-icons"> delete</i>
@@ -259,7 +205,7 @@
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
-                           <td><a href="#modal1" class="waves-effect waves-light modal-trigger">General</a></td> 
+                           <td><a href="#modal1" class="waves-effect waves-light modal-trigger"   style="color: #6b6f82; text-decoration: underline;">General</a></td> 
                            <td>
                            <i class="material-icons"> file_download</i>
                            <i class="material-icons"> delete</i>
@@ -278,7 +224,7 @@
                            <td>Rivi properties</td>
                            <td>ASDF</td>
                            <td>2:00PM</td>
-                           <td ><a href="#modal2" class="waves-effect waves-light modal-trigger">Maintenance</a></td> 
+                           <td ><a href="#modal2" class="waves-effect waves-light modal-trigger"  style="color: #6b6f82; text-decoration: underline;">Maintenance</a></td> 
                            <td>
                            <i class="material-icons"> file_download</i>
                            <i class="material-icons"> delete</i>
@@ -301,24 +247,24 @@
             <form class="formValidate0" id="formValidate0" method="get">
                <div class="row">
                   <div class="input-field col s12">
-                     <label for="uname0">Guard Name*</label>
-                     <input class="validate" required id="uname0" name="uname0" type="text">
+                     <label for="uname0" id="lableformodel">Guard Name</label>
+                     <input class="validate" required id="uname0" name="uname0" type="text" placeholder="Guard Name">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cemail0">Shift assigned *</label>
-                     <input class="validate" required id="cemail0" type="text" name="cemail0">
+                     <label for="cemail0"id="lableformodel">Shift assigned </label>
+                     <input class="validate" required id="cemail0" type="text" name="cemail0" placeholder="Shift assigned">
                   </div>
                   <div class="input-field col s12">
-                     <label for="property">Property Name *</label>
-                     <input class="validate" required id="" type="text" name="">
+                     <label for="property"id="lableformodel" >Property Name </label>
+                     <input class="validate" required id="" type="text" name="" placeholder="Property Name">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cpassword0">Title *</label>
-                     <input class="validate" required id="cpassword0" type="password" name="cpassword0">
+                     <label for="cpassword0" id="lableformodel">Title</label>
+                     <input class="validate" required id="cpassword0" type="password" name="cpassword0" placeholder="Title">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cpassword0">Note *</label>
-                     <input class="validate" required id="cpassword0" type="password" name="cpassword0">
+                     <label for="cpassword0" id="lableformodel">Note </label>
+                     <input class="validate" required id="cpassword0" type="password" name="cpassword0" placeholder="Note">
                   </div>
                   <p>Recorded Image Sample</p>
                   <div class="row">
@@ -351,7 +297,8 @@
             </form>
             <div class="modal-footer right" >
             <div class="input-field col s12">
-            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action"> Download</button>
+            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action" style="background:#244B8A;
+            color: antiquewhite !important; float:right;"> Download</button>
            </div>
           </div>
          </div>
@@ -367,24 +314,24 @@
             <form class="formValidate0" id="formValidate0" method="get">
                <div class="row">
                   <div class="input-field col s12">
-                     <label for="uname0">Guard Name*</label>
-                     <input class="validate" required id="uname0" name="uname0" type="text">
+                     <label for="uname0" id="lableformodel">Guard Name</label>
+                     <input class="validate" required id="uname0" name="uname0" type="text" placeholder="Guard Name">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cemail0">Shift assigned *</label>
-                     <input class="validate" required id="cemail0" type="text" name="cemail0">
+                     <label for="cemail0"id="lableformodel">Shift assigned </label>
+                     <input class="validate" required id="cemail0" type="text" name="cemail0" placeholder=">Shift assigned">
                   </div>
                   <div class="input-field col s12">
-                     <label for="property">Property Name *</label>
-                     <input class="validate" required id="" type="text" name="">
+                     <label for="property"id="lableformodel" >Property Name </label>
+                     <input class="validate" required id="" type="text" name="" placeholder="Property Name">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cpassword0">Title *</label>
-                     <input class="validate" required id="cpassword0" type="password" name="cpassword0">
+                     <label for="cpassword0" id="lableformodel">Title</label>
+                     <input class="validate" required id="cpassword0" type="password" name="cpassword0" placeholder="Title">
                   </div>
                   <div class="input-field col s12">
-                     <label for="cpassword0">Note *</label>
-                     <input class="validate" required id="cpassword0" type="password" name="cpassword0">
+                     <label for="cpassword0" id="lableformodel">Note </label>
+                     <input class="validate" required id="cpassword0" type="password" name="cpassword0" placeholder="Note">
                   </div>
                   <p>Recorded Image Sample</p>
                   <div class="row">
@@ -417,7 +364,8 @@
             </form>
             <div class="modal-footer right" >
             <div class="input-field col s12">
-            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action"> Download</button>
+            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action" style="background:#244B8A;
+       color: antiquewhite !important; float:right;"> Download</button>
            </div>
           </div>
          </div>
@@ -429,41 +377,51 @@
    <div class="modal-content">
       <p class="Parking">Parking Report</p>
       <form>
-         <div class="row">
-            <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Guard Name</label>
+           <div class="row">
+           <div class="input-field col m6 s6">
+              <label for="Guard_name" id="lableformodel">Guard Name</label>
+               <input  id="Guard_name" type="text" class="validate" placeholder="Guard Name" >
             </div>
             <div class="input-field col m6 s6">
-               <input placeholder="Vehicle Name" id="icon_email" type="number" class="validate">
-               <label for="icon_email">Vehicle Name</label>
+                <label for="model" id="lableformodel">Model</label>
+               <input placeholder="Model" id="model" type="number" class="model">
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col m6 s6">
+                <label for="shiftassigned" id="lableformodel">Shift assigned</label>
+                <input placeholder="Empire Polo Fields" id="shiftassigned" type="number" class="validate">
+
+            </div> 
+            <div class="input-field col m6 s6">
+             <label for="vehicle" id="lableformodel">Vehicle Name</label>
+            <input placeholder="7978980890890890" id="icon_prefix2" type="number"  class="validate">
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col m6 s6">
+              <label for="propertyname" id="lableformodel">Property Name</label>
+               <input placeholder=" Property Name" id="icon_prefix2" type="text" id="propertyname" class="validate">
             </div>
             <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Shift assigned</label>
+                <label for="white" id="lableformodel">Color</label>
+               <input placeholder="white" id="icon_prefix2" type="text" id="white" class="validate">
+                  </div>
+            </div>
+            <div class="row">
+            <div class="input-field col m6 s6">
+            <label for="title" id="lableformodel">Title</label>
+               <input placeholder="Title" id="icon_prefix2" type="text" class="validate" id="title">
+            
             </div>
             <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="number" class="validate">
-               <label for="icon_prefix2">Model</label>
+            <label for="licensenumber" id="lableformodel">License Number</label>
+               <input placeholder="License Number" id="licensenumber" type="number" class="validate">
             </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Property Name</label>
             </div>
+            <div class="row">     
             <div class="input-field col m6 s6">
-               <input placeholder="white" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Color</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Title</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="License Number" id="icon_prefix2" type="number" class="validate">
-               <label for="icon_prefix2">License Number</label>
-            </div>
-            <p>Recorded Image Sample</p>
-            <div class="input-field col m6 s6">
+            <h6 id="" style="padding:7px;">Recorded Image Sample</h6>
                <div class="row">
                   <div class="col s12 m6 l3">
                      <img src="../../../app-assets/images/gallery/6.png"  class="parking_image"> 
@@ -478,13 +436,7 @@
                      <img src="../../../app-assets/images/gallery/6.png"  class="parking_image"> 
                   </div>
                </div>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">State</label>
-            </div>
-            <p>Recorded Video Sample</p>
-            <div class="input-field col m6 s6">
+               <h6 id="" style="padding:7px;">Recorded video Sample</h6>
                <div class="row">
                   <div class="col s12 m6 l3">
                      <video width="45" height="45" controls class="parking_vdo" >
@@ -515,119 +467,140 @@
                      </video>
                   </div>
                </div>
+              </div>  
+              <div class="input-field col m6 s6" >
+               <label for="state"  id="lableformodel">State</label>
+               <input placeholder="State" id="state" type="text" class="validate">
+             
             </div>
+            </div>
+            <div class="row">
             <div class="input-field col m6 s6">
-               <input placeholder="NO" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Towed</label>
-            </div>  
-         </div>
-      </form>
-       <div class="modal-footer right" >
-            <div class="input-field col s12">
-            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action"> Download</button>
-           </div>
-          </div>
+            </div>
+            <div class="input-field col m6 s6" style=" margin-top: -72px;">
+              <label for="towed"  id="lableformodel">Towed</label>
+               <input placeholder="NO" id="towed" type="text" class="validate">
+            </div>
+            </div>
+            <div class="row">
+            <div class="input-field col m6 s6">
+            </div>
+            <div class="input-field col m6 s6" >
+            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action" style="background:#244B8A;
+                      color: antiquewhite !important; float:right;"> Download</button>
+            </div>
+            </div>
+
+
+
+   
    </div>
 </div>
 <!-- Emergency Report -->
 <div id="modal4" class="xmodal modal"  style="width: 504px;">
    <div class="modal-content">
       <p class="Parking">Emergency Report</p>
-      <form>
-         <div class="row">
-            <div class="input-field col m6 s6">
-               <input placeholder="John Doe" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Guard Name</label>
-            </div>
-            <p>People Involved</p>
-            <div class="input-field col m6 s6">
-               <input placeholder="Name"  type="text" class="validate">
-               <label for="">Name</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Empire Polo Fields" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Title</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Phone Number" id="icon_prefix2" type="number" class="validate">
-               <label for="icon_prefix2">Phone Number</label>
-            </div>
-            <p class="headingg">Emergency Date & Time</p>
-            <div class="input-field col m6 s6">
-               <div class="row">
+      <div class="col s12">
+         <div id="html-view-validations">
+         <h6 style="text-align: center;
+         margin-top: -34px;
+         margin-left: 147px;">People Involved</h6>
+         &nbsp;
+            <form class="formValidate0" id="formValidate0" method="get" >
+        
+                  <div class="row"style="margin-top:10px;" >
                   <div class="input-field col m6 s6">
-                     <input placeholder="date" id="icon_prefix2" type="date" class="validate">
-                     <label for="icon_prefix2">Date</label>
+                     <label for="Guard_name" id="lableformodel">Guard Name</label>
+                     <input  id="Guard_name" type="text" class="validate" placeholder="Guard Name" >
                   </div>
                   <div class="input-field col m6 s6">
-                     <input placeholder="time"  type="time" class="validate">
-                     <label for="">Time</label>
+                        <label for="name" id="lableformodel">Model</label>
+                       <input  id="name" type="number" class="model" placeholder="Anushka">
                   </div>
-               </div>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Witness" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Witness</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Action Taker" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Action Taker</label>
-            </div>
-           
-            <div class="input-field col m6 s6">
-               <div class="row headingg">
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
                   <div class="input-field col m6 s6">
-                     Location
+                     <label for="title" id="lableformodel">Title</label>
+                     <input  id="title" type="text" class="validate" placeholder="Empire Polo Fields" >
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="phone" id="lableformodel">Phone Number</label>
+                       <input  id="name" type="number" id="phone" class="model" placeholder="78787877887">
+                  </div>
+                 </div>
+                   <h6>Emergency Date & Time</h6>
+                   <div class="row"style="margin-top:10px;" >
+                   <div class="input-field col m6 s6">
+                   <div class="row"style="margin-top:10px;" >
+                   <div class="input-field col m6 s6">
+                     <label for="title" id="lableformodel">Date</label>
+                     <input  id="title" type="date" class="validate" placeholder="Date">
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="time" id="lableformodel">Time</label>
+                       <input  id="time" type="time" id="phone" class="model" placeholder="Time">
+                  </div>
+                 </div>
+                  </div>
+                  <h6>&nbsp;&nbsp; &nbsp;Witness</h6>
+                   &nbsp;
+                   <div class="input-field col m6 s6">
+                        <label for="name" id="lableformodel">Name</label>
+                       <input  id="name" type="text" id="phone" class="model" placeholder="KV Sir">
+                  </div>
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                   <h6>Location</h6>
+                  <div id="googleMap" style="width:100%;height:100px;"></div>
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="phone" id="lableformodel">Phone Number</label>
+                       <input  id="name" type="number" id="phone" class="model" placeholder="898989900">
+                  </div>
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                 
+                  <label for="name" id="lableformodel"> Emergency Details</label>
+                   <input  id="name" type="number" id="phone" class="model" placeholder="ABCD......">
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="action" id="lableformodel">Action Taker</label>
+                       <input  id="action" type="number" id="phone" class="model" placeholder="ASDFG.........">
+                  </div>
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                  <!-- <label for="name" id="lableformodel">Emergency Details</label>
+                   <input  id="name" type="number" id="phone" class="model" placeholder="ABCD......"> -->
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="police" id="lableformodel">Police report#</label>
+                       <input  id="police" type="number" id="phone" class="model" placeholder="ASDFG.........">
+                  </div>
+                 </div>
+
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                  <div class="row">
+                  <div class="col s12 m6 l3">
+                     <img src="../../../app-assets/images/gallery/6.png"  class="parking_image"> 
+                  </div>
+                  <div class="col s12 m6 l3">
+                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
+                  </div>
+                  <div class="col s12 m6 l3">
+                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
+                  </div>
+                  <div class="col s12 m6 l3">
+                     <img src="../../../app-assets/images/gallery/6.png"  class="parking_image"> 
                   </div>
                </div>
-               <div id="googleMap" style="width:100%;height:100px; border-radius:10px;"></div>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Police report#" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Police report#</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Officer Name#" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Officer Name#</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Officer#" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Officer#</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="Emergency Details" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Emergency Details</label>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">State</label>
-            </div>
-            <p>Recorded Image Sample</p>
-            <div class="input-field col m6 s6">
+               <h6 id="" style="padding:7px;">Recorded video Sample</h6>
                <div class="row">
                   <div class="col s12 m6 l3">
-                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
-                  </div>
-                  <div class="col s12 m6 l3">
-                     <img src="../../../app-assets/images/gallery/6.png" class="parking_image"> 
-                  </div>
-               </div>
-            </div>
-            <div class="input-field col m6 s6">
-               <input placeholder="NO" id="icon_prefix2" type="text" class="validate">
-               <label for="icon_prefix2">Towed</label>
-            </div>
-            <p>Recorded Video Sample</p>
-            <div class="input-field col m6 s6">
-               <div class="row">
-                  <div class="col s12 m6 l3">
-                     <video width="45" height="45" controls  class="parking_vdo">
+                     <video width="45" height="45" controls class="parking_vdo" >
                         <source src="" type="video/mp4">
                         <source src="movie.ogg" type="video/ogg">
                         Your browser does not support the video tag.
@@ -648,19 +621,43 @@
                      </video>
                   </div>
                   <div class="col s12 m6 l3">
-                     <video width="45" height="45" controls class="parking_vdo"> 
+                     <video width="45" height="45" controls class="parking_vdo">
                         <source src="movie.mp4" type="video/mp4">
                         <source src="movie.ogg" type="video/ogg">
                         Your browser does not support the video tag.
                      </video>
                   </div>
                </div>
-            </div>
-         </div>
-      </form>
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="officer" id="lableformodel">Officer Name#</label>
+                       <input  id="officername" type="text"  class="model" placeholder="ASDFG.........">
+                  </div>
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="OfficerOfficer" id="lableformodel">#Officer</label>
+                       <input  id="Officer" type="text"  class="model" placeholder="dev">
+                  </div>
+                 </div>
+                 <div class="row"style="margin-top:10px;" >
+                  <div class="input-field col m6 s6">
+                  </div>
+                  <div class="input-field col m6 s6">
+                        <label for="tomed" id="lableformodel">Tomed</label>
+                       <input  id="tomed" type="text"  class="model" placeholder="Yes">
+                  </div>
+                 </div>
+                 </form>
+                </div>
+               </div>
+
       <div class="modal-footer right" >
             <div class="input-field col s12">
-            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action"> Download</button>
+            <button class="btn waves-effect waves-light breadcrumbs-btn" type="submit" name="action" style="background:#244B8A;
+       color: antiquewhite !important; float:right;"> Download</button>
            </div>
           </div>
    </div>
@@ -701,5 +698,29 @@
     maximumSelectionLength: 2,
     placeholder: "Select maximum 2 items"
 });
+
 </script>
+
+<script>
+function myMap() {
+var mapProp= {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+
+<!-- 
+<script>
+ $(".select-all").click(function(e){
+  e.preventDefault(e);
+
+
+  alert('ewrer');
+});  
+</script> -->
+
 @endsection

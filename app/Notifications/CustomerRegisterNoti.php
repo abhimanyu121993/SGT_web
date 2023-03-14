@@ -59,7 +59,7 @@ class CustomerRegisterNoti extends Notification
         return [
             'icon'=>'<span class="material-icons icon-bg-circle red small">face</span>',
             'title'=>'New Customer Registered',
-            'description'=>'customer- ',
+            'description'=>'customer- '.$this->customer->name.'has been created',
 
         ];
     }

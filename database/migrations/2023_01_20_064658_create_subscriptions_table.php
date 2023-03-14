@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedbiginteger('status_id')->nullable()->comment('status of subscription');
             $table->boolean('limit')->default(false)->comment('validation of limitation if exist');
             $table->boolean('life_time')->default(false)->comment('Is this subscription for lifetime ?');
+            $table->boolean('chat')->default(false)->comment('validation of chat if exist');
             $table->string('icon')->nullable()->comment('icon of the subscription');
             $table->string('img')->nullable()->comment('image of the subscription');
             $table->string('color')->nullable()->comment('text colour of the subscription');

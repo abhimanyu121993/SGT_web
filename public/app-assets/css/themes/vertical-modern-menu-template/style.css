@@ -1,6 +1,11 @@
 /*-------------------------------------------------
 	Style file contain theme components style
 -------------------------------------------------*/
+
+
+
+
+
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
   /* komal code */
@@ -13,12 +18,174 @@
     background:radial-gradient(red, transparent) !important;
      border-radius:30px !important;  
 }
+    .genrel{
+        font-size: 22px;
+    margin-left: 18px;
+    font-weight: 900;   
+    }
+    .div#modal1{
+        width: 348px !important;
+        border-radius: 10px;
+    }
+    .generalImage{
+        height:45px; 
+        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
+         0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+         border-radius:7px;  
+    }
+    .Parking{
+        font-size: 22px;
+        font-weight: 900;      
+    }
+    .parking_image{
+        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
+        0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+        border-radius:7px;
+        height:40px;
+
+    }
+    img.parking_image {
+        margin-left: -15px;
+    }
+    .parking_vdo{
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+    border-radius:7px;
+    height:45px;  
+    }
+
+    video.parking_vdo {
+        margin-left: -16px;
+    }
+    .headingg{
+        margin-top:10px;
+        margin-left: 10px;
+    }
+    .Location{
+        margin-top:30px;  
+        margin-left: 10px;
+    }
+  .cardhedding{
+    margin-left: -12px !important;
+    font-weight: bold !important;
+    color: #244B8A;
+   }
+   .cardimage{
+    margin-top: -43px;
+    font-size: 45px;
+   float: right;
+   color: #244B8A;
+   }
+
+.jj{
+  
+background-color: white;
+color: black;
+font-size: 52%;
+margin-right: 10px;
 
 
+}
+.deletebtn{
+    float:right;
+    background:white;
+    color: #244B8A !important;
+   }
+  .exporttbtn{
+    float:right;
+    background:white;
+   color: #244B8A !important;
+   margin-left:10px;
+}
+  
+background-color: white;
+    color: black;
+    font-size: 52%;
+    margin-right: 10px;
+.filterbtn{
+    background:#244B8A;
+    color: white !important;
+}
+
+.downloadbtn{
+    background:#244B8A;
+    color: white;  
+}
+#lableformodel{
+    margin-top: -16px !important;
+    font-size: 19px !important;
+    color:#244B8A !important;
+    font-weight: bold !important;
+}
+
+.ww{
+
+margin-top: 70px;
+
+float:right;
+
+margin-left: 10px;
+
+margin-bottom:-20px;
+}
 
 
+.list-content {
+    height: auto;
+    margin: 7px;
+}
 
-/* new code */
+
+.delete-task{
+
+
+    float:right;
+}
+
+.list-desc{
+    font-size:small;
+    display: flex;
+  
+}
+
+.ghjhgjh {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px !important;
+    line-height: 21px !important;
+    letter-spacing: -0.25px;
+    color: #FFFFFF !important;
+}
+
+
+#modal2 {
+    position: fixed;
+    right: 0;
+    left: 0;
+    display: none;
+    overflow-y: auto;
+    width: 50%;
+    max-height: 70%;
+    margin: auto;
+    padding: 0;
+    border-radius: 2px;
+    background-color: #fafafa;
+    will-change: top, opacity;
+}
+
+
+hr{
+
+    position: absolute;
+    width: 99%;
+    height: auto;
+    left: 0px;
+    border: 1px solid #D8D8DD;
+
+}
+
+
 
 .langlang{
 
@@ -60,7 +227,7 @@ top: -10px !important;
 
 .newlightbutton{
 
-     margin-right: 391px;
+    margin-right: 391px;
     margin-top: -42px;
     background-color: white !important;
 }
@@ -163,7 +330,7 @@ display: grid;
 }
 
 .circle1{
-background: gray;
+/* background: gray;
     position: relative;
     width: 1.5em;
     height: 1.5em;
@@ -171,27 +338,27 @@ background: gray;
     border-radius: 100%;
     color: #fff;
     text-align: center;
-    box-shadow: 0 0 0 3px #fff;
+    box-shadow: 0 0 0 3px #fff; */
 
 
 }
 
 .circle {
-    background: gray;
-    position: relative;
+    /* background: gray; */
+    /* position: relative;
     width: 0.5em;
     height: 0.5em;
-    line-height: 11.5em;
-    border-radius: 100%;
+    line-height: 11.5em; */
+    /* border-radius: 100%; */
     color: #fff;
     text-align: center;
-    box-shadow: 0 0 0 3px #fff;
+    /* box-shadow: 0 0 0 3px #fff; */
 }
 
 
 .circle:after {
     content: ' ';
-    position: absolute;
+    /* position: absolute; */
     display: block;
     top: -48px;
     right: 50%;
@@ -199,7 +366,7 @@ background: gray;
     left: 50%;
     height: 777%;
     width: 1px;
-    transform: scale(2, 2);
+    /* transform: scale(2, 2); */
     transform-origin: 50% -100%;
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 1px;
@@ -2913,8 +3080,11 @@ border : 0px solid #000000;
 
 .white-text
 {
+    margin-top: 1%;
+    position: relative;
+    display: flex;
     color: black !important;
-}
+ }
 
 .transparent
 {
@@ -3004,9 +3174,10 @@ select
     height: 3rem;
     padding: 5px;
 
-    border: none;
+    /* border: none; */
+
     border-bottom: 1px solid #bdbdbd;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: transparent;
 }
 
@@ -4185,7 +4356,8 @@ h4,
 h5,
 h6
 {
-    font-family: 'Muli', sans-serif;
+    /* font-family: 'Muli', sans-serif; */
+     font-family: Inter;
     font-weight: 400;
     line-height: 1.1;
 
@@ -4194,7 +4366,7 @@ h6
 
 p
 {
-    font-family: 'Muli', sans-serif;
+    font-family: Inter; 
 }
 
 h1 a,
@@ -7435,9 +7607,12 @@ li.home:before
 
 .gradient-45deg-indigo-blue
 {
-    background: #303f9f;
-    background: -webkit-linear-gradient(45deg, #303f9f, #1976d2) !important;
-    background:         linear-gradient(45deg, #303f9f, #1976d2) !important;
+    /* background: #303f9f; 
+    */
+    background: #244B8A;
+    
+     background: -webkit-linear-gradient(45deg, #244B8A, #244B8A) !important;
+    background:         linear-gradient(45deg, #244B8A, #244B8A) !important; 
 }
 
 .gradient-45deg-indigo-blue.gradient-shadow
@@ -8941,7 +9116,7 @@ span.badge.pill
 
 .navbar .navbar-dark
 {
-    background: #37474f;
+    background: 244B8A;
 }
 
 .navbar .navbar-dark ul a
@@ -9241,9 +9416,10 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 .brand-sidebar .logo-wrapper a.brand-logo img
 {
-    height: 45px;
+    height: 48px;
     /* padding-left: 20px; */
-    margin-top: -10px;
+    /* margin-top: -10px; */
+    margin-top: -12px;
     /* width: 180px !important; */
 }
 
@@ -9268,7 +9444,7 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
 .brand-sidebar span.logo-text
 {
-    font-size: 36px;
+    font-size: 29px;
 
     visibility: visible;
     font-weight: bolder;
@@ -9288,10 +9464,11 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
 
     position: absolute;
 
-    display: inline-block;
-
-    margin: 1px 0;
-    padding: 22px 12px 20px 22px;
+    /* display: inline-block; */
+   display: flex; 
+    /* margin: 1px 0; */
+    /* padding: 22px 12px 20px 22px; */
+     padding: 20px 15px 28px 25px; 
 
     color: #244B8A;
 }

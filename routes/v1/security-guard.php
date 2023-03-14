@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('guard-properties',[JobController::class,'guard_properties'])->middleware('can:profile');
     Route::post('guard-properties-details',[JobController::class,'guard_properties_details'])->middleware('can:profile');
     Route::post('guard-properties-checkpoints',[JobController::class,'guard_properties_checkpoints'])->middleware('can:profile');
+    Route::post('fetch-shift',[LeaveController::class,'fetch_shift_bitween_dates'])->middleware('can:profile');
 
     //Profile Routes
     Route::group(['prefix'=>'profile','as'=>'profile.','middleware'=>'ability:profile,profile_edit'],function(){
@@ -52,4 +53,6 @@ Route::post('get-timezone',[GeneralController::class,'time_zone']);
 Route::group(['prefix'=>'report','as'=>'report.'],function(){
     Route::post('general',[ReportController::class,'general_report']);
     Route::post('maintenance',[ReportController::class,'maintenance_report']);
+    Route::post('parking',[ReportController::class,'parking_report']);
+    Route::post('emergency',[ReportController::class,'emergency_report']);
     });

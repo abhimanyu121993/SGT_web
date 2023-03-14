@@ -23,6 +23,8 @@ Route::get('/', function () {
     // return Auth::guard('superadmin')->check();
     return redirect()->route('auth.admin');
 })->name('home');
+
+
 Route::controller(ChatController::class)->prefix('chat')->as('chat.')->group(function () {
     Route::get('list', 'list')->name('list');
     Route::post('single-chat', 'single_chat')->name('single-chat');
@@ -102,7 +104,6 @@ Route::get('timesheet',function(){
   Route::get('/email', function(){
   
       return view('test.email');
-
 
   });
 

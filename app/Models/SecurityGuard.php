@@ -19,6 +19,16 @@ class SecurityGuard extends Authenticatable
 {
     use HasApiTokens,HasFactory,SoftDeletes,Notifiable, HasRoles;
     protected $guarded=[];
+
+    protected static function booted(): void
+    {
+        static::created(function (SecurityGuard $customer) {
+           
+
+                $customer->members()->create(['ownerable_type'=>get_class(new SecurityGuard),'ownerable_id'=>$customer->owner_id]);
+            
+        });
+    }
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();
@@ -62,5 +72,12 @@ class SecurityGuard extends Authenticatable
     {
        return $this->belongsTo(TimeZone::class,'time_zone_id');
     }
-  
+    public function members()
+    {
+        return $this->morphOne(Member::class,'membrable');
+    }
+    public function member_owner()
+    {
+        return $this->morphOne(Member::class,'ownerable');
+    }
 }

@@ -59,7 +59,7 @@ Route::group(['prefix' => 'property', 'as' => 'property.'], function () {
 
 
 //Route for Security Guard
-Route::resource('secuirty-guard', SecurityGuardController::class)->name('guard', '')->middleware('permission:security guard,customer');
+Route::resource('secuirty-guard',SecurityGuardController::class)->name('guard', '')->middleware('permission:security guard,customer');
 
 
 //Route for Activate User
@@ -99,6 +99,9 @@ Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
 Route::resource('route', RouteController::class)->name('route', '');
 
 Route::resource('checkpoint', CheckpointController::class)->middleware('permission:checkpoint,customer');
+
+
+
 Route::group(['prefix' => 'checkpoint', 'as' => 'checkpoint.'], function () {
     Route::post('/status', [CheckpointController::class, 'status'])->name('status');
 });
