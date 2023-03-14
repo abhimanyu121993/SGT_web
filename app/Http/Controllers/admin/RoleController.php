@@ -6,6 +6,7 @@ use App\DataTables\CurrencyDataTable;
 use App\DataTables\RoleDataTable;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\admin\Admin;
 use App\Models\Currency;
 use App\Models\PermissionName;
 use Exception;
@@ -155,9 +156,9 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
-        try{
-        $data=Role::find($id);
-        if($data->delete())
+     try{
+       $role= Role::findOrFail($id);
+        if($role->delete())
         {
             return redirect()->back()->with('success','Data Deleted successfully.');
         }

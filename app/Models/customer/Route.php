@@ -39,4 +39,9 @@ class Route extends Model
              $activity->causer_id=Helper::getUserId();
          
      }
+
+     public function syncCheckpoint(...$checkpoints)
+     {
+        return $checkpoints;
+     }
 }

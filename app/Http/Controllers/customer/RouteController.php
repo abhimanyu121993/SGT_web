@@ -69,6 +69,8 @@ class RouteController extends Controller
                'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('route',$request->images,'route'):'',
            ]);
          if ($res) {
+            $checkpoints=[1,2,3,4];
+            $res->syncCheckpoint($checkpoints);
           Session::flash('success', 'Route created successfully');
         } else {
           Session::flash('error', 'Route not created');

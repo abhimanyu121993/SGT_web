@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('created_by')->nullable()->comment('User id from the customer table');
             $table->string('owner_id')->nullable()->comment('Owner id of property');
             $table->string('file')->nullable();
+            $table->json('property_pics')->nullable()->comment('property multiple images');
+            $table->longText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

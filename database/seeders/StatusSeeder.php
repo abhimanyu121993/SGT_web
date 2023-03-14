@@ -79,6 +79,62 @@ class StatusSeeder extends Seeder
             'bg_color'=>'white',
             'type'=>'leave',
         ]);
-
+        Status::create([
+            'name' => 'pending',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'report',
+        ]);
+        Status::create([
+            'name' => 'Rejected',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'report',
+        ]);
+        Status::create([
+            'name' => 'Confirmed',
+            'icon' => '',
+            'color' => 'green',
+            'bg_color'=>'white',
+            'type'=>'report',
+        ]);
+        // Guard Duty status Seeder accourding jobs.
+        Status::create([
+            'name' => 'pending',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard_duty',
+        ]);
+        Status::create([
+            'name' => 'active',
+            'icon' => '',
+            'color' => 'green',
+            'bg_color'=>'white',
+            'type'=>'guard_duty',
+        ]);
+        Status::create([
+            'name' => 'missed',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard_duty',
+        ]);
+        Status::create([
+            'name' => 'completed',
+            'icon' => '',
+            'color' => 'Red',
+            'bg_color'=>'white',
+            'type'=>'guard_duty',
+        ]);
+        Status::create([
+            'name' => 'leave',
+            'icon' => '',
+            'color' => 'green',
+            'bg_color'=>'white',
+            'type'=>'guard_duty',
+        ]);
         }
 }

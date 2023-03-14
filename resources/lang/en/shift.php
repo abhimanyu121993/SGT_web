@@ -7,5 +7,5 @@ return array (
   'add_shift'=>'Add Shift',
   'is_active'=>'Is Active',
   'update_shift'=>'Update Shift',
-  'add_shift'=>'Shift Shift',
+  'add_shift'=>'Add Shift',
 );

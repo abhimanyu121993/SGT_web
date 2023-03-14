@@ -19,7 +19,7 @@ class GuardDuty extends Model
     use HasFactory,SoftDeletes,LogsActivity;
     protected $guarded=[];
 
-    public function properties()
+    public function property()
     {
         return $this->belongsTo(Property::class, 'property_id');
     }
@@ -37,4 +37,9 @@ class GuardDuty extends Model
               $activity->causer_id=Helper::getUserId();
           
       }
+      public function shift()
+      {
+          return $this->belongsTo(Shift::class, 'shift_id');
+      }
+
 }

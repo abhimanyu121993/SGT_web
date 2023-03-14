@@ -261,6 +261,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
+
         try {
             $res = Customer::find($id)->delete();
             if ($res) {

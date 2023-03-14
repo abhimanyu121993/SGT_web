@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('guard_id')->comment('Id of SecurityGuard table');
             $table->string('title')->comment('title of report');
             $table->longText('notes')->comment('description of report');
-            $table->string('record_sample')->nullable()->comment('Record related file');
+            $table->json('record_sample')->nullable()->comment('Record related file');
             $table->unsignedBigInteger('status_id')->comment('Id of status table');
             $table->softDeletes();
             $table->timestamps();

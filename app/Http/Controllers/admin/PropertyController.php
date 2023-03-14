@@ -65,6 +65,18 @@ class PropertyController extends Controller
             'images'=>'required',
         ]);
         try{
+
+            $mainpic=[];
+            if($request->hasFile('property_pic'))
+            {
+                foreach($request->file('property_pic') as $file)
+                {
+                    $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                    $path=$file->storeAs('property',$prop_name,'public');
+
+                    $mainpic []=$path;
+                }
+            }
            
            $res= Property::create([
                 'created_by'=>Helper::getCustomerBySession()->id,
@@ -78,6 +90,9 @@ class PropertyController extends Controller
                 'lattitude' => $request->lattitude ?? '',
                 'longitude' => $request->longitude ?? '',
                 'file'=>$request->hasFile('images')?ImageUpload::simpleUpload('property',$request->images,'property'):'',
+                'property_pics' => json_encode($mainpic),
+                'description'=>$request->description,
+
 
             ]);
 if($res){
@@ -107,7 +122,7 @@ else{
     {
     Session::put('customer',$id);
         $properties = Property::where('owner_id',Helper::getCustomerBySession()->id)->get();
-        return view('admin.customer.property', compact('properties'));
+        return view('admin.customer.view_property');
     }
 
     /**
@@ -132,7 +147,8 @@ else{
         {
             Session::flash('error','Something Went Wrong OR Data is Deleted');
             return redirect()->back();
-        }    }
+        }  
+      }
 
     /**
      * Update the specified resource in storage.
@@ -153,6 +169,18 @@ else{
         ]);
         try
         {
+            if($request->hasFile('property_pic'))
+        {
+            foreach($request->file('property_pic') as $file)
+            {
+                $prop_name='prop-'.time().'-'.rand(0,99).'.'.$file->extension();
+                $path=$file->storeAs('property',$prop_name,'public');
+                $mainpic[]=$path;
+            }
+        }
+           if (count($mainpic) > 0) {
+            Property::find($id)->update(['property_pics' => json_encode($mainpic)]);
+            }
           
              $res= Property::find($id)->update([ 
              'name' => $request->name,
@@ -163,8 +191,8 @@ else{
              'address' => $request->address ?? '',
              'lattitude' => $request->lattitude ?? '',
              'longitude' => $request->longitude ?? '',
+             'description'=>$request->description,
 
-             
         ]);
         $request->hasFile('images')?Property::find($id)->update(['file'=>ImageUpload::simpleUpload('property',$request->images,'property')]):'';
         if($res)
@@ -179,7 +207,8 @@ else{
         catch(Exception $ex){
             Helper::handleError($ex);
         }
-        return redirect()->back();    }
+        return redirect()->back();  
+      }
 
     /**
      * Remove the specified resource from storage.

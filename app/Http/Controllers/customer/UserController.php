@@ -8,11 +8,13 @@ use App\Models\customer\Customer;
 use App\Models\customer\CustomerProfile;
 use App\Models\PermissionName;
 use App\Models\Status;
+use App\Notifications\customerUserRegisterNoti;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use PHPUnit\TextUI\Help;
 use Spatie\Permission\Models\Role;
@@ -93,6 +95,7 @@ class UserController extends Controller
             $role_name = Role::find($request->role_id);
             if($customer)
             {
+                Notification::send(Auth::guard(Session::get('guard'))->user(), new customerUserRegisterNoti($customer));
                 $customer->assignRole($role_name);
                 session()->flash('success','User added sucessfully');
             }

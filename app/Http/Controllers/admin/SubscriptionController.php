@@ -285,4 +285,26 @@ class SubscriptionController extends Controller
 
         }
     }
+
+     //For active and deactive subscription plan
+     public function is_active_chat($id)
+     {
+         $chat=Subscription::find($id);
+ 
+         if($chat->chat==1)
+         {
+             $chat->chat=0;
+         }else
+         {
+             $chat->chat=true;
+         }
+         if($chat->update()){
+            return 1;
+         }
+         else
+         {
+            return 0;
+ 
+         }
+     }
 }
