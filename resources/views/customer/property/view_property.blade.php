@@ -199,7 +199,7 @@
           
          
          <table class="subscription-table responsive-table highlight">
-           <thead style="background-color: #3f51b5; color:black;">
+           <thead style="background-color: #3f51b5; color:white;">
               <tr>
                  <th>Name</th>
                  <th>Company</th>
@@ -301,217 +301,21 @@ display: inline-flex;
 
                   
    <div class="row">               
-    <div class="card" style="height: 500px;">
-  <br>
-
-                 <div class="new-area content-right">
-                           <div class="app-wrapper">
-
-                            <div class="datatable-search">
-                                <i class="material-icons mr-2 search-icon">search</i>
-                                <input type="text" placeholder="Search Contact" class="app-filter oldbox" id="global_filter">
-                            </div>
-
-                          </div>
-            </div>
-
-                       
-       <div class="belowsideOption">
-
-           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Filter</span></a>
-      
-           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Sort</span></a>
-
-           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:black;">Export</span></a>
-
-      </div>
+    <div class="card" style="height: 500px">
 
 
     <br><br>
 
-  <!-- 
-      <div class="col s12 m2 16 animate fadeRight" style="margin-top: -47px;">
-         <ul class="collapsible collapsible-accordion">
-            <li>
-               <div class="collapsible-header"> Shifts</div>
-               <div class="collapsible-body">
-
-                 <a href="">completed</a>
-
-                 <br>
-
-                  <a href="">Upcoming</a>
-                  <br>
-                 <a href="">Missed</a>
-
-                 <br>
-
-               <a href="">In Progress</a>
-
-               </div>
-            </li>
-            <li>
-
-               <div class="collapsible-header">Guards Assigned</div>
-
-               <div class="collapsible-body">
-                  <a href="">completed</a>
-                  <br>
-                  <a href="">Upcoming</a>
-                  <br>
-                  <a href="">Missed</a>
-                  <br>
-                  <a href="">In Progress</a>
-               </div>
-
-
-            </li>
-            <li>
-               <div class="collapsible-header">Time Sheets</div>
-               
-               <div class="collapsible-body">
-                  <a href="">completed</a>
-                    <br>
-                  <a href="">Upcoming</a>
-                  <br>
-                 <a href="">Missed</a>
-                 <br>
-                  <a href="">In Progress</a>
-               </div>
-            </li>
-
-             
-             <li>
-               <div class="collapsible-header">Property Details</div>
-               <div class="collapsible-body">
-                   <a href="">completed</a>
-                   <br>
-                  <a href="">Upcoming</a>
-                  <br>
-                 <a href="">Missed</a>
-                 <br>
-                  <a href="">In Progress</a>
-               </div>
-            </li>
-
-
-            <li>
-               <div class="collapsible-header">Reports</div>
-               <div class="collapsible-body">
-                    <a href="">completed</a>
-                    <br>
-                  <a href="">Upcoming</a>
-                  <br>
-                 <a href="">Missed</a>
-                 <br>
-                  <a href="">In Progress</a>
-               </div>
-            </li>
-
-
-            <li>
-               <div class="collapsible-header">Activity Log</div>
-               <div class="collapsible-body">
-                   <a href="">completed</a>
-                   <br>
-                  <a href="">Upcoming</a>
-                  <br>
-                 <a href="">Missed</a>
-                 <br>
-                  <a href="">In Progress</a>
-               </div>
-            </li>
-
-         </ul>
-      </div>
-
-<div class="col s12 m10 20 animate fadeRight">
-     <!-- Total Transaction -->
-     <!-- <div class="card">
-        <div class="card-content">
-            <h3 class="card-title mb-0"><center>Real Time Guard Location</center> <a class="btn waves-effect waves-light breadcrumbs-btn right" href="#!" style="margin-right:5px; margin-right: 5px;
-    margin-bottom: 9px;
-    margin-top: -24px;"><span class="hide-on-small-onl" style="color:black;">Map view</span>&nbsp;&nbsp;<img src="{{asset('app-assets/images/icon/map.png')}}"></a></h3>
-    <p style="margin-left: 250px;">Tracking Summary</p>
-          
-         
-         <table class="subscription-table responsive-table highlight">
-           <thead style="background-color: #3f51b5; color:black;">
-              <tr>
-                 <th>Name</th>
-                 <th>Company</th>
-                 <th>Start Date</th>
-                 <th>Status</th>
-                 <th>Status</th>
-                 <th>Status</th>
-                
-              </tr>
-           </thead>
-           <tbody>
-              <tr>
-                 <td>Michael Austin</td>
-                 <td>ABC Fintech LTD.</td>
-                 <td>Jan 1,2019</td>
-                 <td><span class="badge pink lighten-5 pink-text text-accent-2">Close</span></td>
-                 <td>$1000.00</td>
-                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
-              </tr>
-              <tr>
-                 <td>Aldin Rakić</td>
-                 <td>ACME Pvt LTD.</td>
-                 <td>Jan 10,2019</td>
-                 <td><span class="badge green lighten-5 green-text text-accent-4">Open</span></td>
-                 <td>$ 3000.00</td>
-                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
-              </tr>
-              <tr>
-                 <td>İris Yılmaz</td>
-                 <td>Collboy Tech LTD.</td>
-                 <td>Jan 12,2019</td>
-                 <td><span class="badge green lighten-5 green-text text-accent-4">Open</span></td>
-                 <td>$ 2000.00</td>
-                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
-              </tr>
-              <tr>
-                 <td>Lidia Livescu</td>
-                 <td>My Fintech LTD.</td>
-                 <td>Jan 14,2019</td>
-                 <td><span class="badge pink lighten-5 pink-text text-accent-2">Close</span></td>
-                 <td>$ 1100.00</td>
-                 <td class="center-align"><a href="#"><i class="material-icons pink-text">clear</i></a></td>
-              </tr>
-           </tbody>
-        </table>
-
-        </div>
-     </div>
-  </div>
-
-</div>
-
-</div>
- -->
-
- -->
+  
 
 
 <div class="sidebar-left sidebar-fixed">
   <div class="sidebar">
     <div class="sidebar-content">
-      <div class="sidebar-header">
-        <div class="sidebar-details">
-          <h5 class="m-0 sidebar-title"><i class="material-icons app-header-icon text-top">perm_identity</i> Contacts
-          </h5>
-          <div class="mt-10 pt-2">
-            <p class="m-0 subtitle font-weight-700">Total number of contacts</p>
-            <p class="m-0 text-muted">1457 Contacts</p>
-          </div>
-        </div>
-      </div>
+     
       <div id="sidebar-list" class="sidebar-menu list-group position-relative animate fadeLeft delay-1">
         <div class="sidebar-list-padding app-sidebar sidenav" id="contact-sidenav">
           <ul class="contact-list display-grid">
-            <li class="sidebar-title">Filters</li>
             <li class="active"><a href="javascript:void(0)" class="text-sub"><i class="material-icons mr-2">
                   perm_identity </i> All
                 Contact</a></li>
@@ -542,16 +346,29 @@ display: inline-flex;
   </div>
 </div>
 
+
+
+
 <div class="content-area content-right">
   <div class="app-wrapper">
+
+
     <div class="datatable-search">
       <i class="material-icons mr-2 search-icon">search</i>
       <input type="text" placeholder="Search Contact" class="app-filter" id="global_filter">
-    </div>
+
+       <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:white;">Filter</span></a>
+      
+           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:white;">Sort</span></a>
+
+           <a class="btn waves-effect waves-light breadcrumbs-btn " href="#!" ><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl" style="color:white;">Export</span></a>
+       </div>
+
+
     <div id="button-trigger" class="card card card-default scrollspy border-radius-6 fixed-width">
       <div class="card-content p-0">
         <table id="data-table-contact" class="display" style="width:100%">
-          <thead>
+          <thead style="color:white;">
             <tr>
               <th class="background-image-none center-align">
                 <label>
@@ -964,7 +781,7 @@ display: inline-flex;
                   <span></span>
                 </label>
               </td>
-              <td><span class="avatar-contact avatar-online"><img src="../../../app-assets/images/avatar/avatar-9.png"
+            <td><span class="avatar-contact avatar-online"><img src="../../../app-assets/images/avatar/avatar-9.png"
                     alt="avatar"></span></td>
               <td>Walter</td>
               <td>name@domain.com</td>
