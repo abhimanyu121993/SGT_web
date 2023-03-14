@@ -85,13 +85,7 @@ img {
 <br><br><br>
            
 
-           <form name="select-multiple">
-  <input id="multiple-date-select" />
-</form>
-              
-
-
-
+        
              <div class="input-field col s6">
                  <label class="active" for="name">{{__('security_guard.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ isset($guard) ? $guard->name : old('name') }}">

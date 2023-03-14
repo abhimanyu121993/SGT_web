@@ -1,28 +1,43 @@
 @extends('layout.panel')
 @section('title', 'Property')
 @section('breadcrumb')
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+<style>
+
+.ghjhgjh {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px !important;
+    line-height: 21px !important;
+    letter-spacing: -0.25px;
+    color: #FFFFFF !important;
+}
+
+    </style>
+
 <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
     <!-- Search for small screen-->
         <div class="container">
           <div class="row">
             <div class="col s10 m6 l6">
-              <h5 class="breadcrumbs-title mt-0 mb-0"><span>GreyLock Security Properties</span></h5>
+              <h5 class="breadcrumbs-title mt-0 mb-0 ghjhgjh"><span>GreyLock Security Properties</span></h5>
             <br><br>
             </div>
 
- 
-            <div class="col s2 m6 l6 mb-2">
+         <div class="col s2 m6 l6 mb-2">
             <a class="btn  waves-effect waves-light breadcrumbs-btn right ccbutton"
             href="{{route(Session::get('guard') . '.property.create')}}"><span
-                class="hide-on-small-onl">Add Property</span></a>    
+                class="hide-on-small-onl">+ &nbsp; Add Property</span></a>  
+
             </div>
           </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="search-widget">
-  <i class="fa fa-search"style="margin-left: 5px; margin-top:10px;"></i>
-  <input class="inputworld" name="name" type="text">
+ <i class="fa fa-search"style="margin-left: 5px; margin-top:10px;"></i>
+  <input class="inputworld" placeholder=" &nbsp;search property" name="name" type="text">
   
 </div>
 
@@ -31,6 +46,7 @@
 </div>
 @endsection
 @section('content-area')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
 <div class="card-content">
@@ -48,6 +64,9 @@
                     </span>
                     <p class="truncate"><a href="#">{{$property->address}}</a></p>
                   </div>
+
+                   
+
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ $property->name ?? '' }}<i class="material-icons right">close</i>
                     </span>
@@ -62,12 +81,13 @@
                                                     @method('DELETE')
                                                     @csrf
                                                 </form>
+
                    </p>
-                  </div>
+          </div>
           
-          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}" style="font-size:14px;">QR map</a>
+          <div class="card-action new-action"><a href="{{route(Helper::getGuard().'.checkpoint.show',$pid) }}" style="font-size:14px; color:black;">QR map</a>
                 
-           <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px;">View Property</a></div>
+           <a href="{{route(Helper::getGuard().'.property.show',$pid) }}" style="float:right; font-size:14px; color:black;">View Property</a></div>
 
                 </div>
                 
@@ -99,6 +119,18 @@
            </div>
     </div>
 </div>
+
+
+ <ul class="pagination">
+      <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+      <li class="active"><a href="#!">1</a></li>
+      <li class="waves-effect"><a href="#!">2</a></li>
+      <li class="waves-effect"><a href="#!">3</a></li>
+      <li class="waves-effect"><a href="#!">4</a></li>
+      <li class="waves-effect"><a href="#!">5</a></li>
+      <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+    </ul>
+
 
 {{--<div class="card">
     <div class="card-content">
@@ -164,6 +196,13 @@
 </tbody>
 </table>
 </div>
+
+
+
+   
+
+
+
 <div id="modal1" class="modal route_modal modal-fixed-footer">
 </div>--}}
 @endsection
