@@ -122,7 +122,7 @@ else{
     {
     Session::put('customer',$id);
         $properties = Property::where('owner_id',Helper::getCustomerBySession()->id)->get();
-        return view('admin.customer.property', compact('properties'));
+        return view('admin.customer.view_property');
     }
 
     /**
