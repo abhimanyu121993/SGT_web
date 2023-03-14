@@ -20,7 +20,6 @@ class LeaveResource extends JsonResource
         'leave_start'=>Helper::getLocalTime(carbon::parse($this->leave_start)->format('d-m-Y h:i')),
         'leave_end'=>Helper::getLocalTime(carbon::parse($this->leave_end)->format('d-m-Y h:i')),
         'subject'=>$this->subject,
-        'description'=>$this->desc,
         'status'=>$this->status_info->name
       ];
       

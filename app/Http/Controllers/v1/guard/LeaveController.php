@@ -6,6 +6,8 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LeaveCollection;
 use App\Http\Resources\LeaveResource;
+use App\Http\Resources\ShiftCollection;
+use App\Models\GuardDuty;
 use App\Models\Leave;
 use App\Models\SecurityGuard;
 use App\Models\Status;
@@ -151,5 +153,28 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function fetch_shift_bitween_dates(Request $request)
+    {
+        try {
+            $duties = GuardDuty::with('shift')->where('guard_id', Auth::guard('sanctum')->id())->whereBetween('duty_date',[ Carbon::parse($request->start_date),Carbon::parse($request->end_date)])->get();
+            if ($duties) {
+                $res = [
+                    'data' => new ShiftCollection($duties),
+                    'message' => 'Shifts between days',
+                    'success' => true
+                ];
+            }
+            return response()->json($res);
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+            $result = [
+                'data' => NULL,
+                'message' => $ex->getMessage(),
+                'success' => false,
+
+            ];
+            return response()->json($result);
+        }
     }
 }

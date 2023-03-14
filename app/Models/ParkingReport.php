@@ -10,4 +10,9 @@ class ParkingReport extends Model
 {
     use HasFactory,SoftDeletes;
     protected $guarded=[];
+
+    public function state_info()
+    {
+        return $this->belongsTo(State::class, 'state');
+    }
 }

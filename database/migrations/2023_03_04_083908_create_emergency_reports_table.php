@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('property_id')->comment('Id of Property table');
             $table->unsignedBigInteger('guard_id')->comment('Id of SecurityGuard table');
+            $table->unsignedBigInteger('duty_id')->comment('Id of Duty table');
             $table->string('title')->comment('title of report');
             $table->timestamp('date_time')->comment('Emergency date and time');
             $table->string('longitude')->nullable();
             $table->string('lattitude')->nullable();
-            $table->unsignedBigInteger('checkpoint_id')->comment('Id of checkpoint table');
+            $table->unsignedBigInteger('checkpoint_id')->comment('Id of checkpoint table')->nullable();
             $table->longText('emergency_notes')->nullable()->comment('Emergency details');
             $table->json('name')->nullable()->comment('Involved Peoples name');
             $table->json('phone')->nullable()->comment('Involved peoples phone no');
@@ -29,8 +30,8 @@ return new class extends Migration
             $table->json('witness_phone')->nullable()->comment('Witnesses people phone no');
             $table->longText('action_notes')->nullable()->comment('Action Taker notes details');
             $table->longText('police_report')->nullable()->comment('Police report details');
-            $table->string('office_name')->nullable()->comment('Officer name');
-            $table->string('office_designation')->nullable()->comment('Officer designation');
+            $table->string('officer_name')->nullable()->comment('Officer name');
+            $table->string('officer_designation')->nullable()->comment('Officer designation');
             $table->string('record_sample')->nullable()->comment('Record related file');
             $table->unsignedBigInteger('status_id')->comment('Id of status table');
             $table->softDeletes();
