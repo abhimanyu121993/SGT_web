@@ -14,6 +14,7 @@ return [
     'address'=>'Address',
     'qr_map'=>'QR Map',
     'view_property'=>'View Property',
+    'description'=>'Description',
 
 //View Property
 'guards_on_duty'=>'Guards On Duty',

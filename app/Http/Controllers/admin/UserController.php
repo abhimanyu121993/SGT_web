@@ -64,6 +64,8 @@ class UserController extends Controller
             'first_name'=>'required',
             'last_name'=>'nullable',
             'email'=>'required|unique:admins,email',
+            'gender'=>'required',
+            'dob'=>'required|date',
             'password' => 'required|min:6',
             'cpassword' => 'required|same:password|min:6'
         ]);

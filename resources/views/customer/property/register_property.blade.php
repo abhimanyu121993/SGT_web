@@ -173,6 +173,15 @@ img {
                            
                             <!--end col-->
                         </div>
+                        <div class="row gy-4 mt-2">
+                            <div class="input-field col s12">
+                                <textarea class="materialize-textarea" id='description'name="description"  data-length="120">{{ isset($propertyEdit) ? $propertyEdit->description : old('description') }}</textarea>
+                                <label for="longitude">{{__('property.description')}}</label>
+
+                            </div>
+                           
+                            <!--end col-->
+                        </div>
                         <div class="file-field input-field">
       <div class="btn">
         <span>Property images</span>

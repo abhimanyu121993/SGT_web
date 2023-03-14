@@ -129,3 +129,25 @@ $('#change_password_modal').click(function(){
        
     });
 </script>
+
+<script type="text/javascript">
+
+     $(document).on('click','.delete_confirm',function(event) {
+          var form =  $(this).data('form-id');
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Are you sure ?`,
+              text: "You won't be able to revert this! Related data will be also deleted",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              $('#'+form).submit();
+            }
+          });
+      });
+
+</script>

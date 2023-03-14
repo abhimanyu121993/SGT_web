@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('owner_id')->nullable()->comment('Owner id of property');
             $table->string('file')->nullable();
             $table->json('property_pics')->nullable()->comment('property multiple images');
+            $table->longText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

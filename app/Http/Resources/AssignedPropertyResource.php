@@ -28,7 +28,7 @@ class AssignedPropertyResource extends JsonResource
             'thumbnail'=>asset('storage/'.$this->property->file),
             'base_url_for_image'=>url('storage/').'/',
             'property_images'=>json_decode($this->property->property_pics),
-            'description'=>"This is a formal text",
+            'description'=>$this->property->description,
             'guards_count'=>GuardDuty::where('property_id',$this->property_id)->distinct()->count('guard_id'),
             'checkpoints_count'=>20,
             'guard_name'=>Auth::guard('sanctum')->user()->name,
