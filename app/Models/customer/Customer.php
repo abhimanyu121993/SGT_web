@@ -127,10 +127,10 @@ class Customer extends Authenticatable
 
     public function members()
     {
-        return $this->morphMany(Member::class,'membrable');
+        return $this->morphOne(Member::class,'membrable');
     }
     public function member_owner()
     {
-        return $this->morphMany(Member::class,'ownerable');
+        return $this->morphOne(Member::class,'ownerable');
     }
 }
