@@ -132,11 +132,10 @@
 
 .sidebar .sidebar-content .sidebar-menu ul li.active
 {
-    margin-left: -1.8rem;
+  
     padding-left: 1.8rem;
-
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 0rem;
     background-color: #3f51b5;
     box-shadow: 0 0 8px 0 #3f51b5;
 }

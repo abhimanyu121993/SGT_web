@@ -2,9 +2,9 @@
 
 return array (
   'sr_no'=>'Sr.No',
-  'route'=>'Route',
-  'time'=>'Complition Time',
-  'name'=>'Name',
+  'route'=>'Route Name',
+  'time'=>'Route Timing',
+  'name'=>'Route Name',
   'description'=>'Description',
   'color'=>'Color',
   'images'=>'Images',

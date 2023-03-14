@@ -52,6 +52,7 @@ $guard='customer';
                                     <th>Status</th>
                                     <th>Limit</th>
                                     <th>LifeTime</th>
+                                    <th>Chat</th>
                                     <th>Icon/Image</th>
                                     <th>Color</th>
                                     <th>Background Color</th>
@@ -90,6 +91,14 @@ $guard='customer';
                                             </label>
                                         </div>
                                     </td>
+                                    <td>
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" value="{{$data->id}}" class="is_active" id="is_active" data-url="{{route('admin.subscription.active_chat',$data->id) }}" {{ $data->chat==0?'':'checked' }}>
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </td>
                                     </td>
                                     <td>
                                         <img src="{{!empty($data->icon)?asset('storage/'.$data->icon):asset('storage/'.$data->img)}}" class="me-75 bg-light-danger" style="height:60px;width:60px;border-radius:100%;" />
@@ -103,13 +112,13 @@ $guard='customer';
                                             </a>
                                             @php $bid=Crypt::encrypt($data->id); @endphp
                                             <a id="pop" class="dropdown-item" href="{{route($guard.'.subscription.edit',$bid)}}"><i class="material-icons light-warning-text text-darken-4">edit</i></a>
-                                            <!-- <a id="pop" class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></< /a>
+                                            <a class="dropdown-item delete_confirm" data-form-id="delete-form-{{$bid}}" href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
 
 
                                                 <form id="delete-form-{{ $bid }}" action="{{ route($guard.'.subscription.destroy', $bid) }}" method="post" style="display: none;">
                                                     @method('DELETE')
                                                     @csrf
-                                                </form> -->
+                                                </form>
                                         </div>
                                     </td>
                                     @endforeach

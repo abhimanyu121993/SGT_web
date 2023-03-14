@@ -32,7 +32,7 @@ Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], functi
     Route::post('fetch-permissions', [RolePermissionController::class, 'fetch_permission'])->name('fetch-permissions')->middleware(['permission:permission_read|role:role_read,admin']);
     Route::post('assign-permission', [RolePermissionController::class, 'assign_permission'])->name('assign-permission')->middleware(['permission:permission_edit,admin']);
     Route::get('fetch-role', [RoleController::class, 'fetch_role'])->name('fetch-role')->middleware(['role:role_read,admin']);
-    Route::get('/isactive/{id}', [RoleController::class, 'is_active'])->name('active-role')->middleware(['role:role_edit,admin']);
+    Route::get('/isactive/{id}', [RoleController::class, 'is_active'])->name('active-role');
     Route::get('customer-has-permission', [RoleController::class, 'fetch_role'])->name('customer-has-permission');
 });
 
@@ -42,6 +42,7 @@ Route::resource('subscription', SubscriptionController::class)->name('subscripti
 Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function () {
     Route::get('/islimit/{id}', [SubscriptionController::class, 'is_limit'])->name('limit')->middleware(['permission:subscription_edit,admin']);
     Route::get('/islife-time/{id}', [SubscriptionController::class, 'is_life_time'])->name('life-time')->middleware(['permission:subscription_edit,admin']);
+    Route::get('/chat/{id}', [SubscriptionController::class, 'is_active_chat'])->name('active_chat')->middleware(['permission:subscription_edit,admin']);
     Route::get('/status/{id}', [SubscriptionController::class, 'is_active'])->name('is_active');
 });
 

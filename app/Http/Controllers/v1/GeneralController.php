@@ -8,69 +8,108 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\TimeZone;
+use Exception;
 use Illuminate\Http\Request;
 
 class GeneralController extends Controller
 {
     public function state(Request $req)
     {
+        try { 
         $data = Helper::getStateByCountry($req->country_id);
         if ($data) {
-            $res = response()->json([
+            $res = [
                 'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of state !',
-            ]);
+                'message'=>'State Fetch successfully',
+                'success'=>true
+            ];
         }
-        return response()->json($res,200);
+        
+        return response()->json($res);
+    }
+    catch (Exception $ex) {
+        Helper::handleError($ex);
+        $result = [
+            'data' => NULL,
+            'message' => $ex->getMessage(),
+            'success' => false,
+
+        ];
+        return response()->json($result);
+    }
     }
     public function city(Request $req)
     {
+        try { 
         $data = Helper::getCitiesByState($req->state_id);
         if ($data) {
-            $res = response()->json([
+            $res = [
                 'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of City !',
-            ]);
-        }
-        return response()->json($res,200);
+                'message'=>'city fetch successfully',
+                'success'=>true
+            ];
+        } 
+        
+        return response()->json($res);
+    }
+    catch (Exception $ex) {
+        Helper::handleError($ex);
+        $result = [
+            'data' => NULL,
+            'message' => $ex->getMessage(),
+            'success' => false,
+
+        ];
+        return response()->json($result);
+    }
     }
     public function country()
     {
+        try{ 
         $data = Country::active()->get();
         if ($data) {
-            $res = response()->json([
+            $res = [
                 'data' => $data,
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'no record found of Country !',
-            ]);
+                'message'=>'Record fetch successfully',
+                'success'=>true
+            ];
         }
-        return response()->json($res,200);
+        return response()->json($res);
+    }
+    catch (Exception $ex) {
+        Helper::handleError($ex);
+        $result = [
+            'data' => NULL,
+            'message' => $ex->getMessage(),
+            'success' => false,
+
+        ];
+        return response()->json($result);
+    }
     }
 
     public function time_zone()
     {
+        try{ 
        $data=TimeZone::active()->get();
        if ($data) {
-        $res = response()->json([
+        $res = [
             'data' => $data,
-        ]);
-    } else {
-        $res = response()->json([
-            'status' => false,
-            'message' => 'no record found of Country !',
-        ]);
+            'message'=>'timezone fetch successfully',
+            'success'=>true
+        ];
+    } 
+    return response()->json($res);
     }
-    return response()->json($res,200);
-    }
+catch (Exception $ex) {
+    Helper::handleError($ex);
+    $result = [
+        'data' => NULL,
+        'message' => $ex->getMessage(),
+        'success' => false,
+
+    ];
+    return response()->json($result);
+}
+}
 }

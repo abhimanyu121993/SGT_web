@@ -25,33 +25,60 @@ class ApiAuthController extends Controller
             if (Auth::guard('security_guard')->attempt($req->only('email', 'password'))) {
                 $abilities = $sguard->getAllPermissions()->pluck('name');
                 $result = [
-                    'status' => true,
                     'message' => 'Logged In Successfully',
                     'token' => $sguard->createToken('Api Token', $abilities->toArray())->plainTextToken,
-                    'abilities' => $abilities,
+                    'success' => TRUE,
+                    // 'abilities' => $abilities,
+                    'data' => new SecurityGuardResource($sguard)
                 ];
             } else {
                 $result = [
-                    'status' => false,
+                    'success' => false,
                     'message' => 'Invalid Creadential',
                 ];
             }
-            return response()->json($result, 200);
+            return response()->json($result);
         } catch (Exception $ex) {
             Helper::handleError($ex);
             $result = [
                 'data' => null,
+                'success' => false,
                 'error' => [
                     'code' => 500,
                     'msg' => 'Internal Server Error'
                 ]
             ];
-            return response()->json($result, 200);
+            return response()->json($result);
         }
     }
     public function logged_in(Request $req)
     {
-        return new SecurityGuardResource(Auth::guard('sanctum')->user());
+        try{
+        if (Auth::guard('sanctum')->user()) {
+            $result = [
+
+                'data' => new SecurityGuardResource(Auth::guard('sanctum')->user()),
+                'message' => 'logged in guard details fetch successfully',
+                'success' => true
+            ];
+        } else {
+            $result = [
+                'data' => NULL,
+                'message' => 'Invalid User',
+                'success'=>true,
+            ];
+        }
+        return response()->json($result);
+    }
+    catch(Exception $ex){
+        Helper::handleError($ex);
+        return response()->json([
+            'data'=>NULL,
+            'message'=>$ex->getMessage(),
+            'success'=>false,
+        ]);
+    }
+
     }
     public function logged_out()
     {
@@ -60,17 +87,17 @@ class ApiAuthController extends Controller
                 $data = Auth::guard('sanctum')->user()->currentAccessToken()->delete();
                 if ($data) {
                     $result = [
-                        'status' => true,
+                        'success' => true,
                         'msg' => 'SecurutyGuard logout Successfully !',
                     ];
                 }
             } else {
-                $result=[
-                    'status'=>false,
-                    'msg'=>'User Not Logged In'
+                $result = [
+                    'status' => false,
+                    'msg' => 'User Not Logged In'
                 ];
             }
-            return response()->json($result,200);
+            return response()->json($result);
         } catch (Exception $ex) {
             Helper::handleError($ex);
             $result = [
@@ -81,7 +108,7 @@ class ApiAuthController extends Controller
                 ]
 
             ];
-            return response()->json($result, 200);
+            return response()->json($result);
         }
     }
     public function change_password(Request $request)
@@ -91,35 +118,33 @@ class ApiAuthController extends Controller
             'new_password' => 'required',
             'new_confirm_password' => 'same:new_password',
         ]);
-        try{
-        if (Hash::check($request->old_password, Auth::guard('sanctum')->user()->password)) {
-            $data = Auth::guard('sanctum')->user()->update([
-                'password' => Hash::make($request->new_password),
-            ]);
-            $res = response()->json([
-                'status' => false,
-                'data' => $data,
-                'message' => 'your password is updated successfully !',
-            ]);
-        } else {
-            $res = response()->json([
-                'status' => false,
-                'message' => 'your old password is not mached !',
-            ]);
-        }
+        try {
+            if (Hash::check($request->old_password, Auth::guard('sanctum')->user()->password)) {
+                $data = Auth::guard('sanctum')->user()->update([
+                    'password' => Hash::make($request->new_password),
+                ]);
+                $res = [
+                    'message' => 'your password is updated successfully !',
+                    'success' => true
+                ];
+            } else {
+                $res = [
 
-        return response()->json($res,200);
-    }
-    catch(Exception $ex){
-        Helper::handleError($ex);
-        $result=[
-            'data'=>null,
-            'error'=>[
-                'code'=>503,
-                'msg'=>'Internal Server Error'
-            ]
+                    'message' => 'your old password is not mached !',
+                    'success' => false
+                ];
+            }
+
+            return response()->json($res);
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+            $result = [
+                'error' => [
+                    'code' => 503,
+                    'msg' => 'Internal Server Error'
+                ]
             ];
-            return response()->json($result,200);
-    }
+            return response()->json($result);
+        }
     }
 }

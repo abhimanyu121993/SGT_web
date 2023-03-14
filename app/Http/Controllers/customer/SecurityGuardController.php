@@ -11,11 +11,14 @@ use App\Models\SecurityGuard;
 use App\Models\Status;
 use App\Helpers\ImageUpload;
 use App\Models\TimeZone;
+use App\Notifications\GuardRegisterNoti;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class SecurityGuardController extends Controller
@@ -98,6 +101,7 @@ class SecurityGuardController extends Controller
                 'images'=>$request->hasFile('images')?ImageUpload::simpleUpload('security_guard',$request->images,'guard'):'',
             ]);
             if ($res) {
+                Notification::send(Auth::guard(Session::get('guard'))->user(), new GuardRegisterNoti($res));
                 Session::flash('success', 'Guard created successfully');
             } else {
                 Session::flash('error', 'Guard not created');

@@ -4,7 +4,11 @@ namespace App\Http\Controllers\v1\guard;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LeaveCollection;
 use App\Http\Resources\LeaveResource;
+use App\Http\Resources\ShiftCollection;
+use App\Models\GuardDuty;
+use App\Models\Leave;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use Exception;
@@ -22,29 +26,24 @@ class LeaveController extends Controller
     public function index()
     {
         try {
-            $leaves=SecurityGuard::with('leaves')->find(Helper::getUserId());
+            $leaves=SecurityGuard::find(Auth::guard('sanctum')->id())->leaves;
             if ($leaves) {
                 $result = [
-                    'data'=>$leaves,
-                    'message' => 'Found leave details',
-                    'status' => 200,
-                    'error' => NULL
-                ];
-            } else {
-                $result = [
-                    'data' => NULL,
-                    'message' => 'Leave details not found',
-                    'status' => 200,
-                    'error' => [
-                        'message' => 'Server Error',
-                        'code' => 305,
-                    ]
+                    'data'=>new LeaveCollection($leaves),
+                    'message' => 'Guard leave details',
+                    'success' => True,
                 ];
             }
             return response()->json($result);
         } catch (Exception $ex) {
             Helper::handleError($ex);
-        }
+            $result = [
+                'data' => NULL,
+                'message' => $ex->getMessage(),
+                'success' => false,
+            ];     
+            return response()->json($result);
+           }
 
     }
 
@@ -84,16 +83,14 @@ class LeaveController extends Controller
             if ($res) {
                 $result = [
                     'data'=>new LeaveResource($res),
-                    // 'data'=>$res,
                     'message' => 'Leave Request send successfully',
-                    'status' => 200,
-                    'error' => NULL
+                    'success' => True,
                 ];
             } else {
                 $result = [
                     'data' => NULL,
                     'message' => 'Leave Request not send',
-                    'status' => 200,
+                    'success' => false,
                     'error' => [
                         'message' => 'Server Error',
                         'code' => 305,
@@ -156,5 +153,28 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function fetch_shift_bitween_dates(Request $request)
+    {
+        try {
+            $duties = GuardDuty::with('shift')->where('guard_id', Auth::guard('sanctum')->id())->whereBetween('duty_date',[ Carbon::parse($request->start_date),Carbon::parse($request->end_date)])->get();
+            if ($duties) {
+                $res = [
+                    'data' => new ShiftCollection($duties),
+                    'message' => 'Shifts between days',
+                    'success' => true
+                ];
+            }
+            return response()->json($res);
+        } catch (Exception $ex) {
+            Helper::handleError($ex);
+            $result = [
+                'data' => NULL,
+                'message' => $ex->getMessage(),
+                'success' => false,
+
+            ];
+            return response()->json($result);
+        }
     }
 }

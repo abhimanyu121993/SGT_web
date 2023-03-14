@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\City;
 use App\Models\CustomerSubscribePack;
 use App\Models\Leave;
+use App\Models\Member;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -50,6 +51,19 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //clauser for creating member list
+    protected static function booted(): void
+    {
+        static::created(function (Customer $customer) {
+           
+
+                $customer->members()->create(['ownerable_type'=>get_class(new Customer),'ownerable_id'=>$customer->owner_id]);
+            
+        });
+    }
+
+
     //revoke role and permission on delete 
     public function getActivitylogOptions(): LogOptions
     {
@@ -109,5 +123,14 @@ class Customer extends Authenticatable
     public function timezone()
     {
        return $this->customer_profile()->timezone;
+    }
+
+    public function members()
+    {
+        return $this->morphOne(Member::class,'membrable');
+    }
+    public function member_owner()
+    {
+        return $this->morphOne(Member::class,'ownerable');
     }
 }

@@ -23,6 +23,8 @@ Route::get('/', function () {
     // return Auth::guard('superadmin')->check();
     return redirect()->route('auth.admin');
 })->name('home');
+
+
 Route::controller(ChatController::class)->prefix('chat')->as('chat.')->group(function () {
     Route::get('list', 'list')->name('list');
     Route::post('single-chat', 'single_chat')->name('single-chat');
@@ -94,7 +96,7 @@ Route::get('timesheet',function(){
 
     Route::get('general-report', [TestingController::class, 'generalReport']);
     Route::get('new-general-report', [TestingController::class, 'NewgeneralReport']);
-    Route::get('track-guard', [TestingController::class, 'guardtrack']);
+    Route::get('track-guard', [TestingController::class, 'trackGuard']);
 
     
     
@@ -102,7 +104,6 @@ Route::get('timesheet',function(){
   Route::get('/email', function(){
   
       return view('test.email');
-
 
   });
 

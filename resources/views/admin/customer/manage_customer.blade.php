@@ -112,7 +112,7 @@
                     <td>
                         @php $bid=Crypt::encrypt($data->id); @endphp
                         <a href="{{route(Session::get('guard').'.customer.edit',$bid)}}"><i class="material-icons">edit</i></a>
-                        <a href="#" onclick="event.preventDefault();document.getElementById('delete-form-{{ $bid }}').submit();"><i class="material-icons danger red-text text-accent-4">delete</i></a>
+                        <a class="dropdown-item delete_confirm" data-form-id="delete-form-{{$bid}}" href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
                         <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.customer.destroy', $bid) }}" method="post" style="display: none;">
                             @method('DELETE')
                             @csrf

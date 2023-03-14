@@ -1,6 +1,11 @@
 /*-------------------------------------------------
 	Style file contain theme components style
 -------------------------------------------------*/
+
+
+
+
+
 @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
 
   /* komal code */
@@ -72,7 +77,16 @@
    color: #244B8A;
    }
 
-   .deletebtn{
+.jj{
+  
+background-color: white;
+color: black;
+font-size: 52%;
+margin-right: 10px;
+
+
+}
+.deletebtn{
     float:right;
     background:white;
     color: #244B8A !important;
@@ -84,6 +98,10 @@
    margin-left:10px;
 }
   
+background-color: white;
+    color: black;
+    font-size: 52%;
+    margin-right: 10px;
 .filterbtn{
     background:#244B8A;
     color: white !important;
@@ -100,7 +118,74 @@
     font-weight: bold !important;
 }
 
-/* new code */
+.ww{
+
+margin-top: 70px;
+
+float:right;
+
+margin-left: 10px;
+
+margin-bottom:-20px;
+}
+
+
+.list-content {
+    height: auto;
+    margin: 7px;
+}
+
+
+.delete-task{
+
+
+    float:right;
+}
+
+.list-desc{
+    font-size:small;
+    display: flex;
+  
+}
+
+.ghjhgjh {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px !important;
+    line-height: 21px !important;
+    letter-spacing: -0.25px;
+    color: #FFFFFF !important;
+}
+
+
+#modal2 {
+    position: fixed;
+    right: 0;
+    left: 0;
+    display: none;
+    overflow-y: auto;
+    width: 50%;
+    max-height: 70%;
+    margin: auto;
+    padding: 0;
+    border-radius: 2px;
+    background-color: #fafafa;
+    will-change: top, opacity;
+}
+
+
+hr{
+
+    position: absolute;
+    width: 99%;
+    height: auto;
+    left: 0px;
+    border: 1px solid #D8D8DD;
+
+}
+
+
 
 .langlang{
 
@@ -142,7 +227,7 @@ top: -10px !important;
 
 .newlightbutton{
 
-     margin-right: 391px;
+    margin-right: 391px;
     margin-top: -42px;
     background-color: white !important;
 }
@@ -2995,8 +3080,11 @@ border : 0px solid #000000;
 
 .white-text
 {
+    margin-top: 1%;
+    position: relative;
+    display: flex;
     color: black !important;
-}
+ }
 
 .transparent
 {

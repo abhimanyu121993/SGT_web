@@ -12,6 +12,7 @@ use App\Models\ProjectError;
 use App\Models\SecurityGuard;
 use App\Models\Status;
 use App\Models\User;
+use App\Notifications\AdminUserRegisterNoti;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Role;
@@ -64,6 +66,8 @@ class UserController extends Controller
             'first_name'=>'required',
             'last_name'=>'nullable',
             'email'=>'required|unique:admins,email',
+            'gender'=>'required',
+            'dob'=>'required|date',
             'password' => 'required|min:6',
             'cpassword' => 'required|same:password|min:6'
         ]);
@@ -96,6 +100,7 @@ class UserController extends Controller
                     'email'=>$admin->email,
                     'token'=>$token,
                 ]);
+                Notification::send(Auth::guard(Helper::getGuard())->user(),new AdminUserRegisterNoti($admin));
                 Mail::to($admin->email)->send(new CreatePasswordEmail(['route'=>url('auth/admin-create-password/'.$token.'/'.$admin->email)]));
                 session()->flash('success','User added sucessfully');
             }

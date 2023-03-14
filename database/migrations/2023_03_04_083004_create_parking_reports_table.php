@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('parking_reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('duty_id')->comment('Id of Property table');
             $table->unsignedBigInteger('property_id')->comment('Id of Property table');
             $table->unsignedBigInteger('guard_id')->comment('Id of SecurityGuard table');
             $table->string('title')->comment('title of report');
@@ -30,7 +31,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

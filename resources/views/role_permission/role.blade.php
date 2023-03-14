@@ -54,10 +54,18 @@
               
                     <div class="row">
                 <div class="card-action pb-0 col s8">
-                    <a href="#"><i class="material-icons danger red-text">delete</i></a>
-                    <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text text-darken-3 ">edit</i></a>
+                @php $bid=Crypt::encrypt($role->id); @endphp
+
+                <a class="dropdown-item delete_confirm" data-form-id="delete-form-{{$bid}}" href="#"><i class="material-icons danger red-text text-accent-4">delete</i></a>
+                    <form id="delete-form-{{ $bid }}" action="{{ route(Session::get('guard').'.role-permission.role.destroy', $bid) }}" method="post" style="display: none;">
+                     @method('DELETE')
+                     @csrf
+                    </form>
+                    @if (Auth::guard(Session::get('guard'))->user()->hasPermissionTo('user_create', Session::get('guard')))
+                    <a href="javascript:void(0)" class="edit-role" data-url="{{route(Session::get('guard').'.role-permission.role.edit',$bid)}}"><i class="material-icons light-blue-text text-darken-3 ">edit</i></a>
+                   @endif
                     @if($role->is_active==true)
-                    <a class="" href="{{route(Session::get('guard').'.all-permission',Crypt::encrypt($role->id))}}"><i class="material-icons light-blue-text">cloud</i></a>
+                    <a class="" href="{{route(Session::get('guard').'.all-permission',$bid)}}"><i class="material-icons light-blue-text">cloud</i></a>
                @endif
                 </div>
                     <div class="switch col s4 right">
@@ -155,4 +163,6 @@
         });
     });
 </script>
+
+
 @endsection

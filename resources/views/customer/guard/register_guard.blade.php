@@ -1,9 +1,9 @@
 <div class="modal-content">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     <style>
      
-
-
 .profile-pic {
     width: 200px;
     height: 120px;
@@ -26,6 +26,7 @@ img {
     max-width: 100%;
     height: auto;
 }
+
 .p-image {
   position: absolute;
   top: 167px;
@@ -33,14 +34,17 @@ img {
   color: #666666;
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
+
 .p-image:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
+
 .upload-button {
     font-size: 1.2em;
     float: right;
     margin-right: 498px;
 }
+
 .upload-button:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
   color: #999;
@@ -79,8 +83,9 @@ img {
   </div>
 
 <br><br><br>
-       
-                    </div>
+           
+
+        
              <div class="input-field col s6">
                  <label class="active" for="name">{{__('security_guard.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ isset($guard) ? $guard->name : old('name') }}">
@@ -162,7 +167,8 @@ img {
                                             </select>
                                             <label>{{__('security_guard.timezone')}}</label>
                                         </div>
-                     <div class="input-field col s6" style="margin-top:-58px;">
+                     <div class="input-field col s6" style="margin-top: -136px;
+    margin-right: 20px;">
                         <label class="active" for="street">{{__('security_guard.street')}}</label>
                         <input type="text" class="form-control" id="street" name="street" value="{{ isset($guard) ? $guard->street : '' }}">
                         
@@ -187,9 +193,10 @@ img {
     </form>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <script>
+
+
 
     $(document).ready(function() {
 
@@ -218,3 +225,8 @@ img {
 
 
     </script>
+
+
+
+
+

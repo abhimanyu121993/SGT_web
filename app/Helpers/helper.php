@@ -180,4 +180,10 @@ class Helper
     {
         return Carbon::createFromFormat('d-m-Y h:i', $date)->timezone(Helper::getUser()->timezone->timezone)->format('d-m-Y h:i');
     }
+
+    public static function getLocalTimeOnly($time)
+    {
+        return Carbon::createFromFormat('H:i:s', $time)->timezone(Helper::getUser()->timezone->timezone)->format('h:i a');
+    
+    }
 }
